@@ -251,7 +251,7 @@ export default function LandingPage() {
                         </div>
 
                         <div className="flex-1 w-full relative">
-                            <div className="relative aspect-square w-full max-w-lg mx-auto p-[var(--space-3)] glass-card rounded-[var(--radius-2xl)] border-white/10 shadow-[0_0_80px_var(--color-500)/0.08]">
+                            <div className="relative aspect-square w-full max-w-[280px] sm:max-w-lg mx-auto p-[var(--space-3)] glass-card rounded-[var(--radius-2xl)] border-white/10 shadow-[0_0_80px_var(--color-500)/0.08]">
                                 <div className="absolute inset-0 bg-[var(--color-500)]/5 blur-2xl rounded-full animate-pulse" />
                                 <div className="relative h-full w-full flex items-center justify-center">
                                     <motion.div

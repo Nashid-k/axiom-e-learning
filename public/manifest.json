@@ -1,22 +1,68 @@
 {
     "name": "Axiom - Master Your Craft",
     "short_name": "Axiom",
-    "description": "AI-powered learning platform for modern developers.",
-    "start_url": "/",
+    "description": "AI-powered learning platform for modern developers. Master React, Node.js, TypeScript, and more with Maya AI.",
+    "start_url": "/paths",
+    "scope": "/",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#000000",
+    "background_color": "#050505",
+    "theme_color": "#1d4ed8",
+    "id": "/",
+    "categories": [
+        "education",
+        "productivity"
+    ],
+    "orientation": "any",
     "icons": [
         {
             "src": "/favicon.svg",
-            "sizes": "192x192",
-            "type": "image/svg+xml"
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
         },
         {
             "src": "/favicon.svg",
-            "sizes": "512x512",
-            "type": "image/svg+xml"
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
         }
     ],
-    "orientation": "portrait"
+    "shortcuts": [
+        {
+            "name": "Learning Paths",
+            "short_name": "Paths",
+            "description": "Browse all learning paths",
+            "url": "/paths",
+            "icons": [
+                {
+                    "src": "/favicon.svg",
+                    "sizes": "any"
+                }
+            ]
+        },
+        {
+            "name": "Flashcards",
+            "short_name": "Cards",
+            "description": "Review flashcards",
+            "url": "/flashcards",
+            "icons": [
+                {
+                    "src": "/favicon.svg",
+                    "sizes": "any"
+                }
+            ]
+        },
+        {
+            "name": "Leaderboard",
+            "short_name": "Ranks",
+            "description": "View rankings",
+            "url": "/leaderboard",
+            "icons": [
+                {
+                    "src": "/favicon.svg",
+                    "sizes": "any"
+                }
+            ]
+        }
+    ]
 }

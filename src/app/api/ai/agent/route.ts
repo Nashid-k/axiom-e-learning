@@ -20,9 +20,9 @@ const AgentRequestSchema = z.object({
     messages: z.array(
         z.object({
             role: z.enum(['system', 'user', 'assistant']),
-            content: z.string().min(1).max(8000),
+            content: z.string().min(1).max(64000),
         })
-    ).min(1).max(30),
+    ).min(1).max(60),
 });
 
 function hasValidAccessToken(req: NextRequest): boolean {

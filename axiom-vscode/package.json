@@ -1,0 +1,100 @@
+{
+    "name": "axiom-vscode",
+    "displayName": "Axiom - Ask Maya",
+    "description": "Ask Maya AI about your code directly from VS Code",
+    "version": "0.7.1",
+    "publisher": "axiom-learn",
+    "license": "MIT",
+    "icon": "icon.png",
+    "galleryBanner": {
+        "color": "#0a0a0a",
+        "theme": "dark"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Nashid-k/Axiom"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Education",
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "axiom-sidebar",
+                    "title": "Axiom",
+                    "icon": "sidebar-icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "axiom-sidebar": [
+                {
+                    "type": "webview",
+                    "id": "axiom.chatView",
+                    "name": "Maya AI",
+                    "icon": "sidebar-icon.svg"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "axiom.askMaya",
+                "title": "Ask Maya"
+            },
+            {
+                "command": "axiom.addContext",
+                "title": "Axiom: Add File to Chat Context"
+            },
+            {
+                "command": "axiom.applyEdit",
+                "title": "Axiom: Apply Code Edit"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "axiom.askMaya",
+                    "group": "navigation",
+                    "when": "editorHasSelection"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "axiom.addContext",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Axiom",
+            "properties": {
+                "axiom.apiUrl": {
+                    "type": "string",
+                    "default": "https://axiom-e-learning.vercel.app",
+                    "description": "Axiom API base URL"
+                },
+                "axiom.accessToken": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Access token for authenticating with the Axiom API (set AGENT_ACCESS_TOKEN in your Axiom .env)"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.85.0",
+        "typescript": "^5.0.0"
+    }
+}

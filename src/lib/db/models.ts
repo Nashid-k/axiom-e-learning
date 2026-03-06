@@ -78,6 +78,8 @@ export interface IUserTopic extends Document {
     studyGuide?: string;
     category: string;
     videoUrl?: string;
+    reviewCount?: number;
+    nextReviewDate?: string;
 }
 
 const UserTopicSchema = new Schema<IUserTopic>({
@@ -90,6 +92,8 @@ const UserTopicSchema = new Schema<IUserTopic>({
     studyGuide: { type: String },
     category: { type: String, default: 'Other' },
     videoUrl: { type: String },
+    reviewCount: { type: Number, default: 0 },
+    nextReviewDate: { type: String },
 }, {
     timestamps: true,
 });
@@ -224,7 +228,7 @@ const LeaderboardEntrySchema = new Schema<ILeaderboardEntry>({
 }, { timestamps: true });
 
 LeaderboardEntrySchema.index({ totalPoints: -1, totalMastered: -1, lastUpdated: -1 });
-LeaderboardEntrySchema.index({ isGuest: 1, totalPoints: -1 }); 
+LeaderboardEntrySchema.index({ isGuest: 1, totalPoints: -1 });
 
 export const LeaderboardEntry: Model<ILeaderboardEntry> =
     mongoose.models.LeaderboardEntry || mongoose.model<ILeaderboardEntry>('LeaderboardEntry', LeaderboardEntrySchema);
@@ -284,10 +288,10 @@ const InteractionLogSchema = new Schema<IInteractionLog>({
     action: { type: String, required: true },
     dwellTimeMs: { type: Number },
     metadata: { type: Schema.Types.Mixed },
-    timestamp: { type: Date, default: Date.now, index: true } 
+    timestamp: { type: Date, default: Date.now, index: true }
 });
 
-InteractionLogSchema.index({ uniqueId: 1, timestamp: -1 }); 
+InteractionLogSchema.index({ uniqueId: 1, timestamp: -1 });
 
 export const InteractionLog: Model<IInteractionLog> =
     mongoose.models.InteractionLog || mongoose.model<IInteractionLog>('InteractionLog', InteractionLogSchema);

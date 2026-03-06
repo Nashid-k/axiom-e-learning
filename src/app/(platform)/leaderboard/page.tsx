@@ -52,7 +52,7 @@ export default function LeaderboardPage() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch(err => { console.error(err); setLoading(false); });
-    }, [page]); 
+    }, [page]);
 
     const podiumUsers = page === 1 ? users.slice(0, 3) : [];
     const regularUsers = page === 1 ? users.slice(3) : users;
@@ -61,7 +61,7 @@ export default function LeaderboardPage() {
         <div className="min-h-screen bg-[var(--surface-base)] text-[var(--fg-primary)] pt-[var(--space-7)] pb-[var(--space-5)] px-[var(--space-3)]">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-[var(--space-7)]">
-                    <h1 className="text-[var(--text-display)] font-black tracking-[var(--tracking-tight)] mb-[var(--space-2)]">
+                    <h1 className="text-[var(--text-heading)] sm:text-[var(--text-display)] font-black tracking-[var(--tracking-tight)] mb-[var(--space-2)]">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-500)] via-[var(--color-ana-blue-500)] to-[var(--color-comp-400)] animate-gradient-x background-animate">
                             Leaderboard.
                         </span>
@@ -87,10 +87,10 @@ export default function LeaderboardPage() {
                     ) : (
                         <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                             {page === 1 && podiumUsers.length > 0 && (
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--space-2)] mb-[var(--space-7)] items-end relative z-10">
-                                    {podiumUsers[1] && <PodiumItem user={podiumUsers[1]} rank={2} />}
-                                    {podiumUsers[0] && <PodiumItem user={podiumUsers[0]} rank={1} />}
-                                    {podiumUsers[2] && <PodiumItem user={podiumUsers[2]} rank={3} />}
+                                <div className="grid grid-cols-3 gap-[var(--space-1)] sm:gap-[var(--space-2)] mb-[var(--space-7)] items-end relative z-10">
+                                    <div className="order-2 md:order-1">{podiumUsers[1] && <PodiumItem user={podiumUsers[1]} rank={2} />}</div>
+                                    <div className="order-1 md:order-2">{podiumUsers[0] && <PodiumItem user={podiumUsers[0]} rank={1} />}</div>
+                                    <div className="order-3">{podiumUsers[2] && <PodiumItem user={podiumUsers[2]} rank={3} />}</div>
                                 </div>
                             )}
                             {regularUsers.length > 0 && (
@@ -159,7 +159,7 @@ function PodiumItem({ user, rank }: { user: RankedUser; rank: number }) {
             <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: rank * 1.5 }}
-                className={`relative mb-[var(--space-2)] w-24 h-24 rounded-[var(--radius-full)] flex items-center justify-center text-3xl font-bold shadow-2xl ring-4 bg-gradient-to-br text-white ${gradAvatar} ${ringColor}`}
+                className={`relative mb-[var(--space-2)] w-16 h-16 sm:w-24 sm:h-24 rounded-[var(--radius-full)] flex items-center justify-center text-3xl font-bold shadow-2xl ring-4 bg-gradient-to-br text-white ${gradAvatar} ${ringColor}`}
             >
                 <div className="w-full h-full rounded-[var(--radius-full)] overflow-hidden border-2 border-white/20">
                     <Image src={safeAvatar(user.image)} alt={user.name} width={96} height={96} className="w-full h-full object-cover" />

@@ -80,6 +80,14 @@ function HeaderInner() {
                                     Ranking
                                 </Link>
                             </Magnetic>
+                            <Magnetic>
+                                <Link
+                                    href="/flashcards"
+                                    className="text-[var(--text-caption)] font-[var(--font-weight-medium)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors duration-[var(--duration-base)] block py-[var(--space-1)]"
+                                >
+                                    Flashcards
+                                </Link>
+                            </Magnetic>
                         </nav>
                     </div>
 
@@ -238,6 +246,15 @@ function HeaderInner() {
                         </div>
 
                         <div className="flex-1 p-[var(--space-2)] flex flex-col gap-[var(--space-2)]">
+                            <div className="flex items-center gap-[var(--space-2)] p-[var(--space-2)] bg-[var(--surface-raised)] rounded-[var(--radius-xl)] border border-[var(--border-default)]">
+                                <LevelBadge />
+                                {streak > 0 && (
+                                    <div className="flex items-center gap-[6px] px-[var(--space-1)] py-[4px] bg-orange-500/10 border border-orange-500/20 rounded-[var(--radius-full)]">
+                                        <span className="text-[var(--text-caption)] font-bold text-orange-500">{streak}</span>
+                                        <span className="text-orange-500 text-xs">🔥</span>
+                                    </div>
+                                )}
+                            </div>
                             <Link
                                 href="/leaderboard"
                                 onClick={() => setMobileMenuOpen(false)}
@@ -250,6 +267,19 @@ function HeaderInner() {
                             >
                                 <span>Ranking</span>
                                 <span>🏆</span>
+                            </Link>
+                            <Link
+                                href="/flashcards"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={[
+                                    "p-[var(--space-2)] bg-[var(--surface-raised)] rounded-[var(--radius-xl)]",
+                                    "text-[var(--text-body)] font-[var(--font-weight-medium)]",
+                                    "flex items-center justify-between",
+                                    "border border-[var(--border-default)]",
+                                ].join(' ')}
+                            >
+                                <span>Flashcards</span>
+                                <span>🃏</span>
                             </Link>
                             <button
                                 onClick={() => { setMobileMenuOpen(false); window.dispatchEvent(new CustomEvent('axiom:open-search')); }}

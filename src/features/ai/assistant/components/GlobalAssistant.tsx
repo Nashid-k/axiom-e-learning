@@ -463,7 +463,7 @@ export default function GlobalAssistant() {
         <>
             <AnimatePresence>
                 {!isOpen && (
-                    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-4">
+                    <div className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center gap-4">
                         <AnimatePresence>
                             {showPopup && (
                                 <motion.div

@@ -217,7 +217,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-[#050505] text-white flex flex-col pt-24 px-6 md:px-12 lg:px-20 max-w-[95vw] mx-auto">
+            <div className="min-h-screen bg-[#050505] text-white flex flex-col pt-24 px-3 sm:px-6 md:px-12 lg:px-20 max-w-[95vw] mx-auto">
                 <div className="flex flex-col lg:flex-row gap-8 lg:items-end justify-between">
                     <div className="flex items-start gap-6 w-full">
                         <Skeleton className="w-20 h-20 rounded-2xl shrink-0" />
@@ -260,7 +260,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-[#050505] text-gray-900 dark:text-white transition-colors duration-300">
 
-            <div className="pt-24 pb-12 px-6 md:px-12 lg:px-20 max-w-[95vw] 2xl:max-w-[1920px] mx-auto">
+            <div className="pt-16 sm:pt-24 pb-12 px-3 sm:px-6 md:px-12 lg:px-20 max-w-[95vw] 2xl:max-w-[1920px] mx-auto">
                 <div className="mb-7">
                     <Breadcrumbs items={[
                         { label: 'Home', href: '/paths' },
@@ -399,7 +399,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     {mirrorPhases.map((phase: NonNullable<CurriculumData['phases']>[number]) => (
                         <motion.div key={phase.phase} variants={fadeInUp} className="h-full">
                             <div
-                                className="h-[380px] md:h-[420px] flex flex-col relative group hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300 bg-white/80 dark:bg-black/40 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden"
+                                className="h-auto min-h-[300px] sm:h-[380px] md:h-[420px] flex flex-col relative group hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300 bg-white/80 dark:bg-black/40 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden"
                             >
                                 { }
                                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" />

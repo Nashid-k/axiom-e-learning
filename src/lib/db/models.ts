@@ -224,7 +224,7 @@ const LeaderboardEntrySchema = new Schema<ILeaderboardEntry>({
 }, { timestamps: true });
 
 LeaderboardEntrySchema.index({ totalPoints: -1, totalMastered: -1, lastUpdated: -1 });
-LeaderboardEntrySchema.index({ isGuest: 1, totalPoints: -1 }); // Compound index for leaderboard query (Audit 2, Flaw 14)
+LeaderboardEntrySchema.index({ isGuest: 1, totalPoints: -1 }); 
 
 export const LeaderboardEntry: Model<ILeaderboardEntry> =
     mongoose.models.LeaderboardEntry || mongoose.model<ILeaderboardEntry>('LeaderboardEntry', LeaderboardEntrySchema);
@@ -284,10 +284,10 @@ const InteractionLogSchema = new Schema<IInteractionLog>({
     action: { type: String, required: true },
     dwellTimeMs: { type: Number },
     metadata: { type: Schema.Types.Mixed },
-    timestamp: { type: Date, default: Date.now, index: true } // TTL cleanup via scheduled cron, not auto-TTL (avoid Atlas Free Tier CPU throttling)
+    timestamp: { type: Date, default: Date.now, index: true } 
 });
 
-InteractionLogSchema.index({ uniqueId: 1, timestamp: -1 }); // Compound index for heatmap aggregation (Audit 2, Flaw 15)
+InteractionLogSchema.index({ uniqueId: 1, timestamp: -1 }); 
 
 export const InteractionLog: Model<IInteractionLog> =
     mongoose.models.InteractionLog || mongoose.model<IInteractionLog>('InteractionLog', InteractionLogSchema);

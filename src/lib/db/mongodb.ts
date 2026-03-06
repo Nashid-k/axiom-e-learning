@@ -31,8 +31,8 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
             bufferCommands: false,
             serverSelectionTimeoutMS: 5000,
             socketTimeoutMS: 45000,
-            family: 4, // Force IPv4 to avoid some DNS resolution issues on Vercel
-            maxPoolSize: 1, // Keep minimal for Vercel serverless + Atlas Free Tier (500 conn limit)
+            family: 4, 
+            maxPoolSize: 1, 
             minPoolSize: 0,
         };
 

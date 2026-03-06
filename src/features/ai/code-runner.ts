@@ -289,7 +289,6 @@ async function runSQL(code: string): Promise<ExecutionResult> {
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function runMongoDB(_code: string): Promise<ExecutionResult> {
     const sampleCollections = {
         users: [

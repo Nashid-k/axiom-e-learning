@@ -87,10 +87,10 @@ export const useTextToSpeech = (options: TextToSpeechOptions = {}) => {
         }
 
         if (persona === 'general') {
-            utterance.rate = 0.95; // Slightly slower for authority/clarity
+            utterance.rate = 0.95; 
             utterance.pitch = 1.0;
         } else {
-            utterance.rate = 1.05; // Energetic but not too fast
+            utterance.rate = 1.05; 
             utterance.pitch = 1.1;
         }
 

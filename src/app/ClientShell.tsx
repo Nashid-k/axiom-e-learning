@@ -9,6 +9,8 @@ import Header from '@/components/ui/Header';
 import QueryProvider from '@/lib/providers/QueryProvider';
 import PageTransition from '@/lib/providers/PageTransition';
 import { ProgressProvider } from '@/lib/providers/ProgressProvider';
+import { TopicProvider } from "@/lib/providers/topic-context";
+import { ModalProvider } from "@/features/ai/context/ModalContext";
 
 const GlobalAssistant = dynamic(() => import('@/features/ai/assistant/components/GlobalAssistant'), { ssr: false });
 const AIModal = dynamic(() => import('@/features/ai/components/AIModal'), { ssr: false });
@@ -22,22 +24,26 @@ export default function ClientShell({ children }: { children: React.ReactNode })
                 <QueryProvider>
                     <ErrorBoundary>
                         <ProgressProvider>
-                            <Header />
-                            <GlobalSearch />
-                            <a
-                                href="#main-content"
-                                className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] rounded-md bg-white px-3 py-2 text-sm font-semibold text-black shadow-lg"
-                            >
-                                Skip to main content
-                            </a>
-                            <main id="main-content" className="min-h-screen pt-0">
-                                <PageTransition>
-                                    {children}
-                                </PageTransition>
-                            </main>
-                            <GlobalAssistant />
-                            <AIModal />
-                            <WebVitalsReporter />
+                            <TopicProvider>
+                                <ModalProvider>
+                                    <Header />
+                                    <GlobalSearch />
+                                    <a
+                                        href="#main-content"
+                                        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] rounded-md bg-white px-3 py-2 text-sm font-semibold text-black shadow-lg"
+                                    >
+                                        Skip to main content
+                                    </a>
+                                    <main id="main-content" className="min-h-screen pt-0">
+                                        <PageTransition>
+                                            {children}
+                                        </PageTransition>
+                                    </main>
+                                    <GlobalAssistant />
+                                    <AIModal />
+                                    <WebVitalsReporter />
+                                </ModalProvider>
+                            </TopicProvider>
                         </ProgressProvider>
                     </ErrorBoundary>
                 </QueryProvider>

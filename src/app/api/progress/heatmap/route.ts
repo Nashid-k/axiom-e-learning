@@ -18,7 +18,7 @@ async function GETHandler() {
             {
                 $match: {
                     uniqueId,
-                    timestamp: { $gte: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000) } // Last year only (Audit 2, Flaw 13)
+                    timestamp: { $gte: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000) } 
                 }
             },
             {

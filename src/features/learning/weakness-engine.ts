@@ -2,7 +2,7 @@ import type { Topic } from "@/types";
 
 export interface WeaknessSignal {
   topic: string;
-  severity: number; // 1-100
+  severity: number; 
   source: "flashcard" | "quiz" | "review";
   reason: string;
 }

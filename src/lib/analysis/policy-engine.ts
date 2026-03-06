@@ -3,7 +3,7 @@ export interface IPolicy {
     name: string;
     description: string;
     severity: 'info' | 'warning' | 'error';
-    validator: (content: string) => boolean; // Simple regex/string check for now, can expand to AST
+    validator: (content: string) => boolean; 
 }
 
 export interface IAnalysisResult {

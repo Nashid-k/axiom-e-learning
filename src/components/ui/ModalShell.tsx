@@ -16,15 +16,15 @@ interface ModalShellProps {
 }
 const SPRING_ENTER = {
   type: "spring" as const,
-  stiffness: 500,   // snappy but overshoots
-  damping: 30,      // low damping → small overshoot
+  stiffness: 500,   
+  damping: 30,      
   mass: 0.8,
 };
 
 const SPRING_EXIT = {
   type: "spring" as const,
   stiffness: 400,
-  damping: 40,      // more damped = no bounce on exit, just smooth out
+  damping: 40,      
   mass: 0.6,
 };
 
@@ -175,7 +175,7 @@ const STAGGER_CONTAINER = {
   visible: {
     transition: {
       staggerChildren: 0.055,
-      delayChildren: 0.06,      // let the container spring settle first
+      delayChildren: 0.06,      
     },
   },
 };

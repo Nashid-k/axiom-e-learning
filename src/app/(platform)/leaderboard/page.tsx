@@ -52,7 +52,7 @@ export default function LeaderboardPage() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch(err => { console.error(err); setLoading(false); });
-    }, [page]); // Removed session?.user?.image/name — leaderboard data is independent of current user's profile (Audit 2, Flaw 29)
+    }, [page]); 
 
     const podiumUsers = page === 1 ? users.slice(0, 3) : [];
     const regularUsers = page === 1 ? users.slice(3) : users;

@@ -4,7 +4,7 @@ const uri = process.env.MONGODB_URI;
 const options: MongoClientOptions = {
     serverSelectionTimeoutMS: 10000,
     socketTimeoutMS: 45000,
-    maxPoolSize: 1, // Keep minimal for Vercel serverless + Atlas Free Tier (500 conn limit)
+    maxPoolSize: 1, 
     minPoolSize: 0,
     connectTimeoutMS: 20000,
 };

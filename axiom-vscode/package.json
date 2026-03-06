@@ -1,8 +1,8 @@
 {
     "name": "axiom-vscode",
     "displayName": "Axiom - Ask Maya",
-    "description": "Ask Maya AI about your code directly from VS Code",
-    "version": "0.7.1",
+    "description": "Maya — Autonomous AI coding agent with project-wide search, multi-file edits, terminal access, and ghost text autocomplete",
+    "version": "0.7.2",
     "publisher": "axiom-learn",
     "license": "MIT",
     "icon": "icon.png",
@@ -18,7 +18,8 @@
         "vscode": "^1.85.0"
     },
     "categories": [
-        "Education",
+        "AI",
+        "Programming Languages",
         "Other"
     ],
     "activationEvents": [],

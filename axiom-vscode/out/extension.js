@@ -492,7 +492,14 @@ CRITICAL RULES:
         textarea { width: 100%; padding: 12px; border-radius: 10px; background: var(--vscode-input-background); color: var(--vscode-input-foreground); border: 1px solid var(--vscode-input-border); resize: none; font-family: var(--vscode-font-family); box-sizing: border-box; font-size: 13px; line-height: 1.5; transition: border 0.2s; }
         textarea:focus { outline: none; border-color: var(--maya-accent); box-shadow: 0 0 0 2px var(--maya-bg-subtle); }
         
-        .context-indicator { display: flex; background: var(--maya-bg-subtle); border: 1px solid var(--maya-accent); color: var(--maya-accent-light); font-size: 11px; padding: 5px 10px; border-radius: 20px; align-self: flex-start; align-items: center; gap: 6px; }
+        .context-indicator { display: none; background: var(--maya-bg-subtle); border: 1px solid var(--maya-accent); color: var(--maya-accent-light); font-size: 11px; padding: 5px 10px; border-radius: 20px; align-self: flex-start; align-items: center; gap: 6px; }
+        .ctx-close { cursor: pointer; opacity: 0.7; margin-left: 4px; }
+        .ctx-close:hover { opacity: 1; }
+        .input-row { display: flex; gap: 8px; align-items: flex-end; }
+        .send-btn { width: 38px; height: 38px; border-radius: 10px; border: none; background: var(--maya-accent); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+        .send-btn:hover { background: #4f46e5; transform: scale(1.05); }
+        .send-btn:active { transform: scale(0.95); }
+        .send-btn svg { width: 18px; height: 18px; }
 
         /* Brain/Thinking Pulse */
         .thinking-container { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
@@ -505,7 +512,7 @@ CRITICAL RULES:
 </head>
 <body>
     <div class="chat-container" id="chat">
-        <div class="message assistant">Hello! I am Maya, an autonomous Coding Agent. I can read your repo, analyze files, and write code edits for you to review.</div>
+        <div class="message assistant"><strong>Hey! I'm Maya</strong> — your autonomous coding agent. I can read files, run commands, search your codebase, and write edits. Just ask! 🧠</div>
     </div>
     
     <div class="typing-indicator" id="typingIndicator">
@@ -517,10 +524,13 @@ CRITICAL RULES:
     
     <div class="input-container">
         <div class="context-indicator" id="contextIndicator">
-            <span class="ctx-icon">📎</span> <span id="contextLabel">Target.ts</span>
-            <span class="ctx-close" id="clearContext" title="Remove context">×</span>
+            <span>📎</span> <span id="contextLabel"></span>
+            <span class="ctx-close" id="clearContext" title="Remove">✕</span>
         </div>
-        <textarea id="prompt" rows="3" placeholder="Message Maya (Enter to send, Shift+Enter for newline)..."></textarea>
+        <div class="input-row">
+            <textarea id="prompt" rows="1" placeholder="Ask Maya anything..."></textarea>
+            <button class="send-btn" id="sendBtn" title="Send (Enter)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        </div>
     </div>
 
     <script>
@@ -531,6 +541,7 @@ CRITICAL RULES:
         const contextLabel = document.getElementById('contextLabel');
         const clearContext = document.getElementById('clearContext');
         const typingIndicator = document.getElementById('typingIndicator');
+        const sendBtn = document.getElementById('sendBtn');
         
         let activeContext = null;
         let currentAssistantMessage = null;
@@ -691,38 +702,38 @@ CRITICAL RULES:
             contextIndicator.style.display = 'none';
         });
 
-        prompt.addEventListener('keydown', (e) => {
+        function doSend() {
+            const text = prompt.value.trim();
+            if (!text) return;
+            const msg = document.createElement('div');
+            msg.className = 'message user';
+            let c = escapeHtml(text);
+            if (activeContext) c = '<strong>📎 ' + escapeHtml(activeContext.fileName) + '</strong><br/>' + c;
+            msg.innerHTML = c;
+            chat.appendChild(msg);
+            const ctx = activeContext;
+            prompt.value = '';
+            prompt.style.height = 'auto';
+            typingIndicator.style.display = 'block';
+            chat.appendChild(typingIndicator);
+            scrollToBottom();
+            vscode.postMessage({ type: 'sendMessage', message: text, context: ctx ? [ctx] : undefined });
+            activeContext = null;
+            contextIndicator.style.display = 'none';
+        }
+
+        sendBtn.addEventListener('click', doSend);
+
+        prompt.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
                 e.preventDefault();
-                const text = prompt.value.trim();
-                if (!text) return;
-                
-                const msgWrapper = document.createElement('div');
-                msgWrapper.className = 'message user';
-                
-                let contentText = escapeHtml(text);
-                if (activeContext) {
-                    contentText = "<strong>📎 " + escapeHtml(activeContext.fileName) + "</strong><br/>" + contentText;
-                }
-                msgWrapper.innerHTML = contentText;
-                
-                chat.appendChild(msgWrapper);
-                const tempContext = activeContext;
-                prompt.value = '';
-                
-                typingIndicator.style.display = 'flex';
-                chat.appendChild(typingIndicator);
-                scrollToBottom();
-
-                vscode.postMessage({
-                    type: 'sendMessage',
-                    message: text,
-                    context: tempContext ? [tempContext] : undefined
-                });
-                
-                activeContext = null;
-                contextIndicator.style.display = 'none';
+                doSend();
             }
+        });
+
+        prompt.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
         });
 
         function scrollToBottom() {

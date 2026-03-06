@@ -1,42 +1,47 @@
-# Axiom — Ask Maya 🧠
+# Axiom — Maya AI Agent 🧠
 
-**Get instant AI-powered code explanations, bug detection, and optimization tips — right inside VS Code.**
+**The autonomous coding agent that lives inside your editor. Maya reads your code, runs commands, searches your codebase, writes edits, and manages her own task roadmap — all from a premium sidebar chat.**
 
-Maya is the AI assistant behind [Axiom](https://axiom-learn.com), the learning platform trusted by developers to master modern web technologies. Now Maya lives inside your editor.
-
----
-
-![Demo](images/demo.png)
+> Think Cursor + Claude Code + GitHub Copilot — built into one lightweight extension.
 
 ---
 
-## ✨ Features
+## 🚀 What Maya Can Do
 
-### 🤖 Autonomous Coding Agent (New in v0.7.0)
-Maya is now a fully autonomous agent capable of:
-- **Project Brain**: Search for code patterns across your entire project instantly.
-- **Self-Awareness**: Maya tracks her own progress via a `.maya/roadmap.md` file.
-- **Multi-File Atomic Edits**: Plan and execute complex changes across multiple files in a single turn.
-- **Environment Intelligence**: Maya understands your OS, Node version, and workspace setup for precise command execution.
-- **Terminal Integration**: Execute and read terminal outputs to debug and run tests.
+### 🤖 Autonomous Agent Loop
+Maya doesn't just answer questions — she **thinks, plans, and executes**. She chains multiple tools together to solve complex problems without you lifting a finger.
 
-### 🎯 Core Assistant Features
-- **"Explain this function"** — Get a clear, beginner-friendly explanation
-- **"Find bugs"** — Maya scans for logical errors and edge cases
-- **"Optimize this"** — Get performance and readability suggestions
-- **"Write tests"** — Generate test cases for your code
-- **"What does this regex do?"** — Decode complex patterns instantly
+### 📂 Deep Workspace Intelligence
+- **Read & Analyze Files** — Maya reads any file in your workspace for context.
+- **Search Across Your Entire Codebase** — Find patterns, functions, and logic project-wide.
+- **Understand Your Environment** — She knows your OS, Node version, and framework.
 
-### ⚡ How It Works
-1. **Select** any code in your editor
-2. **Right-click** → **"Ask Maya"**
-3. **Type your question** in the prompt
-4. Maya's response appears in a **side panel** — clean, formatted, and ready to copy
+### ✍️ Code Generation & Editing
+- **Create New Files** — Generate tests, components, utilities from scratch.
+- **Apply Edits** — Review Maya's proposed changes and apply them with one click.
+- **Ghost Text Autocomplete** — Inline AI suggestions as you type, just like GitHub Copilot.
 
-### 🌐 Works Everywhere
-- TypeScript, JavaScript, Python, Java, Go, Rust, C++, and more
-- Works with any file type VS Code supports
-- Powered by Axiom's AI backend
+### 🛠️ Terminal & DevOps
+- **Run Commands** — Execute build scripts, tests, linters directly from chat.
+- **Git Integration** — Commit, diff, and check status without leaving the editor.
+- **Linter Remediation** — Maya reads VS Code diagnostics and fixes warnings.
+
+### 🧠 Self-Awareness & Roadmap
+- **Autonomous Roadmap** — Maya tracks her own progress in `.maya/roadmap.md`.
+- **Task-Driven Development** — She plans before she codes, just like a senior engineer.
+
+### 🔒 You Stay in Control
+- **Permission System** — Every action requires your approval (Allow Once / Always Allow / Deny).
+- **No background scanning** — Maya only acts when you ask.
+
+---
+
+## ⚡ Getting Started
+
+1. **Install** the extension from the VS Code Marketplace.
+2. Open the **Axiom sidebar** (look for the 🧠 icon in your Activity Bar).
+3. **Type a message** and press Enter or click the Send button.
+4. Maya will analyze, think, and respond — chaining tools when needed.
 
 ---
 
@@ -44,34 +49,28 @@ Maya is now a fully autonomous agent capable of:
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `axiom.apiUrl` | `https://axiom-learn.com` | Your Axiom deployment URL |
+| `axiom.apiUrl` | `https://axiom-e-learning.vercel.app` | Your Axiom API deployment URL |
+| `axiom.accessToken` | *(empty)* | Access token for API authentication |
 
-To use with a **local Axiom server**, change the URL:
-1. Open Settings (`Ctrl+,`)
-2. Search for **"axiom"**
-3. Set the API URL to `http://localhost:3000`
+Go to **Settings → Extensions → Axiom** to configure.
 
 ---
 
-## 🚀 Getting Started
+## 🎯 Example Prompts
 
-1. Install the extension from the VS Code Marketplace
-2. Open any code file
-3. Select some code → Right-click → **"Ask Maya"**
-4. That's it! No API keys needed.
+- `"Explain this function and find any bugs"`
+- `"Search for all API routes and summarize them"`
+- `"Create a test file for utils.ts"`
+- `"Run npm test and fix any failures"`
+- `"Commit all changes with a descriptive message"`
+- `"Update your roadmap with the tasks we discussed"`
 
 ---
 
 ## 📋 Requirements
 
-- VS Code 1.85.0 or later
-- Internet connection (Maya runs on Axiom's cloud)
-
----
-
-## 🔒 Privacy
-
-Your code is sent to the Axiom API only when you explicitly use the "Ask Maya" command. No background scanning, no telemetry, no data collection.
+- VS Code **1.85.0** or later
+- Internet connection (Maya uses Axiom's AI backend)
 
 ---
 

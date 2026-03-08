@@ -131,7 +131,6 @@ export function useProgress(curriculumSlug: string, totalItems: number = 0): Use
             }
         } catch (error) {
             const currentRetryCount = retryCountRef.current;
-            console.error('[Progress] Sync error:', error);
             trackEvent('progress_sync_failed', {
                 curriculumSlug,
                 retryCount: currentRetryCount
@@ -141,7 +140,6 @@ export function useProgress(curriculumSlug: string, totalItems: number = 0): Use
                 retryCountRef.current = nextRetry;
                 setRetryCount(nextRetry);
                 const delay = Math.pow(2, nextRetry) * 1000;
-                console.log(`[Progress] Retrying in ${delay}ms...`);
                 if (retryTimeoutRef.current) {
                     clearTimeout(retryTimeoutRef.current);
                 }

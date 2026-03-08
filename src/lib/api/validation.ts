@@ -142,6 +142,21 @@ export const LoginSchema = z.object({
   password: z.string().min(1, 'Password is required'),
 });
 
+export const DojoChallengeSchema = z.object({
+  topic: z
+    .string()
+    .min(1, 'Topic is required')
+    .max(200, 'Topic must be under 200 characters'),
+  category: z
+    .string()
+    .max(100, 'Category must be under 100 characters')
+    .optional(),
+  language: z
+    .string()
+    .max(32, 'Language must be under 32 characters')
+    .optional()
+    .default('javascript'),
+});
 
 export type SearchResourcesInput = z.infer<typeof SearchResourcesSchema>;
 export type AIModalRequestInput = z.infer<typeof AIModalRequestSchema>;
@@ -151,6 +166,7 @@ export type DashboardQueryInput = z.infer<typeof DashboardQuerySchema>;
 export type ShareContentInput = z.infer<typeof ShareContentSchema>;
 export type SignUpInput = z.infer<typeof SignUpSchema>;
 export type LoginInput = z.infer<typeof LoginSchema>;
+export type DojoChallengeInput = z.infer<typeof DojoChallengeSchema>;
 
 
 export function validateInput<T>(

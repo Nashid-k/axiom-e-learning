@@ -13,7 +13,6 @@
   <a href="#%EF%B8%8F-tech-stack">Tech Stack</a> •
   <a href="#-architecture">Architecture</a> •
   <a href="#-getting-started">Getting Started</a> •
-  <a href="#-maya-ai-agent">Maya AI Agent</a> •
   <a href="#-project-structure">Project Structure</a> •
   <a href="#-environment-variables">Environment Variables</a> •
   <a href="#-running-tests">Running Tests</a> •
@@ -35,7 +34,6 @@
 | **Resource Discovery** | Integrated YouTube & Google Search APIs for curated supplementary learning resources alongside each topic. |
 | **Leaderboard & Social** | Gamified learning with user rankings and social features to encourage community engagement. |
 | **Cinematic UI** | Immersive, premium design system with fluid Framer Motion animations, dark mode, glassmorphism, and a Bento-grid dashboard. 21 reusable UI components. |
-| **Maya Agentic Ecosystem** | An autonomous AGI-lite developer agent (Maya) that lives in your sidebar and editor. Capable of project-wide search, autonomous roadmap management, multi-file atomic edits, and terminal execution. |
 | **Authentication** | Secure Google OAuth via NextAuth.js v5 (Auth.js) with MongoDB adapter for session persistence. |
 | **SEO Optimized** | Programmatic `robots.ts`, `sitemap.ts`, and semantic meta tags for search engine discoverability. |
 | **Security Hardened** | Custom security headers (`X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`) and Zod-validated API payloads. |
@@ -130,25 +128,6 @@ npm run dev
 ```
 
 The app will be available at **http://localhost:3000**.
-
----
-
-## 🤖 Maya AI Agent (VS Code Extension)
-
-Maya is no longer just a chatbot; she is an **Autonomous Developer Agent** that operates directly inside your workspace through the Axiom VS Code Extension.
-
-### Key Agentic Capabilities:
-- **Project-Wide Search**: Uses Ripgrep-powered indexing to find patterns across your entire codebase.
-- **Self-Awareness**: Manages her own mission objectives via `.maya/roadmap.md`.
-- **Atomic Multi-File Edits**: Plans and executes complex refactors across multiple files in a single turn.
-- **Environment Intelligence**: High awareness of OS, Node version, and workspace setup.
-- **Terminal Integration**: Executes tests, lints, and builds autonomously with user permission loops.
-
-### Getting the Extension:
-1. Navigate to the `axiom-vscode` directory.
-2. Install dependencies: `npm install`.
-3. Package the extension: `npx vsce package`.
-4. Install the generated `.vsix` in VS Code.
 
 ---
 

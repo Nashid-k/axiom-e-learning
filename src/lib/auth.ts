@@ -1,4 +1,3 @@
-
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
@@ -6,12 +5,13 @@ import clientPromise from "@/lib/db/mongodb-client";
 import { connectToDatabase } from "@/lib/db/mongodb";
 import { User } from "@/lib/db/models";
 import { authConfig } from "@/lib/config/auth.config";
+import { Logger } from "@/lib/api/logger";
 
 let adapter: ReturnType<typeof MongoDBAdapter> | undefined;
 try {
     adapter = MongoDBAdapter(clientPromise);
 } catch (e) {
-    console.warn("[Auth] MongoDB adapter init failed — running without DB adapter:", e);
+    Logger.warn("[Auth] MongoDB adapter init failed — running without DB adapter", { requestId: 'auth-init' }, e as Error);
     adapter = undefined;
 }
 
@@ -103,13 +103,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     }
 
                 } catch (dbError: unknown) {
-                    const err = dbError as { message?: string; code?: string | number; stack?: string };
-                    console.error("[Auth] CRITICAL DATABASE ERROR DURING SYNC:", {
-                        message: err.message,
-                        code: err.code,
+                    Logger.error("[Auth] CRITICAL DATABASE ERROR DURING SYNC", {
+                        requestId: 'auth-sync',
                         email: user.email,
-                        stack: err.stack
-                    });
+                    }, dbError as Error);
                 }
             }
             return token;

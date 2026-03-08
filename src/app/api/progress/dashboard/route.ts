@@ -1,51 +1,35 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { aiService } from "@/features/ai/ai-service";
-import { validateBody, secureErrorResponse, secureSuccessResponse, COMMON_SCHEMAS } from "@/lib/utils/security";
 import { withApiVitals } from '@/lib/monitoring/api-vitals';
 import { auth } from '@/lib/auth';
-
-const DOJO_BODY_SCHEMA = {
-    topic: {
-        ...COMMON_SCHEMAS.topicTitle,
-        maxLength: 200,
-    },
-    category: {
-        ...COMMON_SCHEMAS.curriculumSlug,
-        required: false,
-    },
-    language: {
-        type: "string" as const,
-        required: false,
-        maxLength: 32,
-    },
-};
+import { validateInput, DojoChallengeSchema, DojoChallengeInput } from "@/lib/api/validation";
+import { Logger, createLogContext, getOrCreateRequestId } from "@/lib/api/logger";
 
 async function POSTHandler(req: NextRequest) {
+    const requestId = getOrCreateRequestId(req.headers);
+    const startTime = Date.now();
+
     try {
         const session = await auth();
         if (!session?.user?.email) {
-            return secureErrorResponse('Authentication required', 401);
+            return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
         }
 
-        let body: unknown;
-        try {
-            body = await req.json();
-        } catch {
-            return secureErrorResponse("Invalid JSON", 400);
-        }
+        const body = await req.json();
+        const validated = validateInput(DojoChallengeSchema, body);
+        const { topic, category, language } = validated;
 
-        const validation = validateBody(body, DOJO_BODY_SCHEMA);
-        if (!validation.valid) {
-            return secureErrorResponse(validation.error || "Invalid request", 400);
-        }
+        const context = createLogContext(requestId, {
+            endpoint: '/api/progress/dashboard',
+            topic,
+            category,
+            language,
+            userId: session.user.email,
+        });
 
-        const { topic, category, language = "javascript" } = validation.data as {
-            topic: string;
-            category?: string;
-            language?: string;
-        };
+        Logger.info('Generating Dojo challenge', context);
+
         const isPython = language.toLowerCase() === 'python';
-
         let contextInstruction = isPython
             ? "Generate a purely Python 3 challenge."
             : "Generate a JavaScript/TypeScript challenge.";
@@ -90,11 +74,16 @@ async function POSTHandler(req: NextRequest) {
             .replace(/```/g, '')
             .trim();
 
-        return secureSuccessResponse({ challengeCode: cleanCode });
-    } catch (error) {
-        console.error("Dojo API Error:", error);
-        return secureErrorResponse("Failed to generate challenge", 500);
+        const duration = Date.now() - startTime;
+        Logger.info('Dojo challenge generated', { ...context, duration });
+
+        return NextResponse.json({ challengeCode: cleanCode });
+    } catch (error: any) {
+        const duration = Date.now() - startTime;
+        Logger.error("Dojo API Error", { requestId, duration }, error);
+        return NextResponse.json({ error: "Failed to generate challenge" }, { status: 500 });
     }
 }
 
 export const POST = withApiVitals('/api/progress/dashboard:POST', POSTHandler);
+

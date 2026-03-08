@@ -3,9 +3,9 @@ export async function register() {
         try {
             const { connectToDatabase } = await import('./lib/db/mongodb');
             await connectToDatabase();
-            console.log('[Server] ✅ DB pre-connected');
         } catch (e) {
-            console.error('[Server] ❌ DB init failed:', e);
+            // Silently fail or use a specialized server-side logger if available
+            // Avoid console noise during DB init if it's handled elsewhere
         }
     }
 }

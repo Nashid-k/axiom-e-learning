@@ -140,3 +140,11 @@ export function sanitizeString(input: string): string {
         .trim()
         .slice(0, 50000);
 }
+
+export function secureSuccessResponse(data: any, status: number = 200): NextResponse {
+    return NextResponse.json(data, { status });
+}
+
+export function secureErrorResponse(error: string, status: number = 400): NextResponse {
+    return NextResponse.json({ error }, { status });
+}

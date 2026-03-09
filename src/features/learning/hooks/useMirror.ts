@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Phase, RichItem } from '@/types';
 
 interface Struggle {
@@ -11,12 +11,8 @@ interface Struggle {
 }
 
 export function useMirror(curriculumSlug: string, phases: Phase[]) {
-    const [struggles, setStruggles] = useState<Struggle[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setLoading(false);
-    }, [curriculumSlug]);
+    const [struggles] = useState<Struggle[]>([]);
+    const [loading] = useState(false);
 
     const mirrorPhases = useMemo(() => {
         if (!phases) return [];

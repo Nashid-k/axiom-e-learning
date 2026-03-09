@@ -33,13 +33,6 @@ function AuthContextProvider({ children }: { children: React.ReactNode }) {
     const [error, setError] = useState<string | null>(null);
     const loading = status === "loading";
 
-    const user = session?.user ? {
-        id: session.user.id,
-        name: session.user.name,
-        email: session.user.email,
-        image: session.user.image,
-    } : null;
-
     useEffect(() => {
         const handleStorage = (e: StorageEvent) => {
             if (e.key === 'axiom-logout-sync') {
@@ -50,7 +43,7 @@ function AuthContextProvider({ children }: { children: React.ReactNode }) {
         return () => window.removeEventListener('storage', handleStorage);
     }, []);
 
-    const googleLogin = async () => {
+    const googleLogin = React.useCallback(async () => {
         setError(null);
         try {
             const params = new URLSearchParams(window.location.search);
@@ -66,9 +59,9 @@ function AuthContextProvider({ children }: { children: React.ReactNode }) {
             console.error("Google Login Error:", err);
             setError("A spiritual disturbance blocked your login.");
         }
-    };
+    }, [router]);
 
-    const logout = async () => {
+    const logout = React.useCallback(async () => {
         try {
             localStorage.setItem('axiom-logout-sync', Date.now().toString());
             await signOut({ callbackUrl: "/" });
@@ -76,19 +69,31 @@ function AuthContextProvider({ children }: { children: React.ReactNode }) {
             console.error("Logout Error:", err);
             setError("Failed to break the connection.");
         }
-    };
+    }, []);
 
-    const contextValue = React.useMemo(() => ({
-        user,
+    const contextValue = React.useMemo(() => {
+        const user = session?.user ? {
+            id: session.user.id,
+            name: session.user.name,
+            email: session.user.email,
+            image: session.user.image,
+        } : null;
+
+        return {
+            user,
+            loading,
+            logout,
+            googleLogin,
+            error,
+            setError
+        };
+    }, [
+        session,
         loading,
         logout,
         googleLogin,
         error,
         setError
-    }), [
-        user?.id, user?.name, user?.email, user?.image,
-        loading,
-        error
     ]);
 
     return (

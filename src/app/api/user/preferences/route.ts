@@ -23,7 +23,7 @@ async function GETHandler() {
 
         return NextResponse.json({
             success: true,
-            preferences: (user as any)?.mayaPreferences || {}
+            preferences: (user as unknown as { mayaPreferences?: unknown })?.mayaPreferences || {}
         });
     } catch (error: unknown) {
         console.error('[Preferences GET]', error);

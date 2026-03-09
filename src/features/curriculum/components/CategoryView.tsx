@@ -1,10 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { staggerContainer, fadeInUp, springs } from '@/lib/motion/motion-config';
-import { getCategory } from '@/features/curriculum/curriculum-constants';
 import { getHashiraInfo } from '@/lib/motion/world-theme';
 import ReviewBell from '@/components/ui/ReviewBell';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';

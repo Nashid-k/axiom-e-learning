@@ -97,7 +97,7 @@ export async function runCode(language: SupportedLanguage, code: string): Promis
                 result = await runSQL(code);
                 break;
             case 'mongodb':
-                result = await runMongoDB(code);
+                result = await runMongoDB();
                 break;
             case 'html':
             case 'css':
@@ -289,7 +289,7 @@ async function runSQL(code: string): Promise<ExecutionResult> {
     }
 }
 
-async function runMongoDB(_code: string): Promise<ExecutionResult> {
+async function runMongoDB(): Promise<ExecutionResult> {
     const sampleCollections = {
         users: [
             { _id: '1', name: 'Alice', age: 28, status: 'active', tags: ['developer', 'node'] },
@@ -323,17 +323,4 @@ ${JSON.stringify(sampleCollections.users, null, 2)}
             error: (err as Error).message
         };
     }
-}
-
-function formatValue(val: unknown): string {
-    if (val === undefined) return 'undefined';
-    if (val === null) return 'null';
-    if (typeof val === 'object') {
-        try {
-            return JSON.stringify(val, null, 2);
-        } catch {
-            return String(val);
-        }
-    }
-    return String(val);
 }

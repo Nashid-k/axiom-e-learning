@@ -103,8 +103,9 @@ async function POSTHandler(req: Request) {
                 }
             }
 
-            if (userProfile && !Array.isArray(userProfile) && (userProfile as any).mayaPreferences?.vibe) {
-                userVibe = (userProfile as any).mayaPreferences.vibe;
+            const profileObj = userProfile as unknown as { mayaPreferences?: { vibe?: string } } | null;
+            if (profileObj && !Array.isArray(profileObj) && profileObj.mayaPreferences?.vibe) {
+                userVibe = profileObj.mayaPreferences.vibe;
             }
         }
 

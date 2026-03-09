@@ -154,7 +154,7 @@ export default function AIModal() {
             resetResources();
             fetchAIContent(topicData.topic, topicData.category, topicData.description, topicData.phase, persona, false, 'explanation');
         }
-    }, [isOpen, topicData, resetContent, resetResources, fetchAIContent]); 
+    }, [isOpen, topicData, resetContent, resetResources, fetchAIContent, persona]);
 
     const prevPersonaRef = useRef(persona);
     useEffect(() => {

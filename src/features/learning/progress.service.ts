@@ -15,12 +15,16 @@ export class ProgressService {
         if (curriculumSlug) {
             const progress = await UserProgress.findOne({ uniqueId, curriculumSlug }).lean();
             return {
-                progress,
-                checkedItems: progress?.checkedItems || []
+                progress: progress as unknown as { checkedItems: string[] } | null,
+                checkedItems: (progress as unknown as { checkedItems: string[] } | null)?.checkedItems || []
             };
         } else {
             const allProgress = await UserProgress.find({ uniqueId }).lean();
-            return { progress: allProgress };
+            const progressMap = (allProgress as unknown as { curriculumSlug: string, checkedItems: string[] }[]).reduce((acc: Record<string, string[]>, cur: { curriculumSlug: string, checkedItems: string[] }) => {
+                acc[cur.curriculumSlug] = cur.checkedItems;
+                return acc;
+            }, {});
+            return { progress: allProgress as unknown as { checkedItems: string[] }[], progressMap };
         }
     }
 
@@ -125,7 +129,7 @@ export class ProgressService {
             const user = await User.findOne({ email: uniqueId }).lean();
 
             if (user) {
-                const u = user as any;
+                const u = user as unknown as { name?: string; email: string; image?: string };
                 const displayName = u.name || u.email.split('@')[0];
                 const image = u.image;
 

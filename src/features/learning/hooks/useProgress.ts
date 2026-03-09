@@ -129,7 +129,7 @@ export function useProgress(curriculumSlug: string, totalItems: number = 0): Use
             } else {
                 throw new Error(`Sync failed: ${response.statusText}`);
             }
-        } catch (error) {
+        } catch {
             const currentRetryCount = retryCountRef.current;
             trackEvent('progress_sync_failed', {
                 curriculumSlug,

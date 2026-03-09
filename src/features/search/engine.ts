@@ -1,5 +1,4 @@
 import { Category } from '@/features/curriculum/curriculum-constants';
-import { Phase, RichItem } from '@/types';
 
 export interface SearchResult {
     type: 'curriculum' | 'item';

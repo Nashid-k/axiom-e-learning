@@ -41,7 +41,16 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
             return NextResponse.json({ error: "Topic not found" }, { status: 404 });
         }
 
-        const t = topic as any;
+        const t = topic as unknown as {
+            _id: mongoose.Types.ObjectId;
+            title: string;
+            description?: string;
+            studied: boolean;
+            createdAt: Date;
+            lastStudied?: Date;
+            studyGuide?: string;
+            category: string;
+        };
 
         return NextResponse.json({
             topic: {
@@ -55,7 +64,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
                 category: t.category,
             }
         });
-    } catch (error) {
+    } catch (error: unknown) {
         console.error("Topic GET (by ID) error:", error);
         return NextResponse.json({ error: "Failed to fetch topic details" }, { status: 500 });
     }

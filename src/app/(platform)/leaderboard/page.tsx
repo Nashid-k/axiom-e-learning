@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { springs } from '@/lib/motion/motion-config';
 import { Button } from '@/components/ui/Button';
@@ -36,7 +36,7 @@ function safeAvatar(img?: string) {
 }
 
 export default function LeaderboardPage() {
-    const { data: session } = useSession();
+    useSession();
     const [users, setUsers] = useState<RankedUser[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
@@ -54,8 +54,8 @@ export default function LeaderboardPage() {
             .catch(err => { console.error(err); setLoading(false); });
     }, [page]);
 
-    const podiumUsers = page === 1 ? users.slice(0, 3) : [];
-    const regularUsers = page === 1 ? users.slice(3) : users;
+    const podiumUsers = useMemo(() => page === 1 ? users.slice(0, 3) : [], [page, users]);
+    const regularUsers = useMemo(() => page === 1 ? users.slice(3) : users, [page, users]);
 
     return (
         <div className="min-h-screen bg-[var(--surface-base)] text-[var(--fg-primary)] pt-[var(--space-7)] pb-[var(--space-5)] px-[var(--space-3)]">

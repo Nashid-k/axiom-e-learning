@@ -3,7 +3,6 @@
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
-import { springs } from '@/lib/motion/motion-config';
 
 interface PageTransitionProps {
     children: ReactNode;

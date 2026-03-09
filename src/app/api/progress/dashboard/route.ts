@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { aiService } from "@/features/ai/ai-service";
 import { withApiVitals } from '@/lib/monitoring/api-vitals';
 import { auth } from '@/lib/auth';
-import { validateInput, DojoChallengeSchema, DojoChallengeInput } from "@/lib/api/validation";
+import { validateInput, DojoChallengeSchema } from "@/lib/api/validation";
 import { Logger, createLogContext, getOrCreateRequestId } from "@/lib/api/logger";
 
 async function POSTHandler(req: NextRequest) {
@@ -78,9 +78,9 @@ async function POSTHandler(req: NextRequest) {
         Logger.info('Dojo challenge generated', { ...context, duration });
 
         return NextResponse.json({ challengeCode: cleanCode });
-    } catch (error: any) {
+    } catch (error: unknown) {
         const duration = Date.now() - startTime;
-        Logger.error("Dojo API Error", { requestId, duration }, error);
+        Logger.error("Dojo API Error", { requestId, duration }, error as Error);
         return NextResponse.json({ error: "Failed to generate challenge" }, { status: 500 });
     }
 }

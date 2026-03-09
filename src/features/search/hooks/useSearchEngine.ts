@@ -56,7 +56,7 @@ export function useSearchEngine(query: string) {
                 title: cat,
                 category: cat,
                 slug: cat.toLowerCase()
-            } as any as SearchResult));
+            } as unknown as SearchResult));
         }
 
         const cachedResults = getSearchCache(trimmedQuery);

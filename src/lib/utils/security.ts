@@ -141,7 +141,7 @@ export function sanitizeString(input: string): string {
         .slice(0, 50000);
 }
 
-export function secureSuccessResponse(data: any, status: number = 200): NextResponse {
+export function secureSuccessResponse(data: unknown, status: number = 200): NextResponse {
     return NextResponse.json(data, { status });
 }
 

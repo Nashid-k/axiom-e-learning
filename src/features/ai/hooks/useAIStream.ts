@@ -278,7 +278,7 @@ export function useAIStream() {
                 abortControllerRef.current = null;
             }
         }
-    }, []);
+    }, [messages]);
 
     const sendMessage = useCallback(async (text: string) => {
         if (!text.trim() || loading) return;

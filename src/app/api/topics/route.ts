@@ -63,8 +63,18 @@ async function GETHandler(request: NextRequest) {
             .limit(limit)
             .lean();
 
+        interface LeanTopic {
+            _id: mongoose.Types.ObjectId;
+            title: string;
+            description?: string;
+            studied: boolean;
+            createdAt: Date;
+            lastStudied?: Date;
+            category: string;
+        }
+
         return NextResponse.json({
-            topics: (topics as any[]).map(t => ({
+            topics: (topics as unknown as LeanTopic[]).map(t => ({
                 id: t._id.toString(),
                 title: t.title,
                 description: t.description,
@@ -73,7 +83,7 @@ async function GETHandler(request: NextRequest) {
                 lastStudied: t.lastStudied ? new Date(t.lastStudied).toISOString() : undefined,
                 category: t.category,
             })),
-            nextCursor: topics.length === limit ? (topics[topics.length - 1] as any)._id.toString() : null,
+            nextCursor: topics.length === limit ? (topics[topics.length - 1] as unknown as LeanTopic)._id.toString() : null,
         });
     } catch (error) {
         console.error("Topics GET error:", error);

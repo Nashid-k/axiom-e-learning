@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { rateLimit } from '@/lib/utils/security';
 
 const AutocompleteSchema = z.object({
     prefix: z.string().max(2000),
@@ -88,7 +87,7 @@ ONLY output the missing middle chunk.`;
 
         return NextResponse.json({ completion });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Autocomplete Error:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }

@@ -3,7 +3,7 @@ export async function register() {
         try {
             const { connectToDatabase } = await import('./lib/db/mongodb');
             await connectToDatabase();
-        } catch (e) {
+        } catch {
             // Silently fail or use a specialized server-side logger if available
             // Avoid console noise during DB init if it's handled elsewhere
         }

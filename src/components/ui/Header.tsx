@@ -53,12 +53,12 @@ function HeaderInner() {
     return (
         <>
             <motion.header
-                initial={shouldReduceMotion ? { y: 0, x: '-50%' } : { y: -100, x: '-50%' }}
-                animate={{ y: 0, x: '-50%' }}
+                initial={shouldReduceMotion ? { y: 0 } : { y: -100 }}
+                animate={{ y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0.01 } : springs.punchy}
                 className={[
                     "fixed z-50 transition-all duration-[var(--duration-base)]",
-                    "top-0 left-0 right-0 w-full sm:top-4 sm:left-1/2 sm:-translate-x-1/2 sm:w-[95%] sm:max-w-5xl",
+                    "top-0 sm:top-4 left-0 right-0 mx-auto w-full sm:w-[95%] sm:max-w-5xl",
                     "bg-[var(--surface-base)]/80 backdrop-blur-md",
                     "border-b sm:border border-[var(--border-default)]",
                     "sm:rounded-full shadow-2xl shadow-blue-500/10",

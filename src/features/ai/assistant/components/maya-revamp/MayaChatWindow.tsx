@@ -198,7 +198,7 @@ export function MayaChatWindow({
                                     </div>
                                 </div>
                             ) : (
-                                { messageList }
+                                messageList
                             )}
                             {isThinking && (
                                 <motion.div

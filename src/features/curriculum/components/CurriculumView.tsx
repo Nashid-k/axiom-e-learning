@@ -38,6 +38,24 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
     const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-');
     const info = getHashiraInfo(categorySlug);
     const router = useRouter();
+    const isInitialized = useRef(false);
+    const celebratedPhases = useRef<Set<number>>(new Set());
+    const { fireConfetti, fireMiniBurst } = useConfetti();
+    const { isChecked, isLoading, toggleItem } = useProgress(categorySlug);
+    const { topics: reviewTopics, loading: reviewLoading } = useTopics();
+    const { mirrorPhases } = useMirror(categorySlug, data.phases);
+
+    const showPop = false;
+
+    const reviewDueTopics = useMemo(() =>
+        reviewLoading ? [] : getTopicsDueForReview(reviewTopics),
+        [reviewTopics, reviewLoading]
+    );
+
+    const weeklyMissions = useMemo(() => {
+        const signals = collectWeaknessSignals(reviewTopics, categoryName);
+        return buildWeeklyMissions(signals);
+    }, [reviewTopics, categoryName]);
 
     const { stats, allTopics } = useMemo(() => {
         let total = 0;
@@ -127,31 +145,6 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
             fireConfetti();
         }
     }, [progressPercentage, isLoading, fireConfetti]);
-
-    const allTopics: TopicItem[] = useMemo(() => {
-        const topics: TopicItem[] = [];
-        data.phases.forEach((phase) => {
-            phase.theory?.forEach((rawItem, idx) => {
-                const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem;
-                topics.push({
-                    id: item.id || `theory-${phase.phase}-${idx}`,
-                    topic: item.title,
-                    description: item.description || `Learn about ${item.title} in Phase ${phase.phase}`,
-                    phase: String(phase.phase), category: categoryName,
-                });
-            });
-            phase.practicals?.forEach((rawItem, idx) => {
-                const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem;
-                topics.push({
-                    id: item.id || `practical-${phase.phase}-${idx}`,
-                    topic: item.title,
-                    description: (item.description || `Practice ${item.title} in Phase ${phase.phase}`) + ' [PRACTICAL_MODE]',
-                    phase: String(phase.phase), category: categoryName,
-                });
-            });
-        });
-        return topics;
-    }, [data.phases, categoryName]);
 
     const { openAIModal } = useModal();
 

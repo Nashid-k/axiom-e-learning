@@ -288,7 +288,7 @@ const InteractionLogSchema = new Schema<IInteractionLog>({
     action: { type: String, required: true },
     dwellTimeMs: { type: Number },
     metadata: { type: Schema.Types.Mixed },
-    timestamp: { type: Date, default: Date.now, index: true }
+    timestamp: { type: Date, default: Date.now }
 });
 
 InteractionLogSchema.index({ uniqueId: 1, timestamp: -1 });

@@ -14,8 +14,6 @@ import { trackEvent } from '@/lib/telemetry';
 import { Input } from '@/components/ui/Input';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-
-
 interface SearchCommandProps {
     isOpen: boolean;
     onClose: () => void;
@@ -32,14 +30,11 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
     const MOTION_MICRO = shouldReduceMotion ? 0.01 : 0.2;
 
     useEffect(() => {
-        const timer = setTimeout(() => setMounted(true), 0);
-        return () => clearTimeout(timer);
+        setMounted(true);
     }, []);
-
 
     const debouncedQuery = useDebounce(query, 300);
     const { results } = useSearchEngine(debouncedQuery);
-    const isIndexBuilding = false;
 
     const filteredResults = useMemo(() => {
         if (!selectedCategory) return results;
@@ -53,13 +48,13 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
         return Array.from(cats);
     }, [results]);
 
-
     const handleSelect = useCallback((result: SearchResult) => {
         trackEvent('search_result_opened', {
             type: result.type,
             category: result.category,
             hasPhase: !!result.phase
         });
+
         if (result.type === 'curriculum') {
             router.push(`/learn/${result.slug}`);
         } else if (result.type === 'item' && result.phase && result.itemType) {
@@ -98,22 +93,17 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
         }
     }, [isOpen, filteredResults, clampedSelectedIndex, onClose, handleSelect]);
 
-
     useEffect(() => {
         document.addEventListener('keydown', handleKeyboardNav);
         return () => document.removeEventListener('keydown', handleKeyboardNav);
     }, [handleKeyboardNav]);
 
-
     useEffect(() => {
-        let timeoutId: ReturnType<typeof setTimeout> | null = null;
         if (isOpen) {
             trackEvent('search_opened');
-            timeoutId = setTimeout(() => inputRef.current?.focus(), 50);
+            const timeoutId = setTimeout(() => inputRef.current?.focus(), 150);
+            return () => clearTimeout(timeoutId);
         }
-        return () => {
-            if (timeoutId) clearTimeout(timeoutId);
-        };
     }, [isOpen]);
 
     useEffect(() => {
@@ -125,42 +115,66 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
         };
     }, [isOpen]);
 
-
-
-
     if (!mounted) return null;
 
     return createPortal(
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-start justify-center pt-6 sm:pt-[12vh] px-4" role="dialog" aria-modal="true" aria-label="Search command dialog">
-
-                    { }
+                <div className="fixed inset-0 z-[200] flex items-start justify-center pt-6 sm:pt-[10vh] px-4" role="dialog" aria-modal="true" aria-label="Axiom Cosmos Search">
+                    {/* Immersive Backdrop */}
                     <motion.div
-                        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+                        initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: MOTION_MICRO }}
-                        className="absolute inset-0 bg-gray-900/40 backdrop-blur-md cursor-pointer"
+                        className="absolute inset-0 bg-black/60 dark:bg-[#050505]/80 backdrop-blur-[12px] cursor-pointer"
                         onClick={onClose}
                     />
 
-                    { }
+                    {/* Cosmos Search Container */}
                     <motion.div
-                        initial={shouldReduceMotion ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.98, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: 20 }}
-                        transition={shouldReduceMotion ? { duration: 0.01 } : { type: "spring", stiffness: 400, damping: 40, mass: 0.8 }}
+                        initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 40, filter: 'blur(10px)' }}
+                        animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+                        exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20, filter: 'blur(5px)' }}
+                        transition={{ type: "spring", stiffness: 400, damping: 32, mass: 1 }}
                         className="
                             relative w-full max-w-3xl
-                            bg-white/80 dark:bg-[#0D0D0E]/80 backdrop-blur-3xl 
-                            rounded-[36px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] 
-                            border border-black/[0.03] dark:border-white/10 
+                            bg-white/90 dark:bg-[#0D0D0E]/90 backdrop-blur-[50px]
+                            rounded-[40px] shadow-[0_40px_120px_-20px_rgba(0,0,0,0.6)] 
+                            border border-white/20 dark:border-white/10
                             overflow-hidden transform-gpu translate-z-0
                         "
                     >
-                        { }
-                        <div className="flex items-center gap-4 px-6 py-5 border-b border-black/[0.03] dark:border-white/5 bg-white/5 focus-within:bg-transparent transition-all duration-500">
+                        {/* Animated Cosmos Background Pattern */}
+                        <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.07]">
+                            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <pattern id="cosmos-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
+                                        <circle cx="2" cy="2" r="1.5" fill="currentColor" />
+                                        <circle cx="30" cy="45" r="1" fill="currentColor" />
+                                        <circle cx="50" cy="15" r="0.8" fill="currentColor" />
+                                    </pattern>
+                                </defs>
+                                <rect width="100%" height="100%" fill="url(#cosmos-pattern)" />
+                            </svg>
+                        </div>
+
+                        {/* Search Input Bar */}
+                        <div className="relative z-10 flex items-center gap-5 px-8 py-7 border-b border-black/5 dark:border-white/5">
+                            <div className="flex-shrink-0">
+                                <motion.div
+                                    animate={{
+                                        scale: [1, 1.2, 1],
+                                        opacity: [0.5, 1, 0.5]
+                                    }}
+                                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                    className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 shadow-lg shadow-blue-500/20"
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-blue-500">
+                                        <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="3" />
+                                        <path d="M20 20L16 16" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                    </svg>
+                                </motion.div>
+                            </div>
                             <Input
                                 ref={inputRef}
                                 value={query}
@@ -168,48 +182,42 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                     setQuery(e.target.value);
                                     setSelectedIndex(0);
                                 }}
-                                placeholder="Search the Axiom universe..."
-                                className="bg-transparent border-none focus-ring shadow-none focus-within:ring-0"
+                                placeholder="Navigate the Axiom Cosmos..."
+                                className="bg-transparent border-none focus-ring shadow-none focus-within:ring-0 text-xl font-medium placeholder-[var(--fg-muted)]/40 h-auto p-0"
                                 containerClassName="flex-1"
                             />
-                            <div className="hidden sm:flex items-center gap-2">
-                                <span className="px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/[0.03] dark:border-white/5 text-[9px] uppercase font-black text-gray-500 dark:text-gray-400 tracking-[0.2em] font-mono">
-                                    Axiom Command
-                                </span>
+                            <div className="hidden sm:flex items-center gap-3">
+                                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 border border-white/10">
+                                    <kbd className="text-[10px] font-black font-mono opacity-60">ESC</kbd>
+                                    <span className="text-[9px] font-black uppercase tracking-widest opacity-40">Abort</span>
+                                </div>
                             </div>
                         </div>
 
+                        {/* Category Cosmos Rails */}
                         {categories.length > 0 && (
-                            <div className="px-6 py-4 bg-black/[0.02] dark:bg-white/[0.02] flex gap-3 overflow-x-auto scrollbar-hide border-b border-black/[0.03] dark:border-white/5">
+                            <div className="relative z-10 px-8 py-5 bg-black/[0.02] dark:bg-white/[0.02] flex gap-3 overflow-x-auto scrollbar-hide border-b border-black/5 dark:border-white/5">
                                 <button
-                                    onClick={() => {
-                                        setSelectedCategory(null);
-                                        setSelectedIndex(0);
-                                    }}
+                                    onClick={() => { setSelectedCategory(null); setSelectedIndex(0); }}
                                     className={cn(
-                                        "px-4 py-2 rounded-2xl text-[10px] uppercase font-black tracking-widest transition-all duration-300",
+                                        "px-5 py-2.5 rounded-full text-[10px] uppercase font-black tracking-[0.2em] transition-all duration-300 border flex-shrink-0",
                                         !selectedCategory
-                                            ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                                            : "bg-white/50 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-white/80 dark:hover:bg-white/10"
+                                            ? "bg-blue-600 text-white border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                                            : "bg-white/5 dark:bg-white/5 text-[var(--fg-muted)] border-transparent hover:border-white/20"
                                     )}
-                                    type="button"
                                 >
-                                    Universe
+                                    COSMOS
                                 </button>
                                 {categories.map(cat => (
                                     <button
                                         key={cat}
-                                        onClick={() => {
-                                            setSelectedCategory(cat);
-                                            setSelectedIndex(0);
-                                        }}
+                                        onClick={() => { setSelectedCategory(cat); setSelectedIndex(0); }}
                                         className={cn(
-                                            "px-4 py-2 rounded-2xl text-[10px] uppercase font-black tracking-widest transition-all duration-300",
+                                            "px-5 py-2.5 rounded-full text-[10px] uppercase font-black tracking-[0.2em] transition-all duration-300 border flex-shrink-0",
                                             selectedCategory === cat
-                                                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                                                : "bg-white/50 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-white/80 dark:hover:bg-white/10"
+                                                ? "bg-blue-600 text-white border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                                                : "bg-white/5 dark:bg-white/5 text-[var(--fg-muted)] border-transparent hover:border-white/20"
                                         )}
-                                        type="button"
                                     >
                                         {cat}
                                     </button>
@@ -217,110 +225,131 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                             </div>
                         )}
 
-                        { }
-                        <div className="max-h-[50vh] overflow-y-auto p-2 scrollbar-hide">
-                            {isIndexBuilding ? (
-                                <div className="p-4 space-y-4">
-                                    <Skeleton className="h-12 w-full rounded-xl" />
-                                    <Skeleton className="h-12 w-full rounded-xl" />
-                                    <Skeleton className="h-12 w-full rounded-xl" />
+                        {/* Results Hub */}
+                        <div className="relative z-10 max-h-[60vh] min-h-[300px] overflow-y-auto p-4 scrollbar-hide space-y-2">
+                            {filteredResults.length === 0 ? (
+                                <div className="py-20">
+                                    <EmptyState
+                                        title="Orbit Empty"
+                                        description={`No signals found for "${query}" in this sector.`}
+                                    />
                                 </div>
-                            ) : filteredResults.length === 0 ? (
-                                <EmptyState
-                                    title="No matches found"
-                                    description={`We couldn't find any results for "${query}" in the universe.`}
-                                />
                             ) : (
-                                <div
-                                    id="search-results-listbox"
-                                    role="listbox"
-                                    aria-label="Search results"
-                                    className="space-y-1"
-                                >
-                                    {filteredResults.map((result, idx) => (
-                                        <motion.button
-                                            key={`${result.slug}-${idx}`}
-                                            role="option"
-                                            aria-selected={idx === clampedSelectedIndex}
-                                            onClick={() => handleSelect(result)}
-                                            className={cn(
-                                                "w-full px-5 py-4 flex items-center gap-5 text-left rounded-[24px] transition-all duration-300 group cursor-pointer",
-                                                idx === clampedSelectedIndex
-                                                    ? 'bg-blue-600 text-white shadow-2xl shadow-blue-500/30'
-                                                    : 'hover:bg-black/[0.03] dark:hover:bg-white/5 text-gray-700 dark:text-gray-200'
-                                            )}
-                                        >
-                                            <div className={cn(
-                                                "p-3 rounded-[16px] transition-all duration-500",
-                                                idx === clampedSelectedIndex ? 'bg-white/20 scale-110' : 'bg-white shadow-sm dark:bg-white/5 border border-black/[0.03] dark:border-white/5'
-                                            )}>
-                                                <CategoryIcon category={result.category} className="w-7 h-7" />
-                                            </div>
+                                <div role="listbox" aria-label="Signals Hub">
+                                    {filteredResults.map((result, idx) => {
+                                        const isHero = idx === 0 && !query;
+                                        const isSelected = idx === clampedSelectedIndex;
 
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center gap-2 mb-1">
-                                                    <div className={cn(
-                                                        "font-bold text-base truncate",
-                                                        idx === clampedSelectedIndex ? 'text-white' : 'text-gray-900 dark:text-white'
-                                                    )}>
-                                                        {result.title}
-                                                    </div>
-                                                    {result.itemType && (
-                                                        <span className={cn(
-                                                            "px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-tighter",
-                                                            idx === clampedSelectedIndex
-                                                                ? "bg-white/20 text-white"
-                                                                : result.itemType === 'practical'
-                                                                    ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
-                                                                    : "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20"
-                                                        )}>
-                                                            {result.itemType}
-                                                        </span>
-                                                    )}
-                                                </div>
+                                        return (
+                                            <motion.button
+                                                key={`${result.slug}-${idx}`}
+                                                role="option"
+                                                aria-selected={isSelected}
+                                                onClick={() => handleSelect(result)}
+                                                className={cn(
+                                                    "w-full px-6 py-5 flex items-center gap-6 text-left rounded-[28px] transition-all duration-500 group relative mb-2",
+                                                    isSelected
+                                                        ? 'bg-blue-600 text-white shadow-2xl shadow-blue-600/40 ring-2 ring-white/20'
+                                                        : 'hover:bg-white/5 dark:hover:bg-white/[0.04] text-[var(--fg-primary)]'
+                                                )}
+                                            >
+                                                {/* Pulsing Selection Glow */}
+                                                {isSelected && (
+                                                    <motion.div
+                                                        layoutId="search-glow"
+                                                        className="absolute inset-0 rounded-[28px] bg-blue-400/20 blur-xl pointer-events-none"
+                                                        initial={false}
+                                                    />
+                                                )}
+
                                                 <div className={cn(
-                                                    "text-[10px] font-black uppercase tracking-[0.15em]",
-                                                    idx === clampedSelectedIndex ? 'text-blue-100/60' : 'text-gray-400 dark:text-gray-500'
+                                                    "relative flex-shrink-0 w-14 h-14 rounded-[20px] flex items-center justify-center transition-all duration-700",
+                                                    isSelected ? 'bg-white/20 scale-110 rotate-3' : 'bg-[var(--surface-raised)] border border-white/10 dark:bg-white/5'
                                                 )}>
-                                                    <span>{result.category}</span>
-                                                    {result.phase && (
-                                                        <>
-                                                            <span className="mx-2 opacity-30">•</span>
-                                                            <span className="opacity-80">Phase {result.phase}</span>
-                                                        </>
+                                                    <CategoryIcon category={result.category} className="w-8 h-8" />
+                                                    {isSelected && (
+                                                        <motion.div
+                                                            animate={{ scale: [1, 1.4, 1], opacity: [0, 0.5, 0] }}
+                                                            transition={{ duration: 2, repeat: Infinity }}
+                                                            className="absolute inset-0 rounded-[20px] bg-white opacity-0"
+                                                        />
                                                     )}
                                                 </div>
-                                            </div>
 
-                                            {idx === clampedSelectedIndex ? (
-                                                <div className="flex items-center gap-2 pr-2">
-                                                    <span className="text-[10px] font-black uppercase tracking-widest opacity-60">ENTER</span>
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5-5 5M6 7l5 5-5 5" /></svg>
+                                                <div className="flex-1 min-w-0 z-10">
+                                                    <div className="flex items-center gap-3 mb-1.5">
+                                                        <span className={cn(
+                                                            "font-black text-lg truncate tracking-tight",
+                                                            isSelected ? 'text-white' : 'text-[var(--fg-primary)]'
+                                                        )}>
+                                                            {result.title}
+                                                        </span>
+                                                        {result.itemType && (
+                                                            <span className={cn(
+                                                                "px-2 py-0.5 rounded-lg text-[9px] font-black uppercase tracking-widest",
+                                                                isSelected
+                                                                    ? "bg-white/20 text-white"
+                                                                    : result.itemType === 'practical'
+                                                                        ? "bg-emerald-500/15 text-emerald-500 border border-emerald-500/20"
+                                                                        : "bg-blue-500/15 text-blue-500 border border-blue-500/20"
+                                                            )}>
+                                                                {result.itemType}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <div className={cn(
+                                                        "text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2",
+                                                        isSelected ? 'text-blue-100/70' : 'text-[var(--fg-muted)]'
+                                                    )}>
+                                                        <span>{result.category}</span>
+                                                        {result.phase && (
+                                                            <>
+                                                                <span className="opacity-30">•</span>
+                                                                <span className="opacity-80">Sector {result.phase}</span>
+                                                            </>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                            ) : (
-                                                <div className="pr-2 opacity-0 group-hover:opacity-40 transition-opacity">
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
-                                                </div>
-                                            )}
-                                        </motion.button>
-                                    ))}
+
+                                                {isSelected && (
+                                                    <div className="flex items-center gap-4 pr-1 z-10">
+                                                        <div className="hidden sm:flex flex-col items-end gap-1">
+                                                            <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">Execute</span>
+                                                            <div className="px-2 py-1 rounded-lg bg-white/20 border border-white/20 text-[9px] font-mono">ENTER</div>
+                                                        </div>
+                                                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5-5 5" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </motion.button>
+                                        );
+                                    })}
                                 </div>
                             )}
                         </div>
 
-                        { }
+                        {/* Navigation Footer */}
                         {results.length > 0 && (
-                            <div className="px-6 py-3 bg-gray-50/50 dark:bg-white/5 border-t border-gray-100/50 dark:border-white/5 flex items-center justify-between text-xs text-gray-400 font-medium">
-                                <div className="flex gap-4">
-                                    <span className="flex items-center gap-1">
-                                        <kbd className="font-sans px-1.5 py-0.5 bg-white dark:bg-white/10 rounded shadow-sm border border-gray-200 dark:border-white/5">↑</kbd>
-                                        <kbd className="font-sans px-1.5 py-0.5 bg-white dark:bg-white/10 rounded shadow-sm border border-gray-200 dark:border-white/5">↓</kbd>
-                                        to navigate
-                                    </span>
-                                    <span className="flex items-center gap-1">
-                                        <kbd className="font-sans px-1.5 py-0.5 bg-white dark:bg-white/10 rounded shadow-sm border border-gray-200 dark:border-white/5">↵</kbd>
-                                        to select
-                                    </span>
+                            <div className="px-8 py-5 bg-[var(--surface-subtle)]/50 backdrop-blur-md border-t border-white/5 flex items-center justify-between z-20 relative">
+                                <div className="flex gap-6">
+                                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--fg-muted)]">
+                                        <div className="flex gap-1">
+                                            <kbd className="px-1.5 py-1 bg-white/10 rounded-lg border border-white/10">↑</kbd>
+                                            <kbd className="px-1.5 py-1 bg-white/10 rounded-lg border border-white/10">↓</kbd>
+                                        </div>
+                                        <span>Orbit</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--fg-muted)]">
+                                        <kbd className="px-2 py-1 bg-white/10 rounded-lg border border-white/10">↵</kbd>
+                                        <span>Jump</span>
+                                    </div>
+                                </div>
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500/60 flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                                    Axiom Cosmos Engine
                                 </div>
                             </div>
                         )}

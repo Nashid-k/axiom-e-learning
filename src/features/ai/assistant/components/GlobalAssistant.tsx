@@ -512,31 +512,44 @@ export default function GlobalAssistant() {
                             type="button"
                             aria-label="Open Maya assistant"
                         >
+                            {/* Living AI Orb Trigger */}
                             <motion.div
                                 animate={{
-                                    scale: [1, 1.2, 1],
-                                    opacity: [0.3, 0.6, 0.3]
+                                    scale: [1, 1.15, 1],
+                                    opacity: [0.3, 0.5, 0.3],
                                 }}
                                 transition={{
-                                    duration: 4,
+                                    duration: 3,
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 }}
-                                className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl group-hover:bg-blue-500/40 transition-colors transform-gpu"
+                                className="absolute -inset-4 rounded-full bg-blue-500/20 blur-2xl group-hover:bg-blue-500/40 transition-colors transform-gpu"
                             />
-                            <div className="relative w-16 h-16 rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] flex items-center justify-center overflow-hidden group-hover:border-white/40 transition-colors transform-gpu">
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-50" />
+                            <div className="relative w-16 h-16 rounded-full bg-white/10 dark:bg-black/20 backdrop-blur-2xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] flex items-center justify-center overflow-hidden group-hover:border-white/40 transition-colors transform-gpu ring-1 ring-white/5">
+                                <motion.div
+                                    animate={{
+                                        rotate: [0, 360],
+                                    }}
+                                    transition={{
+                                        duration: 8,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }}
+                                    className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-emerald-500/20 opacity-60"
+                                />
                                 <div className="relative z-10 flex items-center justify-center">
-                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-500 dark:text-blue-400 drop-shadow-lg">
-                                        <path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        <circle cx="12" cy="12" r="3" fill="currentColor" className="animate-pulse" />
-                                    </svg>
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-emerald-400 flex items-center justify-center shadow-inner relative">
+                                        <div className="absolute inset-0 rounded-full animate-ping bg-emerald-400/20" />
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white drop-shadow-md">
+                                            <path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z" fill="currentColor" />
+                                        </svg>
+                                    </div>
                                 </div>
                                 <motion.div
                                     initial={{ x: '-100%' }}
                                     animate={{ x: '100%' }}
-                                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12"
+                                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3 }}
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
                                 />
                             </div>
                         </motion.button>
@@ -556,45 +569,38 @@ export default function GlobalAssistant() {
                         />
 
                         <motion.div
-                            initial={shouldReduceMotion ? { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, scale: 0.9, y: 20, filter: 'blur(10px)' }}
-                            animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
-                            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: 20, filter: 'blur(10px)' }}
-                            transition={shouldReduceMotion ? { duration: 0.01 } : { type: "spring", stiffness: 350, damping: 30 }}
-                            className="fixed z-[60] flex flex-col bg-white dark:bg-[#1C1C1E] border border-gray-200 dark:border-white/10 shadow-2xl w-full h-[85vh] bottom-0 left-0 rounded-t-2xl sm:w-[600px] sm:h-[700px] sm:max-h-[85vh] sm:bottom-6 sm:right-6 sm:left-auto sm:rounded-2xl transform-gpu translate-z-0"
+                            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 100 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 40, mass: 0.8 }}
+                            className="fixed z-[60] flex flex-col bg-white dark:bg-[#0D0D0E] border-t sm:border border-gray-200/50 dark:border-white/5 shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.3)] w-full h-[92vh] sm:h-[750px] bottom-0 left-0 rounded-t-[32px] sm:w-[500px] sm:max-h-[90vh] sm:bottom-6 sm:right-6 sm:left-auto sm:rounded-[32px] overflow-hidden transform-gpu translate-z-0 transition-colors duration-500"
                         >
-                            <div className="flex items-center justify-between p-4 border-b border-black/5 dark:border-white/5 bg-white/95 dark:bg-[#1C1C1E]/95 backdrop-blur-md sticky top-0 z-10 transform-gpu translate-z-0">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 text-white text-sm font-bold border border-white/10">
-                                        <span className="scale-110">✨</span>
+                            <div className="flex items-center justify-between p-5 border-b border-black/[0.03] dark:border-white/5 bg-white/80 dark:bg-[#0D0D0E]/80 backdrop-blur-xl sticky top-0 z-10 transform-gpu translate-z-0">
+                                <div className="flex items-center gap-3.5">
+                                    <div className="relative">
+                                        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white text-lg font-bold border border-white/20">
+                                            ✨
+                                        </div>
+                                        <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-[#0D0D0E] shadow-sm animate-pulse" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-gray-900 dark:text-white text-sm">Maya</h3>
-                                        <div className="flex items-center gap-2">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></span>
-                                            <span className="text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">
-                                                {modelVersion || AI_CONFIG.VERSION}
-                                            </span>
+                                        <h3 className="font-black text-gray-900 dark:text-white text-base tracking-tight">Maya</h3>
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="text-[10px] text-emerald-500 dark:text-emerald-400 font-black uppercase tracking-[0.2em]">Online</span>
+                                            <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold opacity-50">•</span>
+                                            <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold uppercase tracking-wider">{modelVersion || AI_CONFIG.VERSION}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                    <button onClick={() => setShowClearConfirm(true)} title="Clear Memory" className="p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-gray-400 hover:text-red-400 transition-colors cursor-pointer" type="button" aria-label="Clear Maya memory">
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                    <button onClick={() => setShowClearConfirm(true)} title="Clear Memory" className="p-2.5 rounded-2xl hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-all duration-300 cursor-pointer" type="button">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                     </button>
-                                    <button
-                                        onClick={() => setShowOnboarding(true)}
-                                        title="Adjust Vibe"
-                                        className="p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-gray-400 hover:text-emerald-400 transition-colors cursor-pointer"
-                                        type="button"
-                                        aria-label="Open Maya vibe settings"
-                                    >
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                                        </svg>
+                                    <button onClick={() => setShowOnboarding(true)} title="Settings" className="p-2.5 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 text-gray-400 hover:text-blue-500 transition-all duration-300 cursor-pointer" type="button">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
                                     </button>
-                                    <div className="w-px h-6 bg-black/5 dark:bg-white/5 mx-1" />
-                                    <button onClick={() => setIsOpen(false)} className="p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 text-gray-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer" type="button" aria-label="Close Maya assistant">
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                    <button onClick={() => setIsOpen(false)} className="p-2.5 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300 cursor-pointer" type="button">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg>
                                     </button>
                                 </div>
                             </div>
@@ -729,10 +735,10 @@ export default function GlobalAssistant() {
                                                         transition={{ duration: MOTION_MICRO }}
                                                         className={`flex gap-3 group ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
                                                     >
-                                                        <div className={`flex flex-col gap-0 max-w-[85%] ${isUser ? 'items-end' : 'items-start'}`}>
-                                                            <div className={`relative rounded-2xl px-4 py-3 text-sm leading-relaxed break-words overflow-hidden ${isUser
-                                                                ? 'bg-black dark:bg-white text-white dark:text-black shadow-xl font-medium'
-                                                                : 'bg-white dark:bg-white/[0.03] border border-black/5 dark:border-white/10 text-gray-900 dark:text-gray-100'
+                                                        <div className={`flex flex-col gap-0 max-w-[90%] ${isUser ? 'items-end' : 'items-start'}`}>
+                                                            <div className={`relative rounded-3xl px-5 py-3.5 text-sm leading-[1.6] break-words overflow-hidden transition-all duration-300 ${isUser
+                                                                ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-lg shadow-blue-500/10 font-medium'
+                                                                : 'bg-white dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.04] text-gray-900 dark:text-gray-100 shadow-sm'
                                                                 }`}>
 
                                                                 {isEditing ? (
@@ -887,20 +893,20 @@ export default function GlobalAssistant() {
                                                 </div>
                                             )}
                                             <form onSubmit={handleSendMessage} className="relative">
-                                                <div className="relative flex items-center bg-white dark:bg-black axiom-input-shell rounded-2xl px-2 py-2 focus-within:shadow-xl transition-all duration-300">
+                                                <div className="relative flex items-end bg-white dark:bg-[#0D0D0E] rounded-[24px] px-2 py-2 border border-black/[0.04] dark:border-white/[0.04] focus-within:border-blue-500/50 focus-within:shadow-[0_0_40px_-10px_rgba(59,130,246,0.1)] transition-all duration-500 group">
                                                     <textarea
                                                         ref={(el) => {
                                                             if (el) {
                                                                 inputRef.current = el;
                                                                 el.style.height = 'auto';
-                                                                el.style.height = el.scrollHeight + 'px';
+                                                                el.style.height = Math.min(el.scrollHeight, 120) + 'px';
                                                             }
                                                         }}
                                                         value={inputValue}
                                                         onChange={(e) => {
                                                             setInputValue(e.target.value);
                                                             e.target.style.height = 'auto';
-                                                            e.target.style.height = e.target.scrollHeight + 'px';
+                                                            e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
                                                         }}
                                                         onKeyDown={(e) => {
                                                             if (e.key === 'Enter' && !e.shiftKey) {
@@ -908,18 +914,22 @@ export default function GlobalAssistant() {
                                                                 handleSendMessage(e);
                                                             }
                                                         }}
-                                                        placeholder={showOnboarding ? "Finish setup first..." : "Type a message..."}
-                                                        className="flex-1 bg-transparent border-0 axiom-input-control text-sm text-gray-900 dark:text-white placeholder-gray-400 px-3 py-2 resize-none max-h-32 overflow-y-auto custom-scrollbar font-medium"
+                                                        placeholder={showOnboarding ? "Finish setup first..." : "Message Maya..."}
+                                                        className="flex-1 bg-transparent border-0 text-sm text-gray-900 dark:text-white placeholder-gray-400 px-3 py-2.5 resize-none max-h-32 overflow-y-auto custom-scrollbar font-medium focus:ring-0 leading-relaxed"
                                                         rows={1}
                                                         disabled={isLoading || showOnboarding}
                                                     />
-                                                    <div className="flex items-center gap-2 self-end mb-1 mr-1">
+                                                    <div className="flex items-center gap-2 pr-1 pb-1">
                                                         <button
                                                             type="submit"
                                                             disabled={!inputValue.trim() || isLoading}
-                                                            className="w-10 h-10 flex items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-xl disabled:opacity-0 disabled:scale-75 transition-all shadow-lg"
+                                                            className="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-full disabled:opacity-0 disabled:scale-95 disabled:translate-y-2 transition-all duration-500 shadow-lg shadow-blue-500/20 active:scale-90"
                                                         >
-                                                            <svg className="w-5 h-5 translate-x-[0.5px]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                                            {isLoading ? (
+                                                                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                            ) : (
+                                                                <svg className="w-5 h-5 -rotate-45 translate-x-0.5 -translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+                                                            )}
                                                         </button>
                                                     </div>
                                                 </div>

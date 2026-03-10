@@ -24,7 +24,7 @@ export function MayaOnboarding({ onComplete }: MayaOnboardingProps) {
                     if (data.preferences.vibe) setVibe(data.preferences.vibe);
                 }
             })
-            .catch(() => { });  
+            .catch(() => { });
     }, []);
 
     const handleNext = async () => {
@@ -60,145 +60,146 @@ export function MayaOnboarding({ onComplete }: MayaOnboardingProps) {
         <div className="w-full h-full flex flex-col items-center justify-center p-4">
             <motion.div
                 layout
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="w-full max-w-sm bg-white dark:bg-[#1C1C1E] border border-gray-200 dark:border-white/10 p-6 rounded-2xl shadow-xl"
+                transition={{ type: "spring", damping: 30, stiffness: 200 }}
+                className="w-full max-w-sm bg-white/80 dark:bg-[#0D0D0E]/80 backdrop-blur-2xl border border-black/[0.03] dark:border-white/5 p-8 rounded-[32px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] relative overflow-hidden"
             >
-                {}
-                <div className="flex gap-1 mb-8 justify-center">
-                    {[0, 1, 2].map(i => (
-                        <div key={i} className={`h-1 rounded-full transition-all duration-300 ${i <= step ? 'w-8 bg-blue-500' : 'w-2 bg-gray-200 dark:bg-white/10'}`} />
-                    ))}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-emerald-500/5 opacity-50" />
+                <div className="relative z-10">
+                    { }
+                    <div className="flex gap-1.5 mb-10 justify-center">
+                        {[0, 1, 2].map(i => (
+                            <div key={i} className={`h-1 rounded-full transition-all duration-500 ${i === step ? 'w-10 bg-blue-500' : 'w-2 bg-gray-200 dark:bg-white/10'}`} />
+                        ))}
+                    </div>
+
+                    <AnimatePresence mode="wait">
+                        {step === 0 && (
+                            <motion.div
+                                key="step0"
+                                variants={variants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                className="text-center"
+                            >
+                                <div className="w-20 h-20 rounded-[24px] bg-gradient-to-br from-blue-500 to-indigo-600 mx-auto flex items-center justify-center shadow-2xl shadow-blue-500/30 text-3xl mb-8 border border-white/20">
+                                    👋
+                                </div>
+                                <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-3 tracking-tight">Hi, I&apos;m Maya!</h2>
+                                <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-10 font-medium">
+                                    I&apos;m your new AI coding partner. Let&apos;s tune my settings to make sure we vibe perfectly.
+                                </p>
+                                <button
+                                    onClick={handleNext}
+                                    className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/25 active:scale-[0.98]"
+                                >
+                                    Let&apos;s Begin
+                                </button>
+                            </motion.div>
+                        )}
+
+                        {step === 1 && (
+                            <motion.div
+                                key="step1"
+                                variants={variants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                className="text-center"
+                            >
+                                <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-3 tracking-tight">What&apos;s your name?</h2>
+                                <p className="text-gray-500 dark:text-gray-400 text-sm mb-8 font-medium">
+                                    I like using names, it makes our pairing feedback more personal.
+                                </p>
+
+                                <input
+                                    type="text"
+                                    value={nickname}
+                                    onChange={(e) => setNickname(e.target.value)}
+                                    className="w-full bg-gray-50 dark:bg-white/[0.03] border border-black/[0.03] dark:border-white/[0.03] rounded-2xl px-4 py-4 text-xl text-center text-gray-900 dark:text-white mb-10 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 transition-all font-bold outline-none"
+                                    placeholder="Nickname..."
+                                    autoFocus
+                                />
+
+                                <button
+                                    onClick={handleNext}
+                                    disabled={!nickname.trim()}
+                                    className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/25 active:scale-[0.98]"
+                                >
+                                    Continue
+                                </button>
+                            </motion.div>
+                        )}
+
+                        {step === 2 && (
+                            <motion.div
+                                key="step2"
+                                variants={variants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                className="text-center"
+                            >
+                                <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-3 tracking-tight">Choose my &quot;Vibe&quot;</h2>
+                                <p className="text-gray-500 dark:text-gray-400 text-sm mb-8 font-medium">
+                                    How should I talk to you during sessions?
+                                </p>
+
+                                <div className="grid gap-4 mb-10 text-left">
+                                    {[
+                                        {
+                                            id: 'chill',
+                                            label: 'The Peer',
+                                            icon: '🤝',
+                                            desc: "Casual, collaborative, and helpful."
+                                        },
+                                        {
+                                            id: 'professional',
+                                            label: 'The Tech Lead',
+                                            icon: '👓',
+                                            desc: "Standard-focused and code-centric."
+                                        },
+                                        {
+                                            id: 'active',
+                                            label: 'The Architect',
+                                            icon: '🏛️',
+                                            desc: "Deep system design and scaling."
+                                        },
+                                    ].map((opt, idx) => (
+                                        <motion.button
+                                            key={opt.id}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: idx * 0.1 }}
+                                            onClick={() => setVibe(opt.id as 'chill' | 'professional' | 'active')}
+                                            className={`p-5 rounded-[24px] border-2 transition-all duration-300 relative group ${vibe === opt.id
+                                                ? 'border-blue-500 bg-blue-500/5 dark:bg-blue-500/10'
+                                                : 'border-black/[0.03] dark:border-white/[0.03] hover:border-black/10 dark:hover:border-white/10'
+                                                }`}
+                                        >
+                                            <div className="flex items-center justify-between mb-1.5">
+                                                <span className="font-black text-gray-900 dark:text-white flex items-center gap-2.5">
+                                                    <span className="text-xl group-hover:scale-110 transition-transform">{opt.icon}</span> {opt.label}
+                                                </span>
+                                                {vibe === opt.id && <motion.div layoutId="selection" className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.5)]" />}
+                                            </div>
+                                            <p className="text-[11px] text-gray-500 dark:text-gray-400 font-bold leading-relaxed">{opt.desc}</p>
+                                        </motion.button>
+                                    ))}
+                                </div>
+
+                                <button
+                                    onClick={handleNext}
+                                    disabled={isSaving}
+                                    className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/25 flex items-center justify-center gap-2 active:scale-[0.98]"
+                                >
+                                    {isSaving ? <span className="animate-spin w-5 h-5 border-3 border-white/30 border-t-white rounded-full" /> : null}
+                                    {isSaving ? 'Awaiting System...' : 'Initiate Maya'}
+                                </button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
-
-                <AnimatePresence mode="wait">
-                    {step === 0 && (
-                        <motion.div
-                            key="step0"
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="text-center"
-                        >
-                            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 mx-auto flex items-center justify-center shadow-lg text-2xl mb-6">
-                                👋
-                            </div>
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Hi, I&apos;m Maya!</h2>
-                            <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
-                                I&apos;m your new AI coding partner. I&apos;ve got a few quick questions to make sure we vibe correctly.
-                            </p>
-                            <button
-                                onClick={handleNext}
-                                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-blue-500/20"
-                            >
-                                Let&apos;s Go
-                            </button>
-                        </motion.div>
-                    )}
-
-                    {step === 1 && (
-                        <motion.div
-                            key="step1"
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="text-center"
-                        >
-                            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">What should I call you?</h2>
-                            <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
-                                I like using names, it feels more human.
-                            </p>
-
-                            <input
-                                type="text"
-                                value={nickname}
-                                onChange={(e) => setNickname(e.target.value)}
-                                className="w-full bg-gray-100 dark:bg-white/5 axiom-input-field rounded-xl px-4 py-3 text-lg text-center text-gray-900 dark:text-white mb-8"
-                                placeholder="Your preferred name"
-                                autoFocus
-                            />
-
-                            <button
-                                onClick={handleNext}
-                                disabled={!nickname.trim()}
-                                className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
-                            >
-                                Next
-                            </button>
-                        </motion.div>
-                    )}
-
-                    {step === 2 && (
-                        <motion.div
-                            key="step2"
-                            variants={variants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="text-center"
-                        >
-                            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">What&apos;s your vibe?</h2>
-                            <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
-                                How should I talk to you?
-                            </p>
-
-                            <div className="grid gap-3 mb-8">
-                                {[
-                                    {
-                                        id: 'chill',
-                                        label: 'The Partner',
-                                        icon: '🤝',
-                                        desc: "Collaborative, highly-skilled peer. We pair program together."
-                                    },
-                                    {
-                                        id: 'professional',
-                                        label: 'The Tech Lead',
-                                        icon: '👓',
-                                        desc: "Pragmatic, code-centric, standards-obsessed. Clean code only."
-                                    },
-                                    {
-                                        id: 'active',
-                                        label: 'The Architect',
-                                        icon: '🏛️',
-                                        desc: "Focuses on System Design, Scalability, and Trade-offs."
-                                    },
-                                ].map((opt, idx) => (
-                                    <motion.button
-                                        key={opt.id}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: idx * 0.1 }}
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        onClick={() => setVibe(opt.id as 'chill' | 'professional' | 'active')}
-                                        className={`p-4 rounded-xl border text-left transition-all ${vibe === opt.id
-                                            ? 'border-blue-500 bg-blue-50 dark:bg-blue-500/10'
-                                            : 'border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20'
-                                            }`}
-                                    >
-                                        <div className="flex items-center justify-between mb-1">
-                                            <span className="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                                                <span>{opt.icon}</span> {opt.label}
-                                            </span>
-                                            {vibe === opt.id && <motion.div layoutId="selection" className="w-3 h-3 rounded-full bg-blue-500" />}
-                                        </div>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400">{opt.desc}</p>
-                                    </motion.button>
-                                ))}
-                            </div>
-
-                            <button
-                                onClick={handleNext}
-                                disabled={isSaving}
-                                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
-                            >
-                                {isSaving ? <span className="animate-spin w-4 h-4 border-2 border-white/30 border-t-white rounded-full" /> : null}
-                                {isSaving ? 'Saving...' : 'Finish Setup'}
-                            </button>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </motion.div>
         </div>
     );

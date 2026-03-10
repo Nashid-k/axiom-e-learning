@@ -85,24 +85,39 @@ export default function LeaderboardPage() {
                             No sorcerers found. Be the first to join the ranks!
                         </motion.div>
                     ) : (
-                        <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                        <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-12">
                             {page === 1 && podiumUsers.length > 0 && (
-                                <div className="grid grid-cols-3 gap-[var(--space-1)] sm:gap-[var(--space-2)] mb-[var(--space-7)] items-end relative z-10">
-                                    <div className="order-2 md:order-1">{podiumUsers[1] && <PodiumItem user={podiumUsers[1]} rank={2} />}</div>
-                                    <div className="order-1 md:order-2">{podiumUsers[0] && <PodiumItem user={podiumUsers[0]} rank={1} />}</div>
-                                    <div className="order-3">{podiumUsers[2] && <PodiumItem user={podiumUsers[2]} rank={3} />}</div>
+                                <div className="relative pt-16 pb-8">
+                                    {/* Podium Background Glow */}
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[300px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+
+                                    <div className="grid grid-cols-3 items-end gap-3 sm:gap-8 max-w-3xl mx-auto relative z-10">
+                                        {/* Rank 2 - Silver */}
+                                        <div className="order-1">
+                                            {podiumUsers[1] && <PodiumItem user={podiumUsers[1]} rank={2} />}
+                                        </div>
+
+                                        {/* Rank 1 - Gold */}
+                                        <div className="order-2 scale-110 sm:scale-125 z-20">
+                                            {podiumUsers[0] && <PodiumItem user={podiumUsers[0]} rank={1} />}
+                                        </div>
+
+                                        {/* Rank 3 - Bronze */}
+                                        <div className="order-3">
+                                            {podiumUsers[2] && <PodiumItem user={podiumUsers[2]} rank={3} />}
+                                        </div>
+                                    </div>
                                 </div>
                             )}
+
                             {regularUsers.length > 0 && (
-                                <div className={[
-                                    "bg-[var(--surface-raised)]",
-                                    "border border-[var(--border-default)]",
-                                    "rounded-[var(--radius-xl)] overflow-hidden",
-                                    "shadow-[var(--shadow-sm)]",
-                                ].join(' ')}>
-                                    {regularUsers.map((user, i) => (
-                                        <LeaderboardRow key={user._id} user={user} index={i} realRank={user.rank} />
-                                    ))}
+                                <div className="bg-white/5 dark:bg-black/20 backdrop-blur-3xl border border-black/[0.03] dark:border-white/5 rounded-[32px] overflow-hidden shadow-2xl relative">
+                                    <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
+                                    <div className="divide-y divide-black/[0.03] dark:divide-white/5">
+                                        {regularUsers.map((user, i) => (
+                                            <LeaderboardRow key={user._id} user={user} index={i} realRank={user.rank} />
+                                        ))}
+                                    </div>
                                 </div>
                             )}
                         </motion.div>
@@ -133,52 +148,71 @@ function PodiumItem({ user, rank }: { user: RankedUser; rank: number }) {
     const isSilver = rank === 2;
     const isBronze = rank === 3;
 
-    const cardColor = isGold
-        ? 'bg-gradient-to-b from-yellow-50 to-[var(--surface-base)] dark:from-yellow-500/10 border-yellow-200 dark:border-yellow-500/20 md:-translate-y-8 shadow-[0_20px_50px_-10px_var(--color-comp-400)/0.3] z-10'
-        : isSilver
-            ? 'bg-gradient-to-b from-[var(--surface-raised)] to-[var(--surface-base)] border-[var(--border-default)] shadow-[var(--shadow-md)]'
-            : 'bg-gradient-to-b from-orange-50 dark:from-orange-500/10 to-[var(--surface-base)] border-orange-200 dark:border-orange-500/20 shadow-[var(--shadow-md)]';
-
-    const ringColor = isGold ? 'ring-yellow-100 dark:ring-yellow-900/40' : isSilver ? 'ring-[var(--color-100)] dark:ring-[var(--color-900)]/40' : 'ring-orange-100 dark:ring-orange-900/40';
-    const gradAvatar = isGold ? 'from-yellow-300 to-yellow-500' : isSilver ? 'from-slate-300 to-slate-400' : 'from-orange-300 to-orange-400';
-    const ptColor = isGold ? 'text-yellow-600 dark:text-yellow-400' : isSilver ? 'text-[var(--fg-secondary)]' : 'text-orange-600 dark:text-orange-400';
+    const colors = {
+        1: {
+            bg: 'bg-gradient-to-b from-yellow-400/20 to-yellow-600/5',
+            border: 'border-yellow-500/30',
+            text: 'text-yellow-500',
+            glow: 'shadow-[0_0_40px_-10px_rgba(234,179,8,0.3)]',
+            podium: 'h-32 sm:h-48'
+        },
+        2: {
+            bg: 'bg-gradient-to-b from-slate-400/20 to-slate-600/5',
+            border: 'border-slate-500/30',
+            text: 'text-slate-400',
+            glow: 'shadow-[0_0_30px_-10px_rgba(148,163,184,0.2)]',
+            podium: 'h-24 sm:h-36'
+        },
+        3: {
+            bg: 'bg-gradient-to-b from-amber-600/20 to-amber-800/5',
+            border: 'border-amber-700/30',
+            text: 'text-amber-600',
+            glow: 'shadow-[0_0_30px_-10px_rgba(180,83,9,0.2)]',
+            podium: 'h-20 sm:h-28'
+        }
+    }[rank as 1 | 2 | 3];
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: isGold ? -20 : 0, transition: springs.responsive }}
-            whileHover={{ y: isGold ? -30 : -10, scale: 1.02, transition: springs.snap }}
-            className={`flex flex-col items-center p-[var(--space-3)] rounded-[var(--radius-2xl)] border relative overflow-hidden group ${cardColor}`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -5 }}
+            className="flex flex-col items-center group cursor-pointer"
         >
-            <div className={`absolute inset-0 bg-gradient-to-b opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--duration-slow)]
-                ${isGold ? 'from-[var(--color-comp-400)]/20 to-transparent animate-pulse' : ''}
-                ${isSilver ? 'from-[var(--border-strong)]/20 to-transparent' : ''}
-                ${isBronze ? 'from-orange-500/20 to-transparent' : ''}
-            `} />
+            <div className="relative mb-4 sm:mb-6">
+                <motion.div
+                    animate={isGold ? { scale: [1, 1.05, 1] } : {}}
+                    transition={{ duration: 4, repeat: Infinity }}
+                    className={`relative w-16 h-16 sm:w-28 sm:h-28 rounded-full z-10 border-4 ${colors.border} ${colors.glow} overflow-hidden bg-white/5`}
+                >
+                    <Image src={safeAvatar(user.image)} alt={user.name} width={120} height={120} className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                </motion.div>
 
-            <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: rank * 1.5 }}
-                className={`relative mb-[var(--space-2)] w-16 h-16 sm:w-24 sm:h-24 rounded-[var(--radius-full)] flex items-center justify-center text-3xl font-bold shadow-2xl ring-4 bg-gradient-to-br text-white ${gradAvatar} ${ringColor}`}
-            >
-                <div className="w-full h-full rounded-[var(--radius-full)] overflow-hidden border-2 border-white/20">
-                    <Image src={safeAvatar(user.image)} alt={user.name} width={96} height={96} className="w-full h-full object-cover" />
+                <div className="absolute -top-3 -right-2 sm:-top-4 sm:-right-2 z-20 text-2xl sm:text-4xl filter drop-shadow-lg">
+                    {isGold ? "👑" : isSilver ? "🥈" : "🥉"}
                 </div>
-                <div className="absolute -bottom-2 -right-2 bg-[var(--surface-base)] p-[6px] rounded-[var(--radius-full)] shadow-[var(--shadow-md)] border border-[var(--border-default)] text-xl">
-                    {isGold && "👑"}{isSilver && "🥈"}{isBronze && "🥉"}
-                </div>
-            </motion.div>
 
-            <div className="mb-[var(--space-1)] bg-[var(--surface-overlay)] backdrop-blur-sm px-[var(--space-1)] py-[2px] rounded-[var(--radius-full)] text-[10px] font-bold shadow-[var(--shadow-sm)] border border-[var(--border-default)] text-[var(--fg-muted)] uppercase tracking-wider z-20 whitespace-nowrap">
-                Rank {rank}
+                <div className={`absolute -bottom-2 sm:-bottom-3 left-1/2 -translate-x-1/2 z-20 px-3 sm:px-4 py-1 rounded-full bg-white dark:bg-[#0D0D0E] border ${colors.border} shadow-lg text-[10px] sm:text-xs font-black tracking-tighter uppercase whitespace-nowrap`}>
+                    Rank {rank}
+                </div>
             </div>
 
-            <h3 className="font-[var(--font-weight-bold)] text-[var(--text-body)] md:text-[var(--text-heading)] text-center mb-[4px] relative z-10 capitalize text-[var(--fg-primary)]">
-                {user.name}
-            </h3>
-            <p className={`font-mono font-bold text-[var(--text-caption)] relative z-10 ${ptColor}`}>
-                {new Intl.NumberFormat().format(user.totalPoints)} pts
-            </p>
+            <div className="text-center mb-4 min-w-0 px-2">
+                <h3 className="text-sm sm:text-lg font-black text-gray-900 dark:text-white truncate max-w-[120px] sm:max-w-[200px]">
+                    {user.name}
+                </h3>
+                <p className={`text-[10px] sm:text-xs font-mono font-black ${colors.text}`}>
+                    {new Intl.NumberFormat().format(user.totalPoints)} <span className="opacity-60">PTS</span>
+                </p>
+            </div>
+
+            {/* Podium Base */}
+            <div className={`w-full ${colors.podium} ${colors.bg} rounded-t-[24px] sm:rounded-t-[32px] border-x border-t ${colors.border} relative overflow-hidden transition-all duration-500 group-hover:brightness-125`}>
+                <div className="absolute inset-x-0 top-0 h-px bg-white/20" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                    <span className="text-6xl sm:text-8xl font-black">{rank}</span>
+                </div>
+            </div>
         </motion.div>
     );
 }
@@ -186,41 +220,44 @@ function PodiumItem({ user, rank }: { user: RankedUser; rank: number }) {
 function LeaderboardRow({ user, index, realRank }: { user: RankedUser; index: number; realRank: number }) {
     return (
         <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 + (index * 0.05) }}
-            whileHover={{ y: -2, scale: 1.005, transition: springs.snap }}
-            className={[
-                "flex items-center justify-between",
-                "p-[var(--space-2)] sm:p-[var(--space-2)]",
-                "border-b border-[var(--border-default)] last:border-0",
-                "transition-all cursor-pointer group relative",
-                "hover:bg-[var(--surface-overlay)]",
-            ].join(' ')}
+            transition={{ delay: 0.1 + (index * 0.03) }}
+            whileHover={{ x: 4, backgroundColor: 'rgba(59, 130, 246, 0.03)' }}
+            className="flex items-center justify-between p-4 group cursor-pointer relative"
         >
-            <div className="flex items-center gap-[var(--space-2)] sm:gap-[var(--space-2)] relative z-10">
-                <span className="w-8 text-center font-mono font-bold text-[var(--fg-muted)] text-[var(--text-caption)] opacity-50 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-4">
+                <span className="w-8 text-center font-mono font-black text-xs text-gray-400 group-hover:text-blue-500 transition-colors">
                     #{realRank}
                 </span>
-                <div className="w-10 h-10 rounded-[var(--radius-full)] bg-[var(--color-50)] flex items-center justify-center group-hover:scale-110 transition-transform overflow-hidden shadow-[var(--shadow-sm)]">
-                    <Image src={safeAvatar(user.image)} alt={user.name} width={40} height={40} className="w-full h-full object-cover" />
+
+                <div className="relative">
+                    <div className="w-12 h-12 rounded-[16px] bg-gray-100 dark:bg-white/[0.03] p-0.5 overflow-hidden transition-all duration-300 group-hover:rounded-full group-hover:scale-105 border border-black/[0.03] dark:border-white/[0.03]">
+                        <Image src={safeAvatar(user.image)} alt={user.name} width={48} height={48} className="w-full h-full object-cover" />
+                    </div>
                 </div>
-                <div className="flex flex-col items-start min-w-0">
-                    <h4 className={[
-                        "font-[var(--font-weight-medium)] text-[var(--fg-primary)]",
-                        "group-hover:text-[var(--color-500)] transition-colors",
-                        "truncate w-full max-w-[200px] sm:max-w-xs capitalize",
-                    ].join(' ')} title={user.name}>
+
+                <div className="flex flex-col">
+                    <h4 className="font-bold text-gray-900 dark:text-white capitalize group-hover:text-blue-500 transition-colors">
                         {user.name}
                     </h4>
-                    <p className="text-[var(--text-caption)] text-[var(--fg-muted)] font-[var(--font-weight-medium)]">{user.grade}</p>
+                    <span className="text-[10px] font-black uppercase tracking-wider text-gray-400 group-hover:text-gray-500 transition-colors">
+                        {user.grade}
+                    </span>
                 </div>
             </div>
-            <div className="font-mono font-bold text-[var(--color-500)] relative z-10 group-hover:scale-105 transition-transform">
-                {new Intl.NumberFormat().format(user.totalPoints)}{' '}
-                <span className="text-[var(--text-caption)] text-[var(--fg-muted)] font-sans font-normal ml-[4px]">pts</span>
+
+            <div className="flex items-center gap-2">
+                <div className="text-right">
+                    <p className="font-mono font-black text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">
+                        {new Intl.NumberFormat().format(user.totalPoints)}
+                    </p>
+                    <p className="text-[8px] font-black uppercase text-gray-400 tracking-widest">Axiom Points</p>
+                </div>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-blue-500">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
+                </div>
             </div>
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--color-500)] opacity-0 group-hover:opacity-100 transition-opacity rounded-r-[var(--radius-sm)]" />
         </motion.div>
     );
 }

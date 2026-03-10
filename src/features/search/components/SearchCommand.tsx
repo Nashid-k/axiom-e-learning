@@ -145,22 +145,22 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
 
                     { }
                     <motion.div
-                        initial={shouldReduceMotion ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.95, y: -20 }}
+                        initial={shouldReduceMotion ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.98, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: -20 }}
-                        transition={shouldReduceMotion ? { duration: 0.01 } : { type: "spring", stiffness: 350, damping: 30 }}
+                        exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: 20 }}
+                        transition={shouldReduceMotion ? { duration: 0.01 } : { type: "spring", stiffness: 400, damping: 40, mass: 0.8 }}
                         className="
-                            relative w-full max-w-2xl xl:max-w-3xl
-                            bg-white/80 dark:bg-[#121212]/90 backdrop-blur-xl 
-                            rounded-3xl shadow-2xl shadow-black/20 dark:shadow-black/50 
-                            border border-gray-200 dark:border-white/10 
-                            overflow-hidden
+                            relative w-full max-w-3xl
+                            bg-white/80 dark:bg-[#0D0D0E]/80 backdrop-blur-3xl 
+                            rounded-[36px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] 
+                            border border-black/[0.03] dark:border-white/10 
+                            overflow-hidden transform-gpu translate-z-0
                         "
                     >
                         { }
-                        <div className="flex items-center gap-3 px-5 sm:px-6 py-4 border-b border-gray-100 dark:border-white/5 focus-within:border-emerald-400/60 dark:focus-within:border-emerald-500/50 focus-within:ring-2 focus-within:ring-emerald-500/15 transition-all duration-200">
-                            <div className="text-gray-400 dark:text-white/40">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <div className="flex items-center gap-4 px-6 py-5 border-b border-black/[0.03] dark:border-white/5 bg-white/5 focus-within:bg-transparent transition-all duration-500">
+                            <div className="text-gray-400 dark:text-gray-500 scale-125">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
                                     <circle cx="11" cy="11" r="8" />
                                     <path d="m21 21-4.35-4.35" />
                                 </svg>
@@ -173,37 +173,32 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                     setQuery(e.target.value);
                                     setSelectedIndex(0);
                                 }}
-                                placeholder="What do you want to master?"
-                                aria-label="Search curriculum"
-                                role="combobox"
-                                aria-expanded={isOpen}
-                                aria-controls="search-results-listbox"
-                                aria-autocomplete="list"
-                                className="flex-1 bg-transparent text-lg sm:text-xl font-medium text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/20 axiom-input-control"
+                                placeholder="Search the Axiom universe..."
+                                className="flex-1 bg-transparent text-xl sm:text-2xl font-black text-gray-900 dark:text-white placeholder-gray-300 dark:placeholder-white/10 outline-none tracking-tight"
                             />
                             <div className="hidden sm:flex items-center gap-2">
-                                <span className="px-2 py-1 rounded-md bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/5 text-[10px] uppercase font-bold text-gray-400 dark:text-white/30 tracking-wider font-mono">
-                                    AXIOM-OS v3.0
+                                <span className="px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/[0.03] dark:border-white/5 text-[9px] uppercase font-black text-gray-500 dark:text-gray-400 tracking-[0.2em] font-mono">
+                                    Axiom Command
                                 </span>
                             </div>
                         </div>
 
                         {categories.length > 0 && (
-                            <div className="px-5 sm:px-6 py-3 border-b border-gray-100 dark:border-white/5 flex gap-2 overflow-x-auto scrollbar-hide">
+                            <div className="px-6 py-4 bg-black/[0.02] dark:bg-white/[0.02] flex gap-3 overflow-x-auto scrollbar-hide border-b border-black/[0.03] dark:border-white/5">
                                 <button
                                     onClick={() => {
                                         setSelectedCategory(null);
                                         setSelectedIndex(0);
                                     }}
                                     className={cn(
-                                        "px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all",
+                                        "px-4 py-2 rounded-2xl text-[10px] uppercase font-black tracking-widest transition-all duration-300",
                                         !selectedCategory
-                                            ? "bg-blue-500 text-white shadow-md shadow-blue-500/20"
-                                            : "bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10"
+                                            ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
+                                            : "bg-white/50 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-white/80 dark:hover:bg-white/10"
                                     )}
                                     type="button"
                                 >
-                                    All Results
+                                    Universe
                                 </button>
                                 {categories.map(cat => (
                                     <button
@@ -213,10 +208,10 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                             setSelectedIndex(0);
                                         }}
                                         className={cn(
-                                            "px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all",
+                                            "px-4 py-2 rounded-2xl text-[10px] uppercase font-black tracking-widest transition-all duration-300",
                                             selectedCategory === cat
-                                                ? "bg-blue-500 text-white shadow-md shadow-blue-500/20"
-                                                : "bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-white/10"
+                                                ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
+                                                : "bg-white/50 dark:bg-white/5 text-gray-500 dark:text-gray-400 hover:bg-white/80 dark:hover:bg-white/10"
                                         )}
                                         type="button"
                                     >
@@ -257,17 +252,17 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                             aria-selected={idx === clampedSelectedIndex}
                                             onClick={() => handleSelect(result)}
                                             className={cn(
-                                                "w-full px-4 py-3 flex items-center gap-4 text-left rounded-2xl transition-all duration-200 group cursor-pointer min-h-[48px]",
+                                                "w-full px-5 py-4 flex items-center gap-5 text-left rounded-[24px] transition-all duration-300 group cursor-pointer",
                                                 idx === clampedSelectedIndex
-                                                    ? 'bg-blue-500 text-white shadow-xl shadow-blue-500/30 -translate-y-0.5'
-                                                    : 'hover:bg-gray-100/70 dark:hover:bg-white/5 text-gray-700 dark:text-gray-200'
+                                                    ? 'bg-blue-600 text-white shadow-2xl shadow-blue-500/30'
+                                                    : 'hover:bg-black/[0.03] dark:hover:bg-white/5 text-gray-700 dark:text-gray-200'
                                             )}
                                         >
                                             <div className={cn(
-                                                "p-2.5 rounded-xl transition-colors",
-                                                idx === clampedSelectedIndex ? 'bg-white/20' : 'bg-gray-100 dark:bg-white/5'
+                                                "p-3 rounded-[16px] transition-all duration-500",
+                                                idx === clampedSelectedIndex ? 'bg-white/20 scale-110' : 'bg-white shadow-sm dark:bg-white/5 border border-black/[0.03] dark:border-white/5'
                                             )}>
-                                                <CategoryIcon category={result.category} className="w-6 h-6" />
+                                                <CategoryIcon category={result.category} className="w-7 h-7" />
                                             </div>
 
                                             <div className="flex-1 min-w-0">
@@ -292,30 +287,28 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                                     )}
                                                 </div>
                                                 <div className={cn(
-                                                    "text-xs truncate flex items-center gap-1.5",
-                                                    idx === clampedSelectedIndex ? 'text-blue-100/80' : 'text-gray-500 dark:text-gray-400'
+                                                    "text-[10px] font-black uppercase tracking-[0.15em]",
+                                                    idx === clampedSelectedIndex ? 'text-blue-100/60' : 'text-gray-400 dark:text-gray-500'
                                                 )}>
                                                     <span>{result.category}</span>
                                                     {result.phase && (
                                                         <>
-                                                            <span className="opacity-30">•</span>
-                                                            <span className="font-medium">Phase {result.phase}</span>
+                                                            <span className="mx-2 opacity-30">•</span>
+                                                            <span className="opacity-80">Phase {result.phase}</span>
                                                         </>
                                                     )}
                                                 </div>
                                             </div>
 
                                             {idx === clampedSelectedIndex ? (
-                                                <div className="flex items-center gap-1.5">
-                                                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-60">OPEN</span>
-                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-white">
-                                                        <path d="M5 12h14m-7-7 7 7-7 7" />
-                                                    </svg>
+                                                <div className="flex items-center gap-2 pr-2">
+                                                    <span className="text-[10px] font-black uppercase tracking-widest opacity-60">ENTER</span>
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5-5 5M6 7l5 5-5 5" /></svg>
                                                 </div>
                                             ) : (
-                                                <kbd className="hidden sm:flex items-center justify-center p-1.5 min-w-[24px] rounded bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/5 text-[10px] font-mono text-gray-400">
-                                                    ↵
-                                                </kbd>
+                                                <div className="pr-2 opacity-0 group-hover:opacity-40 transition-opacity">
+                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
+                                                </div>
                                             )}
                                         </motion.button>
                                     ))}

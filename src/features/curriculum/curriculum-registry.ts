@@ -11,9 +11,9 @@ import { PERFORMANCE_FOUNDATION } from '@/data/foundations/performance';
 import { REACT_CURRICULUM } from '@/data/react-curriculum';
 import { REACT_PROJECTS } from '@/data/react-projects';
 import { DSA_CURRICULUM } from '@/data/dsa-curriculum';
-import { MONGODB_CURRICULUM } from '@/data/mongodb-curriculum';
+import MONGODB_CURRICULUM from '@/data/mongodb.json';
 import { SQL_CURRICULUM } from '@/data/sql-curriculum';
-import { JS_CURRICULUM } from '@/data/js-curriculum';
+import JS_CURRICULUM from '@/data/javascript.json';
 import { NODEJS_CURRICULUM } from '@/data/nodejs-curriculum';
 import { TYPESCRIPT_CURRICULUM } from '@/data/ts-curriculum';
 
@@ -135,8 +135,7 @@ export const CURRICULUM_REGISTRY: Record<string, CurriculumEntry> = {
         category: 'MongoDB',
         dataKey: 'mongodb',
         foundations: ['http-protocol-foundation', 'authentication-foundation'],
-        foundationTitles: ['HTTP Protocol Foundation', 'Authentication Foundation'],
-        getData: () => MONGODB_CURRICULUM['mongodb']
+        getData: () => MONGODB_CURRICULUM['mongodb'] as any
     },
     'sql': { slug: 'sql', category: 'SQL', dataKey: 'sql', getData: () => SQL_CURRICULUM['sql'] },
 
@@ -146,7 +145,7 @@ export const CURRICULUM_REGISTRY: Record<string, CurriculumEntry> = {
         dataKey: 'javascript',
         foundations: ['event-loop-foundation', 'type-system-foundation', 'performance-foundation'],
         foundationTitles: ['Event Loop Foundation', 'Type System Foundation', 'Performance Foundation'],
-        getData: () => JS_CURRICULUM['javascript']
+        getData: () => JS_CURRICULUM['javascript'] as any
     },
     'typescript': {
         slug: 'typescript',

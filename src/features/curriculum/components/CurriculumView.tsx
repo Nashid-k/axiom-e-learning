@@ -1,15 +1,14 @@
 'use client';
 
-import { useRef, useMemo, useEffect, memo, useCallback, useState } from 'react';
+import { useRef, useMemo, useEffect, useCallback, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { CurriculumData, RichItem } from '@/types';
+import { CurriculumData } from '@/types';
 
-import { springs, staggerContainer, fadeInUp } from '@/lib/motion/motion-config';
+import { staggerContainer } from '@/lib/motion/motion-config';
 
 import { useProgress } from '@/features/learning/hooks/useProgress';
 import { getCategory } from '@/features/curriculum/curriculum-registry';
-import { CategoryIcon } from '@/features/curriculum/components/CategoryIcon';
 import { getHashiraInfo } from '@/lib/motion/world-theme';
 import { useModal, TopicItem } from '@/features/ai/context/ModalContext';
 import { useMirror } from '@/features/learning/hooks/useMirror';
@@ -17,11 +16,17 @@ import { useConfetti } from '@/features/learning/hooks/useConfetti';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { ArcadeSection } from './ArcadeSection';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { cn } from '@/lib/utils';
 import ReviewBell from '@/components/ui/ReviewBell';
 import { useTopics } from '@/features/learning/hooks/useTopics';
-import { getTopicsDueForReview, getReviewStatus } from '@/features/learning/spaced-repetition';
+import { getTopicsDueForReview } from '@/features/learning/spaced-repetition';
 import { buildWeeklyMissions, collectWeaknessSignals } from '@/features/learning/weakness-engine';
+
+// Extracted Sub-components
+import { CurriculumHeader } from './CurriculumHeader';
+import { ProgressCard } from './ProgressCard';
+import { ReviewQueue } from './ReviewQueue';
+import { WeeklyMissions } from './WeeklyMissions';
+import { PhaseCard } from './PhaseCard';
 
 interface CurriculumViewProps {
     data: CurriculumData;
@@ -82,7 +87,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
         const dueTopics = getTopicsDueForReview(userTopics);
         return dueTopics.filter(t =>
             t.category?.toLowerCase() === categoryName.toLowerCase()
-        ).slice(0, 5);
+        ).slice(0, 5) as any[];
     }, [userTopics, categoryName]);
 
     const weeklyMissions = useMemo(() => {
@@ -269,124 +274,33 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-8 lg:items-end justify-between">
+                    <CurriculumHeader
+                        categorySlug={categorySlug}
+                        curriculumTitle={curriculumTitle}
+                        description={data.description as string}
+                        info={info}
+                    />
 
-                    <div className="flex items-start gap-6">
-                        <CategoryIcon category={categorySlug} className="w-16 h-16 shrink-0" />
-                        <div>
-                            <h1 className="text-3xl md:text-4xl font-bold mb-3">{curriculumTitle}</h1>
-                            <p className="text-gray-600 dark:text-white/60 max-w-2xl text-base md:text-lg leading-relaxed transition-colors">{data.description as string || ""}</p>
-
-
-                            <div className={`mt-5 inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-gray-200 dark:border-white/5 bg-white/50 dark:bg-white/[0.02] ${info.color} transition-colors`}>
-                                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] opacity-80">{info.grade}</span>
-                                <span className="w-1 h-1 rounded-full bg-gray-400 dark:bg-white/20" />
-                                <span className="text-xs opacity-70 italic">&quot;{info.quote}&quot;</span>
-                                <span className="text-[11px] opacity-50 ml-1">— {info.character}</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="p-5 w-full lg:w-[340px] shrink-0 bg-[var(--surface-raised)] backdrop-blur-md transform-gpu border border-[var(--border-default)] rounded-2xl transition-colors relative">
-                        {showPop && (
-                            <div className="absolute -top-2 right-6 text-green-500 font-black text-xl animate-counter-pop pointer-events-none z-50 select-none shadow-green-500/50 drop-shadow-lg">+1</div>
-                        )}
-                        <div className="flex justify-between text-sm mb-4">
-                            <span className="text-gray-600 dark:text-white/70 text-sm transition-colors">Progress</span>
-                            <span className="text-blue-500 dark:text-blue-400 font-mono text-sm transition-colors">{progressPercentage}%</span>
-                        </div>
-                        <div className="h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden mb-2.5 transition-colors">
-                            <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: `${progressPercentage}% ` }}
-                                transition={springs.gentle}
-                                className="h-full bg-gradient-to-r from-blue-600 to-cyan-500"
-                            />
-                        </div>
-                        <div className="text-[11px] text-gray-400 dark:text-white/45 text-center transition-colors">
-                            {validCompletedCount} / {totalItems} Techniques Mastered
-                        </div>
-                    </div>
+                    <ProgressCard
+                        progressPercentage={progressPercentage}
+                        validCompletedCount={validCompletedCount}
+                        totalItems={totalItems}
+                        showPop={showPop}
+                    />
                 </div>
             </div>
 
-
             <ArcadeSection data={data} />
 
+            <ReviewQueue
+                reviewDueTopics={reviewDueTopics}
+                onTopicClick={handleTopicClick}
+            />
 
-            {reviewDueTopics.length > 0 && (
-                <div className="px-4 md:px-12 lg:px-20 max-w-[95vw] 2xl:max-w-[1920px] mx-auto mb-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={springs.gentle}
-                        className="p-4 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950/30 dark:to-amber-950/20 border border-orange-200/60 dark:border-orange-800/30 rounded-2xl"
-                    >
-                        <div className="flex items-center gap-2.5 mb-3">
-                            <div className="w-7 h-7 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-orange-600 dark:text-orange-400">
-                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                                    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                                </svg>
-                            </div>
-                            <h3 className="text-sm font-bold text-orange-900 dark:text-orange-300">
-                                Review Queue
-                                <span className="ml-1.5 text-xs font-normal text-orange-600/80 dark:text-orange-400/70">
-                                    {reviewDueTopics.length} topic{reviewDueTopics.length > 1 ? 's' : ''} due
-                                </span>
-                            </h3>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                            {reviewDueTopics.map(topic => {
-                                const status = getReviewStatus(topic.nextReviewDate, topic.studied);
-                                return (
-                                    <button
-                                        key={topic.id}
-                                        onClick={() => handleTopicClick(topic.title, topic.description || `Review ${topic.title}`)}
-                                        className="group inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full bg-white/80 dark:bg-white/10 border border-orange-200/50 dark:border-orange-800/30 text-orange-800 dark:text-orange-300 hover:bg-orange-100 dark:hover:bg-orange-900/30 hover:border-orange-300 dark:hover:border-orange-700/50 transition-all cursor-pointer"
-                                    >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                                        <span className="truncate max-w-[180px]">{topic.title}</span>
-                                        <span className="text-[10px] opacity-60">{status.label}</span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </motion.div>
-                </div>
-            )}
-
-            {weeklyMissions.length > 0 && (
-                <div className="px-4 md:px-12 lg:px-20 max-w-[95vw] 2xl:max-w-[1920px] mx-auto mb-8">
-                    <div className="p-4 rounded-2xl border border-emerald-200/70 dark:border-emerald-500/25 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/10">
-                        <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-sm font-bold text-emerald-900 dark:text-emerald-300">Weekly Focus Missions</h3>
-                            <span className="text-[11px] text-emerald-700/80 dark:text-emerald-400/80">Auto-generated from weak signals</span>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                            {weeklyMissions.map(mission => (
-                                <button
-                                    key={mission.id}
-                                    type="button"
-                                    onClick={() => handleTopicClick(
-                                        mission.topic,
-                                        `${mission.reason}. ${mission.action}`
-                                    )}
-                                    className="text-left px-3 py-2 rounded-xl border border-emerald-200/70 dark:border-emerald-500/25 bg-white/70 dark:bg-white/[0.03] hover:bg-white dark:hover:bg-white/[0.06] transition-colors"
-                                >
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold ${mission.priority === 'high' ? 'bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-300' : 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300'}`}>
-                                            {mission.priority}
-                                        </span>
-                                        <span className="text-[11px] font-semibold text-emerald-900 dark:text-emerald-300 truncate">{mission.title}</span>
-                                    </div>
-                                    <p className="text-[11px] text-gray-700 dark:text-gray-300 line-clamp-2">{mission.reason}</p>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            )}
+            <WeeklyMissions
+                weeklyMissions={weeklyMissions}
+                onTopicClick={handleTopicClick}
+            />
 
             <main className="px-4 md:px-12 lg:px-20 pb-18 max-w-[95vw] 2xl:max-w-[1920px] mx-auto">
                 <motion.div
@@ -395,142 +309,16 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     animate="animate"
                     className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"
                 >
-                    { }
-                    {mirrorPhases.map((phase: NonNullable<CurriculumData['phases']>[number]) => (
-                        <motion.div key={phase.phase} variants={fadeInUp} className="h-full">
-                            <div
-                                className="h-auto min-h-[300px] sm:h-[380px] md:h-[420px] flex flex-col relative group hover:border-[var(--border-strong)] transition-all duration-300 bg-[var(--surface-raised)] backdrop-blur-md transform-gpu border border-[var(--border-default)] rounded-2xl overflow-hidden"
-                            >
-                                { }
-                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" />
-                                { }
-                                <div className="relative z-10 p-3.5 pb-3 border-b border-[var(--border-default)] bg-[var(--surface-subtle)]/60 dark:bg-black/40 shrink-0 transition-colors">
-                                    <div className="flex items-start justify-between gap-4">
-                                        <div>
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 dark:bg-white/10 text-xs font-semibold border border-gray-200 dark:border-white/10 text-gray-700 dark:text-white transition-colors">
-                                                    {phase.phase}
-                                                </span>
-                                                <h2 className="text-[15px] font-semibold line-clamp-1 text-gray-900 dark:text-white transition-colors">{phase.title}</h2>
-                                            </div>
-                                            <p className="text-xs text-gray-500 dark:text-white/55 line-clamp-2 leading-relaxed transition-colors">{phase.description}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                { }
-                                <div className="flex-1 overflow-y-auto custom-scrollbar p-4 pt-3 space-y-4">
-                                    { }
-                                    {phase.theory && phase.theory.length > 0 && (
-                                        <div className="space-y-3">
-                                            <h3 className="sticky top-0 z-10 bg-[var(--surface-raised)]/90 py-1.5 -mx-1 px-1.5 text-[11px] font-semibold text-[var(--fg-muted)] flex items-center gap-2 uppercase tracking-wider mb-2 rounded-md transition-colors backdrop-blur-sm">
-                                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-                                                Theory
-                                            </h3>
-                                            <div className="space-y-2">
-                                                { }
-                                                {phase.theory.map((rawItem: string | RichItem, idx: number) => {
-                                                    const item: RichItem = typeof rawItem === 'string'
-                                                        ? { title: rawItem, id: `theory-${phase.phase}-${idx}` }
-                                                        : { ...rawItem, id: rawItem.id || `theory-${phase.phase}-${idx}` };
-
-                                                    return (
-                                                        <VirtualizedTopic key={item.id}>
-                                                            <TopicRow
-                                                                item={item}
-                                                                phaseTitle={phase.title}
-                                                                isChecked={isChecked(item.id!)}
-                                                                onClick={(topic, desc) => handleTopicClick(topic, desc)}
-                                                                colorClass="group-hover/item:text-blue-300"
-                                                            />
-                                                        </VirtualizedTopic>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    { }
-                                    {phase.practicals && phase.practicals.length > 0 && (
-                                        <div className="space-y-3">
-                                            <h3 className="sticky top-0 z-10 bg-white/90 dark:bg-black/85 py-1.5 -mx-1 px-1.5 text-[11px] font-semibold text-gray-500 dark:text-white/70 flex items-center gap-2 uppercase tracking-wider mb-2 rounded-md border-t border-gray-100 dark:border-white/5 mt-5 pt-3 transition-colors backdrop-blur-sm">
-                                                <span className="w-1.5 h-1.5 bg-orange-500 rounded-full shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
-                                                Practical
-                                            </h3>
-                                            <div className="space-y-2">
-                                                { }
-                                                {phase.practicals.map((rawItem: string | RichItem, idx: number) => {
-                                                    const item: RichItem = typeof rawItem === 'string'
-                                                        ? { title: rawItem, id: `practical-${phase.phase}-${idx}` }
-                                                        : { ...rawItem, id: rawItem.id || `practical-${phase.phase}-${idx}` };
-
-                                                    return (
-                                                        <VirtualizedTopic key={item.id}>
-                                                            <TopicRow
-                                                                item={item}
-                                                                phaseTitle={phase.title}
-                                                                isChecked={isChecked(item.id!)}
-                                                                onClick={(topic, desc) => handleTopicClick(topic, desc)}
-                                                                colorClass="group-hover/item:text-orange-300"
-                                                            />
-                                                        </VirtualizedTopic>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    { }
-                                    {phase.games && phase.games.length > 0 && (
-                                        <div className="space-y-3">
-                                            <h3 className="sticky top-0 z-10 bg-white/90 dark:bg-black/85 py-1.5 -mx-1 px-1.5 text-[11px] font-semibold text-gray-500 dark:text-white/70 flex items-center gap-2 uppercase tracking-wider mb-2 rounded-md border-t border-gray-100 dark:border-white/5 mt-5 pt-3 transition-colors backdrop-blur-sm">
-                                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(139,92,246,0.5)]" />
-                                                Gamified Learning
-                                            </h3>
-                                            <div className="space-y-2">
-                                                { }
-                                                {phase.games.map((rawItem: string | (RichItem & { url?: string }), idx: number) => {
-                                                    const item: RichItem = typeof rawItem === 'string'
-                                                        ? { title: rawItem, id: `game-${phase.phase}-${idx}` }
-                                                        : { ...rawItem, id: `game-${phase.phase}-${idx}` };
-
-                                                    return (
-                                                        <a
-                                                            key={item.id}
-                                                            href={item.url || '#'}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="block py-3 px-3.5 rounded-xl bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 hover:border-blue-300 dark:hover:border-blue-500/40 transition-all group/game cursor-pointer"
-                                                        >
-                                                            <div className="flex items-start justify-between gap-3">
-                                                                <div>
-                                                                    <h4 className="text-[13px] font-bold text-blue-900 dark:text-blue-100 group-hover/game:text-blue-700 dark:group-hover/game:text-white transition-colors mb-1">
-                                                                        {item.title}
-                                                                        <span className="ml-2 inline-block text-[9px] px-1.5 py-0.5 rounded bg-blue-200 dark:bg-blue-500/20 text-blue-700 dark:text-blue-200 font-bold uppercase tracking-wider">
-                                                                            GAME
-                                                                        </span>
-                                                                    </h4>
-                                                                    <p className="text-[11px] text-gray-600 dark:text-white/60 line-clamp-2 leading-relaxed">
-                                                                        {item.description || "Interactive coding challenge"}
-                                                                    </p>
-                                                                </div>
-                                                                <svg className="w-4 h-4 text-blue-400 dark:text-blue-500 shrink-0 mt-0.5 group-hover/game:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                                </svg>
-                                                            </div>
-                                                        </a>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </motion.div>
+                    {mirrorPhases.map((phase) => (
+                        <PhaseCard
+                            key={phase.phase}
+                            phase={phase}
+                            isChecked={isChecked}
+                            onTopicClick={handleTopicClick}
+                        />
                     ))}
                 </motion.div>
 
-                { }
                 <div className="mt-24 pt-8 border-t border-gray-200 dark:border-white/10 text-center text-gray-400 dark:text-white/35 text-xs transition-colors">
                     <p>End of curriculum: {data.title as string || ""}</p>
                 </div>
@@ -540,88 +328,3 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
         </div >
     );
 }
-
-const TopicRow = memo(function TopicRow({
-    item,
-    phaseTitle,
-    isChecked,
-    onClick,
-    colorClass
-}: {
-    item: RichItem;
-    phaseTitle: string;
-    isChecked: boolean;
-    onClick: (topic: string, desc: string, initialTab?: 'ai' | 'resources' | 'dojo' | 'quiz') => void;
-    colorClass: string;
-}) {
-    return (
-        <motion.div
-            whileHover={{ scale: 1.02, x: 4, transition: springs.snap }}
-            whileTap={{ scale: 0.98 }}
-            className={cn(
-                "py-2.5 px-3 rounded-xl transition-all group/item cursor-pointer flex items-center gap-3",
-                isChecked
-                    ? "bg-green-500/5 dark:bg-green-500/10 border border-green-500/20 shadow-sm"
-                    : "hover:bg-gray-100 dark:hover:bg-white/5 border border-transparent"
-            )}
-            onClick={() => {
-                onClick(
-                    item.title,
-                    item.description || `Learn about ${item.title} in ${phaseTitle}`
-                );
-            }}
-        >
-            { }
-            <div className={cn(
-                "w-2 h-2 rounded-full shrink-0 transition-all duration-500",
-                isChecked
-                    ? "bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.6)] animate-check-pop"
-                    : "bg-gray-300 dark:bg-white/20"
-            )} />
-
-            <div className="flex-1 min-w-0">
-                <div className={cn(
-                    "text-sm font-medium transition-colors line-clamp-2",
-                    isChecked
-                        ? "text-green-700 dark:text-green-400/80 line-through"
-                        : `text-gray-900 dark:text-white/90 ${colorClass}`
-                )}>
-                    {item.title}
-                </div>
-            </div>
-
-            { }
-            {isChecked && (
-                <div className="flex items-center gap-1.5 bg-green-500/20 dark:bg-green-500/20 px-2 py-0.5 rounded-full border border-green-500/30">
-                    <span className="text-[9px] font-black text-green-600 dark:text-green-400 uppercase tracking-tighter">Mastered</span>
-                </div>
-            )}
-        </motion.div>
-    );
-});
-
-const VirtualizedTopic = memo(function VirtualizedTopic({ children }: { children: React.ReactNode }) {
-    const [isVisible, setIsVisible] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect();
-                }
-            },
-            { rootMargin: '100px', threshold: 0 }
-        );
-
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
-    }, []);
-
-    return (
-        <div ref={ref} className="min-h-[44px]">
-            {isVisible ? children : <div className="h-[44px] animate-pulse bg-gray-100/50 dark:bg-white/5 rounded-xl border border-transparent" />}
-        </div>
-    );
-});

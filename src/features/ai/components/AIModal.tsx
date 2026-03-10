@@ -37,6 +37,10 @@ const CodeEditor = dynamic(() => import('./CodeEditor'), {
     ssr: false,
 });
 
+import { ModalSidebar } from './ModalSidebar';
+import { ModalTopBar } from './ModalTopBar';
+import { ModalFooter } from './ModalFooter';
+
 export default function AIModal() {
     const { isOpen, topicData, closeModal, navigateTopic, allTopics, currentIndex } = useModal();
     const [activeTab, setActiveTab] = useState<'ai' | 'resources' | 'dojo' | 'quiz'>('ai');
@@ -230,75 +234,16 @@ export default function AIModal() {
             backdropClassName="bg-black/60 backdrop-blur-sm transform-gpu"
         >
             <div className="flex flex-col md:flex-row h-[min(850px,90vh)]" onClick={(e) => e.stopPropagation()}>
-                {/* Desktop Sidebar - Hidden on mobile */}
-                <div className="hidden md:flex w-20 bg-gray-50/50 dark:bg-black/20 border-r border-black/5 dark:border-white/5 flex-col shrink-0 transition-colors duration-500 items-center relative z-50">
-                    <div className="py-8 flex flex-col items-center gap-4 shrink-0">
-                        <div className="flex gap-1.5">
-                            <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                            <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                        </div>
-                    </div>
+                <ModalSidebar
+                    activeTab={activeTab}
+                    onTabChange={handleTabChange}
+                />
 
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: {
-                                opacity: 1,
-                                transition: {
-                                    delayChildren: 0.2,
-                                    staggerChildren: 0.1
-                                }
-                            }
-                        }}
-                        className="flex-1 py-8 space-y-4 flex flex-col items-center w-full"
-                    >
-                        <TabItem
-                            active={activeTab === 'ai'}
-                            onClick={() => handleTabChange('ai')}
-                            icon="✨"
-                            label="Sacred Archive"
-                            hoverLabel="Concept Guide"
-                        />
-                        <TabItem
-                            active={activeTab === 'resources'}
-                            onClick={() => handleTabChange('resources')}
-                            icon="📚"
-                            label="Resources & Labs"
-                            hoverLabel="Visual Library"
-                        />
-                        <TabItem
-                            active={activeTab === 'dojo'}
-                            onClick={() => handleTabChange('dojo')}
-                            icon="⚔️"
-                            label="Practitioner Dojo"
-                            hoverLabel="Code Studio"
-                        />
-                        <TabItem
-                            active={activeTab === 'quiz'}
-                            onClick={() => handleTabChange('quiz')}
-                            icon="🧠"
-                            label="Test knowledge"
-                            hoverLabel="Quick Quiz"
-                        />
-                    </motion.div>
-                </div>
-
-                { }
                 <div className="flex-1 flex flex-col min-w-0 bg-white dark:bg-[#0A0A0A] relative overflow-hidden z-40">
-                    { }
-                    <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center z-20 pointer-events-none transform-gpu translate-z-0">
-                        <div className="pointer-events-auto">
-                            <div className="flex items-center gap-2 bg-gray-100/50 dark:bg-white/5 backdrop-blur-sm transform-gpu border border-black/5 dark:border-white/10 px-4 py-1.5 rounded-full shadow-sm">
-                                <span className="text-[10px] text-gray-400 dark:text-gray-500 font-black uppercase tracking-widest">{topicData.category}</span>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-3 pointer-events-auto">
-                            <ModalCloseButton onClose={closeModal} className="w-10 h-10 shadow-lg backdrop-blur-sm transform-gpu bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10" />
-                        </div>
-                    </div>
+                    <ModalTopBar
+                        category={topicData.category}
+                        onClose={closeModal}
+                    />
 
                     <div
                         ref={contentRef}
@@ -420,153 +365,28 @@ export default function AIModal() {
                         </div>
                     </div>
 
-                    { }
-                    { }
-                    {/* Mobile Navigation Tabs - Integrated into Bottom Bar */}
-                    <div className="md:hidden flex items-center justify-around p-2 border-b border-black/[0.04] dark:border-white/[0.04] bg-gray-50/50 dark:bg-black/20 shrink-0">
-                        <MobileTabItem active={activeTab === 'ai'} onClick={() => handleTabChange('ai')} icon="✨" label="Guide" />
-                        <MobileTabItem active={activeTab === 'resources'} onClick={() => handleTabChange('resources')} icon="📚" label="Labs" />
-                        <MobileTabItem active={activeTab === 'dojo'} onClick={() => handleTabChange('dojo')} icon="⚔️" label="Dojo" />
-                        <MobileTabItem active={activeTab === 'quiz'} onClick={() => handleTabChange('quiz')} icon="🧠" label="Quiz" />
-                    </div>
-
-                    <div className="shrink-0 p-4 md:p-5 bg-white/95 dark:bg-[#151515]/95 backdrop-blur-xl border-t border-black/[0.06] dark:border-white/[0.06] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 z-20 shadow-[0_-10px_30px_rgba(0,0,0,0.05)] transform-gpu translate-z-0 transition-all duration-300">
-                        <div className="flex items-center justify-between md:justify-start gap-4">
-                            <div className="flex items-center gap-2">
-                                <motion.button
-                                    whileHover={{ scale: 1.05, rotate: 10 }}
-                                    whileTap={{ scale: 0.9, rotate: -10 }}
-                                    onClick={togglePersona}
-                                    className={cn(
-                                        "w-11 h-11 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-xl transition-all duration-300 border relative overflow-hidden",
-                                        persona === 'general'
-                                            ? "bg-white dark:bg-white/5 border-black/5 dark:border-white/10"
-                                            : "bg-emerald-400 border-emerald-400 text-white"
-                                    )}
-                                    title="Switch Persona"
-                                >
-                                    <AnimatePresence mode="wait">
-                                        <motion.span
-                                            key={persona}
-                                            initial={{ scale: 0, rotate: 180 }}
-                                            animate={{ scale: 1, rotate: 0 }}
-                                            exit={{ scale: 0, rotate: -180 }}
-                                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                        >
-                                            {persona === 'general' ? '🎭' : '✨'}
-                                        </motion.span>
-                                    </AnimatePresence>
-                                </motion.button>
-
-                                <motion.button
-                                    whileTap={{ scale: 0.9 }}
-                                    onClick={handleVoiceToggle}
-                                    className={cn(
-                                        "w-11 h-11 md:w-12 md:h-12 rounded-xl md:rounded-2xl border flex items-center justify-center text-xl md:text-2xl shadow-xl transition-all duration-300",
-                                        isSpeaking
-                                            ? "bg-red-500 border-red-400 text-white animate-pulse"
-                                            : "bg-white dark:bg-white/5 border-black/5 dark:border-white/10 opacity-50 hover:opacity-100"
-                                    )}
-                                    title={isSpeaking ? "Stop Voice" : "Read Aloud"}
-                                >
-                                    {isSpeaking ? "🔇" : "🔊"}
-                                </motion.button>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <button
-                                    onClick={() => navigateTopic('prev')}
-                                    disabled={currentIndex === 0}
-                                    className="p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl border border-black/5 dark:border-white/5 text-gray-400 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-white/5 transition-all disabled:opacity-20 flex items-center justify-center shrink-0"
-                                >
-                                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
-                                </button>
-                                <button
-                                    onClick={() => navigateTopic('next')}
-                                    disabled={!allTopics || currentIndex === allTopics.length - 1}
-                                    className="p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl border border-black/5 dark:border-white/5 text-gray-400 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-white/5 transition-all disabled:opacity-20 flex items-center justify-center shrink-0"
-                                >
-                                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-2 md:gap-3 w-full md:w-auto">
-                            <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={() => {
-                                    setActiveTab('ai');
-                                    setIsChatActive(true);
-                                }}
-                                className={cn(
-                                    "flex-1 px-4 md:px-6 py-3 md:py-3.5 rounded-2xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2",
-                                    persona === 'general'
-                                        ? "bg-blue-600 text-white shadow-blue-500/30 hover:bg-blue-700"
-                                        : "bg-emerald-600 text-white shadow-emerald-500/30 hover:bg-emerald-700"
-                                )}
-                            >
-                                Ask Maya
-                            </motion.button>
-                            <motion.button
-                                whileHover={canComplete ? { scale: 1.02 } : {}}
-                                whileTap={canComplete ? { scale: 0.98 } : {}}
-                                onClick={canComplete ? handleToggleComplete : undefined}
-                                disabled={!canComplete}
-                                className={cn(
-                                    "flex-[1.5] flex items-center justify-center gap-2 md:gap-3 px-6 md:px-10 py-3 md:py-3.5 rounded-2xl font-bold text-sm transition-all shadow-lg truncate relative overflow-hidden",
-                                    isComplete
-                                        ? "bg-emerald-500 text-white shadow-emerald-500/20"
-                                        : canComplete
-                                            ? "bg-black dark:bg-white text-white dark:text-black shadow-xl"
-                                            : "bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-gray-600 cursor-not-allowed border border-black/5 dark:border-white/5"
-                                )}
-                            >
-                                {!isComplete && !canComplete && (
-                                    <div
-                                        className="absolute inset-0 bg-blue-500/20 transition-all duration-1000"
-                                        style={{ width: `${completionProgress}%` }}
-                                    />
-                                )}
-                                <span className="relative z-10">
-                                    {isComplete ? "Mastered ✓" : canComplete ? "Complete Topic" : `Study ${Math.max(0, MIN_TIME_SECONDS - timeSpent)}s...`}
-                                </span>
-                            </motion.button>
-                        </div>
-                    </div>
+                    <ModalFooter
+                        persona={persona}
+                        togglePersona={togglePersona}
+                        isSpeaking={isSpeaking}
+                        handleVoiceToggle={handleVoiceToggle}
+                        navigateTopic={navigateTopic}
+                        currentIndex={currentIndex}
+                        totalTopics={allTopics?.length || 0}
+                        canComplete={canComplete}
+                        isComplete={isComplete}
+                        completionProgress={completionProgress}
+                        timeSpent={timeSpent}
+                        minTime={MIN_TIME_SECONDS}
+                        onToggleComplete={handleToggleComplete}
+                        onAskMaya={() => {
+                            setActiveTab('ai');
+                            setIsChatActive(true);
+                        }}
+                    />
                 </div>
             </div>
         </ModalShell >
-    );
-}
-
-function TabItem({ active, onClick, icon, label, hoverLabel }: { active: boolean, onClick: () => void, icon: string, label: string, hoverLabel?: string }) {
-    return (
-        <motion.button
-            layout
-            onClick={onClick}
-            title={hoverLabel || label}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.92 }}
-            className={cn(
-                "w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-bold transition-all duration-200 cursor-pointer group relative mx-auto",
-                active
-                    ? "bg-blue-500/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 shadow-[0_4px_16px_rgba(59,130,246,0.12)] ring-1 ring-blue-500/20"
-                    : "text-gray-400 dark:text-gray-600 hover:bg-white/5 hover:text-gray-300"
-            )}
-        >
-            {active && (
-                <motion.div
-                    layoutId="tab-indicator"
-                    className="absolute inset-0 rounded-2xl bg-blue-500/10 dark:bg-blue-500/15 ring-1 ring-blue-500/20"
-                    transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-                />
-            )}
-            <span className={cn(
-                "text-xl transition-all duration-200 relative z-10",
-                active ? "scale-110 drop-shadow-sm" : "grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-80"
-            )}>{icon}</span>
-        </motion.button>
     );
 }
 
@@ -590,3 +410,4 @@ function MobileTabItem({ active, onClick, icon, label }: { active: boolean, onCl
         </button>
     );
 }
+

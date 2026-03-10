@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTopicContext } from '@/lib/providers/topic-context';
 import { useAuth } from '@/features/auth/AuthContext';
@@ -83,14 +83,41 @@ export default function MayaAssistant() {
         } catch { }
     }, [pinnedMemories]);
 
-    // Thinking cycle
+    // Expanded Dynamic Thinking States
+    const thinkingStages = useMemo(() => [
+        "Scanning knowledge graph...",
+        "Analyzing intent...",
+        "Cross-referencing documentation...",
+        "Synthesizing response...",
+        "Optimizing code examples...",
+        "Applying best practices...",
+        "Finalizing intelligence payload...",
+        "Refining explanation...",
+        "Polishing terminology...",
+        "Verifying technical accuracy...",
+        "Drafting final response..."
+    ], []);
+
+    // Thinking cycle with randomized intervals
     useEffect(() => {
-        if (!isThinking) return;
-        const interval = setInterval(() => {
-            setThinkingStep(prev => (prev + 1) % 3);
-        }, 1500);
-        return () => clearInterval(interval);
-    }, [isThinking]);
+        if (!isThinking) {
+            setThinkingStep(0);
+            return;
+        }
+
+        const nextStep = () => {
+            setThinkingStep(prev => (prev + 1) % thinkingStages.length);
+            // Random interval between 800ms and 2500ms for a natural feel
+            const nextInterval = Math.floor(Math.random() * 1700) + 800;
+            thinkingTimerRef.current = setTimeout(nextStep, nextInterval);
+        };
+
+        thinkingTimerRef.current = setTimeout(nextStep, 1000);
+
+        return () => {
+            if (thinkingTimerRef.current) clearTimeout(thinkingTimerRef.current);
+        };
+    }, [isThinking, thinkingStages.length]);
 
     const handleSendMessage = async (content: string) => {
         if (!content.trim() || isLoading) return;
@@ -184,6 +211,7 @@ export default function MayaAssistant() {
                 isLoading={isLoading}
                 isThinking={isThinking}
                 thinkingStep={thinkingStep}
+                thinkingStages={thinkingStages}
                 onSendMessage={handleSendMessage}
                 onClearHistory={clearHistory}
                 onPinMemory={(text) => setPinnedMemories(prev => prev.includes(text) ? prev : [...prev, text].slice(0, 8))}

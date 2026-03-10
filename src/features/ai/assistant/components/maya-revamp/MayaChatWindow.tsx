@@ -13,6 +13,7 @@ interface MayaChatWindowProps {
     isLoading: boolean;
     isThinking: boolean;
     thinkingStep: number;
+    thinkingStages: string[];
     onSendMessage: (content: string) => void;
     onClearHistory: () => void;
     onPinMemory: (text: string) => void;
@@ -31,6 +32,7 @@ export function MayaChatWindow({
     isLoading,
     isThinking,
     thinkingStep,
+    thinkingStages,
     onSendMessage,
     onClearHistory,
     onPinMemory,
@@ -201,25 +203,53 @@ export function MayaChatWindow({
                                 messageList
                             )}
                             {isThinking && (
-                                <motion.div
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    className="px-6 flex items-center gap-3"
-                                >
-                                    <div className="flex gap-1">
-                                        {[0, 1, 2].map(i => (
-                                            <motion.div
-                                                key={i}
-                                                animate={{ scale: [1, 1.5, 1], opacity: [0.3, 1, 0.3] }}
-                                                transition={{ repeat: Infinity, duration: 1, delay: i * 0.2 }}
-                                                className="w-1.5 h-1.5 bg-emerald-500 rounded-full"
-                                            />
-                                        ))}
+                                <div className="px-6 py-4 space-y-3">
+                                    {/* Intelligence Bar */}
+                                    <div className="w-full h-1 bg-black/[0.03] dark:bg-white/[0.03] rounded-full overflow-hidden relative">
+                                        <motion.div
+                                            initial={{ x: "-100%" }}
+                                            animate={{ x: "100%" }}
+                                            transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                                            className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-blue-500/40 to-transparent"
+                                        />
                                     </div>
-                                    <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-widest animate-pulse">
-                                        {thinkingStep === 0 ? "Analyzing" : thinkingStep === 1 ? "Planning" : "Drafting"}
-                                    </span>
-                                </motion.div>
+
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex gap-1.5 shrink-0">
+                                            {[0, 1, 2].map(i => (
+                                                <motion.div
+                                                    key={i}
+                                                    animate={{
+                                                        scale: [1, 1.3, 1],
+                                                        opacity: [0.4, 1, 0.4]
+                                                    }}
+                                                    transition={{
+                                                        repeat: Infinity,
+                                                        duration: 1.2,
+                                                        delay: i * 0.2,
+                                                        ease: "easeInOut"
+                                                    }}
+                                                    className="w-1.5 h-1.5 bg-blue-500 rounded-full"
+                                                />
+                                            ))}
+                                        </div>
+
+                                        <div className="overflow-hidden h-4 flex-1">
+                                            <AnimatePresence mode="wait">
+                                                <motion.span
+                                                    key={thinkingStep}
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    transition={{ duration: 0.3 }}
+                                                    className="text-[11px] font-bold text-blue-600/80 dark:text-blue-400/80 uppercase tracking-[0.15em] block whitespace-nowrap"
+                                                >
+                                                    {thinkingStages[thinkingStep] || "Processing..."}
+                                                </motion.span>
+                                            </AnimatePresence>
+                                        </div>
+                                    </div>
+                                </div>
                             )}
                             <div ref={messagesEndRef} />
                         </div>

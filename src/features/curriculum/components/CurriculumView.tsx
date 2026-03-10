@@ -217,7 +217,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-[#050505] text-white flex flex-col pt-24 px-3 sm:px-6 md:px-12 lg:px-20 max-w-[95vw] mx-auto">
+            <div className="min-h-screen bg-[var(--surface-base)] text-[var(--fg-primary)] flex flex-col pt-24 px-3 sm:px-6 md:px-12 lg:px-20 max-w-[95vw] mx-auto transition-colors duration-300">
                 <div className="flex flex-col lg:flex-row gap-8 lg:items-end justify-between">
                     <div className="flex items-start gap-6 w-full">
                         <Skeleton className="w-20 h-20 rounded-2xl shrink-0" />
@@ -258,7 +258,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-[#050505] text-gray-900 dark:text-white transition-colors duration-300">
+        <div className="min-h-screen bg-gray-50 dark:bg-[#050505] text-[var(--fg-primary)] transition-colors duration-300">
 
             <div className="pt-16 sm:pt-24 pb-12 px-3 sm:px-6 md:px-12 lg:px-20 max-w-[95vw] 2xl:max-w-[1920px] mx-auto">
                 <div className="mb-7">
@@ -287,7 +287,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     </div>
 
 
-                    <div className="p-5 w-full lg:w-[340px] shrink-0 bg-white/90 dark:bg-black/60 backdrop-blur-md transform-gpu border border-gray-200 dark:border-white/10 rounded-2xl transition-colors relative">
+                    <div className="p-5 w-full lg:w-[340px] shrink-0 bg-[var(--surface-raised)] backdrop-blur-md transform-gpu border border-[var(--border-default)] rounded-2xl transition-colors relative">
                         {showPop && (
                             <div className="absolute -top-2 right-6 text-green-500 font-black text-xl animate-counter-pop pointer-events-none z-50 select-none shadow-green-500/50 drop-shadow-lg">+1</div>
                         )}
@@ -399,12 +399,12 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     {mirrorPhases.map((phase: NonNullable<CurriculumData['phases']>[number]) => (
                         <motion.div key={phase.phase} variants={fadeInUp} className="h-full">
                             <div
-                                className="h-auto min-h-[300px] sm:h-[380px] md:h-[420px] flex flex-col relative group hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300 bg-white/90 dark:bg-black/60 backdrop-blur-md transform-gpu border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden"
+                                className="h-auto min-h-[300px] sm:h-[380px] md:h-[420px] flex flex-col relative group hover:border-[var(--border-strong)] transition-all duration-300 bg-[var(--surface-raised)] backdrop-blur-md transform-gpu border border-[var(--border-default)] rounded-2xl overflow-hidden"
                             >
                                 { }
                                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" />
                                 { }
-                                <div className="relative z-10 p-3.5 pb-3 border-b border-gray-100 dark:border-white/5 bg-white/60 dark:bg-black/40 shrink-0 transition-colors">
+                                <div className="relative z-10 p-3.5 pb-3 border-b border-[var(--border-default)] bg-[var(--surface-subtle)]/60 dark:bg-black/40 shrink-0 transition-colors">
                                     <div className="flex items-start justify-between gap-4">
                                         <div>
                                             <div className="flex items-center gap-2 mb-2">
@@ -423,7 +423,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                                     { }
                                     {phase.theory && phase.theory.length > 0 && (
                                         <div className="space-y-3">
-                                            <h3 className="sticky top-0 z-10 bg-white/90 dark:bg-black/85 py-1.5 -mx-1 px-1.5 text-[11px] font-semibold text-gray-500 dark:text-white/70 flex items-center gap-2 uppercase tracking-wider mb-2 rounded-md transition-colors backdrop-blur-sm">
+                                            <h3 className="sticky top-0 z-10 bg-[var(--surface-raised)]/90 py-1.5 -mx-1 px-1.5 text-[11px] font-semibold text-[var(--fg-muted)] flex items-center gap-2 uppercase tracking-wider mb-2 rounded-md transition-colors backdrop-blur-sm">
                                                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
                                                 Theory
                                             </h3>

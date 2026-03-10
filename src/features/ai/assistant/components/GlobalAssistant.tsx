@@ -525,7 +525,7 @@ export default function GlobalAssistant() {
                                 }}
                                 className="absolute -inset-4 rounded-full bg-blue-500/20 blur-2xl group-hover:bg-blue-500/40 transition-colors transform-gpu"
                             />
-                            <div className="relative w-16 h-16 rounded-full bg-white/10 dark:bg-black/20 backdrop-blur-2xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] flex items-center justify-center overflow-hidden group-hover:border-white/40 transition-colors transform-gpu ring-1 ring-white/5">
+                            <div className="relative w-16 h-16 rounded-full bg-[var(--surface-raised)] dark:bg-black/20 backdrop-blur-2xl border border-[var(--border-default)] dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] flex items-center justify-center overflow-hidden group-hover:border-[var(--border-strong)] transition-colors transform-gpu ring-1 ring-white/5">
                                 <motion.div
                                     animate={{
                                         rotate: [0, 360],
@@ -578,7 +578,7 @@ export default function GlobalAssistant() {
                             <div className="flex items-center justify-between p-5 border-b border-black/[0.03] dark:border-white/5 bg-white/80 dark:bg-[#0D0D0E]/80 backdrop-blur-xl sticky top-0 z-10 transform-gpu translate-z-0">
                                 <div className="flex items-center gap-3.5">
                                     <div className="relative">
-                                        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white text-lg font-bold border border-white/20">
+                                        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white text-lg font-bold border border-white/20 dark:border-white/10">
                                             ✨
                                         </div>
                                         <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-[#0D0D0E] shadow-sm animate-pulse" />
@@ -738,7 +738,7 @@ export default function GlobalAssistant() {
                                                         <div className={`flex flex-col gap-0 max-w-[90%] ${isUser ? 'items-end' : 'items-start'}`}>
                                                             <div className={`relative rounded-3xl px-5 py-3.5 text-sm leading-[1.6] break-words overflow-hidden transition-all duration-300 ${isUser
                                                                 ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-lg shadow-blue-500/10 font-medium'
-                                                                : 'bg-white dark:bg-white/[0.04] border border-black/[0.04] dark:border-white/[0.04] text-gray-900 dark:text-gray-100 shadow-sm'
+                                                                : 'bg-[var(--surface-raised)] dark:bg-white/[0.04] border border-[var(--border-default)] dark:border-white/[0.04] text-[var(--fg-primary)] shadow-sm'
                                                                 }`}>
 
                                                                 {isEditing ? (
@@ -879,7 +879,7 @@ export default function GlobalAssistant() {
                                             <div ref={messagesEndRef} />
                                         </div>
 
-                                        <div className="p-3 sm:p-4 bg-white/90 dark:bg-[#1C1C1E]/90 backdrop-blur-md border-t border-black/5 dark:border-white/5 shrink-0 transform-gpu translate-z-0">
+                                        <div className="p-3 sm:p-4 bg-[var(--surface-subtle)]/90 backdrop-blur-md border-t border-[var(--border-default)] shrink-0 transform-gpu translate-z-0">
                                             {lastFailedInput && !isLoading && (
                                                 <div className="mb-2 flex items-center justify-between rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200/70 dark:border-amber-500/20 px-3 py-2">
                                                     <span className="text-[11px] text-amber-700 dark:text-amber-300">Last send failed. Retry with one tap.</span>
@@ -893,7 +893,7 @@ export default function GlobalAssistant() {
                                                 </div>
                                             )}
                                             <form onSubmit={handleSendMessage} className="relative">
-                                                <div className="relative flex items-end bg-white dark:bg-[#0D0D0E] rounded-[24px] px-2 py-2 border border-black/[0.04] dark:border-white/[0.04] focus-within:border-blue-500/50 focus-within:shadow-[0_0_40px_-10px_rgba(59,130,246,0.1)] transition-all duration-500 group">
+                                                <div className="relative flex items-end bg-[var(--surface-raised)] dark:bg-[#0D0D0E] rounded-[24px] px-2 py-2 border border-[var(--border-default)] dark:border-white/[0.04] focus-within:border-blue-500/50 focus-within:shadow-[0_0_40px_-10px_rgba(59,130,246,0.1)] transition-all duration-500 group">
                                                     <textarea
                                                         ref={(el) => {
                                                             if (el) {

@@ -45,7 +45,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
                         "border border-[var(--border-default)]",
                         "text-[var(--fg-primary)] text-[var(--text-body)]",
                         "font-[var(--font-weight-medium)]",
-                        "placeholder:text-[var(--fg-muted)]/50",
+                        "placeholder:text-[var(--fg-muted)]/70",
                         "transition-all duration-[var(--duration-base)]",
                         "focus-ring",
                         "hover:border-[var(--border-strong)]",

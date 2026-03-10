@@ -65,22 +65,29 @@
     /* --- Semantic Surface Tokens (Light) --- */
     --surface-base: hsl(0 0% 100%);
     --surface-raised: hsl(258 50% 99%);
+    --surface-subtle: hsl(258 40% 98%);
     --surface-overlay: hsl(258 40% 97%);
 
     /* --- Foreground Tokens (Light) --- */
     --fg-primary: hsl(258 98% 9%);
-    --fg-secondary: hsl(258 20% 40%);
-    --fg-muted: hsl(258 10% 62%);
+    --fg-secondary: hsl(258 20% 38%);
+    --fg-muted: hsl(258 10% 50%);
 
     /* --- Border Tokens (Light) --- */
-    --border-default: hsl(258 30% 88%);
-    --border-strong: hsl(258 40% 76%);
+    --border-default: hsl(258 30% 84%);
+    --border-strong: hsl(258 40% 72%);
 
     /* --- Status (Light) --- */
     --color-destruct: hsl(4 90% 55%);
     --color-success: var(--color-comp-400);
     --color-warning: var(--color-ana-blue-400);
     --color-info: var(--color-ana-blue-500);
+
+    /* --- Stacking Hierarchy --- */
+    --z-maya: 40;
+    --z-modal: 50;
+    --z-nav: 60;
+    --z-toast: 100;
   }
 
   .dark {
@@ -98,11 +105,7 @@
     --border-default: hsl(258 20% 18%);
     --border-strong: hsl(258 25% 28%);
 
-    /* --- Stacking Hierarchy --- */
-    --z-maya: 40;
-    --z-modal: 50;
-    --z-nav: 60;
-    --z-toast: 100;
+    --border-strong: hsl(258 25% 28%);
 
     /* --- Focus States --- */
     --focus-ring: 0 0 0 2px var(--surface-base), 0 0 0 4px var(--color-500);
@@ -138,6 +141,7 @@
 
   --color-surface-base: var(--surface-base);
   --color-surface-raised: var(--surface-raised);
+  --color-surface-subtle: var(--surface-subtle);
   --color-surface-overlay: var(--surface-overlay);
 
   --color-fg-primary: var(--fg-primary);

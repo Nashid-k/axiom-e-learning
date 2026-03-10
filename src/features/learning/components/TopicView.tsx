@@ -116,8 +116,8 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                                 code({ className, children, ...props }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { inline?: boolean }) {
                                     const match = /language-(\w+)/.exec(className || '')
                                     return match ? (
-                                        <div className="rounded-xl overflow-hidden my-6 border border-gray-200 dark:border-white/10">
-                                            <div className="bg-gray-100 dark:bg-white/5 px-4 py-2 text-xs font-bold uppercase text-gray-500">{match[1]}</div>
+                                        <div className="rounded-xl overflow-hidden my-6 border border-[var(--border-default)]">
+                                            <div className="bg-[var(--surface-subtle)] px-4 py-2 text-xs font-bold uppercase text-[var(--fg-muted)]">{match[1]}</div>
                                             <SyntaxHighlighter
                                                 style={vscDarkPlus as { [key: string]: React.CSSProperties }}
                                                 language={match[1]}
@@ -126,7 +126,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                                             >{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
                                         </div>
                                     ) : (
-                                        <code className="bg-gray-100 dark:bg-white/10 px-1.5 py-0.5 rounded text-blue-600 dark:text-blue-400 font-mono text-sm" {...props}>
+                                        <code className="bg-[var(--surface-subtle)] px-1.5 py-0.5 rounded text-blue-600 dark:text-blue-400 font-mono text-sm" {...props}>
                                             {children}
                                         </code>
                                     )
@@ -137,7 +137,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                         </ReactMarkdown>
                     </motion.div>
 
-                    <div className="mt-12 pt-12 border-t border-gray-200 dark:border-white/10 flex justify-end">
+                    <div className="mt-12 pt-12 border-t border-[var(--border-default)] flex justify-end">
                         <Button onClick={handleComplete} size="lg">Mark as Complete</Button>
                     </div>
                 </motion.div>

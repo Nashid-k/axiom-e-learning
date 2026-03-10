@@ -16,15 +16,15 @@ interface ModalShellProps {
 }
 const SPRING_ENTER = {
   type: "spring" as const,
-  stiffness: 500,   
-  damping: 30,      
+  stiffness: 500,
+  damping: 30,
   mass: 0.8,
 };
 
 const SPRING_EXIT = {
   type: "spring" as const,
   stiffness: 400,
-  damping: 40,      
+  damping: 40,
   mass: 0.6,
 };
 
@@ -98,7 +98,7 @@ export function ModalShell({
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
-        <div className={cn("fixed inset-0 z-[100] flex px-[var(--space-2)]", alignmentClasses)}>
+        <div className={cn("fixed inset-0 z-[var(--z-modal)] flex px-[var(--space-2)]", alignmentClasses)}>
           <motion.div
             className={cn(
               "absolute inset-0",
@@ -133,7 +133,7 @@ export function ModalShell({
             }
             transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_ENTER}
             className={cn(
-              "relative z-[101] w-full flex flex-col overflow-hidden",
+              "relative z-[1] w-full flex flex-col overflow-hidden",
               "bg-[var(--surface-base)]",
               "border border-[var(--border-default)]",
               "rounded-[var(--radius-2xl)]",
@@ -175,7 +175,7 @@ const STAGGER_CONTAINER = {
   visible: {
     transition: {
       staggerChildren: 0.055,
-      delayChildren: 0.06,      
+      delayChildren: 0.06,
     },
   },
 };

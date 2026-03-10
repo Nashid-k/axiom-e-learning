@@ -57,12 +57,11 @@ function HeaderInner() {
                 animate={{ y: 0, x: '-50%' }}
                 transition={shouldReduceMotion ? { duration: 0.01 } : springs.punchy}
                 className={[
-                    "fixed top-4 left-1/2 z-50",
-                    "w-[95%] max-w-5xl",
+                    "fixed z-50 transition-all duration-[var(--duration-base)]",
+                    "top-0 left-0 right-0 w-full sm:top-4 sm:left-1/2 sm:-translate-x-1/2 sm:w-[95%] sm:max-w-5xl",
                     "bg-[var(--surface-base)]/80 backdrop-blur-md",
-                    "border border-[var(--border-default)]",
-                    "rounded-full shadow-2xl shadow-blue-500/10",
-                    "transition-colors duration-[var(--duration-base)]",
+                    "border-b sm:border border-[var(--border-default)]",
+                    "sm:rounded-full shadow-2xl shadow-blue-500/10",
                 ].join(' ')}
             >
                 <div className="h-14 w-full px-6 flex items-center justify-between">
@@ -218,7 +217,7 @@ function HeaderInner() {
                         initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
                         animate={{ opacity: 1, backdropFilter: "blur(24px)" }}
                         exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                        className="fixed inset-0 z-[60] md:hidden bg-[var(--surface-base)]/80"
+                        className="fixed inset-0 z-[var(--z-nav)] md:hidden bg-[var(--surface-base)]/80"
                     >
                         <motion.div
                             initial={shouldReduceMotion ? false : { x: '100%' }}
@@ -336,7 +335,7 @@ function HeaderInner() {
                 )}
             </AnimatePresence>
 
-            <div className="h-20" />
+            <div className="h-16 sm:h-20" />
 
             <ProfileSettingsModal isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
         </>

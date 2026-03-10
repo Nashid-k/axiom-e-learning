@@ -50,7 +50,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
         return <CurriculumView data={curriculumData} />;
     }
 
-    if (loading) return <div className="min-h-screen bg-white dark:bg-black" />;
+    if (loading) return <div className="min-h-screen bg-[var(--surface-base)]" />;
 
     if (!topic) {
         return (
@@ -62,7 +62,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
 
     return (
         <RouteGuard>
-            <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-sans selection:bg-blue-100 dark:selection:bg-blue-900/30">
+            <div className="min-h-screen bg-[var(--surface-base)] text-[var(--fg-primary)] font-sans selection:bg-blue-100 dark:selection:bg-blue-900/30 transition-colors duration-300">
                 { }
                 <motion.div
                     initial={{ opacity: 0 }}

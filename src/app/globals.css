@@ -97,6 +97,12 @@
     /* --- Border Tokens (Dark) --- */
     --border-default: hsl(258 20% 18%);
     --border-strong: hsl(258 25% 28%);
+
+    /* --- Stacking Hierarchy --- */
+    --z-maya: 40;
+    --z-modal: 50;
+    --z-nav: 60;
+    --z-toast: 100;
   }
 }
 
@@ -517,11 +523,13 @@
 
   .hover-lift {
     transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
-                box-shadow 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+      box-shadow 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
+
   .hover-lift:hover {
     transform: scale(1.02) translateY(-2px);
   }
+
   .hover-lift:active {
     transform: scale(0.98);
   }

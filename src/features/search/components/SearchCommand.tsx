@@ -138,28 +138,14 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                         transition={{ type: "spring", stiffness: 400, damping: 32, mass: 1 }}
                         className="
                             relative w-full max-w-3xl
-                            bg-white/90 dark:bg-[#0D0D0E]/90 backdrop-blur-[50px]
-                            rounded-[40px] shadow-[0_40px_120px_-20px_rgba(0,0,0,0.6)] 
+                            bg-white/95 dark:bg-[#0D0D0E]/95 backdrop-blur-[50px]
+                            rounded-[28px] shadow-[0_40px_120px_-20px_rgba(0,0,0,0.6)] 
                             border border-white/20 dark:border-white/10
                             overflow-hidden transform-gpu translate-z-0
                         "
                     >
-                        {/* Animated Cosmos Background Pattern */}
-                        <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.07]">
-                            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <pattern id="cosmos-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
-                                        <circle cx="2" cy="2" r="1.5" fill="currentColor" />
-                                        <circle cx="30" cy="45" r="1" fill="currentColor" />
-                                        <circle cx="50" cy="15" r="0.8" fill="currentColor" />
-                                    </pattern>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#cosmos-pattern)" />
-                            </svg>
-                        </div>
-
                         {/* Search Input Bar */}
-                        <div className="relative z-10 flex items-center gap-5 px-8 py-7 border-b border-black/5 dark:border-white/5">
+                        <div className="relative z-10 flex items-center gap-3 sm:gap-5 px-5 sm:px-8 py-5 sm:py-7 border-b border-black/5 dark:border-white/5">
                             <div className="flex-shrink-0">
                                 <motion.div
                                     animate={{
@@ -167,9 +153,9 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                         opacity: [0.5, 1, 0.5]
                                     }}
                                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                                    className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 shadow-lg shadow-blue-500/20"
+                                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30 shadow-lg shadow-blue-500/20"
                                 >
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-blue-500">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-blue-500 sm:w-6 sm:h-6">
                                         <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="3" />
                                         <path d="M20 20L16 16" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                                     </svg>
@@ -183,7 +169,7 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                     setSelectedIndex(0);
                                 }}
                                 placeholder="Navigate the Axiom Cosmos..."
-                                className="bg-transparent border-none focus-ring shadow-none focus-within:ring-0 text-xl font-medium placeholder-[var(--fg-muted)]/40 h-auto p-0"
+                                className="bg-transparent border-none focus-ring shadow-none focus-within:ring-0 text-lg sm:text-xl font-medium placeholder-[var(--fg-muted)]/40 h-auto p-0"
                                 containerClassName="flex-1"
                             />
                             <div className="hidden sm:flex items-center gap-3">
@@ -196,11 +182,11 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
 
                         {/* Category Cosmos Rails */}
                         {categories.length > 0 && (
-                            <div className="relative z-10 px-8 py-5 bg-black/[0.02] dark:bg-white/[0.02] flex gap-3 overflow-x-auto scrollbar-hide border-b border-black/5 dark:border-white/5">
+                            <div className="relative z-10 px-5 sm:px-8 py-4 sm:py-5 bg-black/[0.02] dark:bg-white/[0.02] flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide border-b border-black/5 dark:border-white/5">
                                 <button
                                     onClick={() => { setSelectedCategory(null); setSelectedIndex(0); }}
                                     className={cn(
-                                        "px-5 py-2.5 rounded-full text-[10px] uppercase font-black tracking-[0.2em] transition-all duration-300 border flex-shrink-0",
+                                        "px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[9px] sm:text-[10px] uppercase font-black tracking-[0.2em] transition-all duration-300 border flex-shrink-0",
                                         !selectedCategory
                                             ? "bg-blue-600 text-white border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
                                             : "bg-white/5 dark:bg-white/5 text-[var(--fg-muted)] border-transparent hover:border-white/20"
@@ -213,7 +199,7 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                         key={cat}
                                         onClick={() => { setSelectedCategory(cat); setSelectedIndex(0); }}
                                         className={cn(
-                                            "px-5 py-2.5 rounded-full text-[10px] uppercase font-black tracking-[0.2em] transition-all duration-300 border flex-shrink-0",
+                                            "px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[9px] sm:text-[10px] uppercase font-black tracking-[0.2em] transition-all duration-300 border flex-shrink-0",
                                             selectedCategory === cat
                                                 ? "bg-blue-600 text-white border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
                                                 : "bg-white/5 dark:bg-white/5 text-[var(--fg-muted)] border-transparent hover:border-white/20"
@@ -226,9 +212,9 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                         )}
 
                         {/* Results Hub */}
-                        <div className="relative z-10 max-h-[60vh] min-h-[300px] overflow-y-auto p-4 scrollbar-hide space-y-2">
+                        <div className="relative z-10 max-h-[50vh] sm:max-h-[60vh] min-h-[250px] sm:min-h-[300px] overflow-y-auto p-3 sm:p-4 scrollbar-hide space-y-2">
                             {filteredResults.length === 0 ? (
-                                <div className="py-20">
+                                <div className="py-12 sm:py-20">
                                     <EmptyState
                                         title="Orbit Empty"
                                         description={`No signals found for "${query}" in this sector.`}
@@ -247,7 +233,7 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                                 aria-selected={isSelected}
                                                 onClick={() => handleSelect(result)}
                                                 className={cn(
-                                                    "w-full px-6 py-5 flex items-center gap-6 text-left rounded-[28px] transition-all duration-500 group relative mb-2",
+                                                    "w-full px-4 sm:px-6 py-4 sm:py-5 flex items-center gap-4 sm:gap-6 text-left rounded-[20px] transition-all duration-500 group relative mb-2",
                                                     isSelected
                                                         ? 'bg-blue-600 text-white shadow-2xl shadow-blue-600/40 ring-2 ring-white/20'
                                                         : 'hover:bg-white/5 dark:hover:bg-white/[0.04] text-[var(--fg-primary)]'
@@ -257,21 +243,21 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                                 {isSelected && (
                                                     <motion.div
                                                         layoutId="search-glow"
-                                                        className="absolute inset-0 rounded-[28px] bg-blue-400/20 blur-xl pointer-events-none"
+                                                        className="absolute inset-0 rounded-[20px] bg-blue-400/20 blur-xl pointer-events-none"
                                                         initial={false}
                                                     />
                                                 )}
 
                                                 <div className={cn(
-                                                    "relative flex-shrink-0 w-14 h-14 rounded-[20px] flex items-center justify-center transition-all duration-700",
+                                                    "relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-[14px] flex items-center justify-center transition-all duration-700",
                                                     isSelected ? 'bg-white/20 scale-110 rotate-3' : 'bg-[var(--surface-raised)] border border-white/10 dark:bg-white/5'
                                                 )}>
-                                                    <CategoryIcon category={result.category} className="w-8 h-8" />
+                                                    <CategoryIcon category={result.category} className="w-6 h-6 sm:w-8 sm:h-8" />
                                                     {isSelected && (
                                                         <motion.div
                                                             animate={{ scale: [1, 1.4, 1], opacity: [0, 0.5, 0] }}
                                                             transition={{ duration: 2, repeat: Infinity }}
-                                                            className="absolute inset-0 rounded-[20px] bg-white opacity-0"
+                                                            className="absolute inset-0 rounded-[14px] bg-white opacity-0"
                                                         />
                                                     )}
                                                 </div>
@@ -279,7 +265,7 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                                 <div className="flex-1 min-w-0 z-10">
                                                     <div className="flex items-center gap-3 mb-1.5">
                                                         <span className={cn(
-                                                            "font-black text-lg truncate tracking-tight",
+                                                            "font-black text-base sm:text-lg truncate tracking-tight",
                                                             isSelected ? 'text-white' : 'text-[var(--fg-primary)]'
                                                         )}>
                                                             {result.title}
@@ -312,13 +298,13 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                                 </div>
 
                                                 {isSelected && (
-                                                    <div className="flex items-center gap-4 pr-1 z-10">
+                                                    <div className="flex items-center gap-3 sm:gap-4 pr-1 z-10">
                                                         <div className="hidden sm:flex flex-col items-end gap-1">
                                                             <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">Execute</span>
                                                             <div className="px-2 py-1 rounded-lg bg-white/20 border border-white/20 text-[9px] font-mono">ENTER</div>
                                                         </div>
-                                                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
-                                                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                                            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5-5 5" />
                                                             </svg>
                                                         </div>
@@ -333,21 +319,21 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
 
                         {/* Navigation Footer */}
                         {results.length > 0 && (
-                            <div className="px-8 py-5 bg-[var(--surface-subtle)]/50 backdrop-blur-md border-t border-white/5 flex items-center justify-between z-20 relative">
-                                <div className="flex gap-6">
+                            <div className="px-5 sm:px-8 py-4 sm:py-5 bg-[var(--surface-subtle)]/50 backdrop-blur-md border-t border-white/5 flex items-center justify-between z-20 relative">
+                                <div className="flex gap-4 sm:gap-6">
                                     <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--fg-muted)]">
                                         <div className="flex gap-1">
-                                            <kbd className="px-1.5 py-1 bg-white/10 rounded-lg border border-white/10">↑</kbd>
-                                            <kbd className="px-1.5 py-1 bg-white/10 rounded-lg border border-white/10">↓</kbd>
+                                            <kbd className="px-1.5 py-0.5 sm:py-1 bg-white/10 rounded-lg border border-white/10">↑</kbd>
+                                            <kbd className="px-1.5 py-0.5 sm:py-1 bg-white/10 rounded-lg border border-white/10">↓</kbd>
                                         </div>
-                                        <span>Orbit</span>
+                                        <span className="hidden xs:inline">Orbit</span>
                                     </div>
                                     <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--fg-muted)]">
-                                        <kbd className="px-2 py-1 bg-white/10 rounded-lg border border-white/10">↵</kbd>
-                                        <span>Jump</span>
+                                        <kbd className="px-2 py-0.5 sm:py-1 bg-white/10 rounded-lg border border-white/10">↵</kbd>
+                                        <span className="hidden xs:inline">Jump</span>
                                     </div>
                                 </div>
-                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500/60 flex items-center gap-2">
+                                <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-blue-500/60 flex items-center gap-2">
                                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                                     Axiom Cosmos Engine
                                 </div>

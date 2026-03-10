@@ -5,6 +5,11 @@ let rateLimiter: Ratelimit | null = null;
 
 export function getRateLimiter(): Ratelimit | null {
     if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+        if (!rateLimiter) {
+            console.warn('[RateLimit] WARNING: Upstash Redis env vars missing. Rate limiting is DISABLED.');
+            // Initialize a dummy object so we only warn once
+            rateLimiter = {} as Ratelimit;
+        }
         return null;
     }
 

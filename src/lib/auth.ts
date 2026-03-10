@@ -7,18 +7,18 @@ import { User } from "@/lib/db/models";
 import { authConfig } from "@/lib/config/auth.config";
 import { Logger } from "@/lib/api/logger";
 
-let adapter: ReturnType<typeof MongoDBAdapter> | undefined;
+let adapter: ReturnType<typeof MongoDBAdapter>;
 try {
     adapter = MongoDBAdapter(clientPromise);
 } catch (e) {
-    Logger.warn("[Auth] MongoDB adapter init failed — running without DB adapter", { requestId: 'auth-init' }, e as Error);
-    adapter = undefined;
+    Logger.error("[Auth] CRITICAL: MongoDB adapter init failed. Authentication will fail.", { requestId: 'auth-init' }, e as Error);
+    throw new Error("Failed to initialize MongoDB adapter for authentication.");
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     ...authConfig,
-    debug: process.env.NODE_ENV !== 'production',
-    ...(adapter ? { adapter } : {}),
+    debug: false,
+    adapter,
     providers: [
         Google({
             clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -83,7 +83,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                                 termsAcceptedAt: now,
                             }
                         },
-                        { upsert: true, new: true, runValidators: false }
+                        { upsert: true, new: true, runValidators: true }
                     );
 
                     const validAvatars = [
@@ -114,7 +114,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         async session({ session, token }) {
             if (session.user && token.id) {
                 session.user.id = token.id as string;
-                (session as import("next-auth").Session & { accessToken?: string }).accessToken = token.accessToken as string | undefined;
             }
             return session;
         },

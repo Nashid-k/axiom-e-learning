@@ -32,7 +32,7 @@ async function POSTHandler(req: Request) {
         const { topicTitle, userMessage, curriculum, phase, pinnedMemories } = validated;
 
         const context = createLogContext(requestId, {
-            endpoint: '/api/ai/chat_air',
+            endpoint: '/api/ai/chat',
             topic: topicTitle,
             curriculum,
             phase,
@@ -76,8 +76,8 @@ async function POSTHandler(req: Request) {
         let formattedMemory = "";
         let userVibe = 'chill';
 
-        // Maya Air: Implicit Memory Scope. If they are talking about a specific topic, prioritize that over cross-topics.
-        const isTopicScopedMemory = !!topicTitle && topicTitle !== 'General';
+        // Maya Air: Implicit Memory Scope. If they are heavily grounded in a curriculum module, scope it.
+        const isTopicScopedMemory = !!topicTitle && topicTitle !== 'General' && !!curriculum && curriculum !== 'General';
 
         if (userId) {
             await connectToDatabase();

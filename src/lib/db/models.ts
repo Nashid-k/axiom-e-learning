@@ -47,7 +47,7 @@ const StudyGuideCacheSchema = new Schema<IStudyGuideCache>({
     mode: { type: String, enum: ['theory', 'practical', 'project', 'quiz'], required: true },
     language: { type: String, enum: ['typescript', 'javascript'] },
     chapter: { type: Number, min: 1, max: 5 },
-    content: { type: String, required: true },
+    content: { type: String, required: true, maxlength: 200000 },
     category: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     expiresAt: { type: Date, default: () => new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) },
@@ -89,7 +89,7 @@ const UserTopicSchema = new Schema<IUserTopic>({
     studied: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
     lastStudied: { type: Date },
-    studyGuide: { type: String },
+    studyGuide: { type: String, maxlength: 100000 },
     category: { type: String, default: 'Other' },
     videoUrl: { type: String },
     reviewCount: { type: Number, default: 0 },
@@ -120,7 +120,7 @@ const CommunityTopicSchema = new Schema<ICommunityTopic>({
     description: { type: String },
     category: { type: String, required: true, index: true },
     addedBy: { type: String, required: true, index: true },
-    addedByName: { type: String, required: true },
+    addedByName: { type: String, required: true, maxlength: 100 },
     addedAt: { type: Date, default: Date.now },
     studyingCount: { type: Number, default: 0 },
     visibility: { type: String, enum: ['community', 'private'], default: 'community' },
@@ -292,6 +292,8 @@ const InteractionLogSchema = new Schema<IInteractionLog>({
 });
 
 InteractionLogSchema.index({ uniqueId: 1, timestamp: -1 });
+// 90 days TTL for interaction logs
+InteractionLogSchema.index({ timestamp: 1 }, { expireAfterSeconds: 90 * 24 * 60 * 60 });
 
 export const InteractionLog: Model<IInteractionLog> =
     mongoose.models.InteractionLog || mongoose.model<IInteractionLog>('InteractionLog', InteractionLogSchema);
@@ -318,7 +320,7 @@ const UserStruggleSchema = new Schema<IUserStruggle>({
     struggleScore: { type: Number, default: 0 },
     detectedAt: { type: Date, default: Date.now },
     resolvedAt: { type: Date },
-    resolutionMethod: { type: String }
+    resolutionMethod: { type: String, enum: ['ai_modal', 'manual', 'timeout'] }
 });
 
 UserStruggleSchema.index({ uniqueId: 1, topicId: 1, status: 1 });
@@ -371,6 +373,14 @@ const AIMemorySchema = new Schema<IAIMemory>({
     lastInteraction: { type: Date, default: Date.now },
     version: { type: String }
 }, { timestamps: true });
+
+// Prevent MongoDB 16MB document limit by keeping only the last 200 messages
+AIMemorySchema.pre('save', function (next) {
+    if (this.messages && this.messages.length > 200) {
+        this.messages = this.messages.slice(-200);
+    }
+    next();
+});
 
 export const AIMemory: Model<IAIMemory> =
     mongoose.models.AIMemory || mongoose.model<IAIMemory>('AIMemory', AIMemorySchema);

@@ -17,10 +17,7 @@ async function GETHandler() {
 
         return NextResponse.json({
             messages: memory?.messages || [],
-            version: memory?.version || AI_CONFIG.VERSION,
-            facts: memory?.facts || [],
-            interests: memory?.interests || [],
-            reflections: memory?.reflections || []
+            version: memory?.version || AI_CONFIG.VERSION
         });
     } catch {
         return NextResponse.json({ error: 'Failed to fetch history' }, { status: 500 });

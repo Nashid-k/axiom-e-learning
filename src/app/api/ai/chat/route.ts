@@ -29,16 +29,14 @@ async function POSTHandler(req: Request) {
 
         const body = await req.json();
         const validated = validateInput(ChatMessageSchema, body);
-        const { topicTitle, userMessage, curriculum, phase, memoryScope, pinnedMemories, aiMode } = validated;
+        const { topicTitle, userMessage, curriculum, phase, pinnedMemories } = validated;
 
         const context = createLogContext(requestId, {
-            endpoint: '/api/ai/chat',
+            endpoint: '/api/ai/chat_air',
             topic: topicTitle,
             curriculum,
             phase,
-            memoryScope,
             pinnedMemories: pinnedMemories.length,
-            aiMode,
         });
 
         Logger.info('Chat request received', context);
@@ -77,7 +75,9 @@ async function POSTHandler(req: Request) {
         let pastMessages: Message[] = [];
         let formattedMemory = "";
         let userVibe = 'chill';
-        const isTopicScopedMemory = memoryScope === 'topic';
+
+        // Maya Air: Implicit Memory Scope. If they are talking about a specific topic, prioritize that over cross-topics.
+        const isTopicScopedMemory = !!topicTitle && topicTitle !== 'General';
 
         if (userId) {
             await connectToDatabase();
@@ -134,15 +134,20 @@ async function POSTHandler(req: Request) {
             ? `\n\n### USER-PINNED MEMORY (HIGHEST PRIORITY):\n${pinnedMemories.map(m => `- ${m}`).join('\n')}\n`
             : '';
         const memoryScopeDirective = isTopicScopedMemory
-            ? '\n### MEMORY MODE:\nUse only current-topic context and user-pinned memory. Ignore long-term cross-topic memory for this reply.\n'
+            ? '\n### MEMORY MODE:\nUse current-topic context. Do not let cross-topic history contradict the current topic.\n'
             : '';
-        const modeDirectiveByType: Record<typeof aiMode, string> = {
-            mentor: 'Guide step-by-step and teach with clarity.',
-            reviewer: 'Prioritize critique, edge cases, and concrete code improvements.',
-            interviewer: 'Use interview framing: ask probing follow-ups and evaluate depth.',
-            architect: 'Prioritize trade-offs, scalability, and system-level decisions.'
-        };
-        const modeDirective = `\n### RESPONSE MODE:\n${modeDirectiveByType[aiMode]}\n`;
+
+        // Maya Air: Implicit AI Mode inferred from keywords or default Vibe
+        let implicitModeDirective = 'Guide step-by-step and teach with clarity.';
+        const lowerMsg = userMessage.toLowerCase();
+        if (lowerMsg.includes('review') || lowerMsg.includes('critique')) {
+            implicitModeDirective = 'Prioritize critique, edge cases, and concrete code improvements.';
+        } else if (lowerMsg.includes('quiz') || lowerMsg.includes('test me')) {
+            implicitModeDirective = 'Use interview framing: ask probing follow-ups and evaluate depth.';
+        } else if (lowerMsg.includes('architect') || lowerMsg.includes('system design')) {
+            implicitModeDirective = 'Prioritize trade-offs, scalability, and system-level decisions.';
+        }
+        const modeDirective = `\n### RESPONSE MODE:\n${implicitModeDirective}\n`;
 
         const curriculumContext = buildEnhancedCategoryContext(category, topicTitle, phase, CURRICULUM_CONTEXT_BUDGET);
         const userName = session?.user?.name?.split(' ')[0] || "Friend";

@@ -89,12 +89,10 @@ export const ChatMessageSchema = z.object({
     .default([]),
   userMessageId: z.string().optional(),
   assistantMessageId: z.string().optional(),
-  memoryScope: z.enum(['session', 'topic']).optional().default('session'),
   pinnedMemories: z
     .array(z.string().min(1).max(280))
     .optional()
     .default([]),
-  aiMode: z.enum(['mentor', 'reviewer', 'interviewer', 'architect']).optional().default('mentor'),
 });
 
 

@@ -28,8 +28,6 @@ export default function MayaAssistant() {
     const [isThinking, setIsThinking] = useState(false);
     const [thinkingStep, setThinkingStep] = useState(0);
     const [modelVersion, setModelVersion] = useState('');
-    const [memoryScope, setMemoryScope] = useState<'session' | 'topic'>('session');
-    const [aiMode, setAiMode] = useState<'mentor' | 'reviewer' | 'interviewer' | 'architect'>('mentor');
     const [pinnedMemories, setPinnedMemories] = useState<string[]>([]);
     const [showOnboarding, setShowOnboarding] = useState(false);
 
@@ -103,7 +101,7 @@ export default function MayaAssistant() {
         setIsThinking(true);
 
         const requestStartedAt = Date.now();
-        trackEvent('maya_message_sent_revamp', { aiMode, memoryScope });
+        trackEvent('maya_message_sent_air');
 
         try {
             const weaknesses = getWeakTopicNames(collectWeaknessSignals(topics, activeTopic?.category), 6);
@@ -118,9 +116,7 @@ export default function MayaAssistant() {
                     curriculum: activeTopic?.category || 'General',
                     assistantMessageId: assistantId,
                     weaknesses,
-                    memoryScope,
-                    pinnedMemories,
-                    aiMode
+                    pinnedMemories
                 }),
             });
 
@@ -142,7 +138,7 @@ export default function MayaAssistant() {
             }
 
             const latencyMs = Date.now() - requestStartedAt;
-            trackEvent('maya_response_completed_revamp', { latencyMs });
+            trackEvent('maya_response_completed_air', { latencyMs });
 
         } catch (err) {
             setMessages(prev => [...prev, {
@@ -193,10 +189,6 @@ export default function MayaAssistant() {
                 onPinMemory={(text) => setPinnedMemories(prev => prev.includes(text) ? prev : [...prev, text].slice(0, 8))}
                 onUnpinMemory={(text) => setPinnedMemories(prev => prev.filter(t => t !== text))}
                 pinnedMemories={pinnedMemories}
-                aiMode={aiMode}
-                setAiMode={setAiMode}
-                memoryScope={memoryScope}
-                setMemoryScope={setMemoryScope}
                 user={user}
                 activeTopic={activeTopic}
                 shouldReduceMotion={!!shouldReduceMotion}

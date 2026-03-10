@@ -18,10 +18,6 @@ interface MayaChatWindowProps {
     onPinMemory: (text: string) => void;
     onUnpinMemory: (text: string) => void;
     pinnedMemories: string[];
-    aiMode: 'mentor' | 'reviewer' | 'interviewer' | 'architect';
-    setAiMode: (mode: 'mentor' | 'reviewer' | 'interviewer' | 'architect') => void;
-    memoryScope: 'session' | 'topic';
-    setMemoryScope: (scope: 'session' | 'topic') => void;
     user: any;
     activeTopic: any;
     shouldReduceMotion: boolean;
@@ -40,10 +36,6 @@ export function MayaChatWindow({
     onPinMemory,
     onUnpinMemory,
     pinnedMemories,
-    aiMode,
-    setAiMode,
-    memoryScope,
-    setMemoryScope,
     user,
     activeTopic,
     shouldReduceMotion,
@@ -109,9 +101,15 @@ export function MayaChatWindow({
                                 <div className="flex flex-col">
                                     <h3 className="font-black text-[var(--fg-primary)] text-lg leading-none mb-1">Maya</h3>
                                     <div className="flex items-center gap-2">
-                                        <span className="text-[10px] text-emerald-500 font-black uppercase tracking-[0.15em]">Live</span>
-                                        <span className="text-[10px] text-[var(--fg-muted)] opacity-50 font-bold">•</span>
-                                        <span className="text-[10px] text-[var(--fg-muted)] font-black uppercase tracking-tight">{modelVersion || AI_CONFIG.VERSION}</span>
+                                        <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                                            <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                                            <span className="text-[9px] text-emerald-600 font-black uppercase tracking-widest">Air Enabled</span>
+                                        </div>
+                                        {activeTopic?.title && (
+                                            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 max-w-[120px] sm:max-w-[180px]">
+                                                <span className="text-[9px] text-blue-600 font-black uppercase tracking-widest truncate">{activeTopic.title}</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -136,49 +134,60 @@ export function MayaChatWindow({
                             </div>
                         </div>
 
-                        {/* Staggered Controls Overlay */}
-                        <div className="px-4 py-2.5 sm:px-5 sm:py-3 border-b border-white/5 bg-black/5 flex flex-col gap-2 sm:gap-2.5">
-                            <div className="flex items-center gap-2">
-                                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[var(--fg-muted)] mr-1">Core</span>
-                                {(['session', 'topic'] as const).map(scope => (
-                                    <button
-                                        key={scope}
-                                        onClick={() => setMemoryScope(scope)}
-                                        className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-wider transition-all duration-300 border ${memoryScope === scope ? 'bg-emerald-500/15 text-emerald-600 border-emerald-500/30' : 'bg-transparent text-[var(--fg-muted)] border-transparent hover:bg-white/5'}`}
-                                    >
-                                        {scope}
-                                    </button>
-                                ))}
-                            </div>
-                            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[var(--fg-muted)] mr-1">Vibe</span>
-                                {(['mentor', 'reviewer', 'interviewer', 'architect'] as const).map(mode => (
-                                    <button
-                                        key={mode}
-                                        onClick={() => setAiMode(mode)}
-                                        className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-wider transition-all duration-300 border ${aiMode === mode ? 'bg-blue-500/15 text-blue-600 border-blue-500/30 shadow-lg shadow-blue-500/10' : 'bg-transparent text-[var(--fg-muted)] border-transparent hover:bg-white/5'}`}
-                                    >
-                                        {mode}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                        {/* Legacy Controls Removed - Maya Air Logic is Implicit */}
 
                         {/* Message List */}
-                        <div className="flex-1 overflow-y-auto custom-scrollbar p-0 py-6 space-y-8 bg-transparent relative z-10">
-                            {messages.map((m, idx) => (
-                                <MayaMessage
-                                    key={m.id}
-                                    message={m}
-                                    isLast={idx === messages.length - 1}
-                                    isLoading={isLoading}
-                                    onCopy={(text, id) => navigator.clipboard.writeText(text)}
-                                    onPin={onPinMemory}
-                                    isPinned={pinnedMemories.includes(m.content.trim().slice(0, 220))}
-                                    shouldReduceMotion={shouldReduceMotion}
-                                    activeCategory={activeTopic?.category || 'General'}
-                                />
-                            ))}
+                        <div className="flex-1 overflow-y-auto custom-scrollbar p-0 py-6 space-y-8 bg-transparent relative z-10 font-medium">
+                            {messages.length === 0 ? (
+                                <div className="h-full flex flex-col items-center justify-center p-8 text-center">
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="w-20 h-20 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-[28px] flex items-center justify-center text-4xl shadow-2xl shadow-blue-500/20 mb-8 border border-white/20"
+                                    >
+                                        ✨
+                                    </motion.div>
+                                    <h2 className="text-2xl font-black text-[var(--fg-primary)] mb-3 tracking-tight">How can I help today?</h2>
+                                    <p className="text-sm text-[var(--fg-muted)] mb-10 max-w-[280px] leading-relaxed">
+                                        Axiom Air is synced and ready to guide you through {activeTopic?.title || 'your journey'}.
+                                    </p>
+                                    <div className="grid grid-cols-1 gap-3 w-full max-w-sm">
+                                        {[
+                                            { label: "Explain this topic simply", prompt: "Can you explain the current topic to me like I'm a beginner?" },
+                                            { label: "Quiz my knowledge", prompt: "Can you test my knowledge on the current topic with a few quick questions?" },
+                                            { label: "Check my progress", prompt: "How's my learning progress looking so far?" }
+                                        ].map((card, i) => (
+                                            <motion.button
+                                                key={i}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.1 * i }}
+                                                onClick={() => onSendMessage(card.prompt)}
+                                                className="p-4 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.05] hover:bg-blue-500/5 hover:border-blue-500/20 text-sm font-bold text-[var(--fg-primary)] transition-all text-left flex items-center justify-between group"
+                                            >
+                                                {card.label}
+                                                <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                                </svg>
+                                            </motion.button>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                messages.map((m, idx) => (
+                                    <MayaMessage
+                                        key={m.id}
+                                        message={m}
+                                        isLast={idx === messages.length - 1}
+                                        isLoading={isLoading}
+                                        onCopy={(text, id) => navigator.clipboard.writeText(text)}
+                                        onPin={onPinMemory}
+                                        isPinned={pinnedMemories.includes(m.content.trim().slice(0, 220))}
+                                        shouldReduceMotion={shouldReduceMotion}
+                                        activeCategory={activeTopic?.category || 'General'}
+                                    />
+                                ))
+                            )}
                             {isThinking && (
                                 <motion.div
                                     initial={{ opacity: 0, x: -10 }}

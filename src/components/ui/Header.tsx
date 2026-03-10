@@ -79,14 +79,6 @@ function HeaderInner() {
                                     Ranking
                                 </Link>
                             </Magnetic>
-                            <Magnetic>
-                                <Link
-                                    href="/flashcards"
-                                    className="text-[var(--text-caption)] font-[var(--font-weight-medium)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors duration-[var(--duration-base)] block py-[var(--space-1)]"
-                                >
-                                    Flashcards
-                                </Link>
-                            </Magnetic>
                         </nav>
                     </div>
 
@@ -275,7 +267,6 @@ function HeaderInner() {
                                     {[
                                         { href: '/paths', label: 'Explore Paths', icon: '🧭' },
                                         { href: '/leaderboard', label: 'Ranking', icon: '🏆' },
-                                        { href: '/flashcards', label: 'Flashcards', icon: '🃏' },
                                     ].map((item, idx) => (
                                         <motion.div
                                             key={item.href}

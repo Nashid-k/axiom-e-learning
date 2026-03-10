@@ -18,7 +18,7 @@ interface PhaseCardProps {
 
 export function PhaseCard({ phase, isChecked, onTopicClick }: PhaseCardProps) {
     return (
-        <motion.div variants={fadeInUp} className="h-full">
+        <motion.div variants={fadeInUp} className="h-full phase-card-container">
             <div
                 className="h-auto min-h-[300px] sm:h-[380px] md:h-[420px] flex flex-col relative group hover:border-[var(--border-strong)] transition-all duration-300 bg-[var(--surface-raised)] backdrop-blur-md transform-gpu border border-[var(--border-default)] rounded-2xl overflow-hidden"
             >

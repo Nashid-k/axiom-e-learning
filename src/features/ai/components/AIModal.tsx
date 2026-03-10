@@ -258,11 +258,10 @@ export default function AIModal() {
                             <AnimatePresence mode="popLayout" initial={false}>
                                 <motion.div
                                     key={activeTab}
-                                    initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
-                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                                    exit={{ opacity: 0, scale: 0.98, filter: 'blur(4px)' }}
-                                    transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-                                    className="flex-1 flex flex-col min-h-0"
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.99 }}
+                                    transition={{ duration: 0.15, ease: "easeOut" }}
+                                    className="flex-1 flex flex-col min-h-0 transform-gpu"
                                 >
                                     {activeTab === 'ai' ? (
                                         <div className="max-w-4xl w-full mx-auto">

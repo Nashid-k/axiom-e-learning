@@ -13,7 +13,6 @@ import { useReducedMotion } from 'framer-motion';
 import { MayaOrb } from './MayaOrb';
 import { MayaChatWindow } from './MayaChatWindow';
 import { Message } from '../../types';
-import { MayaOnboarding } from '../MayaOnboarding';
 
 export default function MayaAssistant() {
     const { user } = useAuth();
@@ -29,7 +28,6 @@ export default function MayaAssistant() {
     const [thinkingStep, setThinkingStep] = useState(0);
     const [modelVersion, setModelVersion] = useState('');
     const [pinnedMemories, setPinnedMemories] = useState<string[]>([]);
-    const [showOnboarding, setShowOnboarding] = useState(false);
 
     const memoryKeyRef = useRef('maya_pinned_memory_global');
     const thinkingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -223,20 +221,6 @@ export default function MayaAssistant() {
                 modelVersion={modelVersion}
             />
 
-            {showOnboarding && (
-                <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-xl flex items-center justify-center">
-                    <div className="w-full max-w-lg bg-[var(--surface-raised)] rounded-[32px] overflow-hidden shadow-2xl">
-                        <MayaOnboarding onComplete={(nickname, vibe) => {
-                            setShowOnboarding(false);
-                            setMessages([{
-                                id: crypto.randomUUID(),
-                                role: 'assistant',
-                                content: `Locked in! Ready when you are, ${nickname}. 🚀`
-                            }]);
-                        }} />
-                    </div>
-                </div>
-            )}
         </>
     );
 }

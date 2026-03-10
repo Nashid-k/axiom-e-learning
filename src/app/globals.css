@@ -464,8 +464,8 @@
   @supports (backdrop-filter: blur(1px)) {
     .glass-card {
       background: hsl(258 20% 100% / 0.04);
-      backdrop-filter: blur(var(--space-1));
-      -webkit-backdrop-filter: blur(var(--space-1));
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border: 1px solid hsl(258 30% 100% / 0.08);
     }
   }
@@ -481,8 +481,8 @@
     @supports (backdrop-filter: blur(1px)) {
       .glass-card-mobile {
         background: hsl(258 20% 100% / 0.04);
-        backdrop-filter: blur(var(--space-2));
-        -webkit-backdrop-filter: blur(var(--space-2));
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: 1px solid hsl(258 30% 100% / 0.08);
       }
     }
@@ -584,6 +584,11 @@
 
   .hover-lift:active {
     transform: scale(0.98);
+  }
+
+  /* Layout stability for repeated components */
+  .phase-card-container {
+    contain: content;
   }
 }
 

@@ -87,7 +87,7 @@ export default function LoginPage() {
                                 "transition-all duration-[var(--duration-base)]",
                                 "border border-[var(--border-default)]",
                                 "bg-[var(--surface-overlay)] text-[var(--fg-primary)]",
-                                "hover:bg-[var(--color-50)] hover:border-[var(--border-strong)]",
+                                "hover:bg-[var(--color-50)] hover:text-black hover:border-[var(--border-strong)]",
                                 "cursor-pointer shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]",
                                 "min-h-[44px]",
                             ].join(' ')}

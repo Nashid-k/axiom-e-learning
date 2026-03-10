@@ -206,7 +206,7 @@ export function MayaChatWindow({
                         {/* Premium Input Bar */}
                         <div className="p-4 sm:p-5 bg-gradient-to-t from-black/20 to-transparent backdrop-blur-3xl border-t border-white/5 relative z-20">
                             <form onSubmit={handleSubmit} className="relative group/form">
-                                <div className="relative flex items-end bg-[var(--surface-raised)]/80 dark:bg-black/40 rounded-[24px] sm:rounded-[28px] p-1.5 sm:p-2 border border-white/10 focus-within:border-blue-500/50 focus-within:ring-4 focus-within:ring-blue-500/5 transition-all duration-500">
+                                <div className="relative flex items-end bg-[var(--surface-raised)]/80 dark:bg-black/40 rounded-[24px] sm:rounded-[28px] p-1.5 sm:p-2 border border-white/10 focus-within:border-blue-500/60 focus-within:ring-4 focus-within:ring-blue-500/10 focus-within:shadow-[0_8px_32px_-4px_rgba(59,130,246,0.2)] transition-all duration-500">
                                     <textarea
                                         ref={inputRef}
                                         value={inputValue}
@@ -222,7 +222,7 @@ export function MayaChatWindow({
                                             }
                                         }}
                                         placeholder="Message Maya..."
-                                        className="flex-1 bg-transparent border-0 text-sm py-3 px-4 resize-none max-h-[180px] font-medium focus:ring-0 leading-relaxed text-[var(--fg-primary)] placeholder-[var(--fg-muted)]/50"
+                                        className="flex-1 bg-transparent border-0 text-sm py-3 px-4 resize-none max-h-[180px] font-medium outline-none focus:ring-0 leading-relaxed text-[var(--fg-primary)] placeholder-[var(--fg-muted)]/50"
                                         rows={1}
                                     />
                                     <div className="pr-1 pb-1">

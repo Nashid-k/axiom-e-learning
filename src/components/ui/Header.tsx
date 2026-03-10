@@ -91,12 +91,13 @@ function HeaderInner() {
                     </div>
 
                     <div className="flex items-center gap-[var(--space-1)] sm:gap-[var(--space-2)]">
-                        <div className="hidden sm:flex items-center gap-[var(--space-2)]">
+                        <div className="hidden sm:flex items-center gap-[var(--space-2)]" aria-label="User Level and Streak">
                             <LevelBadge />
                             {streak > 0 && (
                                 <div
                                     className="flex items-center gap-[6px] px-[var(--space-1)] py-[4px] bg-orange-500/10 border border-orange-500/20 rounded-[var(--radius-full)]"
                                     title="Daily Streak"
+                                    aria-label={`${streak} day daily streak`}
                                 >
                                     <span className="text-[var(--text-caption)] font-bold text-orange-500">{streak}</span>
                                     <span className="text-orange-500 text-xs">🔥</span>

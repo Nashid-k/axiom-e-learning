@@ -8,7 +8,8 @@ export const springs = {
     punchy: { type: 'spring' as const, stiffness: 350, damping: 20, mass: 0.5 },
     responsive: { type: 'spring' as const, stiffness: 450, damping: 30, mass: 0.8 },
     bounce: { type: 'spring' as const, stiffness: 300, damping: 15 },
-    snap: { type: 'spring' as const, stiffness: 500, damping: 30 },
+    snap: { type: 'spring' as const, stiffness: 600, damping: 35, restDelta: 0.001 },
+    haptic: { type: 'spring' as const, stiffness: 800, damping: 40, mass: 0.2 },
     elastic: { type: 'spring' as const, stiffness: 250, damping: 12, mass: 0.5 },
 } as const;
 

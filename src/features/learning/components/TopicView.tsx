@@ -12,6 +12,8 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import CurriculumView from '@/features/curriculum/components/CurriculumView';
 import { Button } from '@/components/ui/Button';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { TopicViewSkeleton } from '@/components/ui/Skeleton';
+import { EmptyState } from '@/components/ui/EmptyState';
 
 import RouteGuard from '@/features/auth/components/RouteGuard';
 import { CurriculumData } from '@/types';
@@ -50,12 +52,22 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
         return <CurriculumView data={curriculumData} />;
     }
 
-    if (loading) return <div className="min-h-screen bg-[var(--surface-base)]" />;
+    if (loading) return (
+        <div className="min-h-screen bg-[var(--surface-base)]">
+            <TopicViewSkeleton />
+        </div>
+    );
 
     if (!topic) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <p>Topic not found.</p>
+            <div className="min-h-screen flex items-center justify-center p-6">
+                <EmptyState
+                    title="Topic not found"
+                    description="We couldn't locate this knowledge artifact in the Axiom universe."
+                    action={
+                        <Button onClick={() => router.push('/paths')}>Return to Paths</Button>
+                    }
+                />
             </div>
         );
     }
@@ -126,7 +138,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                     </motion.div>
 
                     <div className="mt-12 pt-12 border-t border-gray-200 dark:border-white/10 flex justify-end">
-                        <Button onClick={handleComplete} size="lg">Markdown as Complete</Button>
+                        <Button onClick={handleComplete} size="lg">Mark as Complete</Button>
                     </div>
                 </motion.div>
             </div>

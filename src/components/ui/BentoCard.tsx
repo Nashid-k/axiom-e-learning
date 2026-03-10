@@ -26,11 +26,11 @@ const paddingMap: Record<BentoCardVariant | 'none', string> = {
 };
 
 const sizeMap: Record<BentoCardSize, string> = {
-    small: "min-h-[200px]",
-    medium: "min-h-[400px]",
-    large: "min-h-[450px]",
-    wide: "col-span-1 md:col-span-2 min-h-[400px]",
-    tall: "row-span-2 min-h-[850px]",
+    small: "min-h-[180px] md:min-h-[200px]",
+    medium: "min-h-[320px] md:min-h-[400px]",
+    large: "min-h-[380px] md:min-h-[450px]",
+    wide: "col-span-1 md:col-span-2 min-h-[320px] md:min-h-[400px]",
+    tall: "row-span-2 min-h-[700px] md:min-h-[850px]",
 };
 
 export default function BentoCard({
@@ -67,13 +67,16 @@ export default function BentoCard({
                     "dark:glass-card",
                     "transition-all duration-[var(--duration-slow)]",
                     "hover:border-[var(--border-strong)]",
+                    "focus-ring", // High-visibility focus state
                     noPadding ? paddingMap.none : paddingMap[variant],
                     sizeMap[size],
+                    className
                 )}
                 style={{ willChange: 'transform, opacity' }}
                 whileHover={hoverAnimation}
-                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.985 }}
                 onClick={onClick}
+                tabIndex={onClick || href ? 0 : -1}
             >
                 <div className="absolute inset-0 rounded-[var(--radius-2xl)] border border-white/[0.04] pointer-events-none" />
 

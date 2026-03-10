@@ -11,6 +11,8 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { CategoryIcon } from '@/features/curriculum/components/CategoryIcon';
 import { cn } from '@/lib/utils';
 import { trackEvent } from '@/lib/telemetry';
+import { Input } from '@/components/ui/Input';
+import { EmptyState } from '@/components/ui/EmptyState';
 
 
 
@@ -159,22 +161,16 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                     >
                         { }
                         <div className="flex items-center gap-4 px-6 py-5 border-b border-black/[0.03] dark:border-white/5 bg-white/5 focus-within:bg-transparent transition-all duration-500">
-                            <div className="text-gray-400 dark:text-gray-500 scale-125">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                                    <circle cx="11" cy="11" r="8" />
-                                    <path d="m21 21-4.35-4.35" />
-                                </svg>
-                            </div>
-                            <input
+                            <Input
                                 ref={inputRef}
-                                type="text"
                                 value={query}
                                 onChange={(e) => {
                                     setQuery(e.target.value);
                                     setSelectedIndex(0);
                                 }}
                                 placeholder="Search the Axiom universe..."
-                                className="flex-1 bg-transparent text-xl sm:text-2xl font-black text-gray-900 dark:text-white placeholder-gray-300 dark:placeholder-white/10 outline-none tracking-tight"
+                                className="bg-transparent border-none focus-ring shadow-none focus-within:ring-0"
+                                containerClassName="flex-1"
                             />
                             <div className="hidden sm:flex items-center gap-2">
                                 <span className="px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/[0.03] dark:border-white/5 text-[9px] uppercase font-black text-gray-500 dark:text-gray-400 tracking-[0.2em] font-mono">
@@ -230,14 +226,10 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                     <Skeleton className="h-12 w-full rounded-xl" />
                                 </div>
                             ) : filteredResults.length === 0 ? (
-                                <div className="py-16 text-center">
-                                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-3xl">
-                                        🤔
-                                    </div>
-                                    <div className="text-gray-500 dark:text-white/40">
-                                        No matches found for <span className="font-bold text-gray-900 dark:text-white">&quot;{query}&quot;</span>
-                                    </div>
-                                </div>
+                                <EmptyState
+                                    title="No matches found"
+                                    description={`We couldn't find any results for "${query}" in the universe.`}
+                                />
                             ) : (
                                 <div
                                     id="search-results-listbox"

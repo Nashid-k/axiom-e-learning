@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/Button';
 import { useRouter } from 'next/navigation';
+import { Input } from '@/components/ui/Input';
 import { ModalShell, ModalCloseButton, ModalContent, ModalItem, modalItemVariants } from '@/components/ui/ModalShell';
 
 interface ProfileSettingsModalProps {
@@ -120,38 +121,20 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                     </ModalItem>
 
                     <ModalItem variants={modalItemVariants}>
-                        <label htmlFor="profile-name" className="block text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)] mb-[var(--space-2)]">
-                            Display Name
-                        </label>
-                        <input
+                        <Input
                             id="profile-name"
-                            type="text"
+                            label="Display Name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             maxLength={25}
-                            className={[
-                                "w-full rounded-[var(--radius-xl)]",
-                                "px-[var(--space-2)] py-[var(--space-2)]",
-                                "bg-[var(--surface-overlay)]",
-                                "border border-[var(--border-default)]",
-                                "text-[var(--fg-primary)] text-[var(--text-body)]",
-                                "font-[var(--font-weight-medium)]",
-                                "focus:outline-none focus:border-[var(--color-500)] focus:ring-2 focus:ring-[var(--color-500)]/20",
-                                "transition-all duration-[var(--duration-base)]",
-                                "placeholder:text-[var(--fg-muted)]",
-                            ].join(' ')}
+                            error={error || undefined}
                             placeholder="Your Legend Name"
                         />
-                        <p className="mt-[4px] text-[10px] text-[var(--fg-muted)] text-right">
+                        <p className="mt-[4px] text-[10px] text-[var(--fg-muted)] text-right px-[var(--space-1)]">
                             {name.length}/25 characters
                         </p>
                     </ModalItem>
 
-                    {error && (
-                        <ModalItem variants={modalItemVariants} className="p-[var(--space-1)] bg-[var(--color-destruct)]/5 border border-[var(--color-destruct)]/20 rounded-[var(--radius-lg)]">
-                            <p className="text-[var(--text-caption)] text-[var(--color-destruct)] font-[var(--font-weight-medium)]">{error}</p>
-                        </ModalItem>
-                    )}
 
                     <ModalItem variants={modalItemVariants} className="flex gap-[var(--space-1)] pt-[var(--space-1)]">
                         <Button variant="secondary" onClick={onClose} className="flex-1" type="button">

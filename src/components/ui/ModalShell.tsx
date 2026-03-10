@@ -129,7 +129,7 @@ export function ModalShell({
             }
             exit={shouldReduceMotion
               ? { opacity: 0 }
-              : { opacity: 0, scale: 0.90, y: 16, transition: SPRING_EXIT }
+              : { opacity: 0, scale: 0.94, y: 12, transition: { ...SPRING_EXIT, stiffness: 600, damping: 45 } }
             }
             transition={shouldReduceMotion ? { duration: 0.01 } : SPRING_ENTER}
             className={cn(

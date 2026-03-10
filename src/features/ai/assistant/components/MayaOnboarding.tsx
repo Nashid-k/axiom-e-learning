@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/features/auth/AuthContext';
+import { Input } from '@/components/ui/Input';
 
 interface MayaOnboardingProps {
     onComplete: (nickname: string, vibe: string) => void;
@@ -112,11 +113,11 @@ export function MayaOnboarding({ onComplete }: MayaOnboardingProps) {
                                     I like using names, it makes our pairing feedback more personal.
                                 </p>
 
-                                <input
-                                    type="text"
+                                <Input
                                     value={nickname}
                                     onChange={(e) => setNickname(e.target.value)}
-                                    className="w-full bg-gray-50 dark:bg-white/[0.03] border border-black/[0.03] dark:border-white/[0.03] rounded-2xl px-4 py-4 text-xl text-center text-gray-900 dark:text-white mb-10 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 transition-all font-bold outline-none"
+                                    className="text-xl text-center font-bold"
+                                    containerClassName="mb-10"
                                     placeholder="Nickname..."
                                     autoFocus
                                 />

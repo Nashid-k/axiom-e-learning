@@ -78,19 +78,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
         <motion.button
             ref={ref}
             whileHover={shouldReduceMotion ? undefined : {
-                scale: 1.04,
-                y: -2,
+                scale: 1.02,
+                y: -1,
                 transition: springs.snap
             }}
             whileTap={shouldReduceMotion ? undefined : {
-                scale: 0.96,
-                y: 1,
-                transition: springs.snap
+                scale: 0.985,
+                transition: springs.haptic
             }}
             className={cn(
                 baseStyles,
                 variants[variant],
                 sizes[size],
+                "focus-ring", // Unified high-visibility focus
                 "relative overflow-hidden group",
                 className
             )}
@@ -103,7 +103,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 
             <div className="relative z-10 flex items-center justify-center">
                 {isLoading ? (
-                    <div className="mr-[var(--space-1)] h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    <motion.div
+                        initial={{ opacity: 0.5, scale: 0.8 }}
+                        animate={{ opacity: [0.5, 1, 0.5], scale: [0.95, 1.05, 0.95] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="mr-[var(--space-1)] h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+                    />
                 ) : null}
                 {children}
             </div>

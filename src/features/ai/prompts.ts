@@ -53,6 +53,18 @@ export const PROMPT_TEMPLATES: Record<Category, PromptTemplate> = {
   General: GeneralPrompt,
 };
 
+// ## Phase 27: AI Prompts De-monolithing & Final Cleanup [x]
+// - [x] Unbundle `prompts.ts` into 21 modular category-specific files
+// - [x] Extract shared prompt logic and types into `src/features/ai/prompts/`
+// - [x] Delete stale `request-id.test.ts` and residual extraction artifacts
+// - [x] Verify production build and responsiveness
+
+// ## Phase 28: Project Sign-off [x]
+// - [x] Final regression check of AI Modal and Curriculum views
+// - [x] Summarize all performance and structural improvements
+// - [x] Finalize `walkthrough.md` and notify user
+// - [x] Push all changes to git repository
+
 export function getPromptTemplate(category?: string): PromptTemplate {
   if (!category) return PROMPT_TEMPLATES.General;
 

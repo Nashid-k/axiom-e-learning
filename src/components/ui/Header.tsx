@@ -28,12 +28,12 @@ function HeaderInner() {
     const shouldReduceMotion = useReducedMotion();
 
     useEffect(() => {
-        const timer = setTimeout(() => setMounted(true), 0);
+        setMounted(true);
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'Escape') { setProfileOpen(false); setMobileMenuOpen(false); }
         };
         document.addEventListener('keydown', handleKeyDown);
-        return () => { clearTimeout(timer); document.removeEventListener('keydown', handleKeyDown); };
+        return () => { document.removeEventListener('keydown', handleKeyDown); };
     }, []);
 
     const { streak } = useGlobalProgress();
@@ -137,7 +137,7 @@ function HeaderInner() {
                                 aria-controls="profile-menu"
                                 aria-label="Open profile menu"
                             >
-                                <Image src={displayImage} alt={currentUser?.name || "User"} width={44} height={44} className="w-full h-full object-cover" />
+                                <Image src={displayImage} alt={currentUser?.name || "User"} width={44} height={44} className="w-full h-full object-cover" priority />
                             </button>
 
                             <AnimatePresence>
@@ -253,7 +253,7 @@ function HeaderInner() {
                                 <div className="px-2">
                                     <div className="flex items-center gap-4 mb-4">
                                         <div className="w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-blue-500/20 shadow-lg">
-                                            <Image src={displayImage} alt={currentUser?.name || "User"} width={64} height={64} className="w-full h-full object-cover" />
+                                            <Image src={displayImage} alt={currentUser?.name || "User"} width={64} height={64} className="w-full h-full object-cover" priority />
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-lg leading-tight">{currentUser?.name}</h3>

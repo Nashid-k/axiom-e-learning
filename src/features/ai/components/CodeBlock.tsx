@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { LiveCodePreview } from '@/components/ui/LiveCodePreview';
+import dynamic from 'next/dynamic';
+const LiveCodePreview = dynamic(() => import('@/components/ui/LiveCodePreview').then(mod => mod.LiveCodePreview), {
+    ssr: false,
+    loading: () => <div className="h-full w-full flex items-center justify-center bg-gray-50/50 dark:bg-white/[0.02] animate-pulse rounded-xl border border-dashed border-gray-200 dark:border-white/10 text-xs font-bold text-gray-400 uppercase tracking-widest">Warping to Preview...</div>
+});
 import { cn } from '@/lib/utils';
 
 export const CSS_PLAYGROUND = `

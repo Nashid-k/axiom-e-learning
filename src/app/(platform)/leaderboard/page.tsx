@@ -185,7 +185,7 @@ function PodiumItem({ user, rank }: { user: RankedUser; rank: number }) {
                     transition={{ duration: 4, repeat: Infinity }}
                     className={`relative w-16 h-16 sm:w-28 sm:h-28 rounded-full z-10 border-4 ${colors.border} ${colors.glow} overflow-hidden bg-white/5`}
                 >
-                    <Image src={safeAvatar(user.image)} alt={user.name} width={120} height={120} className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                    <Image src={safeAvatar(user.image)} alt={user.name} width={120} height={120} priority className="w-full h-full object-cover transition-transform group-hover:scale-110" />
                 </motion.div>
 
                 <div className="absolute -top-3 -right-2 sm:-top-4 sm:-right-2 z-20 text-2xl sm:text-4xl filter drop-shadow-lg">

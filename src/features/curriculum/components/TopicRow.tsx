@@ -61,27 +61,46 @@ export const TopicRow = memo(function TopicRow({
     );
 });
 
-export const VirtualizedTopic = memo(function VirtualizedTopic({ children }: { children: React.ReactNode }) {
+const sharedObserver = typeof window !== 'undefined'
+    ? new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('data-topic-id');
+                    if (id) {
+                        const event = new CustomEvent(`topic-visible-${id}`);
+                        window.dispatchEvent(event);
+                    }
+                }
+            });
+        },
+        { rootMargin: '100px', threshold: 0 }
+    )
+    : null;
+
+export const VirtualizedTopic = memo(function VirtualizedTopic({ children, id }: { children: React.ReactNode, id: string }) {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect();
-                }
-            },
-            { rootMargin: '100px', threshold: 0 }
-        );
+        if (!sharedObserver || !ref.current) return;
 
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
-    }, []);
+        const handleVisible = () => {
+            setIsVisible(true);
+            if (ref.current) sharedObserver.unobserve(ref.current);
+        };
+
+        window.addEventListener(`topic-visible-${id}`, handleVisible);
+        sharedObserver.observe(ref.current);
+
+        return () => {
+            window.removeEventListener(`topic-visible-${id}`, handleVisible);
+            if (ref.current) sharedObserver.unobserve(ref.current);
+        };
+    }, [id]);
 
     return (
-        <div ref={ref} className="min-h-[44px]">
+        <div ref={ref} data-topic-id={id} className="min-h-[44px]">
             {isVisible ? children : <div className="h-[44px] animate-pulse bg-gray-100/50 dark:bg-white/5 rounded-xl border border-transparent" />}
         </div>
     );

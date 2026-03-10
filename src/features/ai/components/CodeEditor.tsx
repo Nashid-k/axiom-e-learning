@@ -1,10 +1,19 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Editor, { OnMount } from "@monaco-editor/react";
+import type { OnMount } from "@monaco-editor/react";
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { LiveCodePreview } from '@/components/ui/LiveCodePreview';
+
+const Editor = dynamic(() => import('@monaco-editor/react'), {
+    ssr: false,
+    loading: () => <div className="h-full w-full bg-[#0A0A0A] animate-pulse rounded-lg border border-white/5 flex items-center justify-center text-[10px] font-black uppercase tracking-widest text-gray-700">Initializing Core Editor...</div>
+});
+
+const LiveCodePreview = dynamic(() => import('@/components/ui/LiveCodePreview').then(mod => mod.LiveCodePreview), {
+    ssr: false
+});
 import { runCode, SupportedLanguage } from '@/features/ai/code-runner';
 
 type Language = 'javascript' | 'typescript' | 'python' | 'mongodb' | 'sql';

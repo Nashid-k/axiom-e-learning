@@ -39,77 +39,63 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
     const info = getHashiraInfo(categorySlug);
     const router = useRouter();
 
-    const totalItems = data.phases.reduce((acc, phase) =>
-        acc + (phase.theory?.length || 0) + (phase.practicals?.length || 0),
-        0);
+    const { stats, allTopics } = useMemo(() => {
+        let total = 0;
+        let completed = 0;
+        const phaseStats: { phase: number; percentage: number }[] = [];
+        const topics: TopicItem[] = [];
 
-    const { isChecked, isLoading } = useProgress(data.fileName, totalItems);
+        data.phases.forEach((phase) => {
+            let pTotal = 0;
+            let pCompleted = 0;
 
-    const validCompletedCount = useMemo(() => {
-        let count = 0;
-        data.phases.forEach(phase => {
-            phase.theory?.forEach((rawItem, idx) => {
-                const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem;
-                const id = item.id || `theory-${phase.phase}-${idx}`;
-                if (isChecked(id)) count++;
-            });
-            phase.practicals?.forEach((rawItem, idx) => {
-                const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem;
-                const id = item.id || `practical-${phase.phase}-${idx}`;
-                if (isChecked(id)) count++;
+            const processItems = (items: (string | any)[] | undefined, type: 'theory' | 'practical') => {
+                items?.forEach((rawItem, idx) => {
+                    total++;
+                    pTotal++;
+                    const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem;
+                    const id = item.id || `${type}-${phase.phase}-${idx}`;
+
+                    const checked = isChecked(id);
+                    if (checked) {
+                        completed++;
+                        pCompleted++;
+                    }
+
+                    topics.push({
+                        id,
+                        topic: item.title,
+                        description: item.description || `Learn about ${item.title} in Phase ${phase.phase}${type === 'practical' ? ' [PRACTICAL_MODE]' : ''}`,
+                        phase: String(phase.phase),
+                        category: categoryName,
+                    });
+                });
+            };
+
+            processItems(phase.theory, 'theory');
+            processItems(phase.practicals, 'practical');
+
+            phaseStats.push({
+                phase: Number(phase.phase),
+                percentage: pTotal > 0 ? (pCompleted / pTotal) * 100 : 0
             });
         });
-        return count;
-    }, [data.phases, isChecked]);
 
-    const progressPercentage = totalItems > 0 ? Math.min(100, Math.round((validCompletedCount / totalItems) * 100)) : 0;
+        return {
+            stats: {
+                total,
+                completed,
+                percentage: total > 0 ? Math.min(100, Math.round((completed / total) * 100)) : 0,
+                phaseProgress: phaseStats
+            },
+            allTopics: topics
+        };
+    }, [data.phases, isChecked, categoryName]);
 
-    const [showPop, setShowPop] = useState(false);
-    const prevCountRef = useRef(validCompletedCount);
-
-    useEffect(() => {
-        if (validCompletedCount > prevCountRef.current) {
-            setShowPop(true);
-            const timer = setTimeout(() => setShowPop(false), 2000);
-            return () => clearTimeout(timer);
-        }
-        prevCountRef.current = validCompletedCount;
-    }, [validCompletedCount]);
-
-    const { mirrorPhases } = useMirror(data.fileName, data.phases);
-
-    const { fireConfetti, fireMiniBurst } = useConfetti();
-    const celebratedPhases = useRef<Set<number>>(new Set());
-    const isInitialized = useRef(false);
-
-    const { topics: userTopics } = useTopics();
-    const reviewDueTopics = useMemo(() => {
-        const dueTopics = getTopicsDueForReview(userTopics);
-        return dueTopics.filter(t =>
-            t.category?.toLowerCase() === categoryName.toLowerCase()
-        ).slice(0, 5) as any[];
-    }, [userTopics, categoryName]);
-
-    const weeklyMissions = useMemo(() => {
-        const signals = collectWeaknessSignals(userTopics, categoryName);
-        return buildWeeklyMissions(signals, 3);
-    }, [userTopics, categoryName]);
-
-    const phaseProgress = useMemo(() => {
-        return data.phases.map((phase) => {
-            const total = (phase.theory?.length || 0) + (phase.practicals?.length || 0);
-            let completed = 0;
-            phase.theory?.forEach((rawItem, idx) => {
-                const id = (typeof rawItem === 'string' ? null : rawItem.id) || `theory-${phase.phase}-${idx}`;
-                if (isChecked(id)) completed++;
-            });
-            phase.practicals?.forEach((rawItem, idx) => {
-                const id = (typeof rawItem === 'string' ? null : rawItem.id) || `practical-${phase.phase}-${idx}`;
-                if (isChecked(id)) completed++;
-            });
-            return { phase: Number(phase.phase), percentage: total > 0 ? (completed / total) * 100 : 0 };
-        });
-    }, [data.phases, isChecked]);
+    const totalItems = stats.total;
+    const validCompletedCount = stats.completed;
+    const progressPercentage = stats.percentage;
+    const phaseProgress = stats.phaseProgress;
 
     useEffect(() => {
         if (isLoading) return;

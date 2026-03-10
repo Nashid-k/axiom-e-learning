@@ -1,9 +1,16 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import ClientShell from "./ClientShell";
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -70,7 +77,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <body className="antialiased font-sans bg-[var(--surface-base)] text-[var(--fg-primary)]">
+      <body className={`${inter.variable} antialiased font-sans bg-[var(--surface-base)] text-[var(--fg-primary)]`}>
         <ClientShell>
           {children}
         </ClientShell>

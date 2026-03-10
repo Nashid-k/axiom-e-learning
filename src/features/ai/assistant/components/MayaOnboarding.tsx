@@ -62,7 +62,7 @@ export function MayaOnboarding({ onComplete }: MayaOnboardingProps) {
             <motion.div
                 layout
                 transition={{ type: "spring", damping: 30, stiffness: 200 }}
-                className="w-full max-w-sm bg-white/80 dark:bg-[#0D0D0E]/80 backdrop-blur-2xl border border-black/[0.03] dark:border-white/5 p-8 rounded-[32px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] relative overflow-hidden"
+                className="w-full max-w-sm bg-white/80 dark:bg-[#0D0D0E]/80 sm:backdrop-blur-lg border border-black/[0.03] dark:border-white/5 p-8 rounded-[32px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] relative overflow-hidden"
             >
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-emerald-500/5 opacity-50" />
                 <div className="relative z-10">

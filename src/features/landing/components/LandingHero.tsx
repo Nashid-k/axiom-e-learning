@@ -24,8 +24,8 @@ export function LandingHero() {
             <div className="absolute inset-0 pointer-events-none select-none z-0">
                 <div
                     className={cn(
-                        "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[560px] rounded-full blur-[70px] opacity-50",
-                        "bg-[var(--color-500)]/12",
+                        "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[560px] rounded-full blur-[50px] opacity-40",
+                        "bg-[var(--color-500)]/10",
                         !shouldReduceMotion && "animate-pulse transform-gpu"
                     )}
                     style={{ willChange: 'opacity, transform' }}
@@ -40,7 +40,7 @@ export function LandingHero() {
                 className="mb-[var(--space-3)] md:mb-[var(--space-4)] relative z-10"
                 whileHover={shouldReduceMotion ? {} : { rotate: [0, -5, 5, 0], scale: 1.05 }}
             >
-                <div className={cn("absolute inset-0 bg-[var(--color-500)]/15 blur-xl rounded-full opacity-0", !shouldReduceMotion && "animate-[fadeIn_1s_1s_ease_forwards]")} />
+                <div className={cn("absolute inset-0 bg-[var(--color-500)]/10 blur-lg rounded-full opacity-0", !shouldReduceMotion && "animate-[fadeIn_0.8s_0.8s_ease_forwards]")} />
                 <AxiomLogo
                     className="w-24 h-24 md:w-28 md:h-28 mx-auto mb-[var(--space-3)] text-white relative z-10 drop-shadow-[0_0_12px_var(--color-500)/0.45]"
                     variant="gradient"
@@ -70,8 +70,7 @@ export function LandingHero() {
                 <CyclingTypewriter
                     messages={messages}
                     className={cn(
-                        "text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-300)] via-[var(--color-ana-blue-300)] to-[var(--color-comp-400)]",
-                        !shouldReduceMotion && "animate-gradient-x background-animate"
+                        "text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-300)] via-[var(--color-ana-blue-300)] to-[var(--color-comp-400)]"
                     )}
                 />
             </motion.div>

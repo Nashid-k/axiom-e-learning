@@ -126,7 +126,7 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/60 dark:bg-[#050505]/80 backdrop-blur-[12px] cursor-pointer"
+                        className="absolute inset-0 bg-black/40 dark:bg-[#050505]/70 backdrop-blur-[8px] cursor-pointer"
                         onClick={onClose}
                     />
 
@@ -138,7 +138,7 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                         transition={{ type: "spring", stiffness: 400, damping: 32, mass: 1 }}
                         className="
                             relative w-full max-w-3xl
-                            bg-white/95 dark:bg-[#0D0D0E]/95 backdrop-blur-[50px]
+                            bg-white/95 dark:bg-[#0D0D0E]/95 backdrop-blur-[16px]
                             rounded-[28px] shadow-[0_40px_120px_-20px_rgba(0,0,0,0.6)] 
                             border border-white/20 dark:border-white/10
                             overflow-hidden transform-gpu translate-z-0

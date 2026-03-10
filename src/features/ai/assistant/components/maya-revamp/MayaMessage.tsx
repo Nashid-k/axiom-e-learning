@@ -42,19 +42,17 @@ function MayaMessageComponent({
 
     return (
         <motion.div
-            layout
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className={`flex gap-2 sm:gap-3 px-3 sm:px-4 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className={`flex gap-2 sm:gap-3 px-3 sm:px-4 ${isUser ? 'flex-row-reverse' : 'flex-row'} ${!shouldReduceMotion ? 'message-entry' : ''}`}
         >
             <div className={`flex flex-col gap-1 sm:gap-1.5 max-w-[92%] sm:max-w-[88%] ${isUser ? 'items-end' : 'items-start'}`}>
                 <div className={`
                     relative rounded-[18px] sm:rounded-[20px] px-4 sm:px-5 py-2.5 sm:py-3.5 text-sm leading-relaxed break-words 
                     transition-all duration-500
                     ${isUser
-                        ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-xl shadow-blue-500/10 font-medium rounded-tr-none'
-                        : 'bg-[var(--surface-raised)] dark:bg-white/[0.04] border border-[var(--border-default)] dark:border-white/[0.08] text-[var(--fg-primary)] shadow-sm rounded-tl-none backdrop-blur-md'
+                        ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-xl shadow-blue-500/10 font-bold rounded-tr-none'
+                        : 'bg-[var(--surface-raised)] dark:bg-[var(--surface-overlay)] border border-[var(--border-default)] dark:border-white/[0.08] text-[var(--fg-primary)] shadow-sm rounded-tl-none sm:backdrop-blur-md'
                     }
                 `}>
                     {isUser ? (

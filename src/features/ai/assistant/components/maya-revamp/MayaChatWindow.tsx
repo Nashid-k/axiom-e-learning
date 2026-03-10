@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { Message } from '../../types';
 import { MayaMessage } from './MayaMessage';
 import { AI_CONFIG } from '@/lib/config/app';
@@ -68,6 +68,30 @@ export function MayaChatWindow({
         }
     };
 
+    const handleCopy = useCallback((text: string) => {
+        navigator.clipboard.writeText(text);
+    }, []);
+
+    const handlePin = useCallback((text: string) => {
+        onPinMemory(text);
+    }, [onPinMemory]);
+
+    const messageList = useMemo(() => {
+        return messages.map((m, idx) => (
+            <MayaMessage
+                key={m.id}
+                message={m}
+                isLast={idx === messages.length - 1}
+                isLoading={isLoading}
+                onCopy={handleCopy}
+                onPin={handlePin}
+                isPinned={pinnedMemories.includes(m.content.trim().slice(0, 220))}
+                shouldReduceMotion={shouldReduceMotion}
+                activeCategory={activeTopic?.category || 'General'}
+            />
+        ));
+    }, [messages, isLoading, handleCopy, handlePin, pinnedMemories, shouldReduceMotion, activeTopic]);
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -87,7 +111,7 @@ export function MayaChatWindow({
                         animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                         exit={shouldReduceMotion ? { opacity: 0, scale: 0.98 } : { opacity: 0, y: 20, scale: 0.98, filter: 'blur(5px)' }}
                         transition={{ type: "spring", stiffness: 400, damping: 32, mass: 1 }}
-                        className="fixed z-[100] flex flex-col bg-white/90 dark:bg-[#0D0D0E]/90 border-t sm:border border-white/20 dark:border-white/10 shadow-[0_32px_128px_-20px_rgba(0,0,0,0.5)] w-full h-[94vh] sm:h-[780px] bottom-0 left-0 rounded-t-[32px] sm:w-[520px] sm:max-h-[92vh] sm:bottom-6 sm:right-6 sm:left-auto sm:rounded-[32px] overflow-hidden backdrop-blur-3xl transform-gpu translate-z-0"
+                        className="fixed z-[100] flex flex-col bg-white dark:bg-[#0D0D0E] sm:bg-white/90 sm:dark:bg-[#0D0D0E]/90 border-t sm:border border-white/20 dark:border-white/10 shadow-[0_32px_128px_-20px_rgba(0,0,0,0.5)] w-full h-[94vh] sm:h-[780px] bottom-0 left-0 rounded-t-[32px] sm:w-[520px] sm:max-h-[92vh] sm:bottom-6 sm:right-6 sm:left-auto sm:rounded-[32px] overflow-hidden sm:backdrop-blur-3xl transform-gpu translate-z-0"
                     >
                         {/* Premium Header */}
                         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10 relative z-20">
@@ -174,19 +198,7 @@ export function MayaChatWindow({
                                     </div>
                                 </div>
                             ) : (
-                                messages.map((m, idx) => (
-                                    <MayaMessage
-                                        key={m.id}
-                                        message={m}
-                                        isLast={idx === messages.length - 1}
-                                        isLoading={isLoading}
-                                        onCopy={(text, id) => navigator.clipboard.writeText(text)}
-                                        onPin={onPinMemory}
-                                        isPinned={pinnedMemories.includes(m.content.trim().slice(0, 220))}
-                                        shouldReduceMotion={shouldReduceMotion}
-                                        activeCategory={activeTopic?.category || 'General'}
-                                    />
-                                ))
+                                { messageList }
                             )}
                             {isThinking && (
                                 <motion.div
@@ -215,7 +227,7 @@ export function MayaChatWindow({
                         {/* Premium Input Bar */}
                         <div className="p-4 sm:p-5 bg-gradient-to-t from-black/20 to-transparent backdrop-blur-3xl border-t border-white/5 relative z-20">
                             <form onSubmit={handleSubmit} className="relative group/form">
-                                <div className="relative flex items-end bg-[var(--surface-raised)]/80 dark:bg-black/40 rounded-[24px] sm:rounded-[28px] p-1.5 sm:p-2 border border-white/10 focus-within:border-blue-500/60 focus-within:ring-4 focus-within:ring-blue-500/10 focus-within:shadow-[0_8px_32px_-4px_rgba(59,130,246,0.2)] transition-all duration-500">
+                                <div className="relative flex items-end bg-[var(--surface-raised)]/80 dark:bg-black/60 rounded-[24px] sm:rounded-[28px] p-1.5 sm:p-2 border border-white/10 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/20 focus-within:shadow-[0_8px_32px_-4px_rgba(59,130,246,0.3)] shadow-sm transition-all duration-300">
                                     <textarea
                                         ref={inputRef}
                                         value={inputValue}
@@ -231,7 +243,7 @@ export function MayaChatWindow({
                                             }
                                         }}
                                         placeholder="Message Maya..."
-                                        className="flex-1 bg-transparent border-0 text-sm py-3 px-4 resize-none max-h-[180px] font-medium outline-none focus:ring-0 leading-relaxed text-[var(--fg-primary)] placeholder-[var(--fg-muted)]/50"
+                                        className="flex-1 bg-transparent border-0 text-sm py-3 px-4 resize-none max-h-[180px] font-medium outline-none focus:ring-0 leading-relaxed text-[var(--fg-primary)] placeholder-[var(--fg-muted)]/70 dark:placeholder-[var(--fg-muted)]/60"
                                         rows={1}
                                     />
                                     <div className="pr-1 pb-1">

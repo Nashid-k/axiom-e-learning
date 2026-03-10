@@ -51,7 +51,7 @@ export function PhaseCard({ phase, isChecked, onTopicClick }: PhaseCardProps) {
                                         : { ...rawItem, id: rawItem.id || `theory-${phase.phase}-${idx}` };
 
                                     return (
-                                        <VirtualizedTopic key={item.id}>
+                                        <VirtualizedTopic key={item.id} id={item.id!}>
                                             <TopicRow
                                                 item={item}
                                                 phaseTitle={phase.title}
@@ -79,7 +79,7 @@ export function PhaseCard({ phase, isChecked, onTopicClick }: PhaseCardProps) {
                                         : { ...rawItem, id: rawItem.id || `practical-${phase.phase}-${idx}` };
 
                                     return (
-                                        <VirtualizedTopic key={item.id}>
+                                        <VirtualizedTopic key={item.id} id={item.id!}>
                                             <TopicRow
                                                 item={item}
                                                 phaseTitle={phase.title}

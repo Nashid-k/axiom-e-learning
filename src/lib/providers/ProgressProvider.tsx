@@ -138,12 +138,15 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         return Object.values(progress).reduce((acc, items) => acc + (items.length * 100), 0);
     }, [progress]);
 
-    const level = useMemo(() => Math.floor(xp / 1000) + 1, [xp]);
-    const nextLevelXp = useMemo(() => level * 1000, [level]);
-    const progressToNextLevel = useMemo(() => {
-        const currentLevelBase = (level - 1) * 1000;
-        return ((xp - currentLevelBase) / 1000) * 100;
-    }, [xp, level]);
+    const stats = useMemo(() => {
+        const currentLevel = Math.floor(xp / 1000) + 1;
+        const base = (currentLevel - 1) * 1000;
+        return {
+            level: currentLevel,
+            nextLevelXp: currentLevel * 1000,
+            progressToNextLevel: ((xp - base) / 1000) * 100
+        };
+    }, [xp]);
 
     const contextValue = useMemo(() => ({
         progress,
@@ -151,11 +154,11 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         updateProgress,
         refreshProgress,
         xp,
-        level,
-        nextLevelXp,
-        progressToNextLevel,
+        level: stats.level,
+        nextLevelXp: stats.nextLevelXp,
+        progressToNextLevel: stats.progressToNextLevel,
         streak
-    }), [progress, isLoading, updateProgress, refreshProgress, xp, level, nextLevelXp, progressToNextLevel, streak]);
+    }), [progress, isLoading, updateProgress, refreshProgress, xp, stats, streak]);
 
     return (
         <ProgressContext.Provider value={contextValue}>

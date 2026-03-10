@@ -1,9 +1,10 @@
 export const NODEJS_CURRICULUM = {
-    "nodejs-1": {
-        fileName: "nodejs-1",
-        description: "The Engine Room (Essentials)",
+    "nodejs": {
+        id: "nodejs",
+        fileName: "nodejs",
+        description: "The Engine Room (Node.js Mastery)",
         category: "NodeJS",
-        subDescription: "Master the power source. Learn how the JS Engine runs on the server and how to use the 'Factory Tool Box' (Core Modules).",
+        subDescription: "Master the power source. From the Core Engine and Event Loop to high-performance assembly lines and scalable distributed factory networks.",
         phases: [
             {
                 phase: 1,
@@ -34,17 +35,9 @@ export const NODEJS_CURRICULUM = {
                     "Build a 'Log Recorder' that writes factory events to a file",
                     "Create a basic server that greets visitors at the gate"
                 ]
-            }
-        ]
-    },
-    "nodejs-2": {
-        fileName: "nodejs-2",
-        description: "The Assembly Line (Express.js)",
-        category: "NodeJS",
-        subDescription: "Build the tracks. Learn how to route requests, filter goods with middleware, and deliver finished products.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 3,
                 title: "Building the Tracks: Express Routing",
                 theory: [
                     "Why Express? Building specialized tracks for different products",
@@ -58,7 +51,7 @@ export const NODEJS_CURRICULUM = {
                 ]
             },
             {
-                phase: 2,
+                phase: 4,
                 title: "The Quality Filter: Middleware",
                 theory: [
                     "What is Middleware? The checkpoints on the conveyor belt",
@@ -72,7 +65,7 @@ export const NODEJS_CURRICULUM = {
                 ]
             },
             {
-                phase: 3,
+                phase: 5,
                 title: "Packaging the Goods: Controllers & Models",
                 theory: [
                     "MVC Pattern: Organizing the factory into specialized departments",
@@ -84,17 +77,9 @@ export const NODEJS_CURRICULUM = {
                     "Refactor your assembly line into a clean MVC structure",
                     "Build a 'Staff Directory' using the MVC blueprint"
                 ]
-            }
-        ]
-    },
-    "nodejs-3": {
-        fileName: "nodejs-3",
-        description: "The Factory Network (Advanced)",
-        category: "NodeJS",
-        subDescription: "Scale up. Master high-volume shipments (Streams), heavy machinery (Workers), and factory security.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 6,
                 title: "High-Volume Shipping: Streams & Buffers",
                 theory: [
                     "Buffers: Small storage bins for raw data",
@@ -108,7 +93,7 @@ export const NODEJS_CURRICULUM = {
                 ]
             },
             {
-                phase: 2,
+                phase: 7,
                 title: "Heavy Machinery: Workers & Clusters",
                 theory: [
                     "Worker Threads: Hiring extra hands for heavy math tasks",
@@ -122,7 +107,7 @@ export const NODEJS_CURRICULUM = {
                 ]
             },
             {
-                phase: 3,
+                phase: 8,
                 title: "Factory Security & Testing",
                 theory: [
                     "Bcrypt: Shredding sensitive blueprints (Password Hashing)",
@@ -138,6 +123,7 @@ export const NODEJS_CURRICULUM = {
         ]
     },
     "nodejs-questions": {
+        id: "nodejs-questions",
         fileName: "nodejs-questions",
         description: "Node.js Interview Inspector",
         category: "NodeJS",

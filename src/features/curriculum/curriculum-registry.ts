@@ -37,27 +37,16 @@ export const CURRICULUM_REGISTRY: Record<string, CurriculumEntry> = {
     'react-1': { slug: 'react-1', category: 'React', dataKey: 'react-1', foundations: ['event-loop-foundation', 'performance-foundation'], getData: () => REACT_CURRICULUM['react-1'] },
     'react-2': { slug: 'react-2', category: 'React', dataKey: 'react-2', foundations: ['event-loop-foundation', 'performance-foundation'], getData: () => REACT_CURRICULUM['react-2'] },
     'react-3': { slug: 'react-3', category: 'React', dataKey: 'react-3', foundations: ['event-loop-foundation', 'performance-foundation'], getData: () => REACT_CURRICULUM['react-3'] },
+    'react-questions': { slug: 'react-questions', category: 'React', dataKey: 'react-questions', getData: () => REACT_CURRICULUM['react-questions'] },
 
-    'nextjs-1': { slug: 'nextjs-1', category: 'Next.js', dataKey: 'nextjs-1', foundations: ['http-protocol-foundation', 'performance-foundation'], getData: () => NEXTJS_CURRICULUM['nextjs-1'] },
-    'nextjs-2': { slug: 'nextjs-2', category: 'Next.js', dataKey: 'nextjs-2', foundations: ['http-protocol-foundation', 'performance-foundation'], getData: () => NEXTJS_CURRICULUM['nextjs-2'] },
-    'nextjs-3': { slug: 'nextjs-3', category: 'Next.js', dataKey: 'nextjs-3', foundations: ['http-protocol-foundation', 'performance-foundation'], getData: () => NEXTJS_CURRICULUM['nextjs-3'] },
+    'nextjs': { slug: 'nextjs', category: 'Next.js', dataKey: 'nextjs', foundations: ['http-protocol-foundation', 'performance-foundation'], getData: () => NEXTJS_CURRICULUM['nextjs'] },
+    'typescript': { slug: 'typescript', category: 'TypeScript', dataKey: 'typescript', foundations: ['type-system-foundation'], getData: () => TYPESCRIPT_CURRICULUM['typescript'] },
+    'nodejs': { slug: 'nodejs', category: 'NodeJS', dataKey: 'nodejs', foundations: ['event-loop-foundation', 'http-protocol-foundation'], getData: () => NODEJS_CURRICULUM['nodejs'] },
 
-    'typescript-1': { slug: 'typescript-1', category: 'TypeScript', dataKey: 'typescript-1', foundations: ['type-system-foundation'], getData: () => TYPESCRIPT_CURRICULUM['typescript-1'] },
-    'typescript-2': { slug: 'typescript-2', category: 'TypeScript', dataKey: 'typescript-2', foundations: ['type-system-foundation'], getData: () => TYPESCRIPT_CURRICULUM['typescript-2'] },
-    'typescript-3': { slug: 'typescript-3', category: 'TypeScript', dataKey: 'typescript-3', foundations: ['type-system-foundation'], getData: () => TYPESCRIPT_CURRICULUM['typescript-3'] },
-
-    'nodejs-1': { slug: 'nodejs-1', category: 'NodeJS', dataKey: 'nodejs-1', foundations: ['event-loop-foundation', 'http-protocol-foundation'], getData: () => NODEJS_CURRICULUM['nodejs-1'] },
-    'nodejs-2': { slug: 'nodejs-2', category: 'NodeJS', dataKey: 'nodejs-2', foundations: ['event-loop-foundation', 'http-protocol-foundation'], getData: () => NODEJS_CURRICULUM['nodejs-2'] },
-    'nodejs-3': { slug: 'nodejs-3', category: 'NodeJS', dataKey: 'nodejs-3', foundations: ['event-loop-foundation', 'http-protocol-foundation'], getData: () => NODEJS_CURRICULUM['nodejs-3'] },
-
-    'mongodb-1': { slug: 'mongodb-1', category: 'MongoDB', dataKey: 'mongodb-1', foundations: ['http-protocol-foundation'], getData: () => (MONGODB_CURRICULUM as any)['mongodb-1'] },
-    'mongodb-2': { slug: 'mongodb-2', category: 'MongoDB', dataKey: 'mongodb-2', foundations: ['http-protocol-foundation'], getData: () => (MONGODB_CURRICULUM as any)['mongodb-2'] },
-    'mongodb-3': { slug: 'mongodb-3', category: 'MongoDB', dataKey: 'mongodb-3', foundations: ['http-protocol-foundation'], getData: () => (MONGODB_CURRICULUM as any)['mongodb-3'] },
+    'mongodb': { slug: 'mongodb', category: 'MongoDB', dataKey: 'mongodb', foundations: ['http-protocol-foundation'], getData: () => (MONGODB_CURRICULUM as any)['mongodb'] },
     'mongodb-questions': { slug: 'mongodb-questions', category: 'MongoDB', dataKey: 'mongodb-questions', getData: () => (MONGODB_CURRICULUM as any)['mongodb-questions'] },
 
-    'sql-1': { slug: 'sql-1', category: 'SQL', dataKey: 'sql-1', foundations: ['http-protocol-foundation'], getData: () => SQL_CURRICULUM['sql-1'] },
-    'sql-2': { slug: 'sql-2', category: 'SQL', dataKey: 'sql-2', foundations: ['http-protocol-foundation'], getData: () => SQL_CURRICULUM['sql-2'] },
-    'sql-3': { slug: 'sql-3', category: 'SQL', dataKey: 'sql-3', foundations: ['http-protocol-foundation'], getData: () => SQL_CURRICULUM['sql-3'] },
+    'sql': { slug: 'sql', category: 'SQL', dataKey: 'sql', foundations: ['http-protocol-foundation'], getData: () => SQL_CURRICULUM['sql'] },
     'sql-questions': { slug: 'sql-questions', category: 'SQL', dataKey: 'sql-questions', getData: () => SQL_CURRICULUM['sql-questions'] },
 
     'dsa-1': { slug: 'dsa-1', category: 'DSA', dataKey: 'dsa-1', getData: () => DSA_CURRICULUM['dsa-1'] },
@@ -65,37 +54,25 @@ export const CURRICULUM_REGISTRY: Record<string, CurriculumEntry> = {
     'dsa-3': { slug: 'dsa-3', category: 'DSA', dataKey: 'dsa-3', getData: () => DSA_CURRICULUM['dsa-3'] },
     'dsa-questions': { slug: 'dsa-questions', category: 'DSA', dataKey: 'dsa-questions', getData: () => DSA_CURRICULUM['dsa-questions'] },
 
-    'nestjs-1': { slug: 'nestjs-1', category: 'NestJS', dataKey: 'nestjs-1', foundations: ['authentication-foundation'], getData: () => NESTJS_CURRICULUM['nestjs-1'] },
-    'nestjs-2': { slug: 'nestjs-2', category: 'NestJS', dataKey: 'nestjs-2', foundations: ['authentication-foundation'], getData: () => NESTJS_CURRICULUM['nestjs-2'] },
-    'nestjs-3': { slug: 'nestjs-3', category: 'NestJS', dataKey: 'nestjs-3', foundations: ['authentication-foundation'], getData: () => NESTJS_CURRICULUM['nestjs-3'] },
+    'nestjs': { slug: 'nestjs', category: 'NestJS', dataKey: 'nestjs', foundations: ['authentication-foundation'], getData: () => NESTJS_CURRICULUM['nestjs'] },
+    'python': { slug: 'python', category: 'Python', dataKey: 'python', getData: () => PYTHON_CURRICULUM['python'] },
 
-    'python-1': { slug: 'python-1', category: 'Python', dataKey: 'python-1', getData: () => PYTHON_CURRICULUM['python-1'] },
-    'python-2': { slug: 'python-2', category: 'Python', dataKey: 'python-2', getData: () => PYTHON_CURRICULUM['python-2'] },
-    'python-3': { slug: 'python-3', category: 'Python', dataKey: 'python-3', getData: () => PYTHON_CURRICULUM['python-3'] },
+    'devops': { slug: 'devops', category: 'DevOps', dataKey: 'devops', getData: () => DEVOPS_CURRICULUM['devops'] },
+    'devops-questions': { slug: 'devops-questions', category: 'DevOps', dataKey: 'devops-questions', getData: () => DEVOPS_CURRICULUM['devops-questions'] },
 
-    'devops-1': { slug: 'devops-1', category: 'DevOps', dataKey: 'devops-1', getData: () => DEVOPS_CURRICULUM['devops-1'] },
-    'devops-2': { slug: 'devops-2', category: 'DevOps', dataKey: 'devops-2', getData: () => DEVOPS_CURRICULUM['devops-2'] },
-    'devops-3': { slug: 'devops-3', category: 'DevOps', dataKey: 'devops-3', getData: () => DEVOPS_CURRICULUM['devops-3'] },
+    'testing': { slug: 'testing', category: 'Testing', dataKey: 'testing', getData: () => TESTING_CURRICULUM['testing'] },
+    'testing-questions': { slug: 'testing-questions', category: 'Testing', dataKey: 'testing-questions', getData: () => TESTING_CURRICULUM['testing-questions'] },
 
-    'testing-1': { slug: 'testing-1', category: 'Testing', dataKey: 'testing-1', getData: () => TESTING_CURRICULUM['testing-1'] },
-    'testing-2': { slug: 'testing-2', category: 'Testing', dataKey: 'testing-2', getData: () => TESTING_CURRICULUM['testing-2'] },
-    'testing-3': { slug: 'testing-3', category: 'Testing', dataKey: 'testing-3', getData: () => TESTING_CURRICULUM['testing-3'] },
+    'system-design': { slug: 'system-design', category: 'System Design', dataKey: 'system-design', getData: () => SYSTEM_DESIGN_CURRICULUM['system-design'] },
+    'system-design-questions': { slug: 'system-design-questions', category: 'System Design', dataKey: 'system-design-questions', getData: () => SYSTEM_DESIGN_CURRICULUM['system-design-questions'] },
 
-    'system-design-1': { slug: 'system-design-1', category: 'System Design', dataKey: 'system-design-1', getData: () => SYSTEM_DESIGN_CURRICULUM['system-design-1'] },
-    'system-design-2': { slug: 'system-design-2', category: 'System Design', dataKey: 'system-design-2', getData: () => SYSTEM_DESIGN_CURRICULUM['system-design-2'] },
-    'system-design-3': { slug: 'system-design-3', category: 'System Design', dataKey: 'system-design-3', getData: () => SYSTEM_DESIGN_CURRICULUM['system-design-3'] },
+    'networking': { slug: 'networking', category: 'Networking', dataKey: 'networking', getData: () => NETWORKING_CURRICULUM['networking'] },
+    'networking-questions': { slug: 'networking-questions', category: 'Networking', dataKey: 'networking-questions', getData: () => NETWORKING_CURRICULUM['networking-questions'] },
 
-    'networking-1': { slug: 'networking-1', category: 'Networking', dataKey: 'networking-1', getData: () => NETWORKING_CURRICULUM['networking-1'] },
-    'networking-2': { slug: 'networking-2', category: 'Networking', dataKey: 'networking-2', getData: () => NETWORKING_CURRICULUM['networking-2'] },
-    'networking-3': { slug: 'networking-3', category: 'Networking', dataKey: 'networking-3', getData: () => NETWORKING_CURRICULUM['networking-3'] },
+    'os': { slug: 'os', category: 'Operating Systems', dataKey: 'os', getData: () => OS_CURRICULUM['os'] },
+    'os-questions': { slug: 'os-questions', category: 'Operating Systems', dataKey: 'os-questions', getData: () => OS_CURRICULUM['os-questions'] },
 
-    'os-1': { slug: 'os-1', category: 'Operating Systems', dataKey: 'os-1', getData: () => OS_CURRICULUM['os-1'] },
-    'os-2': { slug: 'os-2', category: 'Operating Systems', dataKey: 'os-2', getData: () => OS_CURRICULUM['os-2'] },
-    'os-3': { slug: 'os-3', category: 'Operating Systems', dataKey: 'os-3', getData: () => OS_CURRICULUM['os-3'] },
-
-    'interview-1': { slug: 'interview-1', category: 'Interview Prep', dataKey: 'interview-1', getData: () => INTERVIEW_PREP_CURRICULUM['interview-1'] },
-    'interview-2': { slug: 'interview-2', category: 'Interview Prep', dataKey: 'interview-2', getData: () => INTERVIEW_PREP_CURRICULUM['interview-2'] },
-    'interview-3': { slug: 'interview-3', category: 'Interview Prep', dataKey: 'interview-3', getData: () => INTERVIEW_PREP_CURRICULUM['interview-3'] },
+    'interview-prep': { slug: 'interview-prep', category: 'Interview Prep', dataKey: 'interview-prep', getData: () => INTERVIEW_PREP_CURRICULUM['interview-prep'] },
     'interview-questions': { slug: 'interview-questions', category: 'Interview Prep', dataKey: 'interview-questions', getData: () => INTERVIEW_PREP_CURRICULUM['interview-questions'] },
 
     'javascript': { slug: 'javascript', category: 'JavaScript', dataKey: 'javascript', foundations: ['event-loop-foundation', 'performance-foundation'], getData: () => (JS_CURRICULUM as any)['javascript'] },

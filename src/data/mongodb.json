@@ -1,9 +1,10 @@
 {
-  "mongodb-1": {
-    "fileName": "mongodb-1",
-    "description": "The Flexible Storage (Foundations)",
+  "mongodb": {
+    "id": "mongodb",
+    "fileName": "mongodb",
+    "description": "The Flexible Storage (MongoDB Mastery)",
     "category": "MongoDB",
-    "subDescription": "Welcome to the modern storage unit. Learn how to store folders (Documents) of any shape, use smart tags (ObjectIds), and perform basic searches.",
+    "subDescription": "Master the modern storage unit. From flexible document storage and smart indexing to high-performance aggregation conveyor belts and global scaling.",
     "phases": [
       {
         "phase": 1,
@@ -33,17 +34,9 @@
           "Store 5 unique product folders in the 'Inventory' unit",
           "Find all folders where 'Price' is greater than 100"
         ]
-      }
-    ]
-  },
-  "mongodb-2": {
-    "fileName": "mongodb-2",
-    "description": "The Smart Tags (Optimization & Modeling)",
-    "category": "MongoDB",
-    "subDescription": "Upgrade your storage efficiency. Master powerful search operators, the Barcode System (Indexing), and how to link folders together.",
-    "phases": [
+      },
       {
-        "phase": 1,
+        "phase": 3,
         "title": "Search Power-ups: Advanced Operators",
         "theory": [
           "Comparison Operators ($gt, $lt): The 'Range Finder' tools",
@@ -57,7 +50,7 @@
         ]
       },
       {
-        "phase": 2,
+        "phase": 4,
         "title": "The Barcode System: Indexing",
         "theory": [
           "What is Indexing? The back-of-book index for your storage unit",
@@ -71,7 +64,7 @@
         ]
       },
       {
-        "phase": 3,
+        "phase": 5,
         "title": "Facility Layout: Data Modeling",
         "theory": [
           "Embedding: Keeping the receipt INSIDE the folder (Fast access)",
@@ -83,17 +76,9 @@
           "Design a 'Blog' layout: Should comments stay inside the post folder?",
           "Set up a rule (Validator) that requires an 'Email' label for all new staff"
         ]
-      }
-    ]
-  },
-  "mongodb-3": {
-    "fileName": "mongodb-3",
-    "description": "The Robot Sorter (Aggregation & Mongoose)",
-    "category": "MongoDB",
-    "subDescription": "Build an automated factory. Learn to use the Conveyor Belt (Aggregation) and the Inventory App (Mongoose) to manage everything.",
-    "phases": [
+      },
       {
-        "phase": 1,
+        "phase": 6,
         "title": "The Conveyor Belt: Aggregation Framework",
         "theory": [
           "Aggregation Pipeline: A series of stations on a conveyor belt",
@@ -107,7 +92,7 @@
         ]
       },
       {
-        "phase": 2,
+        "phase": 7,
         "title": "The Inventory App: Mongoose ODM",
         "theory": [
           "What is Mongoose? The digital app for your facility",
@@ -121,7 +106,7 @@
         ]
       },
       {
-        "phase": 3,
+        "phase": 8,
         "title": "Global Scaling: Replication & Sharding",
         "theory": [
           "Replication: Keeping copies of your storage facility for safety",
@@ -137,6 +122,7 @@
     ]
   },
   "mongodb-questions": {
+    "id": "mongodb-questions",
     "fileName": "mongodb-questions",
     "description": "The Facility Audit (Interview Prep)",
     "category": "MongoDB",

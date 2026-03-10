@@ -1,9 +1,10 @@
 export const SQL_CURRICULUM = {
-    "sql-1": {
-        fileName: "sql-1",
-        description: "The Warehouse Floor (Foundations)",
+    "sql": {
+        id: "sql",
+        fileName: "sql",
+        description: "The Warehouse Floor (SQL Mastery)",
         category: "SQL",
-        subDescription: "The basics of storage. Learn how to navigate the warehouse, read folder labels (columns), and find specific items (SELECT/WHERE).",
+        subDescription: "Master the warehouse logistics. From basic storage and retrieval to advanced joins, normalization, and ACID transactions.",
         phases: [
             {
                 phase: 1,
@@ -49,17 +50,9 @@ export const SQL_CURRICULUM = {
                     "Add 5 new products to the warehouse",
                     "Change the address of a customer who moved"
                 ]
-            }
-        ]
-    },
-    "sql-2": {
-        fileName: "sql-2",
-        description: "The Logistics Bridge (Connections)",
-        category: "SQL",
-        subDescription: "Link different storage zones. Master Foreign Keys, the 'Joins' that connect cabinets, and counting your stock.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "Safety Rules: Keys & Constraints",
                 theory: [
                     "Primary Key: The unique barcode on every item",
@@ -74,7 +67,7 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "The Great Link: Joins",
                 theory: [
                     "What are Joins? Reading folders from two cabinets at once",
@@ -89,7 +82,7 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "Inventory Counting: Aggregates",
                 theory: [
                     "SUM, AVG, COUNT: Calculating total stock and averages",
@@ -101,17 +94,9 @@ export const SQL_CURRICULUM = {
                     "Calculate the total revenue from all orders",
                     "Count how many products are in the 'Electronics' zone"
                 ]
-            }
-        ]
-    },
-    "sql-3": {
-        fileName: "sql-3",
-        description: "The Master Auditor (Advanced)",
-        category: "SQL",
-        subDescription: "Optimize and secure the warehouse. Master Normalization, Indexes for speed, and ACID Transactions.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "Clean Storage: Normalization",
                 theory: [
                     "The Problem of Redundancy: Why storing info twice is bad",
@@ -125,7 +110,7 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "Fast Tracking: Indexes & Performance",
                 theory: [
                     "Indexes: The 'Back-of-book' index for finding pages instantly",
@@ -139,7 +124,7 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "Safe Shipping: Transactions & Security",
                 theory: [
                     "ACID Properties: The 'All-or-Nothing' rule for shipments",
@@ -155,6 +140,7 @@ export const SQL_CURRICULUM = {
         ]
     },
     "sql-questions": {
+        id: "sql-questions",
         fileName: "sql-questions",
         description: "SQL Inventory Audit",
         category: "SQL",

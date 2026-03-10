@@ -5,12 +5,12 @@ export const TYPESCRIPT_PROJECTS = {
         subDescription: "From labeling materials to building bridges. Master TypeScript through practical, blueprint-driven construction projects.",
         studyOrder: "Strict",
         progression: "Simple Labels → Advanced Tools → Enterprise Bridges",
-        alignment: "Mapped strictly to typescript-1, typescript-2, typescript-3 syllabus"
+        alignment: "Mapped strictly to the consolidated TypeScript syllabus"
     },
     individualProjects: [
         {
             id: 1,
-            tsLevel: "typescript-1",
+            tsLevel: "typescript",
             name: "The Material Log (Basic Types)",
             difficulty: "Very Easy",
             features: ["Log string, number, and boolean materials", "Fix label mismatches"],
@@ -18,7 +18,7 @@ export const TYPESCRIPT_PROJECTS = {
         },
         {
             id: 2,
-            tsLevel: "typescript-1",
+            tsLevel: "typescript",
             name: "The Construction Contract (Interfaces)",
             difficulty: "Easy",
             features: ["Create an interface for a building wing", "Handle optional room details"],
@@ -26,7 +26,7 @@ export const TYPESCRIPT_PROJECTS = {
         },
         {
             id: 3,
-            tsLevel: "typescript-2",
+            tsLevel: "typescript",
             name: "The Adjustable Storage Box (Generics)",
             difficulty: "Medium",
             features: ["Build a box that holds any material (Wood, Steel, Glass)", "Verify material weight"],
@@ -34,7 +34,7 @@ export const TYPESCRIPT_PROJECTS = {
         },
         {
             id: 4,
-            tsLevel: "typescript-2",
+            tsLevel: "typescript",
             name: "The Site Security Scanner (Type Guards)",
             difficulty: "Medium",
             features: ["Scan materials to see if they are flammable", "Identify specific material tags"],
@@ -42,7 +42,7 @@ export const TYPESCRIPT_PROJECTS = {
         },
         {
             id: 5,
-            tsLevel: "typescript-3",
+            tsLevel: "typescript",
             name: "The Smart Construction Dashboard (React + TS)",
             difficulty: "Hard",
             features: ["Build a typed dashboard for site progress", "Handle typed event inputs"],
@@ -50,7 +50,7 @@ export const TYPESCRIPT_PROJECTS = {
         },
         {
             id: 6,
-            tsLevel: "typescript-3",
+            tsLevel: "typescript",
             name: "The Secure Warehouse API (Express + TS)",
             difficulty: "Hard",
             features: ["Validate incoming materials at the API door", "Type-safe database interactions"],

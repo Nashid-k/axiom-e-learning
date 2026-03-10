@@ -1,11 +1,12 @@
 import { CurriculumData } from '@/types';
 
 export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
-    "devops-1": {
-        fileName: "devops-1",
-        description: "The Factory Floor (Linux & Containers)",
+    "devops": {
+        id: "devops",
+        fileName: "devops",
+        description: "The Factory Floor (A-Z DevOps)",
         category: "DevOps",
-        subDescription: "Setup your workstation. Learn to navigate the Factory Floor (Linux), build Shipping Containers (Docker), and keep your tools organized.",
+        subDescription: "Setup your workstation, build containers, automate shipping (CI/CD), and scale to global warehouses (Cloud & K8s).",
         phases: [
             {
                 phase: 1,
@@ -48,17 +49,9 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
                     "Use Docker Compose to link a 'Main Machine' (App) and a 'Record Room' (DB)",
                     "Persist data using 'Storage Shelves' (Volumes)"
                 ]
-            }
-        ]
-    },
-    "devops-2": {
-        fileName: "devops-2",
-        description: "The Automated Conveyor (CI/CD & Cloud)",
-        category: "DevOps",
-        subDescription: "Automate the shipping process. Master the Automated Conveyor Belt (CI/CD) and rent space in the Global Warehouse (AWS).",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "The Conveyor Belt: CI/CD Basics",
                 theory: [
                     "CI/CD Explained: The automated assembly line",
@@ -72,7 +65,7 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "The Global Warehouse: AWS Fundamentals",
                 theory: [
                     "AWS EC2: Renting a computer in the giant warehouse",
@@ -86,7 +79,7 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "The Direct Line: Serverless & Vercel",
                 theory: [
                     "Serverless (Lambda): Paying workers only when they are working",
@@ -98,17 +91,9 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
                     "Deploy a 'One-Task Specialist' (Lambda Function)",
                     "Ship a frontend project instantly using Vercel"
                 ]
-            }
-        ]
-    },
-    "devops-3": {
-        fileName: "devops-3",
-        description: "The Mega-Franchise (Orchestration & Safety)",
-        category: "DevOps",
-        subDescription: "Scale to thousands of locations. Master the Fleet Manager (Kubernetes), Infrastructure Blueprints (Terraform), and Safety Gauges (Monitoring).",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "The Fleet Manager: Kubernetes",
                 theory: [
                     "What is K8s? The city-wide manager for thousands of shipping containers",
@@ -122,7 +107,7 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "Blueprints for Buildings: Infrastructure as Code",
                 theory: [
                     "Terraform: Writing the blueprints for your entire factory complex",
@@ -136,7 +121,7 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "The Control Room: Monitoring & Logging",
                 theory: [
                     "Monitoring (Prometheus): The live gauges on the factory machines",
@@ -152,6 +137,7 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "devops-questions": {
+        id: "devops-questions",
         fileName: "devops-questions",
         description: "The Foreman's Certification (Interview Prep)",
         category: "DevOps",
@@ -190,11 +176,12 @@ export const DEVOPS_CURRICULUM: Record<string, CurriculumData> = {
 };
 
 export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
-    "testing-1": {
-        fileName: "testing-1",
-        description: "The Inspector's Foundations (Unit Testing)",
+    "testing": {
+        id: "testing",
+        fileName: "testing",
+        description: "The Inspector's Foundations (Full Mastery)",
         category: "Testing",
-        subDescription: "Welcome to the Stress-Test Lab. Learn to inspect individual bolts (Unit Testing), use your Digital Magnifying Glass (Jest), and catch bugs before they spread.",
+        subDescription: "Welcome to the Lab. Master individual bolt inspections (Unit), assembly checks (Integration), and full Customer Test Drives (E2E).",
         phases: [
             {
                 phase: 1,
@@ -237,17 +224,9 @@ export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
                     "Mock a 'Database Specialist' to test a login function safely",
                     "Use a 'Spy' to see if a specific function was called during a test"
                 ]
-            }
-        ]
-    },
-    "testing-2": {
-        fileName: "testing-2",
-        description: "The Assembly Line (Component & Integration)",
-        category: "Testing",
-        subDescription: "Check if the parts fit together. Master Component Testing (React Testing Library) and Integration Checks to ensure the assembly line is smooth.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "Component Inspection: React Testing Library",
                 theory: [
                     "RTL Philosophy: Testing like a user, not like a machine",
@@ -261,7 +240,7 @@ export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "The Assembly Check: Integration Testing",
                 theory: [
                     "Integration Scope: Checking the handoff between two departments",
@@ -273,17 +252,9 @@ export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
                     "Write an assembly check for a 'User Registration' flow (Frontend + API)",
                     "Test a 'Checkout' process where multiple services talk to each other"
                 ]
-            }
-        ]
-    },
-    "testing-3": {
-        fileName: "testing-3",
-        description: "The Customer Test Drive (E2E & QA)",
-        category: "Testing",
-        subDescription: "The absolute final check. Master the Crash-Test Dummies (Cypress & Playwright) and perform full 'Customer Journeys' across the entire app.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 6,
                 title: "The Crash-Test Dummies: Cypress",
                 theory: [
                     "Cypress Architecture: The automated customer in the browser",
@@ -297,7 +268,7 @@ export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 7,
                 title: "Advanced Proving Grounds: Playwright",
                 theory: [
                     "Playwright vs Cypress: Cross-browser test tracks",
@@ -311,7 +282,7 @@ export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 8,
                 title: "The Lab Report: Coverage & Metrics",
                 theory: [
                     "Test Coverage: Measuring how much of the building was inspected",
@@ -327,6 +298,7 @@ export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "testing-questions": {
+        id: "testing-questions",
         fileName: "testing-questions",
         description: "The Safety Manual (Interview Prep)",
         category: "Testing",
@@ -365,11 +337,12 @@ export const TESTING_CURRICULUM: Record<string, CurriculumData> = {
 };
 
 export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
-    "system-design-1": {
-        fileName: "system-design-1",
-        description: "Metropolis Foundations (Scaling & Rules)",
+    "system-design": {
+        id: "system-design",
+        fileName: "system-design",
+        description: "Metropolis Foundations (Full Mastery)",
         category: "System Design",
-        subDescription: "Welcome to the Architect's Studio. Learn the fundamental laws of buildable cities: Scaling (Vertical vs Horizontal), Availability, and the Zoning Laws (CAP Theorem & SOLID).",
+        subDescription: "The Architect's Studio. From basic scaling and zoning laws (CAP) to infrastructure grids (Load Balancing/Caching) and full city operations (Microservices/Queues).",
         phases: [
             {
                 phase: 1,
@@ -412,17 +385,9 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
                     "Refactor a 'Messy Blueprint' (Code) using SOLID rules",
                     "Identify the best 'Building Template' (Pattern) for a notification system"
                 ]
-            }
-        ]
-    },
-    "system-design-2": {
-        fileName: "system-design-2",
-        description: "The Infrastructure Grid (Traffic & Storage)",
-        category: "System Design",
-        subDescription: "Build the vital services. Master Traffic Control (Load Balancing), Neighborhood Convenience Stores (Caching), and the Global Vaults (Database Design).",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "Traffic Control: Load Balancing",
                 theory: [
                     "Load Balancers: The traffic police at the city gates",
@@ -436,7 +401,7 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "Convenience Stores: Caching Strategies",
                 theory: [
                     "Why Cache? Reducing the 20-mile trip to the warehouse",
@@ -450,7 +415,7 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "The Global Vaults: Database Scaling",
                 theory: [
                     "SQL vs NoSQL: The labeled filing cabinets vs the giant storage bins",
@@ -462,17 +427,9 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
                     "Design a 'Sharding Key' for a city of 10 million people",
                     "Create an 'Index' for a vault containing millions of records"
                 ]
-            }
-        ]
-    },
-    "system-design-3": {
-        fileName: "system-design-3",
-        description: "City Operations (Services & Events)",
-        category: "System Design",
-        subDescription: "Manage complex operations. Master the Utility Grid (Microservices), the Digital Post Office (Message Queues), and real-world Case Studies.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "The Utility Grid: Microservices",
                 theory: [
                     "Monolith vs Microservices: One giant building vs a specialized grid",
@@ -486,7 +443,7 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "The Digital Post Office: Message Queues",
                 theory: [
                     "Async Processing: Dropping a letter and knowing it will move eventually",
@@ -500,7 +457,7 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "The Grand Opening: Case Studies",
                 theory: [
                     "URL Shortener: Building the 'Small Map' for long roads",
@@ -516,6 +473,7 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "system-design-questions": {
+        id: "system-design-questions",
         fileName: "system-design-questions",
         description: "The Architect's License (Interview Prep)",
         category: "System Design",
@@ -554,11 +512,12 @@ export const SYSTEM_DESIGN_CURRICULUM: Record<string, CurriculumData> = {
 };
 
 export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
-    "networking-1": {
-        fileName: "networking-1",
-        description: "The Local Post Office (Foundations)",
+    "networking": {
+        id: "networking",
+        fileName: "networking",
+        description: "The Global Delivery Network (Full Mastery)",
         category: "Networking",
-        subDescription: "Welcome to the central sorting center. Learn about the Envelope Layers (OSI Model), the Global Delivery Rules (TCP/IP), and how the digital mail travels.",
+        subDescription: "The central sorting center. From Envelope Layers (OSI) and Global Rules (TCP/IP) to the Global Address Book (DNS) and Secure Deliveries (HTTPS/WebSockets).",
         phases: [
             {
                 phase: 1,
@@ -601,17 +560,9 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
                     "Measure your 'Road Speed' (Bandwidth) vs 'Delivery Time' (Latency)",
                     "Trace the path of a letter to Google.com using `tracert`"
                 ]
-            }
-        ]
-    },
-    "networking-2": {
-        fileName: "networking-2",
-        description: "The Global Address Book (Addressing & DNS)",
-        category: "Networking",
-        subDescription: "Never get lost. Master the Home Addresses (IP), the Digital Phonebook (DNS), and the secrets of Subnetting.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "Home Addresses: IPv4 & IPv6",
                 theory: [
                     "IP Addresses: The unique 'Home Address' of every device on earth",
@@ -625,7 +576,7 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "The Digital Phonebook: DNS",
                 theory: [
                     "DNS (Domain Name System): Turning human names into IP numbers",
@@ -639,11 +590,11 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "Neighborhood Planning: Subnetting",
                 theory: [
                     "Subnetting: Dividing one big city into smaller, secure neighborhoods",
-                    "Subnet Masks: The 'Fence' that decides who is on your street",
+                    "Subnet Mask: The 'Fence' that decides who is on your street",
                     "CIDR Notation: The shorthand for writing down neighborhood plans",
                     "DHCP: The automated clerk who hands out addresses to new devices"
                 ],
@@ -651,17 +602,9 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
                     "Calculate a 'Neighborhood Fence' (Subnet Mask) for 50 devices",
                     "Force your device to get a 'New Address' from the DHCP clerk"
                 ]
-            }
-        ]
-    },
-    "networking-3": {
-        fileName: "networking-3",
-        description: "Special Delivery (Security & Real-time)",
-        category: "Networking",
-        subDescription: "Level up your courier service. Master Secure Envelopes (HTTPS), Live Walkie-Talkies (WebSockets), and Global CDNs.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "The Secure Envelope: HTTPS & TLS",
                 theory: [
                     "HTTPS vs HTTP: The 'Locked Suitcase' vs the 'Open Postcard'",
@@ -675,7 +618,7 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "The Live Walkie-Talkie: WebSockets",
                 theory: [
                     "WebSockets: A 'Live Line' that stays open forever (unlike letters)",
@@ -689,7 +632,7 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "The Local Branch: CDNs & Edge",
                 theory: [
                     "CDN (Content Delivery Network): Keeping a copy of your site in every city",
@@ -705,6 +648,7 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "networking-questions": {
+        id: "networking-questions",
         fileName: "networking-questions",
         description: "The Courier Manager Exam (Interview Prep)",
         category: "Networking",
@@ -743,11 +687,12 @@ export const NETWORKING_CURRICULUM: Record<string, CurriculumData> = {
 };
 
 export const OS_CURRICULUM: Record<string, CurriculumData> = {
-    "os-1": {
-        fileName: "os-1",
-        description: "The Manager's Office (Processes & Threads)",
+    "os": {
+        id: "os",
+        fileName: "os",
+        description: "The Manager's Office (Full Mastery)",
         category: "Operating Systems",
-        subDescription: "Meet the building boss. Learn how the Manager (Kernel) handles Residents (Processes), multi-tasking (Threads), and keeps the building running.",
+        subDescription: "The Building Manager's Studio. From processes and threads to memory management, file systems, and CPU scheduling. Keep the tower running and fair.",
         phases: [
             {
                 phase: 1,
@@ -790,17 +735,9 @@ export const OS_CURRICULUM: Record<string, CurriculumData> = {
                     "Simulate a 'Hallway Jam' (Deadlock) in code",
                     "Use a 'Door Lock' (Mutex) to keep a shared room safe"
                 ]
-            }
-        ]
-    },
-    "os-2": {
-        fileName: "os-2",
-        description: "The Room Allotment (Memory & Storage)",
-        category: "Operating Systems",
-        subDescription: "Manage the tower's space. Allot Apartment Rooms (RAM), setup the Storage Basement (File System), and handle Virtual Space.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "Apartment Allotment: Memory Management",
                 theory: [
                     "RAM vs Disk: The living room vs the storage basement",
@@ -814,7 +751,7 @@ export const OS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "Illusion of Space: Virtual Memory",
                 theory: [
                     "Virtual Memory: Making residents think the building is infinite",
@@ -828,7 +765,7 @@ export const OS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "The Storage Basement: File Systems",
                 theory: [
                     "File Concept: Labeled boxes in the storage basement",
@@ -840,17 +777,9 @@ export const OS_CURRICULUM: Record<string, CurriculumData> = {
                     "Visualize how a 'Large Box' (File) is actually split across basement shelves",
                     "Test your basement robot's speed (Disk Read/Write test)"
                 ]
-            }
-        ]
-    },
-    "os-3": {
-        fileName: "os-3",
-        description: "Building Security (Scheduling & Protection)",
-        category: "Operating Systems",
-        subDescription: "Keep the tower safe and fair. Manage the Elevator Queue (CPU Scheduling) and hire Security Guards (Protection).",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "The Elevator Queue: CPU Scheduling",
                 theory: [
                     "Why Scale? Too many residents, only one fast elevator (CPU)",
@@ -878,7 +807,7 @@ export const OS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "Universal Controls: I/O & Devices",
                 theory: [
                     "I/O Management: Plugging in new appliances (Keyboards, Printers)",
@@ -894,6 +823,7 @@ export const OS_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "os-questions": {
+        id: "os-questions",
         fileName: "os-questions",
         description: "The Manager's Certification (Interview Prep)",
         category: "Operating Systems",

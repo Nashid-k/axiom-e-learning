@@ -5,12 +5,12 @@ export const MONGODB_PROJECTS = {
         subDescription: "Master the flexible storage system. Build dynamic, high-performance database solutions using MongoDB and Mongoose.",
         studyOrder: "Strict",
         progression: "Storage Setup → Global Facility Management",
-        alignment: "Mapped strictly to mongodb-1, mongodb-2, mongodb-3 syllabus"
+        alignment: "Mapped strictly to the consolidated MongoDB syllabus"
     },
     individualProjects: [
         {
             id: 1,
-            mongodbLevel: "mongodb-1",
+            mongodbLevel: "mongodb",
             name: "The Flexible Vault (Foundations)",
             difficulty: "Very Easy",
             features: ["Create a storage building (Database) and units (Collections)", "Store folders (Documents) with varying fields", "Perform basic folder searches"],
@@ -18,7 +18,7 @@ export const MONGODB_PROJECTS = {
         },
         {
             id: 2,
-            mongodbLevel: "mongodb-1",
+            mongodbLevel: "mongodb",
             name: "Smart Search Robot (CRUD)",
             difficulty: "Easy",
             features: ["Implement price filters and name pattern matching", "Update folder labels dynamically", "Paginate large result sets"],
@@ -26,7 +26,7 @@ export const MONGODB_PROJECTS = {
         },
         {
             id: 3,
-            mongodbLevel: "mongodb-2",
+            mongodbLevel: "mongodb",
             name: "The Barcode Scanner (Indexing)",
             difficulty: "Medium",
             features: ["Implement unique email indexing", "Design compound indexes for multi-field searches", "Analyze performance with explain()"],
@@ -34,7 +34,7 @@ export const MONGODB_PROJECTS = {
         },
         {
             id: 4,
-            mongodbLevel: "mongodb-2",
+            mongodbLevel: "mongodb",
             name: "The Receipt Linker (Modeling)",
             difficulty: "Medium",
             features: ["Model normalized vs denormalized data", "Implement schema validation rules", "Manage many-to-many staff relationships"],
@@ -42,7 +42,7 @@ export const MONGODB_PROJECTS = {
         },
         {
             id: 5,
-            mongodbLevel: "mongodb-3",
+            mongodbLevel: "mongodb",
             name: "The Intelligence Belt (Aggregation)",
             difficulty: "Hard",
             features: ["Build a multi-stage sales reporting pipeline", "Link multiple storage units in real-time", "Calculate complex group statistics"],
@@ -50,7 +50,7 @@ export const MONGODB_PROJECTS = {
         },
         {
             id: 6,
-            mongodbLevel: "mongodb-3",
+            mongodbLevel: "mongodb",
             name: "The Automated Manager (Mongoose)",
             difficulty: "Hard",
             features: ["Built a full Node.js API using Mongoose", "Implement automated password hashing hooks", "Handle secure money transfers with Transactions"],

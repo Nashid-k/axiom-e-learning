@@ -1,11 +1,12 @@
 import { CurriculumData } from '@/types';
 
 export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
-    "nextjs-1": {
-        fileName: "nextjs-1",
-        description: "The Delivery Hub (Routing & Layouts)",
+    "nextjs": {
+        id: "nextjs",
+        fileName: "nextjs",
+        description: "The Delivery Hub (Next.js Mastery)",
         category: "Next.js",
-        subDescription: "Master the GPS of your delivery network. Learn how to map out routes, create shared delivery bags (layouts), and handle missing addresses (404s).",
+        subDescription: "Master the GPS of your delivery network. From routing and layouts to server-side cooking and global deployment.",
         phases: [
             {
                 phase: 1,
@@ -48,17 +49,9 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                     "Create a shared Sidebar for the '/dashboard' branch",
                     "Implement a custom loading spinner for slow deliveries"
                 ]
-            }
-        ]
-    },
-    "nextjs-2": {
-        fileName: "nextjs-2",
-        description: "The Warehouse Chef (Server vs Client)",
-        category: "Next.js",
-        subDescription: "Decide where to cook the food. Master Server Components (Warehouse) and Client Components (Customer's Table) for maximum speed.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "Where to Cook? Server vs Client",
                 theory: [
                     "Server Components: Pre-cooked at the warehouse (Secure & Fast)",
@@ -72,7 +65,7 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "Sourcing Ingredients: Data Fetching",
                 theory: [
                     "Async Server Components: Fetching ingredients directly in the warehouse",
@@ -86,7 +79,7 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "Freshness Control: Rendering Strategies",
                 theory: [
                     "Static Rendering (SSG): Pre-packaged snacks (Instantly available)",
@@ -98,17 +91,9 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                     "Build a 'Daily Special' page that updates every 60 seconds (ISR)",
                     "Observe the speed difference between Static and Dynamic orders"
                 ]
-            }
-        ]
-    },
-    "nextjs-3": {
-        fileName: "nextjs-3",
-        description: "The Global Franchise (Advanced & Deployment)",
-        category: "Next.js",
-        subDescription: "Scale your delivery network. Master Server Actions, Middleware, and shipping your franchise to the world.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "The Direct Line: Server Actions",
                 theory: [
                     "What are Server Actions? Sending orders directly to the chef",
@@ -122,7 +107,7 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "The Security Guard: Middleware & Auth",
                 theory: [
                     "Middleware: The bouncer checking ID cards at the gate",
@@ -136,7 +121,7 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "Grand Opening: Optimization & Deployment",
                 theory: [
                     "Image Optimization: Compressing food photos for fast loading",
@@ -152,6 +137,7 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "nextjs-questions": {
+        id: "nextjs-questions",
         fileName: "nextjs-questions",
         description: "Next.js Interview Warehouse",
         category: "Next.js",
@@ -190,11 +176,12 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
 };
 
 export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
-    "nestjs-1": {
-        fileName: "nestjs-1",
-        description: "The Office Headquarters (Foundations)",
+    "nestjs": {
+        id: "nestjs",
+        fileName: "nestjs",
+        description: "The Office Headquarters (NestJS Mastery)",
         category: "NestJS",
-        subDescription: "Welcome to the city government office. Learn the master blueprint (Architecture), how to talk to receptionists (Controllers), and hire specialists (Services).",
+        subDescription: "Welcome to the city government office. Master controllers, services, guards, pipes, and advanced city infrastructure.",
         phases: [
             {
                 phase: 1,
@@ -237,17 +224,9 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
                     "Create a 'TaxService' that calculates math for the 'TaxController'",
                     "Register the service in the 'FinanceModule'"
                 ]
-            }
-        ]
-    },
-    "nestjs-2": {
-        fileName: "nestjs-2",
-        description: "Rules & Regulations (Logic & Safety)",
-        category: "NestJS",
-        subDescription: "Enforce city laws. Hire security guards (Guards), hire stamp inspectors (Pipes), and use interpreters (Interceptors) to handle special requests.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "The Security Guard: Guards & Auth",
                 theory: [
                     "What is a Guard? The bouncer checking ID cards at the gate",
@@ -261,7 +240,7 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "The Stamp Inspector: Pipes & Validation",
                 theory: [
                     "What is a Pipe? The inspector checking if forms are filled correctly",
@@ -275,7 +254,7 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "The Interpreters: Interceptors & Filters",
                 theory: [
                     "Interceptors: Modifying the paperwork before and after it hits the desk",
@@ -287,17 +266,9 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
                     "Create a 'UniformInterceptor' that wraps all replies in a standard box",
                     "Build a 'PanicFilter' to handle 404/500 errors with a friendly message"
                 ]
-            }
-        ]
-    },
-    "nestjs-3": {
-        fileName: "nestjs-3",
-        description: "The City Network (Advanced Infrastructure)",
-        category: "NestJS",
-        subDescription: "Connect the city to the world. Master the Record Room (Databases), Global Security (JWT), and Regional Branches (Microservices).",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "The Record Room: Database Integration",
                 theory: [
                     "TypeORM & Prisma: The digital filing cabinets",
@@ -311,7 +282,7 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "Global Security: JWT & Session Management",
                 theory: [
                     "JWT Strategy: Issuing digital keys that never expire",
@@ -325,7 +296,7 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "Regional Branches: Microservices",
                 theory: [
                     "What are Microservices? Opening small satellite offices (Redis/TCP)",
@@ -341,6 +312,7 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "nestjs-questions": {
+        id: "nestjs-questions",
         fileName: "nestjs-questions",
         description: "The Civil Service Exam (Interview Prep)",
         category: "NestJS",
@@ -379,11 +351,12 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
 };
 
 export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
-    "python-1": {
-        fileName: "python-1",
-        description: "The Writer's Foundations (Logic & OOP)",
+    "python": {
+        id: "python",
+        fileName: "python",
+        description: "The Writer's Foundations (Python Mastery)",
         category: "Python",
-        subDescription: "Welcome to the studio. Learn to write clean scripts, create memorable characters (Variables), and design scene rehearsals (Functions & OOP).",
+        subDescription: "Welcome to the studio. From basic logic and OOP to Hollywood-scale Django productions and lightning FastAPI speed.",
         phases: [
             {
                 phase: 1,
@@ -426,17 +399,9 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
                     "Build a 'CastMember' class with inheritance",
                     "Write a script that safely reads 'dialogue.txt' using a Context Manager"
                 ]
-            }
-        ]
-    },
-    "python-2": {
-        fileName: "python-2",
-        description: "The Hollywood Studio (Django Full-Stack)",
-        category: "Python",
-        subDescription: "Step into the multi-million dollar production hub. Learn the Master Blueprint (MVT), the Record Room (ORM), and build high-quality film portals.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 4,
                 title: "The Production Office: Django MVC/MVT",
                 theory: [
                     "Django vs Others: The All-in-One Hollywood Studio",
@@ -450,7 +415,7 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 5,
                 title: "The Film Archives: Models & ORM",
                 theory: [
                     "Models: Designing the database filing cabinets",
@@ -464,7 +429,7 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 6,
                 title: "Cast Interviews: Forms & DRF",
                 theory: [
                     "Django Forms: Capturing citizen input on set",
@@ -476,17 +441,9 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
                     "Build a 'Casting Call' form for new actors",
                     "Expose your Movie list through a DRF 'API Window'"
                 ]
-            }
-        ]
-    },
-    "python-3": {
-        fileName: "python-3",
-        description: "Speed Dubbing & Production (FastAPI & Deployment)",
-        category: "Python",
-        subDescription: "Maximum speed. Master the Speed-Dubbing Booth (FastAPI), Background Workers (Celery), and Shipping to the world.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 7,
                 title: "The Speed-Dubbing Booth: FastAPI",
                 theory: [
                     "FastAPI Fundamentals: The specialized, high-speed API booth",
@@ -500,7 +457,7 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "The Back-Stage Crew: Celery & Task Queues",
                 theory: [
                     "Asyncio vs Celery: Manual vs Automated background tasks",
@@ -514,7 +471,7 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 9,
                 title: "The Film Festival: Deployment & QA",
                 theory: [
                     "GraphQL with Python: A smarter way to request film data",
@@ -530,6 +487,7 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "python-questions": {
+        id: "python-questions",
         fileName: "python-questions",
         description: "The Script Review (Interview Prep)",
         category: "Python",

@@ -1,11 +1,12 @@
 import { CurriculumData } from '@/types';
 
 export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
-    "typescript-1": {
-        fileName: "typescript-1",
-        description: "The Strict Blueprint (Fundamentals)",
+    "typescript": {
+        id: "typescript",
+        fileName: "typescript",
+        description: "The Strict Blueprint (TypeScript Mastery)",
         category: "TypeScript",
-        subDescription: "Learn why a blueprint is better than guessing. Master the basics of the TypeScript 'Strict Foreman' and basic material labeling.",
+        subDescription: "Master the TypeScript 'Strict Foreman'. From basic material labeling to advanced universal tools and enterprise-grade integrations.",
         phases: [
             {
                 phase: 1,
@@ -62,17 +63,9 @@ export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
                     "Create a 'Shirt Size' Enum",
                     "Build a 'User ID' alias that can be string or number"
                 ]
-            }
-        ]
-    },
-    "typescript-2": {
-        fileName: "typescript-2",
-        description: "The Universal Tools (Advanced Types)",
-        category: "TypeScript",
-        subDescription: "Master the adjustable wrenches of TypeScript. Generics, Utility Types, and the Security Guards that keep your code safe.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 5,
                 title: "Adjustable Wrenches: Generics",
                 theory: [
                     "What are Generics? (Tools that fit any material)",
@@ -86,7 +79,7 @@ export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 6,
                 title: "Blueprint Modifiers: Utility Types",
                 theory: [
                     "Partial: Making a required contract optional for a moment",
@@ -100,7 +93,7 @@ export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 7,
                 title: "The Site Guards: Type Guards & Unions",
                 theory: [
                     "Typeof & Instanceof: Checking the ID of a material at the gate",
@@ -109,20 +102,12 @@ export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
                     "Exhaustiveness Checking: Ensuring every material has been inspected"
                 ],
                 practicals: [
-                    "Write a scanner (Type Guard) that identifies if a material is 'Flammable'",
+                    "Write a security scanner (Type Guard) that identifies if a material is 'Flammable'",
                     "Implement a switch case that handles all 'Material Tags' (Unions)"
                 ]
-            }
-        ]
-    },
-    "typescript-3": {
-        fileName: "typescript-3",
-        description: "The Enterprise Bridge (Integrations)",
-        category: "TypeScript",
-        subDescription: "Building the Smart Kitchen, the Secure Warehouse, and the Cataloged Inventory using TypeScript.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 8,
                 title: "The Smart Kitchen: React + TS",
                 theory: [
                     "Typing Components: Blueprints for Kitchen Stations",
@@ -131,12 +116,12 @@ export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
                     "Event Types: Handling Guest Inputs safely"
                 ],
                 practicals: [
-                    "Convert a 'Manual Station' (JS Component) to a 'Smart Station' (TS)",
+                    "Convert a 'Manual Station' (Component) into a 'Smart Station' (TS)",
                     "Build a typed Form that catches 'Wrong Ingredient' errors"
                 ]
             },
             {
-                phase: 2,
+                phase: 9,
                 title: "The Secure Warehouse: Node.js + TS",
                 theory: [
                     "Express with TS: The Secure Intake Valve",
@@ -150,7 +135,7 @@ export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 10,
                 title: "Cataloged Inventory: Mongoose + TS",
                 theory: [
                     "Models vs Interfaces: The Map vs the Actual Goods",
@@ -166,6 +151,7 @@ export const TYPESCRIPT_CURRICULUM: Record<string, CurriculumData> = {
         ]
     },
     "typescript-questions": {
+        id: "typescript-questions",
         fileName: "typescript-questions",
         description: "TypeScript Question Bank",
         category: "TypeScript",

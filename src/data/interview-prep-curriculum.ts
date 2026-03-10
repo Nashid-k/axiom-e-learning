@@ -1,12 +1,12 @@
 import { CurriculumData } from '@/types';
 
 export const INTERVIEW_PREP_CURRICULUM: Record<string, CurriculumData> = {
-    "interview-1": {
-        id: "interview-1",
-        fileName: "interview-1",
-        description: "The Scout's Report (Foundations & Internals)",
+    "interview-prep": {
+        id: "interview-prep",
+        fileName: "interview-prep",
+        description: "The Premier League Draft (Full-Stack Mastery)",
         category: "Interview Prep",
-        subDescription: "Master the 'Physics of the Game'. A deep dive into JS Internals, Call Stacks, closures, and TypeScript's elite type system. Prove you know the ball's path before it's kicked.",
+        subDescription: "The championship strategy. Master JS internals, advanced React architecture, Node.js infrastructure, high-level system design, and the winning DSA patterns.",
         phases: [
             {
                 phase: 1,
@@ -45,18 +45,9 @@ export const INTERVIEW_PREP_CURRICULUM: Record<string, CurriculumData> = {
                     "Draft a generic `useFetch` hook with strict typing",
                     "Build a utility type that makes specific properties optional"
                 ]
-            }
-        ]
-    },
-    "interview-2": {
-        id: "interview-2",
-        fileName: "interview-2",
-        description: "The Team Playbook (Full-Stack Mastery)",
-        category: "Interview Prep",
-        subDescription: "Master 'Team Coordination'. Learn advanced React architecture, Node.js infrastructure, and the art of Full-Stack communication. Play like a pro champion.",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 3,
                 title: "Attack Strategy: React Patterns",
                 theory: [
                     "Virtual DOM & Reconciliation (The blueprint vs the actual city)",
@@ -75,7 +66,7 @@ export const INTERVIEW_PREP_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 4,
                 title: "Defense Infrastructure: Node.js",
                 theory: [
                     "Event Loop Phases (The back-office processing cycle)",
@@ -92,18 +83,9 @@ export const INTERVIEW_PREP_CURRICULUM: Record<string, CurriculumData> = {
                     "Setup a Cluster to utilize all CPU cores for high traffic",
                     "Design a Rate Limiter to prevent stadium gate crashes"
                 ]
-            }
-        ]
-    },
-    "interview-3": {
-        id: "interview-3",
-        fileName: "interview-3",
-        description: "The Championship Strategy (Design & Skills)",
-        category: "Interview Prep",
-        subDescription: "Winning the title. Master High-Level System Design, DSA Patterns for complex problem solving, and the Locker Room talk (Behavioral mastery).",
-        phases: [
+            },
             {
-                phase: 1,
+                phase: 5,
                 title: "Stadium Design: System Architecture",
                 theory: [
                     "Frontend System Design: The RADIO framework",
@@ -122,7 +104,7 @@ export const INTERVIEW_PREP_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 6,
                 title: "Winning Plays: DSA Patterns",
                 theory: [
                     "The Physics of Choice: When to use Hash Maps vs Arrays",
@@ -140,7 +122,7 @@ export const INTERVIEW_PREP_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 3,
+                phase: 7,
                 title: "Locker Room Talk: Behavioral",
                 theory: [
                     "The STAR Method (Situation, Task, Action, Result)",

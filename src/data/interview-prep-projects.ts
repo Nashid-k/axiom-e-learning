@@ -5,12 +5,12 @@ export const INTERVIEW_PREP_PROJECTS = {
         subDescription: "Prepare for the Draft. Build 'Physics-Defying' internls, 'Team-Ready' full-stack apps, and 'Championship-Winning' systems.",
         studyOrder: "Strict",
         progression: "The Scout's Report → The Team Playbook → The Championship Strategy",
-        alignment: "Mapped strictly to interview-1, interview-2, interview-3 syllabus"
+        alignment: "Mapped strictly to the consolidated Interview Prep syllabus"
     },
     individualProjects: [
         {
             id: 1,
-            interviewLevel: "interview-1",
+            interviewLevel: "interview-prep",
             name: "The Physics Engine (JS Internals)",
             difficulty: "Hard",
             features: ["Implement a custom Promise class with .then() and .catch()", "Create a deep clone utility handling circular references", "Build a high-performance Event Emitter for game state"],
@@ -18,7 +18,7 @@ export const INTERVIEW_PREP_PROJECTS = {
         },
         {
             id: 2,
-            interviewLevel: "interview-1",
+            interviewLevel: "interview-prep",
             name: "The Elite Scouting App (TypeScript)",
             difficulty: "Hard",
             features: ["Design a type-safe player registry using Discriminated Unions", "Create utility types that automate 'Scout Report' generation", "Implement generic data fetchers with strict return type inference"],
@@ -26,7 +26,7 @@ export const INTERVIEW_PREP_PROJECTS = {
         },
         {
             id: 3,
-            interviewLevel: "interview-2",
+            interviewLevel: "interview-prep",
             name: "The Team Coordinator (React Patterns)",
             difficulty: "Hard",
             features: ["Build a multi-step 'Contract Negotiation' flow using Compound Components", "Optimize a massive list of 10,000 players using Windowing", "Implement a custom Context provider with performance selectors"],
@@ -34,7 +34,7 @@ export const INTERVIEW_PREP_PROJECTS = {
         },
         {
             id: 4,
-            interviewLevel: "interview-2",
+            interviewLevel: "interview-prep",
             name: "The Secure Locker Room (Node.js)",
             difficulty: "Hard",
             features: ["Setup a secure JWT auth system with 'Refresh Token' rotation", "Implement a high-throughput video stream processor using Node Streams", "Design an automated 'Backup Scout' using Cluster & Worker Threads"],
@@ -42,7 +42,7 @@ export const INTERVIEW_PREP_PROJECTS = {
         },
         {
             id: 5,
-            interviewLevel: "interview-3",
+            interviewLevel: "interview-prep",
             name: "The Stadium Blueprint (System Design)",
             difficulty: "Very Hard",
             features: ["Draft a full High-Level Design for a video streaming service", "Optimize the 'Critical Rendering Path' for sub-second page loads", "Design a real-time 'Live Match' system using WebSockets & Pub/Sub"],
@@ -50,7 +50,7 @@ export const INTERVIEW_PREP_PROJECTS = {
         },
         {
             id: 6,
-            interviewLevel: "interview-3",
+            interviewLevel: "interview-prep",
             name: "The Winning Playbook (DSA & Soft Skills)",
             difficulty: "Very Hard",
             features: ["Solve 10 'Pro-Level' problems using Two Pointers & Sliding Window", "Create a 'Career Highlight Reel' document using the STAR method", "Conduct a 'Mock Draft' (Whiteboard interview) with a peer"],

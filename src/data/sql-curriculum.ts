@@ -1,365 +1,191 @@
 export const SQL_CURRICULUM = {
-    "sql": {
-        fileName: "sql",
-        description: "SQL",
+    "sql-1": {
+        fileName: "sql-1",
+        description: "The Warehouse Floor (Foundations)",
         category: "SQL",
-        subDescription: "Complete SQL mastery covering fundamentals, joins, subqueries, normalization, indexing, transactions, and interview scenarios.",
+        subDescription: "The basics of storage. Learn how to navigate the warehouse, read folder labels (columns), and find specific items (SELECT/WHERE).",
         phases: [
             {
                 phase: 1,
-                title: "SQL Fundamentals & Core Concepts",
+                title: "Opening the Warehouse: Databases & Tables",
                 theory: [
-                    "DBMS vs RDBMS",
-                    "SQL vs NoSQL (Brief Comparison)",
-                    "3-Schema Architecture",
-                    "Table, Row, Column, Schema",
-                    "ACID Properties (High Level)",
-                    "Horizontal vs Vertical Scaling",
-                    "SQL Command Types (DDL, DML, DCL, TCL, DQL)"
+                    "What is a Database? (The Warehouse Building)",
+                    "Tables & Rows: Filing Cabinets and individual folders",
+                    "Columns: The labels on folder tabs (Data Types)",
+                    "NULL values: Empty bins in the warehouse",
+                    "Schema: The master layout of the warehouse floor"
                 ],
                 practicals: [
-                    "Identify SQL usage patterns",
-                    "Explain RDBMS structure"
+                    "Identify tables and columns in a 'Store' warehouse",
+                    "Choose the correct labels (Data Types) for a 'Staff' cabinet"
                 ]
             },
             {
                 phase: 2,
-                title: "SQL Commands & Data Types",
+                title: "Finding Items: Basic Searching",
                 theory: [
-                    "DDL, DML, DCL, TCL, DQL",
-                    "CREATE, ALTER, DROP, TRUNCATE",
-                    "INSERT, UPDATE, DELETE",
-                    "SELECT query structure",
-                    "CHAR vs VARCHAR vs TEXT",
-                    "DATE, TIME, TIMESTAMP",
-                    "ENUM",
-                    "BLOB",
-                    "DEFAULT values",
-                    "AUTO INCREMENT / SERIAL / BIGSERIAL",
-                    "UUID usage and when to use it"
+                    "SELECT: Telling the robot which folders to grab",
+                    "WHERE: Filtering by color, price, or size",
+                    "ORDER BY: Sorting folders from newest to oldest",
+                    "LIMIT & OFFSET: Grabbing only the first 10 items or skipping some",
+                    "LIKE & Wildcards: Finding labels that 'Start with' or 'Contain' text"
                 ],
                 practicals: [
-                    "Create tables using multiple data types",
-                    "Insert multiple rows in a single query",
-                    "Rename columns and change data types"
+                    "Find all products more expensive than $50",
+                    "Sort customers by their last name in the filing cabinet"
                 ]
             },
             {
                 phase: 3,
-                title: "Keys, Constraints & Data Integrity",
+                title: "Updating the Inventory: DDL & DML",
                 theory: [
-                    "Primary Key",
-                    "Foreign Key",
-                    "Unique Key",
-                    "Candidate Key",
-                    "Super Key",
-                    "Alternate Key",
-                    "Composite Key",
-                    "Natural Key",
-                    "NOT NULL constraint",
-                    "CHECK constraint",
-                    "DEFAULT constraint",
-                    "Data integrity",
-                    "Referential integrity",
-                    "Cascading actions"
+                    "CREATE & DROP: Adding a new cabinet vs demolishing one",
+                    "INSERT: Adding new items to the bins",
+                    "UPDATE: Changing a price tag on an existing item",
+                    "DELETE: Removing damaged goods from the warehouse",
+                    "TRUNCATE: Emptying a whole cabinet instantly"
                 ],
                 practicals: [
-                    "Create table with composite primary key",
-                    "Add foreign key to an existing table",
-                    "Demonstrate cascade delete and update",
-                    "Validate CHECK constraint behavior"
+                    "Add 5 new products to the warehouse",
+                    "Change the address of a customer who moved"
+                ]
+            }
+        ]
+    },
+    "sql-2": {
+        fileName: "sql-2",
+        description: "The Logistics Bridge (Connections)",
+        category: "SQL",
+        subDescription: "Link different storage zones. Master Foreign Keys, the 'Joins' that connect cabinets, and counting your stock.",
+        phases: [
+            {
+                phase: 1,
+                title: "Safety Rules: Keys & Constraints",
+                theory: [
+                    "Primary Key: The unique barcode on every item",
+                    "Foreign Key: A sticker pointing to a folder in another cabinet",
+                    "Unique & Not Null: Rules to stop messy storage",
+                    "Referential Integrity: Ensuring no 'ghost' orders exist",
+                    "Cascading Actions: If a customer is removed, remove their orders too"
+                ],
+                practicals: [
+                    "Apply barcodes (Primary Keys) to a new table",
+                    "Link 'Orders' to 'Customers' using a pointer (Foreign Key)"
                 ]
             },
             {
-                phase: 4,
-                title: "Filtering, Sorting & Basic Queries",
+                phase: 2,
+                title: "The Great Link: Joins",
                 theory: [
-                    "WHERE clause",
-                    "ORDER BY",
-                    "DISTINCT",
-                    "LIMIT vs OFFSET",
-                    "BETWEEN",
-                    "IN",
-                    "LIKE and ILIKE",
-                    "Wildcards (% , _)",
-                    "IS NULL vs IS NOT NULL",
-                    "Alias usage"
+                    "What are Joins? Reading folders from two cabinets at once",
+                    "INNER JOIN: Items that exist in both cabinets",
+                    "LEFT/RIGHT JOIN: Including items even if they don't have a match",
+                    "FULL JOIN: Merging both cabinets completely",
+                    "SELF JOIN: When a staff member reports to another staff member"
                 ],
                 practicals: [
-                    "Find records matching pattern conditions",
-                    "Paginate results using LIMIT and OFFSET",
-                    "Filter data using multiple conditions"
-                ],
-                games: [
-                    {
-                        title: "SQL Island",
-                        url: "https://sql-island.informatik.uni-kl.de/",
-                        description: "Survive a crash landing by writing SQL queries in this adventure game."
-                    }
+                    "List all customers along with the items they bought",
+                    "Find customers who have never placed an order (Left Join)"
                 ]
             },
             {
-                phase: 5,
-                title: "Scalar & Aggregate Functions",
+                phase: 3,
+                title: "Inventory Counting: Aggregates",
                 theory: [
-                    "Scalar functions",
-                    "String functions",
-                    "Date functions",
-                    "Arithmetic operations",
-                    "Aggregate functions (COUNT, SUM, AVG, MIN, MAX)",
-                    "GROUP BY clause",
-                    "HAVING clause",
-                    "WHERE vs HAVING"
+                    "SUM, AVG, COUNT: Calculating total stock and averages",
+                    "MIN & MAX: Finding the cheapest and most expensive items",
+                    "GROUP BY: Counting items 'By Category' or 'By Brand'",
+                    "HAVING: Filtering the groups (e.g., 'Only show brands with 10+ items')"
                 ],
                 practicals: [
-                    "Count students in each department",
-                    "Find department with lowest average salary",
-                    "Find longest full name",
-                    "Increase salary if below average salary"
+                    "Calculate the total revenue from all orders",
+                    "Count how many products are in the 'Electronics' zone"
+                ]
+            }
+        ]
+    },
+    "sql-3": {
+        fileName: "sql-3",
+        description: "The Master Auditor (Advanced)",
+        category: "SQL",
+        subDescription: "Optimize and secure the warehouse. Master Normalization, Indexes for speed, and ACID Transactions.",
+        phases: [
+            {
+                phase: 1,
+                title: "Clean Storage: Normalization",
+                theory: [
+                    "The Problem of Redundancy: Why storing info twice is bad",
+                    "1NF, 2NF, 3NF: Step-by-step warehouse cleanup",
+                    "ER Diagrams: Drawing the warehouse blueprint",
+                    "Denormalization: When it's okay to be a little messy for speed"
+                ],
+                practicals: [
+                    "Break a messy 'Receipt' table into 3 clean, normalized tables",
+                    "Draw a mini blueprint for a Library management system"
                 ]
             },
             {
-                phase: 6,
-                title: "Joins (Core Focus Area)",
+                phase: 2,
+                title: "Fast Tracking: Indexes & Performance",
                 theory: [
-                    "Why joins are needed",
-                    "INNER JOIN",
-                    "LEFT JOIN",
-                    "RIGHT JOIN",
-                    "FULL OUTER JOIN",
-                    "CROSS JOIN",
-                    "SELF JOIN",
-                    "NATURAL JOIN",
-                    "JOIN vs UNION",
-                    "Join without foreign key"
+                    "Indexes: The 'Back-of-book' index for finding pages instantly",
+                    "Clustered vs Non-Clustered: How the robots physically move the folders",
+                    "EXPLAIN ANALYZE: Timing the robots to see why they are slow",
+                    "CTEs & Views: Saving common search results for later"
                 ],
                 practicals: [
-                    "Customers with their orders and products",
-                    "Customers who never placed an order",
-                    "Products never ordered",
-                    "Department with no employees",
-                    "Employee-manager self join"
-                ],
-                games: [
-                    {
-                        title: "SQL Police Department",
-                        url: "https://sqlpd.com/",
-                        description: "Solve crimes using SQL queries to catch criminals. Great for practicing joins."
-                    },
-                    {
-                        title: "SQL Murder Mystery",
-                        url: "https://mystery.knightlab.com/",
-                        description: "Solve a crime using SQL queries to navigate a database of evidence."
-                    },
-                    {
-                        title: "SQL Bolt",
-                        url: "https://sqlbolt.com/",
-                        description: "Interactive lessons and exercises to learn SQL from scratch to mastery."
-                    },
+                    "Create an index for 'Customer Email' to speed up logins",
+                    "Use 'Explain' to see the speed difference with and without an index"
                 ]
             },
             {
-                phase: 7,
-                title: "Subqueries & Advanced Filtering",
+                phase: 3,
+                title: "Safe Shipping: Transactions & Security",
                 theory: [
-                    "Subquery basics",
-                    "Single-row subquery",
-                    "Multiple-row subquery",
-                    "Correlated subquery",
-                    "Non-correlated subquery",
-                    "Subquery in SELECT",
-                    "Subquery in FROM",
-                    "Subquery in WHERE",
-                    "EXISTS",
-                    "ANY vs ALL"
+                    "ACID Properties: The 'All-or-Nothing' rule for shipments",
+                    "Transactions (COMMIT/ROLLBACK): Finalizing or canceling an action",
+                    "SQL Injection: Stopping thieves from tricking the robots",
+                    "Privileges (GRANT/REVOKE): Deciding who can enter which zone"
                 ],
                 practicals: [
-                    "Second highest salary",
-                    "Employees earning more than department average",
-                    "Customers who spent more than average spending",
-                    "Products priced above average price"
+                    "Simulate a bank transfer: if part B fails, the whole thing rolls back",
+                    "Grant 'Read Only' access to a new warehouse assistant"
+                ]
+            }
+        ]
+    },
+    "sql-questions": {
+        fileName: "sql-questions",
+        description: "SQL Inventory Audit",
+        category: "SQL",
+        subDescription: "60+ common interview questions. Master the 'Warehouse' explanations for common SQL queries.",
+        phases: [
+            {
+                phase: 1,
+                title: "The Junior Inspector",
+                theory: [
+                    "SQL vs NoSQL (Fixed Cabinets vs Flexible Bins)",
+                    "DELETE vs TRUNCATE (Removing items vs Emptying the cabinet)",
+                    "Primary vs Unique Key (The Barcode vs the ID Label)",
+                    "HAVING vs WHERE (Filtering Groups vs Filtering Items)"
+                ],
+                practicals: [
+                    "Explain the 'Second Highest Salary' logic using a 'Sorting Folders' analogy",
+                    "Explain why we need Joins instead of one big messy table"
                 ]
             },
             {
-                phase: 8,
-                title: "UNION & Set Operations",
+                phase: 2,
+                title: "The Senior Auditor",
                 theory: [
-                    "UNION",
-                    "UNION ALL",
-                    "INTERSECT",
-                    "MINUS / EXCEPT",
-                    "Conditions for UNION",
-                    "UNION vs JOIN"
+                    "ACID Properties (Atomicity, Consistency, Isolation, Durability)",
+                    "Stored Procedures vs Functions (Pre-set robot routines)",
+                    "Execution Order: How the computer actually reads your instructions",
+                    "Normalization Levels (When to stop cleaning)"
                 ],
                 practicals: [
-                    "Merge two tables with UNION",
-                    "Identify duplicate rows using UNION ALL",
-                    "Compare UNION vs UNION ALL output"
-                ]
-            },
-            {
-                phase: 9,
-                title: "Normalization & Database Design",
-                theory: [
-                    "Data redundancy",
-                    "Functional dependency",
-                    "Partial dependency",
-                    "Transitive dependency",
-                    "1NF",
-                    "2NF",
-                    "3NF",
-                    "BCNF",
-                    "Denormalization",
-                    "Over-normalization issues",
-                    "ER diagram",
-                    "Types of relationships (1:1, 1:M, M:M)"
-                ],
-                practicals: [
-                    "Normalize a given table to 3NF",
-                    "Design ER diagram for employee-department system",
-                    "Convert many-to-many relationship into tables"
-                ]
-            },
-            {
-                phase: 10,
-                title: "Indexes & Query Optimization",
-                theory: [
-                    "What is indexing",
-                    "How index works internally",
-                    "Clustered index",
-                    "Non-clustered index",
-                    "Composite index",
-                    "Hash index",
-                    "Index advantages",
-                    "Index disadvantages",
-                    "When not to use index",
-                    "EXPLAIN",
-                    "EXPLAIN ANALYZE",
-                    "Covered query"
-                ],
-                practicals: [
-                    "Create and list indexes",
-                    "Compare query performance using EXPLAIN",
-                    "Decide correct column for indexing"
-                ]
-            },
-            {
-                phase: 11,
-                title: "Views, CTE & Window Functions",
-                theory: [
-                    "View concept",
-                    "View vs table",
-                    "Updatable views",
-                    "Materialized view",
-                    "CTE (WITH clause)",
-                    "Recursive CTE",
-                    "Window functions",
-                    "RANK vs DENSE_RANK",
-                    "PARTITION BY"
-                ],
-                practicals: [
-                    "Create view with filtered data",
-                    "Find highest paid employee per department",
-                    "Rank employees by salary using window function"
-                ]
-            },
-            {
-                phase: 12,
-                title: "Transactions & ACID",
-                theory: [
-                    "Transaction concept",
-                    "ACID properties",
-                    "Atomicity",
-                    "Consistency",
-                    "Isolation",
-                    "Durability",
-                    "Isolation levels",
-                    "Deadlock",
-                    "Savepoint",
-                    "COMMIT",
-                    "ROLLBACK"
-                ],
-                practicals: [
-                    "Perform transaction with rollback",
-                    "Demonstrate savepoint usage",
-                    "Simulate transaction failure"
-                ]
-            },
-            {
-                phase: 13,
-                title: "Stored Procedures, Functions & Triggers",
-                theory: [
-                    "Stored procedure",
-                    "Procedure vs function",
-                    "Input and output parameters",
-                    "Cursor",
-                    "Trigger concept",
-                    "Types of triggers",
-                    "Pros and cons of triggers"
-                ],
-                practicals: [
-                    "Create stored procedure for insertion",
-                    "Create trigger for audit logging",
-                    "Update salary using stored procedure"
-                ]
-            },
-            {
-                phase: 14,
-                title: "Security, DCL & SQL Injection",
-                theory: [
-                    "SQL injection",
-                    "Common SQL injection types",
-                    "How SQL injection happens",
-                    "Prevention techniques",
-                    "GRANT",
-                    "REVOKE",
-                    "Roles and privileges"
-                ],
-                practicals: [
-                    "Prevent SQL injection using parameterized queries",
-                    "Create user and grant read-only access"
-                ],
-                games: [
-                    {
-                        title: "SQL Police Department",
-                        url: "https://sqlpd.com/",
-                        description: "Solve crimes using SQL queries to catch criminals."
-                    }
-                ]
-            },
-            {
-                phase: 15,
-                title: "Backup, Restore & Production Concepts",
-                theory: [
-                    "Backup strategies",
-                    "Restore strategies",
-                    "pg_dump",
-                    "Dump vs export",
-                    "Partitioning",
-                    "Sharding (concept)",
-                    "Database migration",
-                    "Performance tuning basics"
-                ],
-                practicals: [
-                    "Backup database using pg_dump",
-                    "Restore database from backup"
-                ]
-            },
-            {
-                phase: 16,
-                title: "Interview-Oriented SQL Scenarios",
-                theory: [
-                    "SQL order of execution",
-                    "Common interview traps",
-                    "Query optimization thinking",
-                    "When to use JOIN vs SUBQUERY",
-                    "When to use CTE"
-                ],
-                practicals: [
-                    "Remove duplicate rows from table",
-                    "Employee earning less than department average",
-                    "Department with highest and lowest average salary",
-                    "Find employees joined in last 6 months"
+                    "Debug a 'Deadlock' simulation where two robots are stuck",
+                    "Write a query to find 'Duplicate Shipping Labels' in a table"
                 ]
             }
         ]

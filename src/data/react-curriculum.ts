@@ -6,56 +6,19 @@ export const REACT_CURRICULUM = {
         subDescription: "Start your journey with JSX, components, and state management essentials.",
         phases: [
             {
-                phase: 0,
-                title: "Web & Rendering Foundations",
-                theory: [
-                    "Benefits of Client-Side Rendering (CSR) in React",
-                    "Challenges of CSR (SEO, Initial Load)",
-                    "Introduction to Server-Side Rendering (SSR) with Next.js (Brief)"
-                ],
-                practicals: []
-            },
-            {
                 phase: 1,
-                title: "React Basics",
+                title: "The Digital Restaurant: Introduction to React",
                 theory: [
-                    {
-                        title: "Introduction to React",
-                        videos: [
-                            {
-                                title: "React JS Crash Course",
-                                url: "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
-                                duration: "1:48:48",
-                                channel: "Traversy Media"
-                            },
-                            {
-                                title: "React in 100 Seconds",
-                                url: "https://www.youtube.com/watch?v=Tn6-PIqc4UM",
-                                duration: "02:05",
-                                channel: "Fireship"
-                            }
-                        ]
-                    },
-                    "Features of React",
-                    "Advantages and disadvantages of React",
-                    "Why React is called a SPA",
-                    "React 19 features",
-                    "Directives (use client, use server)",
-                    "Compiler vs Transpiler",
-                    "Babel (transpilation)",
-                    "Webpack",
-                    "Hot module replacement",
-                    "Purpose of index.html in React",
-                    "Purpose of root DOM element",
-                    "One-way data binding",
-                    "Naming conventions in React",
-                    "Why component names start with capital letters",
-                    "Why components must return a single parent"
+                    "The Problem: Vanilla JS is like a chef cooking everything on one burner (Hard to scale)",
+                    "The Solution: React (The Restaurant Manager) - Organizes work into stations",
+                    "Single Page Applications (SPA): The menu stays the same, only the plates change",
+                    "React vs Others: Why the world loves this specific manager",
+                    "Vite Setup: Building your professional kitchen in 60 seconds"
                 ],
                 practicals: [
-                    "Create a React app using Vite",
-                    "Create and render a basic component",
-                    "Return JSX under a single parent element"
+                    "Vite Installation: Run `npm create vite@latest` and see the magic",
+                    "The Clean Break: Delete the boilerplate code and start with a blank canvas",
+                    "The Hello Chef: Render 'Welcome to my Kitchen' in your first React app"
                 ],
                 games: [
                     {
@@ -67,383 +30,144 @@ export const REACT_CURRICULUM = {
             },
             {
                 phase: 2,
-                title: "JSX & Syntax",
+                title: "The Recipe Language: JSX Basics",
                 theory: [
-                    "JSX vs JavaScript",
-                    "Is JSX mandatory",
-                    "JSX vs HTML",
-                    "Empty tags in JSX vs HTML",
-                    "class vs className",
-                    "htmlFor attribute",
-                    "Rules of JSX",
-                    "React.createElement",
-                    "React.cloneElement"
+                    "JSX: Writing 'HTML' inside your JavaScript (The Recipe)",
+                    "Why JSX? Keeping the look and the logic in the same folder",
+                    "Rules of the Recipe: Single parent elements (Putting everything on one tray)",
+                    "JavaScript in JSX: Using `{}` to inject logic (The 'Secret Ingredient' syntax)",
+                    "Naming Conventions: Why components MUST start with Capital Letters"
                 ],
                 practicals: [
-                    "Create element using React.createElement",
-                    "Use className and htmlFor",
-                    "Replace div with Fragment"
+                    "The Variable Injection: Create a variable `chefName` and display it using `{}`",
+                    "The Tray Rule: Wrap three elements in a `<React.Fragment>` and see why it's better than a div",
+                    "The Style Object: Apply inline styles using the double-curly `{{ }}` syntax"
                 ]
             },
             {
                 phase: 3,
-                title: "Virtual DOM & Reconciliation",
+                title: "Cooking Stations: Functional Components",
                 theory: [
-                    "Real DOM vs Virtual DOM",
-                    "Virtual DOM concept and benefits",
-                    "React Fiber (Detailed)",
-                    "Phases of state updation (triggering, rendering, committing)",
-                    "Incremental rendering",
-                    {
-                        title: "Reconciliation process & Fibre",
-                        videos: [
-                            {
-                                url: "https://www.youtube.com/watch?v=MPQVvKyHRdA",
-                                title: "Virtual DOM, Fibre & Reconciliation",
-                                duration: "22:15",
-                                channel: "Hitesh Choudhary"
-                            }
-                        ]
-                    },
-                    "Diffing algorithm basics",
-                    "Keys in list rendering",
-                    "Why array index should not be used as key",
-                    "Why to give key while mapping",
-                    "Diffing Algorithm (key usage)",
-                    "Reconciliation vs Diffing",
-                    "How React updates the actual DOM efficiently"
+                    "Components: Independent Stations (Salad, Grill, Drinks)",
+                    "Reusability: Creating one 'Card' station and using it 100 times",
+                    "Organization: Moving stations into separate files (The Modular Kitchen)",
+                    "The Return Statement: What the station 'Serves' to the customer",
+                    "Export/Import: How different stations talk to each other"
                 ],
                 practicals: [
-                    "Render list and update one item",
-                    "Change list order and observe re-render",
-                    "Use proper keys in list rendering"
+                    "Station Creation: Build a `MenuCard` component in a separate file",
+                    "The Multi-Serve: Render your `MenuCard` 5 times on the page",
+                    "The Folder Structure: Organize your components into a `components/` folder"
                 ]
             },
             {
                 phase: 4,
-                title: "State & Props",
+                title: "The Blueprint: Virtual DOM & Reconciliation",
                 theory: [
-                    {
-                        title: "What is state",
-                        videos: [
-                            {
-                                url: "https://www.youtube.com/watch?v=O6P86uwfdR0",
-                                title: "React useState Hook",
-                                duration: "15:30",
-                                channel: "Fireship"
-                            }
-                        ]
-                    },
-                    "What are props",
-                    "State vs props",
-                    "Props immutability",
-                    "Rules of Hooks",
-                    "Where can we use Hooks?",
-                    "State immutability",
-                    "State vs normal variables",
-                    "useState (basics, controlled vs uncontrolled components)",
-                    "useState vs useReducer",
-                    "useState vs useRef",
-                    "Difference between useState and normal JS variables",
-                    "State vs local variables",
-                    "Why spread operator is used instead of push",
-                    "Updating arrays and objects in state",
-                    "One-way data flow"
+                    "Real DOM vs Virtual DOM: Updating the wall vs updating a sketch (Blueprint)",
+                    "React Fiber: The Manager's ability to pause and prioritize work",
+                    "The 'Diffing' Algorithm: Checking 'What's different?' before printing the menu",
+                    "Reconciliation: The process of making the wall match the sketch",
+                    "Keys: The unique 'Order Number' that helps the manager track every item"
                 ],
                 practicals: [
-                    {
-                        title: "Counter using useState",
-                        videos: [
-                            {
-                                url: "https://www.youtube.com/watch?v=4ORZ1GmjaMc",
-                                title: "useState Hook Tutorial",
-                                duration: "16:45",
-                                channel: "Ben Awad"
-                            }
-                        ]
-                    },
-                    "Update array state using spread operator",
-                    "Pass props from parent to child"
-                ],
-                games: []
+                    "The Key Test: Map through an array and see the warning if you forget a `key`",
+                    "The DevTools Inspector: Use React DevTools to see your 'Virtual' world",
+                    "The High-Speed Update: Create a list that updates and watch React only change one line"
+                ]
             },
             {
                 phase: 5,
-                title: "Component Communication",
+                title: "The Order Slip: Props Basics",
                 theory: [
-                    "Passing data from parent to child",
-                    "Passing data from child to parent",
-                    "Lifting state up",
-                    "Default props",
-                    "PropTypes",
-                    "Prop drilling",
-                    "Preventing prop drilling"
+                    "Props: The 'Order Slip' (Instructions passed from Manager to Chef)",
+                    "One-Way Flow: Information always goes down (Manager -> Chef)",
+                    "Destructuring: Getting the instructions quickly (No more `props.name`) ",
+                    "Default Props: What to cook if the customer doesn't specify (Backup instructions)",
+                    "Children: Passing 'Special Content' inside a component"
                 ],
                 practicals: [
-                    "Send data from parent to child",
-                    "Send data from child to parent using callback",
-                    "Share state between sibling components"
+                    "The Custom Order: Pass a `dishName` and `price` to your `MenuCard`",
+                    "The Avatar: Pass an image URL as a prop and display it",
+                    "The Wrapper: Create a `BorderBox` component that uses `props.children`"
                 ]
             },
             {
                 phase: 6,
-                title: "Components Deep Dive",
+                title: "The Kitchen Memory: useState Hook",
                 theory: [
-                    "What is a component",
-                    "Functional components",
-                    "Class components",
-                    "Functional vs class components",
-                    "Stateless vs stateful components",
-                    "Custom components",
-                    "Pure components",
-
-                    "super() and super(props)",
-                    "forceUpdate",
-                    "React.memo"
+                    "State: The Station's Memory (Is the stove on? How many burgers are left?)",
+                    "The Counter Analogy: Keeping track of 'Likes' or 'Items in Cart'",
+                    "Immutability: Why we use `setCount` instead of `count++` (Standardizing the signal)",
+                    "Re-rendering: When memory changes, the chef 're-cooks' the component",
+                    "Hook Rules: Why hooks always stay at the top of the station"
                 ],
                 practicals: [
-                    "Convert class component to functional",
-                    "Optimize re-render using React.memo"
+                    "The Burger Counter: Create a button that increments a 'Burgers Cooked' number",
+                    "The Light Switch: Create a toggle that switches between 'Open' and 'Closed'",
+                    "The Input Mirror: Create a text box that displays what you type in real-time"
                 ]
             },
             {
                 phase: 7,
-                title: "Hooks Core",
+                title: "Advanced Memory: Objects & Arrays in State",
                 theory: [
-                    "Why hooks are not inside conditionals",
-                    "Hooks inside conditionals",
-                    "Hooks vs functions",
-                    "Rules of hooks",
-                    "Why hooks cannot be used in loops or conditions",
-                    "useState syntax and usage",
-                    "useEffect syntax and usage",
-                    "useEffect dependency array (empty, no deps, with deps)",
-                    "What will happen if we not pass dependency array in useEffect",
-                    "Purpose of return statement in useEffect",
-                    "useEffect cleanup function",
-                    "Code cleanup using useEffect",
-                    "Why can't we use async in useEffect",
-                    "Passing Async Callbacks in useEffect",
-                    {
-                        title: "Component lifecycle with useEffect (mounting, updating, unmounting)",
-                        videos: [
-                            {
-                                url: "https://www.youtube.com/watch?v=0fsC1MSxHwI",
-                                title: "useEffect Hook Guide",
-                                duration: "18:20",
-                                channel: "Hitesh Choudhary"
-                            }
-                        ]
-                    },
-                    "Unmount in functional components",
-                    "Unmounted event using useEffect"
+                    "The Spread Operator (`...`): 'Copy the old tray and add one new thing'",
+                    "Updating Lists: Adding and removing items without 'breaking' the memory",
+                    "Derived State: Calculating the 'Total' without saving it separately",
+                    "Lifting State Up: Moving the memory to the Manager so two chefs can see it",
+                    "The Callback Pattern: How a chef tells the Manager 'The order is done!'"
                 ],
                 practicals: [
-                    "Counter using useState (Functional updates)",
-                    "Log mount and unmount using useEffect",
-                    "Cleanup interval using useEffect"
+                    "The Todo List: Build a list where you can add items using a text box",
+                    "The Delete Button: Implement a feature to remove one specific item from a list",
+                    "The Total Price: Calculate the sum of an array of prices in your state"
                 ]
             },
             {
                 phase: 8,
-                title: "Hooks Advanced",
+                title: "Communicating Between Stations: Advanced Props",
                 theory: [
-                    "useRef",
-                    "useRef (storing values, DOM reference, timer example)",
-                    "Can we store data inside useRef",
-                    "Return value of useRef",
-                    "Updating useRef",
-                    "Access uncontrolled components using useRef",
-                    "useRef vs forwardRef",
-                    "Create ref vs forwardRef",
-                    "forwardRef",
-                    "useLayoutEffect cleanup function",
-                    "useLayoutEffect vs useEffect",
-                    "Difference between useEffect and useLayoutEffect",
-                    "useId",
-                    "useId (generating unique IDs)",
-                    "useTransition (React 18)",
-                    "useDeferredValue (React 18)",
-                    "useContext",
-                    "Limitations of useContext",
-                    "useReducer",
-                    "useCallback",
-                    "When does useCallback re-render?",
-                    "useMemo",
-                    "Does useMemo prevent re-renders",
-                    "Why functions need to be memoized",
-                    "Stale closure",
-                    "Custom hooks",
-                    "Rules of custom hooks",
-                    "useImperativeHandle hook",
-                    "Event Pooling in React"
+                    "Passing Functions: Giving a chef a 'Bell' to ring when they're done",
+                    "Drilling: The problem of passing slips through too many stations",
+                    "Lifting State (The Bridge): Solving disagreements between sibling stations",
+                    "Prop Types / Type Safety: Ensuring the 'Order Slip' is filled out correctly",
+                    "Best Practices: Keeping Props simple and readable"
                 ],
                 practicals: [
-                    "Focus input using useRef",
-                    "Share state using useContext",
-                    "Replace useState with useReducer",
-                    "Create a simple custom hook"
-                ],
-                games: []
+                    "The Bell Ring: Pass a function from `App` to `Kitchen` that alerts 'Order Ready!'",
+                    "The Sibling Sync: Change a value in `Station A` and see it update in `Station B`",
+                    "The Validation: Try to pass a number where a string is expected and check the console"
+                ]
             },
             {
                 phase: 9,
-                title: "Controlled & Uncontrolled Components",
+                title: "The Ticket System: Map & Keys Deep Dive",
                 theory: [
-                    "Controlled components",
-                    "Uncontrolled components",
-                    "Controlled vs uncontrolled components",
-                    "Benefits of uncontrolled components",
-                    "Manipulating uncontrolled components"
+                    "Map: Cloning 100 stations from 1 array of data (Automatic Printing)",
+                    "Why Keys? Preventing the 'Mix-up' when items are re-ordered",
+                    "Index vs ID: Why IDs are the 'Employee ID' and Indexes are just 'Line Positions'",
+                    "Filtering the Menu: Displaying only 'Vegan' or 'Dessert' items",
+                    "Sorting: Arranging orders by price or priority"
                 ],
                 practicals: [
-                    "Controlled input with validation",
-                    "Uncontrolled input using ref",
-                    "Convert uncontrolled input to controlled"
+                    "The Menu Feed: Map through a JSON list of products and render cards",
+                    "The Dynamic Filter: Create 3 buttons that filter your list by category",
+                    "The Index Test: Intentionally use index as a key and see why it glitches during deletes"
                 ]
             },
-
             {
                 phase: 10,
-                title: "Lifecycle Methods",
+                title: "React 1 Final Exam: The Mini-Restaurant",
                 theory: [
-                    "componentDidMount",
-                    "componentDidUpdate",
-                    "componentWillUnmount",
-                    "Lifecycle using useEffect"
+                    "Consolidation: Putting Components, Props, and State together",
+                    "The 'React Way': Thinking in small, independent pieces",
+                    "Preparation for React 2: The transition from 'Cooking' to 'Managing a Team'"
                 ],
                 practicals: [
-                    "Simulate lifecycle using useEffect",
-                    "Cleanup logic on component unmount"
-                ]
-            },
-            {
-                phase: 11,
-                title: "Event Handling",
-                theory: [
-                    "Event handling in React",
-                    "Synthetic events",
-                    "Advantages of synthetic events",
-                    "Event pooling",
-                    "Native vs synthetic events",
-                    "Event delegation",
-                    "Pointer events",
-                    "Event.preventDefault",
-                    "HTML sanitization",
-                    "preventDefault"
-                ],
-                practicals: [
-                    "Handle button click",
-                    "Handle input change",
-                    "Prevent default form submit"
-                ]
-            },
-            {
-                phase: 12,
-                title: "Conditional & Dynamic Rendering",
-                theory: [
-                    "Conditional rendering",
-                    "Conditional rendering using &&",
-                    "Dynamic rendering"
-                ],
-                practicals: [
-                    "Show and hide component",
-                    "Conditional styling based on value"
-                ]
-            },
-            {
-                phase: 13,
-                title: "Built-in & Special Components",
-                theory: [
-                    "React.Fragment",
-                    "Fragment vs div",
-                    "StrictMode",
-                    "Why console logs appear twice",
-                    "Suspense",
-                    "Fallback",
-                    "Error boundaries",
-                    "React Portals"
-                ],
-                practicals: [
-                    "Wrap components with Fragment",
-                    "Lazy load a component",
-                    "Catch error using Error Boundary"
-                ]
-            },
-            {
-                phase: 14,
-                title: "Routing",
-                theory: [
-                    "React Router",
-                    "Routes vs Route",
-                    "BrowserRouter vs HashRouter",
-                    "Link vs NavLink",
-                    "useNavigate vs useHistory",
-                    "useParams",
-                    "useLocation",
-                    "MemoryRouter",
-                    "Switch (Legacy React Router v5)",
-                    "Reading query params (useSearchParams)",
-                    "Customize tab title and favicon",
-                    "Outlet"
-                ],
-                practicals: [
-                    "Create multiple routes",
-                    "Navigate programmatically",
-                    "Read route parameters"
-                ]
-            },
-            {
-                phase: 15,
-                title: "Performance & Optimization",
-                theory: [
-                    "Reduce initial load in CSR",
-                    "Code splitting",
-                    "Lazy loading",
-                    "Tree shaking",
-                    "Memoization techniques",
-                    "Pros and cons of memoization",
-                    "React Profiler",
-                    "Debugging React",
-                    "Throttling",
-                    "Debouncing",
-                    "Clearing intervals/timeouts (Cleanup)",
-                    "Shallow rendering",
-                    "Techniques to improve performance (virtualization)",
-                    "Improving initial load time (CSR vs SSR detailed)",
-                    "React Concurrent Mode (automatic batching)"
-                ],
-                practicals: [
-                    "Lazy load a route",
-                    "Prevent unnecessary re-renders",
-                    "Profile component renders"
-                ]
-            },
-            {
-                phase: 16,
-                title: "Tooling & Module System",
-                theory: [
-                    "ESModules in React",
-                    "Named vs default exports",
-                    "Curly braces in imports",
-                    "package.json vs package-lock.json",
-                    "Hot Module Replacement",
-                    "Vite advantages over older bundlers"
-                ],
-                practicals: []
-            },
-            {
-                phase: 17,
-                title: "Final Practice",
-                practicals: [
-                    "Render array of objects using map",
-                    "Add, edit, delete list items",
-                    "Prevent duplicate entries",
-                    "Confirm before delete",
-                    "Move completed items to bottom",
-                    "Count completed and pending items",
-                    "Display time-ago text",
-                    "Toggle checkbox using parent-child communication"
+                    "Project 'Axiom Cafe': Build a menu where users can increment items, see a total, and clear the cart.",
+                    "The Validation: Ensure your app doesn't crash if the cart is empty",
+                    "The UI Polish: Use everything you learned in CSS to make it look premium"
                 ]
             }
         ]
@@ -452,129 +176,102 @@ export const REACT_CURRICULUM = {
         fileName: "reactjs-2",
         description: "React Hooks & Patterns",
         category: "React",
-        subDescription: "Deep dive into hooks, effects, forms, and scalable component patterns.",
+        subDescription: "Master hooks, specialized kitchen tools, and advanced cooking patterns.",
         phases: [
             {
-                phase: 1,
-                title: "Forms, Validation & User Input",
+                phase: 11,
+                title: "The Side Hustle: useEffect Hook",
                 theory: [
-                    "Form handling in React",
-                    "Controlled form patterns",
-                    "Handling multiple inputs",
-                    "Form validation strategies",
-                    "Custom validation logic",
-                    "Error message handling",
-                    "Prevent default form submission",
-                    "Password validation rules",
-                    "File input handling",
-                    "Accessibility basics in forms"
+                    "Side Effects: Tasks outside the main cooking (Cleaning the floor, Ordering supplies)",
+                    "Dependency Array: When should we start the task? (Every shift, Once a week, or Only when flour runs out?)",
+                    "Cleanup Function: Turning off the stove before leaving (Preventing Memory Leaks)",
+                    "API Fetching (Introduction): The Delivery Truck bringing fresh ingredients",
+                    "Infinite Loops: Why you shouldn't clean the floor while people are still walking on it"
                 ],
                 practicals: [
-                    "Create a signup form with controlled inputs",
-                    "Add validation for email and password",
-                    "Show validation errors below inputs",
-                    "Disable submit button on invalid form",
-                    "Implement confirm password validation",
-                    "Create a login form with proper validation",
-                    "Check if text in two input fields matches",
-                    "Signup input validation"
-                ]
-            },
-
-            {
-                phase: 2,
-                title: "Data Fetching & API Communication",
-                theory: [
-                    "Data Fetching with useEffect",
-                    "Managing Loading & Error States in Components",
-                    "Using AbortController with React",
-                    "Setting up Axios in React",
-                    "Using Axios Interceptors for Auth",
-                    "Introduction to React Query (TanStack Query)",
-                    "Optimistic UI Updates pattern"
-                ],
-                practicals: [
-                    "Fetch data from public API using fetch",
-                    "Fetch data using axios",
-                    "Show loading spinner while fetching",
-                    "Handle API error gracefully",
-                    "Create axios instance with base URL",
-                    "Cancel API request on component unmount"
-                ]
-            },
-
-            {
-                phase: 3,
-                title: "Application Architecture & Patterns",
-                theory: [
-                    "Component composition",
-                    "Container vs presentational components",
-                    "Separation of concerns",
-                    "Folder structure best practices",
-                    "Reusable component design",
-                    "Props proxy pattern",
-                    "Smart vs dumb components",
-                    "Scalable React architecture"
-                ],
-                practicals: [
-                    "Refactor UI into reusable components",
-                    "Create a layout component",
-                    "Extract repeated logic into reusable components",
-                    "Apply container-presentational pattern"
+                    "The Greeting: Make an alert pop up only the FIRST time the kitchen opens",
+                    "The Timer: Build a clock that updates every second and stops when the station closes",
+                    "The Basic Fetch: Get a list of 'Daily Specials' from a placeholder API"
                 ]
             },
             {
-                phase: 4,
-                title: "Testing & Debugging",
+                phase: 12,
+                title: "The Secret Drawer: useRef Hook",
                 theory: [
-                    "Testing React Components (Unit vs Integration)",
-                    "React Testing Library (RTL) Core Concepts",
-                    "Querying Elements (getBy, findBy, queryBy)",
-                    "Testing User Interactions (fireEvent, userEvent)",
-                    "Mocking Modules & API Calls in Jest",
-                    "Snapshot Testing in React"
+                    "useRef: A drawer that keeps its contents even if the chef re-cooks (No Re-renders)",
+                    "DOM Access: Reaching out to touch the actual kitchen equipment (Focusing an input)",
+                    "Persistent Variables: Storing a 'Timer ID' that doesn't trigger a re-draw",
+                    "useRef vs useState: When to use a 'Post-it Note' vs a 'Digital Scoreboard'",
+                    "Forwarding Refs: Giving someone else the key to your secret drawer"
                 ],
                 practicals: [
-                    "Write a unit test for a button click",
-                    "Test conditional rendering",
-                    "Test form submission",
-                    "Debug component re-render using DevTools"
-                ]
-            },
-
-            {
-                phase: 5,
-                title: "Interview-Oriented Practical Scenarios",
-                theory: [
-                    "Common React interview pitfalls",
-                    "State vs props decision making",
-                    "When to lift state",
-                    "When to split components",
-                    "Performance trade-offs",
-                    "Real-world React mistakes"
-                ],
-                practicals: [
-                    "Build login-logout flow end-to-end",
-                    "Implement route protection scenario",
-                    "Create CRUD flow with API",
-                    "Optimize unnecessary re-renders manually"
+                    "The Auto-Focus: Make the text box focus automatically when the page loads",
+                    "The Click Counter: Count clicks WITHOUT causing the UI to change (Check console)",
+                    "The Stop-Watch: Use a ref to store the interval ID for a timer"
                 ]
             },
             {
-                phase: 6,
-                title: "Advanced Practicals",
+                phase: 13,
+                title: "The Loudspeaker: useContext API",
+                theory: [
+                    "Prop Drilling: Passing a slip through 10 chefs (Slow and messy)",
+                    "Context: The Kitchen Loudspeaker (One message for EVERYONE to hear)",
+                    "Provider: The person holding the microphone",
+                    "Consumer/useContext: The chefs wearing headsets to listen",
+                    "Best Practice: Don't use the loudspeaker for every small secret"
+                ],
                 practicals: [
-                    "Create custom hook – convert string to capital letter",
-                    "Implementation toggle theme functionality using Context API",
-                    "Add edit option for todo",
-                    "Mark todo as completed",
-                    "Implement a basic stopwatch",
-                    "Create nested dropdown and map the array of objects based on the selection of 1st dropdown",
-                    "Create a component to add items to a list using useReducer",
-                    "Increment and decrement counter using useContext",
-                    "Implement lazy loading. Load the component after 5 sec",
-                    "Find the average of 2 numbers using ref",
-                    "Make a component to find the square of a number using useMemo"
+                    "The Theme Toggle: Use Context to change the kitchen from 'Day Mode' to 'Night Mode'",
+                    "The User Profile: Display the Chef's Name in 3 different components using Context",
+                    "The Shopping Cart: Keep track of total items across the whole restaurant"
+                ]
+            },
+            {
+                phase: 14,
+                title: "The Complex Order: useReducer Hook",
+                theory: [
+                    "useReducer: A professional 'Order Form' for complex cooking",
+                    "State & Action: 'The current kitchen state' + 'What just happened?'",
+                    "The Reducer Function: The logic that decides how to change the state",
+                    "Dispatch: Sending the 'Action' to the manager",
+                    "useReducer vs useState: When a simple counter becomes a full POS system"
+                ],
+                practicals: [
+                    "The Advanced Todo: Use useReducer to Add, Delete, and Clear all items",
+                    "The Multi-Counter: One reducer to manage 5 different counters at once",
+                    "The Form Handler: Manage a complex signup form with multiple inputs in one state"
+                ]
+            },
+            {
+                phase: 15,
+                title: "Sharp Kitchen Tools: useMemo & useCallback",
+                theory: [
+                    "Performance: Why re-calculating the bill 100 times is a waste of time",
+                    "useMemo: Storing the result of a 'Heavy Recipe' so you don't cook it again",
+                    "useCallback: Remembering how to 'Do a Task' without re-learning it every time",
+                    "Referential Integrity: Why `{}` is not the same as `{}` in JavaScript",
+                    "When NOT to Optimize: Premature optimization is the root of all burnt food"
+                ],
+                practicals: [
+                    "The Heavy Filter: Filter a list of 10,000 items and see the lag without useMemo",
+                    "The Memoized Function: Use useCallback to prevent a child component from re-rendering",
+                    "The Profiler: Use Chrome DevTools to see which components are over-cooking"
+                ]
+            },
+            {
+                phase: 16,
+                title: "Custom Equipment: Building Custom Hooks",
+                theory: [
+                    "Reusing Logic: Creating your own 'Smart Spatula' (useWindowSize, useTheme)",
+                    "Prefix: Why every custom hook MUST start with 'use'",
+                    "Separation: Keeping the 'Chef Logic' separate from the 'Plating (UI)'",
+                    "Composition: Building big tools out of small tools (`useState` + `useEffect`) ",
+                    "Sharing hooks: How to share your 'Secret Recipes' across the app"
+                ],
+                practicals: [
+                    "The Fetch Hook: Create `useFetch` to handle API calls with loading/error states",
+                    "The Storage Hook: Create `useLocalStorage` to save data automatically",
+                    "The Toggle Hook: Create `useToggle` for a reusable true/false switch"
                 ]
             }
         ]
@@ -586,391 +283,203 @@ export const REACT_CURRICULUM = {
         subDescription: "Master performance optimization, Redux state management, and enterprise architecture.",
         phases: [
             {
-                phase: 1,
-                title: "Why Redux & State Management Evolution",
-                theory: [
-                    "Flux architecture",
-                    "Problems with lifting state up at scale",
-                    "Limits of props lifting",
-                    "Why Context API breaks at scale",
-                    "Limitations of the Context API",
-                    "Local storage vs Context API",
-                    "Context API toggle theme example",
-                    "Drawbacks of Context API",
-                    "Context API vs Redux",
-                    "Single Source of Truth concept",
-                    "Unidirectional data flow",
-                    "Why Redux is predictable",
-                    "Redux vs local component state",
-                    "Redux vs Context API",
-                    "Framework vs Library",
-                    "Why Redux is a library, not a framework"
-                ],
-                practicals: [
-                    "Demonstrate deep props lifting problem with 4-level component tree",
-                    "Replace props lifting with Redux store"
-                ]
-            },
-            {
-                phase: 2,
-                title: "Redux Core Fundamentals",
-                theory: [
-                    "Core principles of Redux",
-                    "Redux data flow",
-                    "Store",
-                    "Action",
-                    "Action types",
-                    "Action creators",
-                    "Reducer",
-                    "Why reducers must be pure",
-                    "Immutability in Redux",
-                    "Why Redux is unidirectional",
-                    "Initial state",
-                    "Resetting state",
-                    "combineReducers",
-                    "Redux store methods",
-                    "Subscribe mechanism"
-                ],
-                practicals: [
-                    "Create a Redux store with a counter reducer",
-                    "Increment and decrement counter using dispatch",
-                    "Reset counter state",
-                    "Split reducers using combineReducers"
-                ]
-            },
-            {
-                phase: 3,
-                title: "React Redux Integration",
-                theory: [
-                    "React Redux architecture",
-                    "Provider component",
-                    "useDispatch",
-                    "useSelector",
-                    "mapStateToProps",
-                    "mapDispatchToProps",
-                    "connect function",
-                    "useSelector vs mapStateToProps",
-                    "useDispatch vs mapDispatchToProps"
-                ],
-                practicals: [
-                    "Wrap app with Provider",
-                    "Read state using useSelector",
-                    "Dispatch action using useDispatch",
-                    "Same counter using connect()"
-                ]
-            },
-            {
-                phase: 4,
-                title: "Redux Toolkit (Modern Redux)",
-                theory: [
-                    "Problems with classic Redux boilerplate",
-                    "What is Redux Toolkit",
-                    "configureStore",
-                    "createSlice",
-                    "Reducers vs extraReducers",
-                    "Immer and immutability",
-                    "Benefits of slices",
-                    "Redux Toolkit folder structure",
-                    "Redux Toolkit vs classic Redux"
-                ],
-                practicals: [
-                    "Create counter using createSlice",
-                    "Replace classic Redux with Redux Toolkit",
-                    "Add reset action in slice"
-                ]
-            },
-            {
-                phase: 5,
-                title: "Async State & Middleware",
-                theory: [
-                    "Why async logic needs middleware",
-                    "What is middleware in Redux",
-                    "Purpose of middleware",
-                    "Redux Thunk",
-                    "How Redux Thunk works",
-                    "Redux Saga",
-                    "Generator functions",
-                    "call and put effects",
-                    "Redux Thunk vs Redux Saga",
-                    "When to use Saga over Thunk",
-                    "Limitations of Thunk"
-                ],
-                practicals: [
-                    "Fetch API data using Redux Thunk",
-                    "Create loading and error states",
-                    "Simulate delay using thunk",
-                    "Basic Redux Saga watcher and worker"
-                ]
-            },
-            {
-                phase: 6,
-                title: "createAsyncThunk & Async Flow",
-                theory: [
-                    "createAsyncThunk",
-                    "Pending, fulfilled, rejected lifecycle",
-                    "extraReducers usage",
-                    "Error handling in async reducers",
-                    "Async flow debugging"
-                ],
-                practicals: [
-                    "Fetch users using createAsyncThunk",
-                    "Handle loading, success, error states",
-                    "Render API data from Redux store"
-                ]
-            },
-            {
-                phase: 7,
-                title: "Redux DevTools & Debugging",
-                theory: [
-                    "Redux DevTools purpose",
-                    "Action inspection",
-                    "State time travel",
-                    "Debugging async actions",
-                    "Common Redux bugs",
-                    "Why UI shows success but backend fails"
-                ],
-                practicals: [
-                    "Inspect dispatched actions in DevTools",
-                    "Debug incorrect reducer logic",
-                    "Track async API failure"
-                ]
-            },
-            {
-                phase: 8,
-                title: "Understanding & Using JWT on Frontend",
-                theory: [
-                    "Handling JWTs in React Applications",
-                    "Storing Tokens Securely (Best Practices for SPA)",
-                    "Attaching Tokens to Axios Requests",
-                    "Handling Token Expiration in Frontend"
-                ],
-                practicals: [
-                    "Decode JWT payload on frontend",
-                    "Check token expiration from payload",
-                    "Attach token to request headers"
-                ]
-            },
-            {
-                phase: 9,
-                title: "Token Storage & Security",
-                theory: [
-                    "Implementing Logout (Clearing State & Storage)",
-                    "Implementing Silent Refresh Logic"
-                ],
-                practicals: [
-                    "Store token securely",
-                    "Clear Redux and storage on logout",
-                    "Simulate refresh token flow"
-                ]
-            },
-            {
-                phase: 10,
-                title: "Axios, Interceptors & Error Handling",
-                theory: [
-                    "Axios vs fetch",
-                    "Axios instance",
-                    "Axios interceptors (Detailed)",
-                    "Axios interceptors",
-                    "Request interceptors",
-                    "Response interceptors",
-                    "Handling 401, 403, 400",
-                    "HTTP status codes",
-                    "200 vs 201",
-                    "Global error handling"
-                ],
-                practicals: [
-                    "Create axios instance",
-                    "Attach token using interceptor",
-                    "Handle 401 globally",
-                    "Auto logout on token expiry"
-                ]
-            },
-            {
-                phase: 11,
-                title: "Error Boundaries & App Stability",
-                theory: [
-                    "What is Error Boundary",
-                    "Why hooks can't catch render errors",
-                    "componentDidCatch",
-                    "Error boundary limitations",
-                    "Global error handling strategy"
-                ],
-                practicals: [
-                    "Create Error Boundary component",
-                    "Wrap crashing component",
-                    "Show fallback UI on error"
-                ]
-            },
-            {
-                phase: 12,
-                title: "Environment Variables & Configuration",
-                theory: [
-                    "Why not store secrets in code",
-                    "Using .env in frontend",
-                    "Environment based configuration",
-                    "Vite env variables",
-                    "Build-time vs runtime config"
-                ],
-                practicals: [
-                    "Move API URL to .env",
-                    "Access env variable in app",
-                    "Hide tokens from source code"
-                ]
-            },
-            {
-                phase: 13,
-                title: "Advanced Redux Patterns",
-                theory: [
-                    "Boilerplate reduction strategies",
-                    "Redux Persist",
-                    "Persist vs manual storage",
-                    "Clearing persisted state",
-                    "MakeObservable vs MakeAutoObservable",
-                    "Redux vs MobX vs Zustand",
-                    "Redux limitations"
-                ],
-                practicals: [
-                    "Persist auth state using Redux Persist",
-                    "Clear persisted state on logout"
-                ]
-            },
-            {
-                phase: 14,
-                title: "Real World Architecture & Practice",
-                theory: [
-                    "Folder structure for large apps",
-                    "Feature-based Redux structure",
-                    "Debugging production issues",
-                    "Common auth bugs",
-                    "Improving error messages",
-                    "API naming and status codes",
-                    "Frontend-backend contract"
-                ],
-                practicals: [
-                    "Auth flow with login, logout, refresh",
-                    "Protected route using Redux auth state",
-                    "Global loading and error handler"
-                ]
-            },
-            {
-                phase: 15,
-                title: "Server-Side Rendering & Next.js",
-                theory: [
-                    "CSR vs SSR vs SSG vs ISR",
-                    "Benefits of Server-Side Rendering (SEO, performance)",
-                    "When to use SSR, SSG, or CSR",
-                    "Next.js overview and installation",
-                    "App Router vs Pages Router in Next.js 13+",
-                    "File-based routing in Next.js",
-                    "Dynamic routes and catch-all routes",
-                    "Data fetching methods (getServerSideProps, getStaticProps, getStaticPaths)",
-                    "Client Components vs Server Components",
-                    "Hydration (in SSR/Next.js context)",
-                    "Incremental Static Regeneration (ISR)",
-                    "API routes in Next.js",
-                    "next/image for optimized images",
-                    "next/link for client-side navigation",
-                    "Middleware in Next.js",
-                    "Environment variables in Next.js",
-                    "Deployment to Vercel"
-                ],
-                practicals: [
-                    "Create Next.js app with App Router",
-                    "Build blog with SSG (getStaticProps + getStaticPaths)",
-                    "Fetch data server-side (getServerSideProps)",
-                    "Create API route for backend functionality",
-                    "Implement ISR for product pages",
-                    "Optimize images with next/image",
-                    "Deploy Next.js app to Vercel"
-                ]
-            },
-            {
-                phase: 16,
-                title: "State Management at Scale (Redux, Zustand)",
-                theory: [
-                    "When Context is not enough",
-                    "Redux vs Zustand vs Jotai vs Recoil",
-                    "Redux Toolkit (modern Redux)",
-                    "createSlice and configureStore",
-                    "Redux async with createAsyncThunk",
-                    "RTK Query for data fetching",
-                    "Redux DevTools for debugging",
-                    "Zustand — minimal state management",
-                    "Zustand middleware (persist, devtools)",
-                    "Jotai atoms for atomic state",
-                    "When to use global state vs local state",
-                    "State normalization patterns",
-                    "Selecting state with selectors (Reselect)",
-                    "Avoiding prop drilling at scale"
-                ],
-                practicals: [
-                    "Set up Redux Toolkit in React app",
-                    "Create slice for user authentication",
-                    "Async action with createAsyncThunk (fetch users)",
-                    "Use RTK Query for API calls",
-                    "Build shopping cart with Redux",
-                    "Set up Zustand store with persist middleware",
-                    "Compare Redux vs Zustand for same feature"
-                ]
-            },
-            {
                 phase: 17,
-                title: "Advanced React Patterns",
+                title: "The Central Warehouse: Redux Toolkit Basics",
                 theory: [
-                    "Compound Components pattern",
-                    "Render Props pattern (legacy, for understanding)",
-                    "Higher-Order Components (HOCs)",
-                    "Custom hooks patterns and best practices",
-                    "Controlled vs Uncontrolled components deep dive",
-                    "Prop getters pattern",
-                    "State reducer pattern",
-                    "Provider pattern for shared logic",
-                    "Container/Presentational component separation",
-                    "Composition vs Inheritance in React",
-                    "Inversion of Control (IoC)",
-                    "Headless component pattern",
-                    "Building reusable component libraries",
-                    "TypeScript with React patterns",
-                    "Design system considerations"
+                    "The Problem: When every station needs to know the 'Stock Levels', Prop Drilling fails",
+                    "The Solution: Redux (The Central Warehouse) - One place for all 'Global' data",
+                    "Store: The Warehouse building",
+                    "Slices: Different sections of the warehouse (Produce, Meat, Dairy)",
+                    "Actions & Reducers: The 'Delivery Slips' and 'Update Logic'"
                 ],
                 practicals: [
-                    "Build Tabs component using Compound Components",
-                    "Create Dropdown with Compound Components",
-                    "Implement HOC for authentication (withAuth)",
-                    "Build reusable custom hook (useForm, useToggle)",
-                    "Create headless UI component (no styling)",
-                    "Refactor render props to custom hooks",
-                    "Build Modal using provider pattern"
+                    "The Global Count: Move your burger counter from local state to a Redux slice",
+                    "The Feature Slice: Create a `userSlice` to manage login status globally",
+                    "The Inspector: Link Redux DevTools and see your warehouse in real-time"
                 ]
             },
             {
                 phase: 18,
-                title: "React Testing (Integration with Testing Curriculum)",
+                title: "The Delivery Service: createAsyncThunk",
                 theory: [
-                    "Why testing React components matters",
-                    "React Testing Library philosophy",
-                    "Testing component rendering and props",
-                    "Testing user interactions (click, type, submit)",
-                    "Testing async components and API calls",
-                    "Mocking dependencies",
-                    "Testing custom hooks",
-                    "Testing components with Context and Redux",
-                    "Testing forms and validation",
-                    "Testing authenticated routes",
-                    "Integration tests for complete flows",
-                    "Snapshot testing for UI",
-                    "Accessibility testing with jest-axe",
-                    "Test coverage goals"
+                    "Async Logic: Fetching data from the warehouse's external suppliers",
+                    "Thunks: The 'Delivery Drivers' who wait for the response",
+                    "Pending, Fulfilled, Rejected: Tracking the truck (On the way, Arrived, Crahed)",
+                    "ExtraReducers: How a slice listens to the delivery driver's report",
+                    "Loading States: Showing a 'Loading...' spinner while the truck is driving"
                 ],
                 practicals: [
-                    "Test button component with click handler",
-                    "Test form submission with validation",
-                    "Test async component with mocked API",
-                    "Test custom hook (useLocalStorage)",
-                    "Test component with Context provider",
-                    "Test protected route logic",
-                    "Integration test: login flow → dashboard",
-                    "Run accessibility tests with jest-axe"
+                    "The API Menu: Fetch a list of products using `createAsyncThunk`",
+                    "The Loading Spinner: Show a spinner only while the data is fetching",
+                    "The Error Handling: Show an alert if the supplier's API is down"
+                ]
+            },
+            {
+                phase: 19,
+                title: "The Standardized Filter: Axios Interceptors",
+                theory: [
+                    "Axios: A more powerful delivery truck than standard `fetch`",
+                    "Interceptors: The 'Security Guard' who checks every truck leaving the warehouse",
+                    "Request Interceptor: Automatically adding the 'Security Badge' (Token) to every request",
+                    "Response Interceptor: Automatically handling errors (like a 401 'Expired Badge')",
+                    "Instances: Creating a specialized truck for a specific supplier"
+                ],
+                practicals: [
+                    "The Axios Global: Set up a base URL so you don't type it every time",
+                    "The Silent Security: Use an interceptor to add an `Authorization` header automatically",
+                    "The Auto-Logout: Use a response interceptor to log out the user if the token expires"
+                ]
+            },
+            {
+                phase: 20,
+                title: "The ID Badge: JWT & Authentication",
+                theory: [
+                    "Authentication: Proving you are an employee (The Login)",
+                    "JWT (JSON Web Token): The digital ID Badge",
+                    "Payload: The information printed on the badge (Name, Role, Expiry)",
+                    "Storage: Where to keep the badge (Local Storage vs Cookies)",
+                    "Security: Why we never store the 'Kitchen Key' (Password) on the frontend"
+                ],
+                practicals: [
+                    "The Login Flow: Build a page that sends credentials and saves the token",
+                    "The Persistent ID: Make sure the user stays logged in even after refreshing the page",
+                    "The Token Decoder: Parse the JWT to display the user's name in the header"
+                ]
+            },
+            {
+                phase: 21,
+                title: "Locked Doors: Protected Routing",
+                theory: [
+                    "Routing: Navigating different floors of the restaurant (Home, Menu, Admin)",
+                    "Protected Routes: Lock the 'Admin Office' so only employees (Logged in) can enter",
+                    "The Guard Component: A component that checks for an ID Badge before letting you in",
+                    "Redirects: Sending uninvited guests back to the Login page",
+                    "Nested Routes: Creating a 'Staff Only' section with multiple sub-rooms"
+                ],
+                practicals: [
+                    "The Guard: Create a `ProtectedRoute` component that wraps private pages",
+                    "The Redirect: Test your app by trying to go to `/dashboard` without a token",
+                    "The Sidebar: Create a navigation menu that changes based on whether you're logged in"
+                ]
+            },
+            {
+                phase: 22,
+                title: "The Fire Extinguisher: Error Boundaries",
+                theory: [
+                    "Runtime Errors: When a chef accidentally drops a plate (App crashes)",
+                    "Error Boundaries: The Fire Extinguisher that stops the flame from spreading",
+                    "Fallback UI: Showing a 'Something went wrong' message instead of a white screen",
+                    "Lifecycle: `componentDidCatch` (The manager's report on the fire)",
+                    "Global Errors: Catching failures in the whole restaurant at once"
+                ],
+                practicals: [
+                    "The Crash Test: Create a button that intentionally throws an error",
+                    "The Boundary: Wrap the component in an Error Boundary and show a custom message",
+                    "The Reset: Add a 'Try Again' button to your error page"
+                ]
+            },
+            {
+                phase: 23,
+                title: "Pre-Packaged Meals: Introduction to Next.js",
+                theory: [
+                    "React vs Next.js: Building a kitchen vs Buying a fully-equipped restaurant",
+                    "Server Components: Cooking in the back-office (Faster for the customer)",
+                    "File-Based Routing: Every folder is a new room automatically",
+                    "SEO: Making sure customers can find your restaurant on Google",
+                    "Deployment: Putting your restaurant on the internet (Vercel)"
+                ],
+                practicals: [
+                    "The Next Move: Run `npx create-next-app` and explore the folder structure",
+                    "The Server Fetch: Fetch data on the server and see it appear instantly",
+                    "The Route: Create a new page just by making a new folder"
+                ]
+            },
+            {
+                phase: 24,
+                title: "The Health Inspector: React Testing",
+                theory: [
+                    "Testing: Checking if the food is safe before serving (Quality Assurance)",
+                    "Vitest & RTL: The 'Inspector Tools'",
+                    "Unit Tests: Checking one single ingredient (Is the button blue?)",
+                    "Integration Tests: Checking a whole dish (Does the form submit?)",
+                    "Mocking: Using 'Plastic Food' for testing so you don't waste real ingredients"
+                ],
+                practicals: [
+                    "The First Test: Write a test to check if a component renders its title",
+                    "The User Event: Write a test that clicks a button and checks if state changes",
+                    "The API Mock: Test a component's loading state without actually calling the API"
+                ]
+            },
+            {
+                phase: 25,
+                title: "The Executive Chef: Career & Interview Prep",
+                theory: [
+                    "Portfolio: Showing off your best dishes to get a job",
+                    "Technical Interviews: Solving 'Cooking Puzzles' in front of a manager",
+                    "System Design: Explaining how you would build a 5-star restaurant chain",
+                    "Soft Skills: How to talk to your team and the customers",
+                    "Continuous Learning: Keeping up with new kitchen tools (React 19+)"
+                ],
+                practicals: [
+                    "The Portfolio: Add your 'Axiom Cafe' project to a live URL (Vercel/Netlify)",
+                    "The Mock Interview: Answer 5 common React interview questions using analogies",
+                    "The Resume: Highlight your 'Kitchen Tools' (Hooks, Redux, Next.js)"
+                ]
+            }
+        ]
+    },
+    "react-questions": {
+        fileName: "reactjs-questions",
+        description: "React Question Bank",
+        category: "React",
+        subDescription: "Master 50+ real-world React interview questions with analogy-driven explanations.",
+        phases: [
+            {
+                phase: 1,
+                title: "The Entrance Exam: Fundamentals",
+                theory: [
+                    "What is React? (The Restaurant Manager)",
+                    "Virtual DOM: Why update a blueprint instead of the whole wall?",
+                    "JSX: Why write recipes in JavaScript?",
+                    "Components: The importance of segregated cooking stations",
+                    "Props vs State: Order Slips vs Chef's Memory"
+                ],
+                practicals: [
+                    "Explain the 'Restaurant' analogy to a partner",
+                    "Map 5 technical terms to 5 kitchen items"
+                ]
+            },
+            {
+                phase: 2,
+                title: "The Advanced Exam: Hooks & State",
+                theory: [
+                    "useState: Why does the chef need a digital scoreboard?",
+                    "useEffect: How to handle 'Side Hustles' without burning the food",
+                    "useContext: When to use the Loudspeaker vs passing slips",
+                    "useRef: The Secret Drawer that stays same between shifts",
+                    "useReducer: When the order form gets too complex for a scoreboard"
+                ],
+                practicals: [
+                    "Explain the difference between useEffect and useLayoutEffect using a kitchen example",
+                    "Demonstrate 'Prop Drilling' with a physical object vs 'Context' with a shout"
+                ]
+            },
+            {
+                phase: 3,
+                title: "The Executive Exam: Industry Patterns",
+                theory: [
+                    "Redux: The Central Warehouse vs Station Storage",
+                    "Axios Interceptors: The Security Guard at the Warehouse gate",
+                    "JWT: Why keep the ID Badge in the pocket (LocalStorage)?",
+                    "Protected Routes: Locking the Admin Office",
+                    "Compound Components: Making a 'Combo Meal' where ingredients work together",
+                    "HOCs (Legacy): Giving every chef a standard 'Uniform' (The Uniform Hook/Wrapper)",
+                    "Render Props (Legacy): Letting the customer bring their own 'Toppings' to the station"
+                ],
+                practicals: [
+                    "Explain the Redux flow using a delivery truck analogy",
+                    "Draw a diagram of how a JWT 'Badge' is used to get 'Locked' ingredients",
+                    "Mock explain HOCs vs Hooks to a Senior Manager"
                 ]
             }
         ]

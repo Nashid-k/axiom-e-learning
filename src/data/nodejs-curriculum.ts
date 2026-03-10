@@ -1,319 +1,174 @@
 export const NODEJS_CURRICULUM = {
-    "nodejs": {
-        fileName: "nodejs",
-        description: "Node.js Backend",
+    "nodejs-1": {
+        fileName: "nodejs-1",
+        description: "The Engine Room (Essentials)",
         category: "NodeJS",
-        subDescription: "Build scalable, high-performance server-side applications and APIs.",
+        subDescription: "Master the power source. Learn how the JS Engine runs on the server and how to use the 'Factory Tool Box' (Core Modules).",
         phases: [
             {
                 phase: 1,
-                title: "Node.js Essentials",
+                title: "Starting the Engine: Intro & Event Loop",
                 theory: [
-                    {
-                        title: "Node.js: JavaScript runtime built on V8 engine",
-                        videos: [
-                            {
-                                url: "https://www.youtube.com/watch?v=LAUi8pPlcUM",
-                                title: "Node.js Tutorial for Beginners: Intro & Install",
-                                duration: "25:35",
-                                channel: "Codevolution"
-                            }
-                        ]
-                    },
-                    "Single-threaded, Event-driven, Non-blocking I/O architecture",
-                    "Global objects (global, process, Buffer)",
-                    "Module wrapper function (__dirname, __filename, exports)",
-                    "REPL (Read-Eval-Print Loop)",
-                    "Node.js vs Browser JavaScript (Key differences)",
-                    "Framework vs Library"
+                    "What is Node.js? (The Factory Engine vs The Browser Kitchen)",
+                    "V8 Engine: The high-octane fuel for your factory",
+                    "The Event Loop: The single conveyor belt that never stops",
+                    "Non-blocking I/O: Handling massive shipments without stopping the belt",
+                    "Process & Environment: Reading the factory's dashboard (process.env)"
                 ],
                 practicals: [
-                    "Access environment info via process.env and process.argv",
-                    "Build a simple CLI script that echoes process.argv arguments in formatted output",
-                    "Create a small utility that reads a .env file and logs a sanitized config object (hiding secrets)",
-                    "Use the REPL to experiment with core modules (fs, path, os) and document findings"
-                ],
-                games: []
+                    "Install the Engine on your machine",
+                    "Write a script that reads and logs factory settings (environment variables)"
+                ]
             },
             {
                 phase: 2,
-                title: "Node.js Tooling & Package Management",
+                title: "The Tool Box: Core Modules",
                 theory: [
-                    "NPM – what it is and why it exists",
-                    "NPX – purpose and difference from NPM",
-                    "NVM – managing multiple Node versions",
-                    "package.json – structure and important fields",
-                    "package-lock.json – why it exists",
-                    "Dependencies vs DevDependencies",
-                    ".npmrc – configuration",
-                    ".env – environment variables",
-                    ".gitignore – ignoring files"
+                    "NPM: The massive warehouse of pre-made tools",
+                    "File System (FS): The Factory Wrench (Read/Write/Delete)",
+                    "Path: The Factory Ruler (Measuring file addresses)",
+                    "OS & Utils: Checking engine temperature and health",
+                    "HTTP Module: Building a basic reception desk at the factory gate"
                 ],
                 practicals: [
-                    "Initialize a project using npm init",
-                    "Install a dependency and a devDependency",
-                    "Use npx to run a package without installing",
-                    "Create .env file and access variables using process.env",
-                    "Add node_modules to .gitignore",
-                    "Mini project: scaffold a small Node app with npm scripts for dev, build, and lint",
-                    "Mini project: create a CLI `info` command that prints Node version, OS info, and selected env vars"
+                    "Build a 'Log Recorder' that writes factory events to a file",
+                    "Create a basic server that greets visitors at the gate"
+                ]
+            }
+        ]
+    },
+    "nodejs-2": {
+        fileName: "nodejs-2",
+        description: "The Assembly Line (Express.js)",
+        category: "NodeJS",
+        subDescription: "Build the tracks. Learn how to route requests, filter goods with middleware, and deliver finished products.",
+        phases: [
+            {
+                phase: 1,
+                title: "Building the Tracks: Express Routing",
+                theory: [
+                    "Why Express? Building specialized tracks for different products",
+                    "Routes (GET, POST): Defining where products go",
+                    "Request & Response: The raw materials in and finished goods out",
+                    "Dynamic Routing: Handling unique order IDs on the track"
                 ],
-                games: [
-                    {
-                        title: "WarriorJS",
-                        url: "https://warriorjs.com/",
-                        description: "Code your warrior through levels using JavaScript to delete enemies and rescue captives."
-                    }
+                practicals: [
+                    "Set up an Express assembly line",
+                    "Build a 'Product Catalog' with dynamic routes for each item"
+                ]
+            },
+            {
+                phase: 2,
+                title: "The Quality Filter: Middleware",
+                theory: [
+                    "What is Middleware? The checkpoints on the conveyor belt",
+                    "Global vs Local Middleware: Constant checks vs specialized inspections",
+                    "Custom Middleware: Building your own inspection machine",
+                    "Error Handling: Dealing with 'Broken Products' on the belt"
+                ],
+                practicals: [
+                    "Build a 'Time-Stamper' middleware that logs every request time",
+                    "Create a security guard (Auth Middleware) that checks for ID badges"
                 ]
             },
             {
                 phase: 3,
-                title: "Core Modules",
+                title: "Packaging the Goods: Controllers & Models",
                 theory: [
-                    "What are core modules",
-                    "fs operation (fs.stat, fs.link, fs.unlink)",
-                    {
-                        title: "FS module",
-                        videos: [
-                            {
-                                url: "https://www.youtube.com/watch?v=EJ3KeZf-p9E",
-                                title: "Node.js Tutorial - 12 - fs Module",
-                                duration: "05:40",
-                                channel: "Codevolution"
-                            }
-                        ]
-                    },
-                    "Path module (join, resolve, basename)",
-                    "OS module (platform, cpus, freemem)",
-                    "URL module (parse, format, resolve)",
-                    "Util module",
-                    "Zlib module"
+                    "MVC Pattern: Organizing the factory into specialized departments",
+                    "Controllers: The department managers who handle logic",
+                    "Models: The blueprints for the data",
+                    "Views: How the customer sees the final product"
                 ],
                 practicals: [
-                    "Read and write file using fs",
-                    "Rename and delete a file",
-                    "Check file stats using fs.stat",
-                    "Use path.join, path.resolve, path.basename",
-                    "Check OS platform, CPU info, free memory",
-                    "Compress and decompress a file using zlib",
-                    "Mini project: build a log rotation script that moves large log files into a compressed archive with timestamps",
-                    "Mini project: create a small backup utility that zips a folder and writes a manifest file with checksums"
+                    "Refactor your assembly line into a clean MVC structure",
+                    "Build a 'Staff Directory' using the MVC blueprint"
+                ]
+            }
+        ]
+    },
+    "nodejs-3": {
+        fileName: "nodejs-3",
+        description: "The Factory Network (Advanced)",
+        category: "NodeJS",
+        subDescription: "Scale up. Master high-volume shipments (Streams), heavy machinery (Workers), and factory security.",
+        phases: [
+            {
+                phase: 1,
+                title: "High-Volume Shipping: Streams & Buffers",
+                theory: [
+                    "Buffers: Small storage bins for raw data",
+                    "Streams: The firehose for massive datasets",
+                    "Piping: Connecting one machine directly to another",
+                    "Transform Streams: Modifying products as they pass through the pipe"
+                ],
+                practicals: [
+                    "Stream a massive 'Inventory List' without crashing the engine",
+                    "Pipe a file through a 'Compressor' (Zlib) to save space"
                 ]
             },
             {
-                phase: 4,
-                title: "HTTP & Native Server",
+                phase: 2,
+                title: "Heavy Machinery: Workers & Clusters",
                 theory: [
-                    "Create a server using http",
-                    "Request and Response lifecycle objects",
-                    "Handling HTTP status codes in Node",
-                    "Routing requests manually",
-                    "Sending different content types"
+                    "Worker Threads: Hiring extra hands for heavy math tasks",
+                    "Cluster Module: Running multiple engines for massive load",
+                    "Child Processes: Spawning specialized mini-factories",
+                    "EventEmitter: The factory's internal intercom system"
                 ],
                 practicals: [
-                    "Create HTTP server using http module",
-                    "Send plain text response",
-                    "Handle basic routing with if conditions",
-                    "Send different status codes (200, 403, 404)",
-                    "Read request method and URL",
-                    "Mini project: implement a small REST-style API for notes using only the http module and in-memory storage",
-                    "Add basic logging middleware to your native server that logs method, URL, and response status"
+                    "Offload a 'Heavy Calculation' task to a Worker Thread",
+                    "Build an intercom system that notifies the manager when an 'Error' occurs"
                 ]
             },
             {
-                phase: 5,
-                title: "Express.js Basics",
+                phase: 3,
+                title: "Factory Security & Testing",
                 theory: [
-                    "Why Express is needed",
-                    "Express vs http module",
-                    "Creating Express server",
-                    "app.use, app.get, app.post",
-                    "express.json and express.urlencoded",
-                    "bodyparser",
-                    "Serving static files",
-                    "View engines and templates",
-                    "Partials & Template Inheritance"
+                    "Bcrypt: Shredding sensitive blueprints (Password Hashing)",
+                    "JWT: The digital staff badge for secure areas",
+                    "Passport: The global security firm for factory auth",
+                    "Jest/Supertest: The Quality Assurance (QA) team"
                 ],
                 practicals: [
-                    "Create Express server",
-                    "Create GET and POST routes",
-                    "Parse JSON request body",
-                    "Serve static HTML file",
-                    "Render template using view engine",
-                    "Mini project: build a simple blog API with CRUD endpoints for posts and in-memory data",
-                    "Mini project: create a feedback form page that posts data to an Express route and renders a thank-you page"
+                    "Secure your factory routes with digital ID badges (JWT)",
+                    "Write a QA test (Jest) to ensure the assembly line never breaks"
+                ]
+            }
+        ]
+    },
+    "nodejs-questions": {
+        fileName: "nodejs-questions",
+        description: "Node.js Interview Inspector",
+        category: "NodeJS",
+        subDescription: "Master 50+ questions about the Factory Engine. Learn to explain the 'Conveyor Belt' and 'Loading Dock' to recruiters.",
+        phases: [
+            {
+                phase: 1,
+                title: "The Entry-Level Inspection",
+                theory: [
+                    "Node.js vs Browser (The Engine Room vs The Kitchen)",
+                    "The Event Loop (The Conveyor Belt metaphor)",
+                    "CommonJS vs ESM (Different tool organization standards)",
+                    "Error-first callbacks (The old factory protocol)"
+                ],
+                practicals: [
+                    "Explain the 'Single Threaded' nature of Node using a 'Single Chef' analogy",
+                    "Compare 'Sync' vs 'Async' using 'Waiting in line' vs 'Being called later'"
                 ]
             },
             {
-                phase: 6,
-                title: "Express Middleware & Routing",
+                phase: 2,
+                title: "The Senior Manager Inspection",
                 theory: [
-                    "What is middleware",
-                    "Types of middleware",
-                    "Custom middleware creation",
-                    "app.set and app.locals",
-                    "Dynamic routing",
-                    "Query parameters",
-                    "Path parameters",
-                    "req.params vs req.query",
-                    "Query vs Params",
-                    "Router Chaining"
+                    "Stream backpressure (When the belt is moving too fast)",
+                    "Memory Leaks (Tools forgotten on the factory floor)",
+                    "Microtasks vs Macrotasks (High priority vs Normal orders)",
+                    "Scaling strategies (Horizontal vs Vertical)"
                 ],
                 practicals: [
-                    "Create middleware to log request time",
-                    "Block POST requests using middleware",
-                    "Create dynamic routes",
-                    "Read query and path params",
-                    "Chain routes using router",
-                    "Mini project: implement an Express router for /products with list, detail, search, and filter by query params",
-                    "Add a centralized error-handling middleware that formats all API errors consistently"
-                ]
-            },
-            {
-                phase: 7,
-                title: "HTTP Methods & Headers",
-                theory: [
-                    "Implementing PUT and PATCH logic",
-                    "Handling custom headers",
-                    "Handling OPTIONS/Preflight requests in Node",
-                    "Setting status codes (201, 204) programmatically"
-                ],
-                practicals: [
-                    "Create PUT and PATCH routes",
-                    "Send custom headers in response",
-                    "Handle OPTIONS request",
-                    "Return 201 vs 204 status",
-                    "Validate request method",
-                    "Mini project: design a RESTful API for a todo resource implementing GET/POST/PUT/PATCH/DELETE with proper status codes and headers"
-                ]
-            },
-            {
-                phase: 8,
-                title: "Sessions, Cookies & Async Patterns",
-                theory: [
-                    "Cookies, Sessions, Session vs Cookies",
-                    "express-session middleware",
-                    "Cookie flags and expiry",
-                    "maxAge vs Expires",
-                    "Cookie vs sessionStorage vs localStorage",
-                    "Browser Cache & Storage in detail",
-                    "Disadvantages of Cookies",
-                    "The Node.js Event Loop",
-                    "EventEmitter Class & Observer Pattern",
-                    "process.nextTick vs setImmediate vs setTimeout",
-                    "Promisify (util.promisify) & Callback-to-Promise",
-                    "Worker Threads for CPU-intensive tasks",
-                    "Concurrency vs Parallelism"
-                ],
-                practicals: [
-                    "Set and read cookies using express-session",
-                    "Compare cookie and session behavior",
-                    "Build custom Event Logger using EventEmitter",
-                    "Observe execution order: nextTick vs setImmediate vs Promise",
-                    "Convert legacy callback API to Promise using promisify",
-                    "Offload heavy calculation to Worker Thread",
-                    "Mini project: implement a simple login/session system using express-session and cookies for a small dashboard",
-                    "Mini project: create an event-driven notification system where different modules subscribe to and react to events (e.g., USER_REGISTERED, ORDER_PLACED)"
-                ],
-                games: [
-                    {
-                        title: "Node.js Event Loop Visualizer",
-                        url: "https://www.jsv9000.app/",
-                        description: "Interactive visualization of the JavaScript Event Loop, Task Queue, and Microtask Queue."
-                    }
-                ]
-            },
-            {
-                phase: 9,
-                title: "Streams, Buffers & Files",
-                theory: [
-                    "Buffer",
-                    "Buffer Class",
-                    "Streams",
-                    "Types of streams",
-                    "Duplex vs Transform streams",
-                    "Piping"
-                ],
-                practicals: [
-                    "Read file using stream",
-                    "Write file using stream",
-                    "Pipe read stream to write stream",
-                    "Transform stream to modify data",
-                    "Mini project: build a CSV-to-JSON converter using readable/writable/transform streams",
-                    "Mini project: implement a streaming file upload proxy that writes incoming data to disk while reporting progress"
-                ],
-                games: []
-            },
-            {
-                phase: 10,
-                title: "Backend Security Implementation",
-                theory: [
-                    "Implementing Authentication (Passport/Custom strategies)",
-                    "Implementing RBAC Middleware",
-                    "Using `cors` middleware",
-                    "Setting Security Headers with `helmet`",
-                    "Implementing CSRF Protection (csurf)",
-                    "Using `bcrypt` for password hashing",
-                    "Implementing Rate Limiting (express-rate-limit)"
-                ],
-                practicals: [
-                    "Enable CORS in Express",
-                    "Generate and verify JWT",
-                    "Hash password using bcrypt",
-                    "Apply rate limiting middleware",
-                    "Mini project: build a full auth flow with signup/login/logout, hashed passwords, and JWT-based protected routes",
-                    "Mini project: implement role-based access control (admin/user) for a small admin panel using middleware"
-                ]
-            },
-            {
-                phase: 11,
-                title: "Advanced Node.js & Scalability",
-                theory: [
-                    "Node.js Module Resolution (CJS vs ESM Interop)",
-                    "Environment variables and command-line arguments",
-                    "Worker threads for parallel processing",
-                    "Cluster module for multi-core utilization",
-                    "Child processes (spawn, fork, exec)",
-                    "Fork vs Spawn",
-                    "exec vs execFile",
-                    "Exit Codes in Node.js",
-                    "WebSockets for real-time communication",
-                    "Webhooks implementation",
-                    "MVC architecture pattern",
-                    "Reactor Pattern",
-                    "ODM (Object-Document Mapper)",
-                    "Microtask Queue vs Macrotask Queue (Detailed)",
-                    "Thread Pool & Starvation",
-                    "Content Negotiation & API Versioning"
-                ],
-                practicals: [
-                    "Use CommonJS and ESM modules",
-                    "Create worker thread for CPU-intensive task",
-                    "Fork child process",
-                    "Implement basic WebSocket server",
-                    "Structure project using MVC pattern",
-                    "Mini project: build a real-time chat server with WebSockets and a simple CLI or browser client",
-                    "Mini project: create a background job processor using worker threads or child processes to handle CPU-heavy tasks off the main server"
-                ]
-            },
-            {
-                phase: 12,
-                title: "Testing & Quality Assurance",
-                theory: [
-                    "Setting up Jest for Node.js",
-                    "Supertest for API endpoint testing",
-                    "Mocking Dependencies in Node (jest.mock)",
-                    "Testing Database Interactions (In-memory MongoDB)",
-                    "Code Coverage Reports"
-                ],
-                practicals: [
-                    "Install and configure Jest",
-                    "Write a simple unit test for a helper function",
-                    "Setup Supertest with an Express app",
-                    "Write an integration test for a generic API route",
-                    "Mock a database response in a controller test",
-                    "Generate and analyze a code coverage report",
-                    "Refactor legacy code safely using tests"
+                    "Identify a 'Memory Leak' in a simulation",
+                    "Sketch a 'High-Availability Factory' architecture"
                 ]
             }
         ]

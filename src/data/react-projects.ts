@@ -13,382 +13,119 @@ export const REACT_PROJECTS = {
         {
             id: 1,
             reactjsLevel: "reactjs-1",
-            name: "Static Profile Card",
+            name: "The Staff Badge (Profile Card)",
             difficulty: "Very Easy",
-            features: ["Display static data", "Reusable component"],
+            features: ["Display chef name and role", "Show a profile picture", "Reusable badge component"],
             hooksUsed: [],
-            concepts: ["JSX", "Props", "Functional components"]
+            concepts: ["The Recipe (JSX)", "The Order Slip (Props)", "Cooking Stations (Components)"]
         },
         {
             id: 2,
             reactjsLevel: "reactjs-1",
-            name: "Basic Counter",
+            name: "The Burger Counter",
             difficulty: "Easy",
-            features: ["Increment", "Decrement", "Reset"],
+            features: ["Increment burger count", "Decrement count", "Reset counter"],
             hooksUsed: ["useState"],
-            concepts: ["State", "Re-rendering", "Event handling"]
+            concepts: ["The Kitchen Memory (useState)", "Updating the Scoreboard (State)", "Handling Orders (Events)"]
         },
         {
             id: 3,
             reactjsLevel: "reactjs-1",
-            name: "Theme Toggle (Local State)",
+            name: "Kitchen Light Switch (Theme Toggle)",
             difficulty: "Easy",
-            features: ["Light/Dark toggle"],
+            features: ["Day/Night mode toggle", "Change background color"],
             hooksUsed: ["useState"],
-            concepts: ["Conditional rendering"]
+            concepts: ["Conditional Cooking (Rendering)", "True/False state"]
         },
         {
             id: 4,
             reactjsLevel: "reactjs-1",
-            name: "Todo List (Local State)",
+            name: "The Waiter's Order List (Todo)",
             difficulty: "Easy",
-            features: ["Add", "Delete", "Render list"],
+            features: ["Add new orders", "Remove completed orders", "List all current tasks"],
             hooksUsed: ["useState"],
-            concepts: ["Lists & keys", "Immutability"]
+            concepts: ["Managing the Order Tray (Arrays in State)", "Cleaning the Tray (Filtering)"]
         },
         {
             id: 5,
             reactjsLevel: "reactjs-1",
-            name: "Controlled Form",
+            name: "The Customer Feedback Form",
             difficulty: "Easy",
-            features: ["Input handling", "Live preview"],
+            features: ["Live typing preview", "Form validation on submit"],
             hooksUsed: ["useState"],
-            concepts: ["Controlled components", "Synthetic events"]
+            concepts: ["The Controlled Oven (Controlled Components)", "Capturing Guest Info"]
         },
         {
             id: 6,
-            reactjsLevel: "reactjs-1",
-            name: "Conditional Rendering App",
-            difficulty: "Easy",
-            features: ["Login/Logout UI"],
-            hooksUsed: ["useState"],
-            concepts: ["Conditional rendering"]
+            reactjsLevel: "reactjs-2",
+            name: "The Kitchen Loudspeaker (Theme Context)",
+            difficulty: "Medium",
+            features: ["Toggle theme globally across all stations"],
+            hooksUsed: ["useState", "useContext"],
+            concepts: ["The Loudspeaker (Context API)", "Global Kitchen Settings"]
         },
         {
             id: 7,
-            reactjsLevel: "reactjs-1",
-            name: "Simple List Filter",
-            difficulty: "Easy",
-            features: ["Filter list using input"],
-            hooksUsed: ["useState"],
-            concepts: ["Map", "Filter"]
+            reactjsLevel: "reactjs-2",
+            name: "The Auto-Focus Reservation Book",
+            difficulty: "Medium",
+            features: ["Form field focuses automatically on load"],
+            hooksUsed: ["useRef", "useEffect"],
+            concepts: ["The Secret Drawer (useRef)", "Side Hustles (useEffect)"]
         },
         {
             id: 8,
             reactjsLevel: "reactjs-2",
-            name: "Theme Toggle using Context API",
+            name: "The Smart Bill Calculator",
             difficulty: "Medium",
-            features: ["Global theme state"],
-            hooksUsed: ["useState", "useContext"],
-            concepts: ["Context API", "Avoid prop drilling"]
+            features: ["Fast filtering of large menu prices using memoization"],
+            hooksUsed: ["useMemo", "useCallback"],
+            concepts: ["Sharp Kitchen Tools (Performance)", "Avoiding Over-cooking"]
         },
         {
             id: 9,
             reactjsLevel: "reactjs-2",
-            name: "Auth UI with useEffect",
+            name: "The Professional Order Form (useReducer)",
             difficulty: "Medium",
-            features: ["Login persistence (UI only)"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Mount/Unmount", "Side effects"]
+            features: ["Manage complex order state with multiple items and subtotals"],
+            hooksUsed: ["useReducer"],
+            concepts: ["The Complex Order Form (useReducer)", "Advanced Manager Logic"]
         },
         {
             id: 10,
             reactjsLevel: "reactjs-2",
-            name: "Search with Debouncing",
+            name: "The Recipe Fetcher (Custom Hook)",
             difficulty: "Medium",
-            features: ["Debounced search"],
-            hooksUsed: ["useState", "useEffect", "useRef"],
-            concepts: ["Debouncing", "Performance"]
+            features: ["Create a reusable hook to fetch food data from an API"],
+            hooksUsed: ["useState", "useEffect"],
+            concepts: ["Custom Equipment (Custom Hooks)", "The Delivery Truck (API)"]
         },
         {
             id: 11,
-            reactjsLevel: "reactjs-2",
-            name: "Optimized Counter Dashboard",
-            difficulty: "Medium",
-            features: ["Multiple counters"],
-            hooksUsed: ["useMemo", "useCallback", "React.memo"],
-            concepts: ["Memoization", "Pure components"]
+            reactjsLevel: "reactjs-3",
+            name: "The Central Warehouse Dashboard (Redux)",
+            difficulty: "Hard",
+            features: ["Manage restaurant inventory globally with Redux Toolkit"],
+            hooksUsed: ["useSelector", "useDispatch"],
+            concepts: ["The Central Warehouse (Redux)", "Inventory Management"]
         },
         {
             id: 12,
-            reactjsLevel: "reactjs-2",
-            name: "Modal using Portal",
-            difficulty: "Medium",
-            features: ["Modal outside root"],
-            hooksUsed: ["useState"],
-            concepts: ["React portals"]
+            reactjsLevel: "reactjs-3",
+            name: "Secure Staff Portal (Auth + JWT)",
+            difficulty: "Hard",
+            features: ["Login with ID Badge (JWT)", "Locked routes for Admins only"],
+            hooksUsed: ["useEffect", "useSelector"],
+            concepts: ["The ID Badge (JWT)", "Locked Doors (Protected Routes)", "Security Guards (Interceptors)"]
         },
         {
             id: 13,
-            reactjsLevel: "reactjs-2",
-            name: "Custom Hook Counter",
-            difficulty: "Medium",
-            features: ["Reusable logic"],
-            hooksUsed: ["useState"],
-            concepts: ["Custom hooks"]
-        },
-        {
-            id: 14,
-            reactjsLevel: "reactjs-2",
-            name: "Sibling Communication via Context",
-            difficulty: "Medium",
-            features: ["Shared state"],
-            hooksUsed: ["useContext"],
-            concepts: ["State sharing"]
-        },
-        {
-            id: 15,
             reactjsLevel: "reactjs-3",
-            name: "Redux Counter",
-            difficulty: "Medium",
-            features: ["Global counter"],
-            hooksUsed: ["useSelector", "useDispatch"],
-            concepts: ["Redux flow"]
-        },
-        {
-            id: 16,
-            reactjsLevel: "reactjs-3",
-            name: "Todo App using Redux Toolkit",
-            difficulty: "Medium",
-            features: ["Add/Delete todos"],
-            hooksUsed: ["useSelector", "useDispatch"],
-            concepts: ["createSlice", "configureStore"]
-        },
-        {
-            id: 17,
-            reactjsLevel: "reactjs-3",
-            name: "Async API Fetch App",
+            name: "The Global Food App (Next.js Intro)",
             difficulty: "Hard",
-            features: ["API fetch", "Loader", "Error UI"],
-            hooksUsed: ["useSelector", "useDispatch"],
-            concepts: ["createAsyncThunk", "extraReducers"]
-        },
-        {
-            id: 18,
-            reactjsLevel: "reactjs-3",
-            name: "JWT Auth UI (Redux)",
-            difficulty: "Hard",
-            features: ["Login", "Logout", "Token store"],
-            hooksUsed: ["useEffect"],
-            concepts: ["JWT flow", "Access vs Refresh token"]
-        },
-        {
-            id: 19,
-            reactjsLevel: "reactjs-3",
-            name: "Axios Interceptor App",
-            difficulty: "Hard",
-            features: ["Attach token to requests"],
+            features: ["Build a multi-page restaurant site with SEO and fast loading"],
             hooksUsed: [],
-            concepts: ["Axios interceptors"]
-        },
-        {
-            id: 20,
-            reactjsLevel: "reactjs-3",
-            name: "Error Boundary Demo",
-            difficulty: "Hard",
-            features: ["Fallback UI"],
-            hooksUsed: [],
-            concepts: ["Error boundaries"]
-        },
-        {
-            id: 21,
-            reactjsLevel: "reactjs-2",
-            name: "User List with Pagination",
-            difficulty: "Medium",
-            features: ["Fetch users from API", "Page navigation", "Loading states"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Pagination logic", "API fetching", "JSONPlaceholder API"],
-            apiSource: "https://jsonplaceholder.typicode.com/users"
-        },
-        {
-            id: 22,
-            reactjsLevel: "reactjs-2",
-            name: "Posts Browser",
-            difficulty: "Medium",
-            features: ["List posts", "Load more button", "Post details modal"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Infinite scroll alternative", "Modal pattern"],
-            apiSource: "https://jsonplaceholder.typicode.com/posts"
-        },
-        {
-            id: 23,
-            reactjsLevel: "reactjs-2",
-            name: "Photo Gallery with Lazy Loading",
-            difficulty: "Medium",
-            features: ["Grid layout", "Pagination", "Image preview"],
-            hooksUsed: ["useState", "useEffect", "useRef"],
-            concepts: ["Lazy loading images", "Grid layout"],
-            apiSource: "https://jsonplaceholder.typicode.com/photos"
-        },
-        {
-            id: 24,
-            reactjsLevel: "reactjs-2",
-            name: "Comments Viewer",
-            difficulty: "Medium",
-            features: ["Nested comments UI", "Filter by post", "Pagination"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Nested data display", "Filtering"],
-            apiSource: "https://jsonplaceholder.typicode.com/comments"
-        },
-        {
-            id: 25,
-            reactjsLevel: "reactjs-2",
-            name: "Pokemon Explorer",
-            difficulty: "Medium",
-            features: ["Pokemon list", "Search", "Pagination", "Detail view"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["External API integration", "Data transformation"],
-            apiSource: "https://pokeapi.co/api/v2/pokemon"
-        },
-        {
-            id: 26,
-            reactjsLevel: "reactjs-2",
-            name: "Rick & Morty Characters",
-            difficulty: "Medium",
-            features: ["Character grid", "Filter by status", "Pagination"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Query parameters", "Filter + Pagination"],
-            apiSource: "https://rickandmortyapi.com/api/character"
-        },
-        {
-            id: 27,
-            reactjsLevel: "reactjs-2",
-            name: "Country Info App",
-            difficulty: "Medium",
-            features: ["Country list", "Search by name", "Region filter"],
-            hooksUsed: ["useState", "useEffect", "useMemo"],
-            concepts: ["Search + Filter combined", "Memoized filtering"],
-            apiSource: "https://restcountries.com/v3.1/all"
-        },
-        {
-            id: 28,
-            reactjsLevel: "reactjs-2",
-            name: "Random User Directory",
-            difficulty: "Medium",
-            features: ["User cards", "Load more", "Gender filter"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Randomized data", "Accumulating data"],
-            apiSource: "https://randomuser.me/api/?results=10"
-        },
-        {
-            id: 29,
-            reactjsLevel: "reactjs-2",
-            name: "GitHub Repos Browser",
-            difficulty: "Medium-Hard",
-            features: ["Search repos", "Sort by stars", "Pagination"],
-            hooksUsed: ["useState", "useEffect", "useRef"],
-            concepts: ["GitHub API", "Debounced search", "Sort logic"],
-            apiSource: "https://api.github.com/search/repositories"
-        },
-        {
-            id: 30,
-            reactjsLevel: "reactjs-2",
-            name: "News Headlines App",
-            difficulty: "Medium",
-            features: ["Category tabs", "Article list", "Read more links"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Tab-based navigation", "External links"],
-            apiSource: "https://saurav.tech/NewsAPI/top-headlines/category/technology/in.json"
-        },
-        {
-            id: 31,
-            reactjsLevel: "reactjs-3",
-            name: "Product Catalog with Redux",
-            difficulty: "Hard",
-            features: ["Product grid", "Category filter", "Pagination", "Add to cart"],
-            hooksUsed: ["useSelector", "useDispatch", "useEffect"],
-            concepts: ["Redux state for products", "Async actions"],
-            apiSource: "https://fakestoreapi.com/products"
-        },
-        {
-            id: 32,
-            reactjsLevel: "reactjs-3",
-            name: "Movie Database",
-            difficulty: "Hard",
-            features: ["Movie search", "Trending list", "Pagination", "Favorites"],
-            hooksUsed: ["useState", "useEffect", "useContext"],
-            concepts: ["OMDB/TMDB API", "Local storage favorites"],
-            apiSource: "https://www.omdbapi.com/ (requires free API key)"
-        },
-        {
-            id: 33,
-            reactjsLevel: "reactjs-3",
-            name: "Recipe Finder",
-            difficulty: "Hard",
-            features: ["Ingredient search", "Recipe details", "Save recipes"],
-            hooksUsed: ["useState", "useEffect", "useReducer"],
-            concepts: ["Complex state with useReducer", "Recipe API"],
-            apiSource: "https://www.themealdb.com/api.php"
-        },
-        {
-            id: 34,
-            reactjsLevel: "reactjs-3",
-            name: "Cryptocurrency Tracker",
-            difficulty: "Hard",
-            features: ["Live prices", "Price charts", "Watchlist", "Pagination"],
-            hooksUsed: ["useState", "useEffect", "useMemo"],
-            concepts: ["Real-time data", "Chart integration"],
-            apiSource: "https://api.coingecko.com/api/v3/coins/markets"
-        },
-        {
-            id: 35,
-            reactjsLevel: "reactjs-3",
-            name: "Weather Dashboard",
-            difficulty: "Hard",
-            features: ["City search", "5-day forecast", "Current weather"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["Geolocation API", "Weather API integration"],
-            apiSource: "https://api.openweathermap.org/ (requires free API key)"
-        },
-        {
-            id: 36,
-            reactjsLevel: "reactjs-3",
-            name: "Book Library",
-            difficulty: "Hard",
-            features: ["Search books", "Reading list", "Pagination", "Book details"],
-            hooksUsed: ["useState", "useEffect", "useContext"],
-            concepts: ["Google Books API", "Context for reading list"],
-            apiSource: "https://www.googleapis.com/books/v1/volumes"
-        },
-        {
-            id: 37,
-            reactjsLevel: "reactjs-3",
-            name: "Job Board",
-            difficulty: "Hard",
-            features: ["Job listings", "Filter by type", "Pagination", "Apply tracking"],
-            hooksUsed: ["useSelector", "useDispatch", "useEffect"],
-            concepts: ["Redux for state", "Filter + Pagination combined"],
-            apiSource: "https://remotive.com/api/remote-jobs"
-        },
-        {
-            id: 38,
-            reactjsLevel: "reactjs-3",
-            name: "Quotes App with Infinite Scroll",
-            difficulty: "Medium-Hard",
-            features: ["Random quotes", "Infinite scroll", "Copy to clipboard", "Share"],
-            hooksUsed: ["useState", "useEffect", "useRef", "useCallback"],
-            concepts: ["Intersection Observer", "Infinite scroll pattern"],
-            apiSource: "https://api.quotable.io/quotes"
-        },
-        {
-            id: 39,
-            reactjsLevel: "reactjs-3",
-            name: "Space Explorer (NASA API)",
-            difficulty: "Hard",
-            features: ["Astronomy picture of the day", "Mars rover photos", "Pagination"],
-            hooksUsed: ["useState", "useEffect"],
-            concepts: ["NASA API", "Date-based fetching"],
-            apiSource: "https://api.nasa.gov/ (requires free API key)"
-        },
-        {
-            id: 40,
-            reactjsLevel: "reactjs-3",
-            name: "Trivia Quiz App",
-            difficulty: "Hard",
-            features: ["Category selection", "Difficulty levels", "Score tracking", "Timer"],
-            hooksUsed: ["useState", "useEffect", "useReducer"],
-            concepts: ["Quiz logic", "Timer with useEffect", "Score calculation"],
-            apiSource: "https://opentdb.com/api.php"
+            concepts: ["Pre-Packaged Meals (Next.js)", "Modern Kitchen Setup"]
         }
     ]
 };

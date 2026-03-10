@@ -7,184 +7,169 @@ export const CSS_CURRICULUM = {
         phases: [
             {
                 phase: 1,
-                title: "CSS Basics & Syntax",
+                title: "The Styling Mindset: Dressing the Skeleton",
                 theory: [
-                    "CSS Introduction, Syntax & Selectors",
-                    "How To Add CSS (External, Internal, Inline)",
-                    "CSS Comments & Colors (RGB, HEX, HSL)",
-                    "CSS Backgrounds (Color, Image, Repeat, Attachment)",
-                    "CSS Borders (Style, Width, Color, Radius)"
+                    "What is CSS? (The Designer of the Web)",
+                    "The Syntax: 'Who' (Selector) + 'What' (Property) + 'How' (Value)",
+                    "How to Style: The External Style Book (Best Practice)",
+                    "Classes vs. IDs: Group Uniforms vs. Unique Names",
+                    "CSS Comments: Reminders for your future self",
+                    "Colors as Words: Introduction to Color Names"
                 ],
                 practicals: [
-                    "Setup a project with External CSS to differentiate from Inline and Internal methods",
-                    "Design a 'Hero Section' applying specific Background properties and Border styles",
-                    "Project: Color Theory Card - Exploring HSL transparency and RGBa Colors in a layout"
+                    "The Identity Crisis: Give multiple elements the same Class and change them all at once",
+                    "The Style Switch: Take an HTML page and create two CSS files with vastly different vibes",
+                    "Project: 'The Named Palette' - A simple site showcasing your favorite colors using English names"
                 ]
             },
             {
                 phase: 2,
-                title: "The Box Model & Spacing",
+                title: "The Physical World: Everything is a Box",
                 theory: [
-                    "CSS Margins (Collapse logic, auto)",
-                    "CSS Padding",
-                    "CSS Height, Width & Max-width",
-                    "The CSS Box Model (Content, Padding, Border, Margin)",
-                    "CSS Outline (Offset, Style)"
+                    "The Physical Box Model: Content, Padding, Border, Margin",
+                    "Padding: Breathing room *inside* the box",
+                    "Border: The solid walls of the box (Width, Style, Color)",
+                    "Margin: Respecting the distance between neighbors",
+                    "Width & Max-width: Controlling the container's size",
+                    "The auto trick: Centering your box in the middle of the screen"
                 ],
                 practicals: [
-                    "Build a 'Card Component' demonstrating strict Box Model layers (Padding vs Margin)",
-                    "Create a centered container using margin: auto and Max-width constraints",
-                    "Project: Spacing System - Creating a utility sheet for standardized Margins and Paddings"
+                    "The Breathing Room Test: Add Padding vs Margin to see which one clears space inside vs outside",
+                    "The Wallpaper Wall: Creating a defined border with a specific 'Wall Style'",
+                    "Project: 'The Centered Card' - A clean, professional card perfectly centered in the viewport"
                 ],
                 games: [
                     {
                         title: "CSS Diner",
                         url: "https://flukeout.github.io/",
-                        description: "A fun game to learn and practice CSS selectors."
-                    },
-                    {
-                        title: "Selector Showdown",
-                        url: "https://selectorshowdown.com/",
-                        description: "Test your CSS selector skills against the clock."
+                        description: "A fun game to master 'Targeting' (Selectors) by picking items from a table."
                     }
                 ]
             },
             {
                 phase: 3,
-                title: "Text & Typography",
+                title: "Aesthetics: Colors, Fonts & Shadows",
                 theory: [
-                    "CSS Text (Alignment, Decoration, Transformation, Spacing, Shadow)",
-                    "CSS Fonts (Family, Web Safe, Google Fonts, Size, Weight)",
-                    "CSS Icons (FontAwesome, Bootstrap Icons)",
-                    "CSS Links (States: link, visited, hover, active)"
+                    "Beyond Names: HEX & RGBa Colors (The professional way)",
+                    "Typography: Importing Google Fonts (Your site's voice)",
+                    "Font Weights & Line-height: Making text readable",
+                    "Text Shadows & Box Shadows: Adding depth and 'Pop'",
+                    "CSS Transitions: Making changes feel smooth (Hover effects)"
                 ],
                 practicals: [
-                    "Design a Typography Article demonstrating Font families, Weights, and Line-heights",
-                    "Create a stylized 'Button' utilizing all 4 Link States (hover, active, etc.)",
-                    "Project: Blog Post Template - Focusing on vertical rhythm using Text Spacing properties"
+                    "The Premium Upgrade: Take a basic text page and apply a professional Google Font and a subtle Box Shadow",
+                    "Hover Magic: Create a button that changes color and grows slightly when touched",
+                    "Project: 'The Modern Blog Post' - A beautifully typeset article with a 'Floating' Image Card"
                 ]
             },
             {
                 phase: 4,
-                title: "Layout Primitives",
+                title: "Alignment Magic: Flexbox",
                 theory: [
-                    "CSS Lists (Markers, Images)",
-                    "CSS Tables (Borders, Stripes, Hover, Responsive)",
-                    "CSS Display (Block, Inline, None)",
-                    "CSS Position (Static, Relative, Fixed, Absolute, Sticky)",
-                    "CSS Z-index & Overflow",
-                    "CSS Float & Clear (Legacy Layouts)",
-                    "CSS Inline-block & Align"
+                    "The Problem: Why is centering so hard? (The historical struggle)",
+                    "The Savior: Flexbox (The Professional Organizer)",
+                    "The Flex Container: display: flex",
+                    "The Big Three: justify-content (Horizontal), align-items (Vertical), gap (Spacing)",
+                    "Flex Direction: Switching from Rows to Columns",
+                    "Responsive thinking: How boxes wrap when space runs out"
                 ],
                 practicals: [
-                    "Build a Sticky Navigation Bar using Position: Sticky and Z-Index",
-                    "Create a 'Pricing Table' applying Table-specific borders and Hover effects",
-                    "Project: Magazine Layout - Implementing Floats and Position: Absolute for complex alignment"
+                    "The Centering Challenge: Center a 'Checkmark' inside a circle perfectly using only 3 lines of Flexbox",
+                    "The Navigation Bar: Build a standard header where the Logo is on the left and Links are on the right",
+                    "Project: 'The Responsive Gallery' - A collection of cards that automatically stack on smaller screens"
                 ],
                 games: [
                     {
-                        title: "CSS Speedrun",
-                        url: "https://css-speedrun.netlify.app/",
-                        description: "Test your CSS knowledge with small, rapid-fire challenges."
+                        title: "Flexbox Froggy",
+                        url: "https://flexboxfroggy.com/",
+                        description: "The absolute best way to master Flexbox alignment by helping a frog get home."
                     }
                 ]
             },
             {
                 phase: 5,
-                title: "Selectors & Components",
+                title: "Interaction: State & Selectors",
                 theory: [
-                    "CSS Combinators (Descendant, Child, Adjacent, General)",
-                    "CSS Pseudo-classes (:hover, :nth-child, etc.)",
-                    "CSS Pseudo-elements (::before, ::after)",
-                    "CSS Opacity",
-                    "Navigation Bars & Dropdowns",
-                    "Image Gallery & Sprites",
-                    "Attribute Selectors",
-                    "CSS Forms & Counters"
+                    "User Feedback: :hover, :active, :focus, :visited",
+                    "Targeting the right child: :nth-child(even/odd)",
+                    "Pseudo-elements: ::before and ::after (The 'Ghost' elements)",
+                    "Combinators: How parents and children talk to each other (> , +)",
+                    "Attribute Selectors: Styling based on what an element *has*"
                 ],
                 practicals: [
-                    "Build a Dropdown Menu using Component Combinators (>) and Pseudo-classes (:hover)",
-                    "Create an Image Gallery utilizing Pseudo-elements (::after) for overlay effects",
-                    "Project: Custom Form Controls - Styling Checkboxes/Radios with Attribute Selectors"
+                    "Interactive List: Create a list where the background changes color when you hover over an item",
+                    "The 'Ghost' Icon: Use ::before to add a decorative icon without changing the HTML",
+                    "Project: 'The Modern Form' - Styling inputs that change color when you click (focus) them"
                 ]
             },
             {
                 phase: 6,
-                title: "CSS Advanced: Visuals",
+                title: "Precision: Positioning & Layers",
                 theory: [
-                    "CSS Rounded Corners",
-                    "CSS Border Images",
-                    "CSS Gradients (Linear, Radial, Conic)",
-                    "CSS Shadows (Box-shadow, Text-shadow)",
-                    "CSS Text Effects & Web Fonts",
-                    "CSS 2D & 3D Transforms",
-                    "CSS Transitions",
-                    "CSS Animations (@keyframes)"
+                    "Static vs Relative: The normal flow vs 'Nudging'",
+                    "Absolute: Breaking free from the group (Floating anywhere)",
+                    "Fixed: The 'Sticker' that stays when you scroll",
+                    "Sticky: The 'Magnet' that sticks at the top",
+                    "Z-index: Who is in front? (The stacking order)"
                 ],
                 practicals: [
-                    "Design 'Glassmorphism' cards using Background Gradients and Backdrop-filter",
-                    "Create a Loading Spinner using @keyframes Animation and Rotation transforms",
-                    "Project: 3D Product Card - Interactive depth using 3D Transforms and Transitions"
+                    "The Floating Badge: Place a 'Sale' sticker on top of a product image using Absolute",
+                    "The Sticky Header: Make a navigation bar that stays visible while scrolling",
+                    "Project: 'The Modal Overlay' - Creating a pop-up window that darkens the rest of the screen"
                 ]
             },
             {
                 phase: 7,
-                title: "CSS Advanced: Layout & UI",
+                title: "Power Ups: Grid & Variables",
                 theory: [
-                    "CSS Flexbox Layout (Flex Container, Items, Axes)",
-                    "CSS Grid Layout (Grid Template, Areas, Gap)",
-                    "CSS Tooltips",
-                    "CSS Image Styling (Filters, Reflection, Object-fit, Masking)",
-                    "CSS Buttons & Pagination",
-                    "CSS Multiple Columns",
-                    "CSS User Interface (Resize, Outline-offset)",
-                    "CSS Variables (Custom Properties)",
-                    "CSS Box Sizing (border-box)",
-                    "CSS Media Queries (Breakpoints)"
+                    "CSS Grid: The Ultimate Layout (Rows + Columns)",
+                    "Grid Areas: Drawing your layout map",
+                    "CSS Variables: Giving names to your colors (e.g., --brand-color)",
+                    "Responsive Design: Media Queries (Adapting to phones)",
+                    "The border-box fix: Making sure your box doesn't grow when you add padding"
                 ],
                 practicals: [
-                    "Build a Theme Switcher architecture using CSS Variables",
-                    "Create a Masonry-like layout using CSS Grid",
-                    "Project: Responsive Image Suite - Mastering Object-fit and Aspect-ratio"
+                    "The Dashboard Layout: Build a 3-column dashboard in 5 minutes using CSS Grid",
+                    "Theme Master: Change your entire site's color by updating only one CSS Variable",
+                    "Project: 'The Universal Portfolio' - A single page that looks great on iPhone, iPad, and Desktop"
                 ],
                 games: [
-                    { title: "Flexbox Froggy", url: "https://flexboxfroggy.com/", description: "Master CSS Flexbox layout by positioning frogs." },
-                    { title: "Grid Garden", url: "https://cssgridgarden.com/", description: "Learn CSS Grid by watering your carrot garden." }
+                    { title: "Grid Garden", url: "https://cssgridgarden.com/", description: "Learn CSS Grid by watering your carrot garden. A perfect companion to Flexbox Froggy." }
                 ]
             },
             {
-                phase: 10,
-                title: "CSS Responsive Design",
+                phase: 8,
+                title: "Motion & Depth: The Modern Web",
                 theory: [
-                    "RWD Viewport & Grid View",
-                    "RWD Media Queries (Mobile First vs Desktop First)",
-                    "RWD Images & Videos",
-                    "RWD Frameworks theory"
+                    "Gradients: Linear, Radial, and Glassmorphism",
+                    "2D & 3D Transforms: Rotating and Scaling your boxes",
+                    "Keyframe Animations: Making things move on their own",
+                    "The Critical Rendering Path: How CSS affects speed",
+                    "Advanced Layout: CSS Columns and Aspect-ratio"
                 ],
                 practicals: [
-                    "Refactor a desktop site to Mobile-First using min-width Media Queries",
-                    "Implement a responsive video component that scales with the Viewport",
-                    "Project: The 'Any-Device' Landing Page - A fully fluid layout across 3 major breakpoints"
+                    "The Rotating Spinner: Build a loading icon from scratch using @keyframes",
+                    "Glassmorphism Card: Design a credit card that looks like frosted glass",
+                    "Project: 'The Animated Portfolio' - A cinematic entry for your personal site"
                 ]
             },
             {
-                phase: 11,
-                title: "CSS SASS (Preprocessor)",
+                phase: 9,
+                title: "Efficiency: SASS (The CSS Powerhouse)",
                 theory: [
-                    "SASS Introduction & Installation",
-                    "SASS Variables & Nesting",
-                    "SASS @import & @partials",
-                    "SASS Mixins & @extend",
-                    "SASS Functions & Inheritance"
+                    "What is SASS? (CSS with Superpowers)",
+                    "Variables & Nesting in SASS",
+                    "Mixins & Partials: Reusing your styles like a pro",
+                    "The Modular approach: Organizing 1000s of lines of CSS"
                 ],
                 practicals: [
-                    "Refactor raw CSS into modular SCSS using Nesting and Partials",
-                    "Create a Mixin library to automate common vendor prefixes and layouts",
-                    "Project: Scalable Design System - Built with SASS Variables and Inheritance features"
+                    "The SASS Refactor: Take your CSS and compress it using Nesting",
+                    "Style Library: Create a folder of 'Partials' for Buttons, Cards, and Typography",
+                    "Project: 'The Design System' - A scalable structure for long-term projects"
                 ]
             }
         ]
-    }
+    },
 };
 
 export const BOOTSTRAP_CURRICULUM = {

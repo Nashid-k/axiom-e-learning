@@ -7,1255 +7,539 @@
     "phases": [
       {
         "phase": 1,
-        "title": "JavaScript Fundamentals & Basics",
+        "title": "The Magic Behind the Screen: Logic & Action",
         "theory": [
-          "JavaScript as high-level, interpreted, single-threaded, event-driven language",
-          "ECMAScript versions and runtime environments (Browser/Node.js)",
-          "V8 engine, JIT compilation, and strict mode",
-          "Coding conventions and development setup"
+          "The Big Three: Skeleton (HTML), Skin (CSS), and the Muscle (JS)",
+          "The 10-Day Miracle: Where JS came from and why it's the 'King of the Browser'",
+          "The Live Translator: How your browser reads code (Interpreter vs. Compiler)",
+          "The Turbocharger: What is an 'Engine' (V8) and how JIT 'Supercharges' your code",
+          "JS vs. The Rest: Why learning JS first is like learning the 'Universal Language' of the web"
         ],
         "practicals": [
-          "Set up JavaScript development environment",
-          "Write your first JavaScript program",
-          "Use strict mode in your code",
-          "Compare browser vs Node.js execution",
-          "Create a simple calculator using basic operators",
-          "Build a temperature converter (Celsius to Fahrenheit)"
+          "Console Hijacking: Open the 'Inspect' tool and change the color of a live website",
+          "Secret Messages: Write your first `console.log` and see the browser 'talk back'",
+          "Brainstorming Action: List 5 things on Amazon.com that use JS (e.g., 'Add to Cart' button)"
         ],
-        "games": []
+        "games": [
+          {
+            "title": "WarriorJS",
+            "url": "https://warriorjs.com/",
+            "description": "A fun way to understand how simple logic (Action) controls everything."
+          }
+        ]
       },
       {
         "phase": 2,
-        "title": "Data Types & Type System",
+        "title": "The Rules of the Game: Data & Typing",
         "theory": [
-          "Data types: Primitives (String, Number, Boolean, Undefined, Null, Symbol, BigInt) vs Objects (Object, Array, Function)",
-          "Type characteristics: Immutable primitives vs mutable objects, dynamic typing",
-          "Type checking: typeof, instanceof, truthy/falsy values",
-          "Special values: null, undefined, NaN, BigInt usage"
+          "Understanding Data: Information is more than just 'Text'",
+          "Liquid Containers: What 'Dynamic Typing' means (JS adapts to what you give it)",
+          "The Primitive Box (Single Items): Numbers, Text (Strings), Booleans (Yes/No)",
+          "The Empty Boxes: Understanding `null` (Intentional empty) and `undefined` (Missing)",
+          "The Lunchbox (Non-Primitives): Objects and Arrays—storing 'Groups' of things"
         ],
         "practicals": [
-          "Check data types using typeof",
-          "Demonstrate the difference between null and undefined",
-          "Create examples of truthy and falsy values",
-          "Use BigInt for large number calculations",
-          "Verify mutability of strings vs objects",
-          "Write function to check if value is NaN without using isNaN()",
-          "Create type checking utility functions"
+          "The `typeof` Lab: Use the browser to reveal what 'Shape' a piece of data actually is",
+          "The Empty Box Test: Create a variable but don't give it a value to see `undefined` in action",
+          "Primitive vs. Object: Change a number vs changing a 'List' and notice the difference (Mutability)"
         ]
       },
       {
         "phase": 3,
-        "title": "Type Conversion & Coercion",
+        "title": "The Shape Shifter: Type Casting & Coercion",
         "theory": [
-          "Type coercion: implicit vs explicit conversion",
-          "Conversion methods: String(), toString(), parseInt(), parseFloat()",
-          "Equality comparisons: == (loose) vs === (strict) vs Object.is()",
-          "Common coercion scenarios and edge cases"
+          "Implicit Casting: When JS is 'Too Helpful' (e.g., Why `1 + '1'` is '11' instead of 2)",
+          "Taking the Reins (Explicit): Using `Number()` and `String()` to force the shape",
+          "The Equality Trap: Strict (`===`) vs. Loose (`==`) comparisons",
+          "Truthiness: Why nearly everything is 'True' until it's 'Empty' (Falsy values)",
+          "Input Cleaning: Why we must always 'Cast' data coming from a User's screen"
         ],
         "practicals": [
-          "Convert strings to numbers in different ways",
-          "Demonstrate type coercion examples",
-          "Practice with == vs === comparisons",
-          "Solve type coercion puzzles",
-          "Create examples showing implicit coercion",
-          "Build a function that safely converts any input to number",
-          "Explain output of: [] + [] and {} + {}",
-          "Predict output of complex coercion scenarios"
+          "The Calculator Bug: Fix a program that adds numbers incorrectly because of String concatenation",
+          "The Truthy Riddles: Predict if a variable (like an empty string or the number 0) is true or false",
+          "Strict Check: Refactor your old code to use `===` to avoid invisible bugs"
         ]
       },
       {
         "phase": 4,
-        "title": "Variables & Scoping",
+        "title": "Labeled Storage: Variables & Memory",
         "theory": [
-          "Variable declarations: var (function scope), let/const (block scope)",
-          "Scope hierarchy: global, function, block with lexical scoping",
-          "Scope concepts: chain, shadowing, temporal dead zone (TDZ)",
-          "Variable behavior: hoisting, redeclaration, reassignment"
+          "What is a Variable? (Labeling a box on a shelf)",
+          "Storing vs. Recalling: How JS remembers what you told it",
+          "The 'Unchangeable' rule: Why `const` is your best friend",
+          "The 'Switch' rule: When to use `let` for things that change",
+          "Naming Conventions: Writing code that humans can read (CamelCase)",
+          "Memory Basics: Why variables 'live' and 'die' (Introduction to Scope boundaries)"
         ],
         "practicals": [
-          "Create examples of var, let, and const behavior",
-          "Demonstrate scope chain in nested functions",
-          "Show variable shadowing examples",
-          "Identify illegal shadowing scenarios",
-          "Practice block scope with let and const",
-          "Build examples showing temporal dead zone",
-          "Create module pattern using IIFE for private variables"
+          "The Locker Room: Create multiple variables for a user profile (Name, Age, IsLoggedIn) and update them",
+          "The Const Trap: Try to change a `const` and see the browser 'Protect' the data with an error",
+          "Project: 'The Personal Vault' - Build a script that stores and displays sensitive user info using correct labels"
         ]
       },
       {
         "phase": 5,
-        "title": "Hoisting & Execution Context",
+        "title": "Decision Making: Operators & Control Flow",
         "theory": [
-          "Hoisting behavior for variables (var/let/const) and functions",
-          "Execution context: global and function contexts with creation/execution phases",
-          "Call stack mechanics and memory management",
-          "Temporal Dead Zone (TDZ) concept"
+          "Conditional Logic: The 'If/Then' mindset of coding",
+          "Comparison Operators: Checking for equality and size (>, <, ===)",
+          "Logical Operators: Combining conditions (AND, OR, NOT)",
+          "The Switch Statement: A better way to handle multiple 'Cases'",
+          "The Ternary Operator: Code shorthand for 'Either / Or' choices"
         ],
         "practicals": [
-          "Demonstrate hoisting with var vs let",
-          "Show Temporal Dead Zone errors",
-          "Trace execution context creation",
-          "Visualize the call stack during function calls",
-          "Create examples of hoisting edge cases",
-          "Predict output of hoisting scenarios",
-          "Debug common hoisting-related errors",
-          "Trace execution context in nested function calls"
+          "The Gatekeeper: Write a script that checks if a user is old enough to enter a site",
+          "The Grade Calculator: Take a number and output a Letter Grade based on ranges",
+          "Project: 'The ATM Simulation' - Create a logic flow for withdrawing money, checking balance, and handling 'Insufficient Funds'"
+        ],
+        "games": [
+          {
+            "title": "WarriorJS",
+            "url": "https://warriorjs.com/",
+            "description": "Navigate your hero through floor after floor using 'If' statements to survive."
+          }
         ]
       },
       {
         "phase": 6,
-        "title": "Operators & Control Flow",
+        "title": "The Repeaters: Loops & Iteration",
         "theory": [
-          "Operator types: arithmetic, assignment, comparison, logical, bitwise, unary",
-          "Control structures: if/else/else if, switch, ternary operator",
-          "Special operators: increment/decrement (pre/post), logical vs bitwise OR",
-          "Flow control: break, continue statements"
+          "The Problem: Doing things over and over (Manual Labor)",
+          "The Solution: Loops (The Digital Assembly Line)",
+          "The 'While' Loop: 'Keep going while this is true'",
+          "The 'For' Loop: 'Do this exact number of times'",
+          "Iterating through Collections: Looking into every 'Lunchbox' item"
         ],
         "practicals": [
-          "Practice all types of operators",
-          "Write complex conditional logic",
-          "Use ternary operators effectively",
-          "Create switch statements with multiple cases",
-          "Demonstrate pre vs post increment behavior",
-          "Build calculator using switch statement",
-          "Create grade calculator with nested ternary operators",
-          "Solve operator precedence problems"
-        ],
-        "games": [
-          {
-            "title": "WarriorJS",
-            "url": "https://warriorjs.com/",
-            "description": "Code your warrior through levels using JavaScript to delete enemies and rescue captives."
-          }
+          "The Countdown: Build a loop that counts down from 10 to launch",
+          "The List Reader: Create a script that prints out every item in your shopping list",
+          "Project: 'The Multiplication Table' - Using nested loops to create a math helper tool"
         ]
       },
       {
         "phase": 7,
-        "title": "Loops & Iteration",
+        "title": "The Action Mindset: Functions Basics",
         "theory": [
-          "Loop types: for, while, do...while with entry/exit control",
-          "Iteration methods: for...in (objects), for...of (iterables), forEach()",
-          "Loop control: break and continue statements",
-          "Pattern iteration and nested loops"
+          "What is a Function? (A Saved Recipe for later)",
+          "Input vs. Output: Arguments (Ingredients) and Return (The Meal)",
+          "Declarations vs. Expressions: Two ways to write a recipe",
+          "Reusable Logic: Why we never 'Copy-Paste' code"
         ],
         "practicals": [
-          "Print numbers from 1 to 10 using different loops",
-          "Print numbers from 20 to 2 (even numbers only) using while loop",
-          "Print from 1 to 50 using do...while",
-          "Iterate over objects with for...in",
-          "Iterate over arrays with for...of",
-          "Reverse an array using loops",
-          "Create nested loops for patterns",
-          "Print pyramid patterns using nested loops",
-          "Create multiplication table using loops",
-          "Find factorial using different loop types"
+          "The Greeting Machine: A function that takes a name and says 'Hello'",
+          "The Math Helper: Create functions for `add`, `subtract`, and `multiply`",
+          "Project: 'The Simple Budgeter' - A set of functions to calculate total expenses and remaining balance"
         ]
       },
       {
         "phase": 8,
-        "title": "Functions - Part 1 (Basics)",
+        "title": "Arrow Functions: The Fast Shortcut",
         "theory": [
-          "Function types: declarations vs expressions, named vs anonymous",
-          "Function parameters: default values, parameters vs arguments",
-          "Return values and first-class function concept",
-          "Function syntax and basic usage patterns"
+          "Regular vs. Arrow: Writing less but doing more",
+          "The 'One-Liner': Implicit returns (Short and Sweet)",
+          "The 'This' Problem: Why arrows are easier for beginners",
+          "When NOT to use Arrows: Keeping some rules in mind"
         ],
         "practicals": [
-          "Create function declarations and expressions",
-          "Write functions with default parameters",
-          "Create a function to find sum of 2 numbers",
-          "Create a function to find average of even numbers in an array",
-          "Demonstrate functions as first-class citizens",
-          "Build function to check if number is prime",
-          "Create function that returns multiple values using object",
-          "Write recursive function for factorial"
+          "The Refactor: Take 5 old 'Recipe' functions and rewrite them as modern Arrows",
+          "The Math One-Liner: Create arrows for square, cube, and percentage calculation",
+          "Project: 'The Modern Converter' - A set of arrow functions for currency and weight"
         ]
       },
       {
         "phase": 9,
-        "title": "Arrow Functions & Advanced Function Concepts",
+        "title": "Data Structures - Part 1: Advanced Arrays & Strings",
         "theory": [
-          "Arrow function syntax, implicit return, and this binding",
-          "Comparison: arrow vs regular functions, constructor limitations",
-          "Higher-order functions and functional composition",
-          "Advanced function patterns and usage"
+          "The Modern Array: `map()`, `filter()`, and `reduce()` (The 'Big Three')",
+          "Searching the Crowd: `find()`, `includes()`, and `findIndex()`",
+          "Advanced Strings: `slice()`, `replace()`, and `split()`",
+          "Template Literals: Dynamic text without the mess"
         ],
         "practicals": [
-          "Convert regular functions to arrow functions",
-          "Arrow function to find sum of 2 numbers",
-          "Modify an arrow function to find sum of n numbers",
-          "Create higher-order functions",
-          "Demonstrate 'this' behavior in arrow vs regular functions",
-          "Build array sorting function using arrow functions",
-          "Create chained arrow function operations",
-          "Implement function composition using arrow functions"
+          "The VIP List: Filter a list of users to find only those over 18",
+          "The Price Tag: Use `map` to add a '$' sign to every number in an array",
+          "The Name Cleaner: Take a messy user input and use string methods to fix capitalization and spacing",
+          "Project: 'The Smart Inventory' - A system to find, update, and remove items from a store list"
         ]
       },
       {
         "phase": 10,
-        "title": "Callback Functions & Asynchronous Basics",
+        "title": "The Digital Profile: Mastering Objects",
         "theory": [
-          "Callback functions: synchronous vs asynchronous, error-first pattern",
-          "Callback hell problem and resolution strategies",
-          "Asynchronous programming: blocking vs non-blocking concepts",
-          "JavaScript's async capabilities and patterns"
+          "Objects as Profiles: Storing related data together (Name: 'John', Role: 'User')",
+          "Property Access: Dot (`.`) vs. Bracket (`[]`) notation",
+          "Object Methods: Giving your profiles 'Skills' (Action inside Data)",
+          "Looping through Profiles: `Object.keys()` and `Object.values()`"
         ],
         "practicals": [
-          "Create callback function examples",
-          "Write higher-order function that accepts callback",
-          "Demonstrate callback hell scenario",
-          "Convert callback hell to better structure",
-          "Create synchronous and asynchronous callback examples",
-          "Build custom array methods using callbacks",
-          "Implement error-first callback pattern",
-          "Create timeout-based callbacks"
-        ],
-        "games": []
+          "The RPG Character: Build a character object with health, strength, and an 'Attack' skill",
+          "The Dynamic Key: Create a script that accesses a property based on what the user types",
+          "Project: 'The Social Media Bio' - A system that displays a user's name, followers, and interests"
+        ]
       },
       {
         "phase": 11,
-        "title": "Closures & Scope Management",
+        "title": "The Unpacker: Destructuring & Spread",
         "theory": [
-          "Closure definition: function with access to parent scope after parent closure",
-          "Practical applications: private variables, state preservation",
-          "Closure considerations: memory management, event listeners",
-          "Lexical scoping relationship and common patterns"
+          "Destructuring: Taking only what you need from a big box",
+          "The Spread Operator (`...`): Pouring one box into another",
+          "Default Values: What happens if the box is empty?",
+          "Merging Data: Combining two user profiles into one"
         ],
         "practicals": [
-          "Create closure examples",
-          "Implement private variables using closures",
-          "Create counter function using closure",
-          "Demonstrate closure in event handlers",
-          "Show practical applications of closures",
-          "Build function factory using closures",
-          "Create module pattern with private methods",
-          "Solve closure in loop problem (var vs let)",
-          "Implement memoization using closures"
+          "The Specific Grab: Extract just the 'Email' and 'Username' from a massive object",
+          "The Array Merge: Combine a 'Home' list and 'Work' list using the `...` operator",
+          "Project: 'The Profile Updater' - A function that takes an old profile and merges new updates into it"
         ]
       },
       {
         "phase": 12,
-        "title": "Advanced Function Patterns",
+        "title": "Specialized Lists: Maps & Sets",
         "theory": [
-          "Function purity: pure vs impure functions, side effects",
-          "Function patterns: IIFE, currying, partial application, composition",
-          "Recursion concepts, advantages, and stack considerations",
-          "Advanced function techniques and best practices"
+          "Sets: The 'Unique' rule (No duplicates allowed)",
+          "Maps: The 'Super Object' (When keys aren't just text)",
+          "When to use what: Array vs. Object vs. Map vs. Set",
+          "Iteration: How to loop through these modern collections"
         ],
         "practicals": [
-          "Create pure function examples",
-          "Write IIFE patterns",
-          "Implement currying function",
-          "Create recursive function for Fibonacci series",
-          "Check if string is palindrome using recursion",
-          "Demonstrate function composition",
-          "Build sum currying function: sum(1)(2)(3)",
-          "Implement infinite currying",
-          "Create recursive deep clone function",
-          "Solve tower of Hanoi using recursion"
+          "The Duplicate Destroyer: Take a list of items with repeats and use a Set to get only uniques",
+          "The ID Map: Store user data where the User ID (a number) is the key",
+          "Project: 'The Unique Tag System' - A blog tag system that ensures no duplicate categories are added"
         ]
       },
       {
         "phase": 13,
-        "title": "Factory Functions & Constructor Functions",
+        "title": "Changing the Page: DOM Basics",
         "theory": [
-          "Object creation patterns: factory functions vs constructor functions",
-          "new keyword mechanics and instance creation",
-          "Function borrowing and method sharing techniques",
-          "Pattern comparison and appropriate use cases"
+          "The DOM: The browser's map of your HTML",
+          "Selectors: Finding elements by ID, Class, or Tag",
+          "Changing Content: `innerHTML` vs. `textContent`",
+          "The Appearance: Changing CSS styles via JavaScript"
         ],
         "practicals": [
-          "Create factory functions",
-          "Create constructor functions",
-          "Use new keyword to create instances",
-          "Demonstrate function borrowing",
-          "Compare factory and constructor patterns",
-          "Build object creation utility using factory pattern",
-          "Implement constructor with validation",
-          "Create multiple objects using both patterns"
+          "The Color Picker: Create a button that changes the background of the entire page",
+          "The Dynamic List: Add a new `<li>` to an existing list without refreshing",
+          "Project: 'The Personal Greeting' - An input field that updates an H1 tag live as you type"
         ]
       },
       {
         "phase": 14,
-        "title": "Event Loop & Asynchronous JavaScript",
+        "title": "Making it Interactive: Clicks & Keys",
         "theory": [
-          "Event Loop detailed mechanics (Refer to Foundation Module)",
-          "Microtasks vs Macrotasks deep dive",
-          "Node.js vs Browser Event Loop differences"
+          "Event Listeners: Telling the browser to 'Listen' for an action",
+          "Click Events: Handling button presses",
+          "Keyboard Events: What happens when you type (The `event.key`) ",
+          "Input Validation: Preventing bad data before it's sent"
         ],
         "practicals": [
-          "Trace code execution with event loop",
-          "Understand execution order with timers and callbacks",
-          "Demonstrate microtask vs macrotask priority",
-          "Create examples showing event loop behavior",
-          "Visualize call stack and task queues",
-          "Predict output of complex async scenarios",
-          "Build visualization of event loop execution",
-          "Solve event loop puzzles"
-        ],
-        "games": [
-          {
-            "title": "Loupe",
-            "url": "http://latentflip.com/loupe/",
-            "description": "Interactive visualization of the JavaScript call stack, event loop, and callback queue."
-          }
+          "The Password Toggle: Build a 'Show Password' checkbox that changes the input type",
+          "The Click Counter: A button that tracks how many times it's been clicked",
+          "Project: 'The Simple Todo List' - Add items to a list and clear them with a button"
         ]
       },
       {
         "phase": 15,
-        "title": "Timers & Intervals",
+        "title": "The Ripple Effect: Event Propagation",
         "theory": [
-          "Timer functions: setTimeout() and setInterval() usage",
-          "Timer control: cancellation with clearTimeout()/clearInterval()",
-          "Timer patterns and practical implementations",
-          "Performance considerations and best practices"
+          "The Stadium Wave: Understanding Event Bubbling",
+          "Stopping the Wave: `event.stopPropagation()`",
+          "Delegation: One parent handling 100 children (The 'Mall Security' analogy)",
+          "Default Actions: Why some clicks (like links) need to be stopped"
         ],
         "practicals": [
-          "Create countdown timer from 10 to 0",
-          "Print from 1-10 with 1 second gap using setTimeout",
-          "Print from 1-10 in gap of 1s without using setInterval",
-          "Print multiples of 5 between 1-100 in reverse order",
-          "Cancel setTimeout after specific time",
-          "Create a stopwatch with setInterval",
-          "Build digital clock using setInterval",
-          "Implement recursive setTimeout pattern",
-          "Create traffic light simulator"
+          "The Bubbling Test: Create nested boxes and see how one click triggers three alerts",
+          "The Smart List: Use one listener on a `<ul>` to handle clicks on 50 different `<li>` items",
+          "Project: 'The Interactive Gallery' - A grid of images where clicking one shows it in a 'Master' view"
         ]
       },
       {
         "phase": 16,
-        "title": "Promises - Part 1 (Fundamentals)",
+        "title": "The Memory Bank: Storage & JSON",
         "theory": [
-          "Promise concept: states (pending, fulfilled, rejected), creation",
-          "Promise handling: .then(), .catch(), .finally() methods",
-          "Promise chaining and error propagation",
-          "Basic promise patterns and usage"
+          "LocalStorage: Storing data that stays even after you close the browser",
+          "JSON: The universal language for data (Stringify and Parse)",
+          "SessionStorage: Temporary memory for the current tab",
+          "Security: Why we never store passwords in the browser"
         ],
         "practicals": [
-          "Create a basic Promise",
-          "Write Promise with resolve and reject",
-          "Handle Promise using .then() and .catch()",
-          "Implement Promise chaining",
-          "Create Promise to sum array and resolve it",
-          "Use .finally() in Promise chains",
-          "Build custom Promise-based delay function",
-          "Create Promise wrapper for setTimeout",
-          "Implement retry logic with Promises"
+          "The Theme Saver: Save the user's Dark/Light mode preference so it persists",
+          "The Object Saver: Convert a user object to JSON and save it in the browser",
+          "Project: 'The Persistent Todo App' - A list that reloads your items even if you refresh the page"
         ]
       },
       {
         "phase": 17,
-        "title": "Promises - Part 2 (Advanced & Combinators)",
+        "title": "The Alarm Clock: Timers & Intervals",
         "theory": [
-          "Promise combinators: all(), allSettled(), race(), any()",
-          "Combinator differences and appropriate use cases",
-          "Error handling in promise combinations",
-          "Converting callback patterns to promises"
+          "setTimeout: 'Wait 3 seconds, then do this'",
+          "setInterval: 'Do this every 5 seconds forever'",
+          "Cleanup: Stopping timers with `clearTimeout` and `clearInterval`"
         ],
         "practicals": [
-          "Use Promise.all() with multiple Promises",
-          "Demonstrate Promise.allSettled() behavior",
-          "Create Promise.race() examples",
-          "Use Promise.any() appropriately",
-          "Convert callback hell to Promise chain",
-          "Compare different Promise combinators",
-          "Implement parallel API calls with Promise.all()",
-          "Build timeout race with Promise.race()",
-          "Create polyfill for Promise.allSettled()"
+          "The Delayed Alert: Show a 'Welcome' message 2 seconds after the page loads",
+          "The Countdown: Build a timer that counts down from 60 to 0",
+          "Project: 'The Digital Clock' - A live clock that updates every second"
         ]
       },
       {
         "phase": 18,
-        "title": "Async/Await",
+        "title": "The Waiting Game: Callbacks & Order",
         "theory": [
-          "Async/await syntax: async functions, await keyword",
-          "Error handling with try/catch blocks",
-          "Comparison: async/await vs promise chains",
-          "Best practices and common patterns"
+          "Synchronous vs. Asynchronous: Waiting for the coffee to brew",
+          "Callbacks: The 'Don't call us, we'll call you' rule",
+          "Execution Order: Why some code runs while other code waits",
+          "The Callback Hell: Why too many nested recipes are a bad thing"
         ],
         "practicals": [
-          "Convert Promise chains to async/await",
-          "Handle Promise using async and await",
-          "Implement error handling with try/catch",
-          "Create async functions for API calls",
-          "Use async/await with Promise combinators",
-          "Demonstrate async/await advantages",
-          "Build sequential vs parallel async operations",
-          "Handle multiple async operations efficiently",
-          "Create async iterator"
-        ],
-        "games": []
+          "The Order Test: Use logs to see which code finishes first in an async sequence",
+          "The Recipe chain: A function that calls another function after a delay",
+          "Project: 'The Image Loader' - Simulate loading an image and showing a message only when it's done"
+        ]
       },
       {
         "phase": 19,
-        "title": "Objects - Part 1 (Basics)",
+        "title": "The Digital Agreement: Promises",
         "theory": [
-          "Object creation: literals, constructors, different methods",
-          "Property access: dot vs bracket notation, dynamic keys",
-          "Object manipulation: adding, removing, modifying properties",
-          "Nested objects and complex structures"
+          "What is a Promise? (A ticket for a future result)",
+          "The Three States: Pending, Kept (Resolved), and Broken (Rejected)",
+          "The Chain: Using `.then()` and `.catch()` to handle results",
+          "Combining Efforts: `Promise.all()` for multi-tasking"
         ],
         "practicals": [
-          "Create objects using different methods",
-          "Access and modify object properties",
-          "Add new keys to existing objects",
-          "Remove properties from objects",
-          "Work with nested objects",
-          "Iterate through object properties",
-          "Clone object using different methods",
-          "Compare objects for equality",
-          "Build complex nested object structures"
+          "The Coin Flip: A promise that resolves if 'Heads' and rejects if 'Tails'",
+          "The Parallel Fetch: Wait for three simulated 'Data Packages' to arrive at once",
+          "Project: 'The Weather Simulator' - A chain of promises that 'checks' the sky and then 'predicts' rain"
         ]
       },
       {
         "phase": 20,
-        "title": "Objects - Part 2 (Methods & Operations)",
+        "title": "Modern Waiting: Async/Await",
         "theory": [
-          "Object static methods: keys(), values(), entries()",
-          "Object manipulation: assign(), create(), freeze(), seal()",
-          "Object comparison: is(), hasOwnProperty()",
-          "Advanced object operations and patterns"
+          "Async/Await: Making async code look like a simple list of instructions",
+          "The `await` keyword: Pausing the function without freezing the browser",
+          "Error Handling: The `try...catch` block (The safety net)",
+          "When to pause vs. when to run in parallel"
         ],
         "practicals": [
-          "Use Object.keys(), Object.values(), Object.entries()",
-          "Merge two objects using different methods",
-          "Freeze and seal objects",
-          "Check if object is empty",
-          "Find key corresponding to highest/lowest value in object",
-          "Implement deep freeze for nested objects",
-          "Count properties in nested object",
-          "Swap keys and values in object",
-          "Group array of objects by property"
+          "Promise Refactor: Take a `.then()` chain and rewrite it with `await`",
+          "The Safety Net: Build a function that handles a 'failed' promise gracefully",
+          "Project: 'The Data Dashboard' - An async function that gathers stats from three places and displays them"
         ]
       },
       {
         "phase": 21,
-        "title": "Object Destructuring & Spread",
+        "title": "The News Reporter: Fetch & APIs",
         "theory": [
-          "Destructuring syntax: object, nested, with default values",
-          "Destructuring features: renaming, rest operator, parameter destructuring",
-          "Spread operator: object cloning, merging, updating",
-          "Modern object manipulation patterns"
+          "What is an API? (The waiter at the restaurant)",
+          "Fetch: Asking the internet for information",
+          "HTTP Methods: GET (Reading) vs. POST (Submitting)",
+          "CORS: Why some websites won't talk to you (The gatekeeper)"
         ],
         "practicals": [
-          "Destructure objects in various ways",
-          "Use default values in destructuring",
-          "Destructure nested objects",
-          "Clone objects using spread operator",
-          "Merge multiple objects",
-          "Combine two objects using spread",
-          "Extract specific properties using destructuring",
-          "Rename properties while destructuring",
-          "Use rest operator to collect remaining properties"
+          "The User Feed: Fetch a list of random users from a public API and display them",
+          "The Image Finder: Fetch a random dog/cat photo on every button click",
+          "Project: 'The Live Crypto Tracker' - A small app that shows the real-time price of Bitcoin using a public API"
         ]
       },
       {
         "phase": 22,
-        "title": "this Keyword & Context",
+        "title": "The Family Tree: Prototypes & Inheritance",
         "theory": [
-          "this determination rules in different contexts",
-          "this behavior: global, object methods, arrow vs regular functions",
-          "this in event handlers and dynamic contexts",
-          "Common this binding issues and solutions"
+          "Prototypes: The hidden link between objects",
+          "The Chain: How JS searches for a property",
+          "Built-in Prototypes: Why all Arrays have `push()` and `pop()`",
+          "Inheritance: Creating a 'Parent' and 'Child' relationship without complex syntax"
         ],
         "practicals": [
-          "Demonstrate 'this' in different contexts",
-          "Show 'this' in arrow vs regular functions",
-          "Create examples of 'this' in object methods",
-          "Work with 'this' in event listeners",
-          "Solve 'this' binding puzzles",
-          "Fix 'this' context issues",
-          "Implement method that uses 'this' correctly",
-          "Debug common 'this' mistakes"
+          "The Prototype Peek: Use `__proto__` to see the 'Parent' of an array in the console",
+          "The Custom Method: Add a new 'Skill' to the global String prototype (e.g., `yell()`)",
+          "Project: 'The Animal Kingdom' - Create a parent 'Animal' object and multiple 'Child' animals that inherit its traits"
         ]
       },
       {
         "phase": 23,
-        "title": "call, apply, and bind",
+        "title": "The Digital Blueprint: Classes",
         "theory": [
-          "Explicit binding methods: call(), apply(), bind()",
-          "Method differences and appropriate use cases",
-          "Function borrowing and context manipulation",
-          "Practical applications and patterns"
+          "Classes: The factory for creating objects",
+          "The Constructor: Setting up the initial state",
+          "Extends & Super: Building on top of existing blueprints",
+          "Getters & Setters: Protecting your data with smart access"
         ],
         "practicals": [
-          "Use call() to borrow methods",
-          "Use apply() with array of arguments",
-          "Create bound functions with bind()",
-          "Demonstrate function borrowing",
-          "Merge arrays using apply",
-          "Find max number in array using apply",
-          "Implement custom bind polyfill",
-          "Chain function calls using bind"
+          "The User Factory: Build a `User` class that takes a name and email",
+          "The Admin Upgrade: Create an `Admin` class that extends `User` with extra permissions",
+          "Project: 'The Car Showroom' - Build a class system for different types of cars (EV, Sports, Truck) with shared properties"
         ]
       },
       {
         "phase": 24,
-        "title": "Prototypes & Inheritance",
+        "title": "Who Am I? - This & Bind",
         "theory": [
-          "Prototype chain and prototypal inheritance mechanics",
-          "Prototype relationships: __proto__ vs prototype property",
-          "Built-in prototypes: Array, String, Object methods",
-          "Prototype-based programming patterns"
+          "The `this` Keyword: Why it's the most confusing thing in JS",
+          "Context: Why `this` changes depending on who called the function",
+          "Bind, Call, and Apply: Taking manual control of the context",
+          "Arrow Functions vs Regular: The final showdown on scope"
         ],
         "practicals": [
-          "Explore prototype chain",
-          "Add methods to prototypes",
-          "Implement prototypal inheritance",
-          "String reverse using prototype",
-          "Build custom array methods on prototype",
-          "Create object inheritance chain",
-          "Implement method overriding in prototype chain"
+          "The Lost Context: Create an object method that 'breaks' when passed as a callback, then fix it with `.bind()`",
+          "Method Borrowing: Use `.call()` to make one object use another object's function",
+          "Project: 'The Smart Button' - A class-based button handler that keeps its context even when clicked"
         ]
       },
       {
         "phase": 25,
-        "title": "Classes & OOP",
+        "title": "The Safety Net: Error Handling",
         "theory": [
-          "Class syntax: constructor, methods, properties",
-          "Inheritance: extends, super keyword usage",
-          "Class features: static methods, getters/setters, private fields",
-          "OOP principles in JavaScript implementation"
+          "Try/Catch: Catching bugs before they crash the page",
+          "The Finally Block: Code that runs no matter what",
+          "Throwing Errors: Creating your own custom warning signs",
+          "Async Errors: Catching bugs inside Promises and Fetch"
         ],
         "practicals": [
-          "Create classes with constructors",
-          "Implement inheritance with extends",
-          "Use static methods",
-          "Create getters and setters",
-          "Demonstrate encapsulation",
-          "Build class hierarchies",
-          "Implement polymorphism with method overriding",
-          "Build real-world class structures (e.g., Vehicle hierarchy)"
+          "The Crash Test: Intentionally write broken code and use `try/catch` to keep the app running",
+          "The Custom Validator: Throw an error if a user enters a password that's too short",
+          "Project: 'The Robust News Feed' - A fetch app that shows a friendly error message if the API is down"
         ]
       },
       {
         "phase": 26,
-        "title": "SOLID Principles & Software Design",
+        "title": "Professional Building: Design Patterns",
         "theory": [
-          "Single Responsibility Principle (SRP): A class should have only one reason to change",
-          "Open/Closed Principle (OCP): Open for extension, closed for modification",
-          "Liskov Substitution Principle (LSP): Subtypes must be substitutable for their base types",
-          "Interface Segregation Principle (ISP): Prefer many small interfaces over one large interface",
-          "Dependency Inversion Principle (DIP): Depend on abstractions, not concretions",
-          "SOLID benefits: maintainability, scalability, testability",
-          "Applying SOLID in JavaScript/TypeScript"
+          "Why Patterns? Writing code that other developers can understand",
+          "The Module Pattern: Keeping your variables private (The 'Safe Room')",
+          "The Factory Pattern: Creating complex objects without showing the mess",
+          "The Observer Pattern: How apps 'React' to changes (Intro to the React mindset)"
         ],
         "practicals": [
-          "Refactor a class violating SRP into smaller focused classes",
-          "Implement OCP using composition instead of modification",
-          "Demonstrate LSP with an inheritance hierarchy",
-          "Break a large interface into smaller role-specific interfaces",
-          "Apply dependency injection to follow DIP",
-          "Identify SOLID violations in existing code",
-          "Build a plugin system using OCP and DIP",
-          "Create unit tests demonstrating testability from SOLID design"
+          "The Private Vault: Use an IIFE to create a variable that cannot be accessed from the console",
+          "The Shape Factory: Create a function that returns different object types based on input",
+          "Project: 'The Notification System' - A simple pub-sub system where one action triggers multiple updates"
         ]
       },
       {
         "phase": 27,
-        "title": "Arrays - Part 1 (Basics)",
+        "title": "The Traffic Cop: The Event Loop",
         "theory": [
-          "Array creation and basic manipulation methods",
-          "Element access: indexing, length property",
-          "Array mutation: push/pop, shift/unshift, splice/slice",
-          "Array search: indexOf, lastIndexOf, includes"
+          "The Single Thread: Why JS can only do one thing at a time",
+          "The Call Stack: Tracking where we are in the code",
+          "The Task Queue: Where async code waits its turn",
+          "Microtasks vs Macrotasks: Why Promises have priority over Timers"
         ],
         "practicals": [
-          "Create and manipulate arrays",
-          "Use splice to add/remove elements",
-          "Use slice to extract portions",
-          "Find elements with indexOf",
-          "Insert element at 2nd index of array",
-          "Remove nth element from array",
-          "Remove first element from array",
-          "Remove last element from array",
-          "Find last index of a particular number",
-          "Check if value is array using different methods"
-        ]
-      },
-      {
-        "phase": 27,
-        "title": "Arrays - Part 2 (Iteration Methods)",
-        "theory": [
-          "Array iteration: forEach(), map(), filter(), reduce()",
-          "Array search: find(), findIndex(), some(), every()",
-          "Method comparisons: map vs forEach, filter vs find",
-          "Practical iteration patterns and use cases"
-        ],
-        "practicals": [
-          "Use forEach to iterate arrays",
-          "Transform arrays with map()",
-          "Filter arrays based on conditions",
-          "Reduce array to single value",
-          "Find largest number using reduce()",
-          "Find largest odd number using reduce()",
-          "Sum of array using forEach and reduce",
-          "Multiply all numbers by 2 using map()",
-          "Find first even number using find()",
-          "Check if all numbers are positive using every()",
-          "Check if array contains any negative number using some()",
-          "Count occurrences using reduce()"
+          "Stack Overflow: Intentionally crash the call stack with infinite recursion to see the limit",
+          "The Priority Race: Predict the order of logs between a `setTimeout` and a `Promise.resolve()`",
+          "Project: 'The Execution Visualizer' - Build a small log-based tool that proves the Event Loop order"
         ]
       },
       {
         "phase": 28,
-        "title": "Arrays - Part 3 (Advanced Methods)",
+        "title": "The Locked Room: Closures",
         "theory": [
-          "Array creation: from(), of() methods",
-          "Array transformation: flat(), flatMap(), concat(), join()",
-          "Array manipulation: reverse(), sort(), fill(), copyWithin()",
-          "Advanced array patterns and techniques"
+          "Lexical Scope: How functions remember their birthplace",
+          "Closures: Functions that carry their surrounding variables with them",
+          "Private State: Creating variables that only one function can touch",
+          "Memory Pitfalls: Avoiding leaks with closures"
         ],
         "practicals": [
-          "Convert set to array using Array.from()",
-          "Flatten nested arrays",
-          "Sort arrays in different ways",
-          "Combine arrays using different methods",
-          "Flat array with nested arrays without using flat()",
-          "Create array of multiples using Array.from()",
-          "Sort array of objects by property",
-          "Implement custom sorting logic",
-          "Chain multiple array methods",
-          "Create array from string using Array.from()"
+          "The Secret Counter: A function that returns a counter that no one else can reset",
+          "The Partial Recipe: A function that 'pre-fills' some arguments (Currying intro)",
+          "Project: 'The Secure Bank Account' - A closure-based object that stores a balance and only allows access through specific functions"
         ]
       },
       {
         "phase": 29,
-        "title": "Array Manipulation Challenges",
+        "title": "The Janitor: Memory & GC",
         "theory": [
-          "Array manipulation patterns: filtering, transforming, reorganizing",
-          "Modern array techniques: destructuring, spread/rest operators",
-          "Common array problem-solving approaches"
+          "Memory Life Cycle: Allocate, Use, Release",
+          "Garbage Collection: How JS cleans up the mess for you",
+          "References: Why deleting one variable might not free up memory",
+          "Leaks: Common ways developers accidentally clog up the browser"
         ],
         "practicals": [
-          "Remove duplicates from an array (with and without Set)",
-          "Remove null and undefined from an array",
-          "Remove duplicate even numbers from array",
-          "Filter even numbers from an array",
-          "Remove prime numbers from array",
-          "Remove middle element from array",
-          "Remove second last element from array",
-          "Delete second largest from array",
-          "Find second smallest element from array",
-          "Find second min odd number",
-          "Find common elements from 2 arrays",
-          "Reverse array without using built-in methods",
-          "Reverse array in place",
-          "Replace odd numbers with their squares",
-          "Flip sign of numbers in array using forEach",
-          "Rotate array by k positions",
-          "Move all zeros to end of array",
-          "Find intersection of multiple arrays",
-          "Chunk array into smaller arrays"
+          "The Reference Trap: Create two variables pointing to the same object and see what happens when you null one",
+          "The Leak Hunter: Identify a common leak (like a forgotten setInterval) and fix it",
+          "Project: 'The Memory Monitor' - Research and document how to use the Chrome 'Memory' tab to find leaks"
         ]
       },
       {
         "phase": 30,
-        "title": "String Methods & Manipulation",
+        "title": "The Shadow: Proxy & Reflect",
         "theory": [
-          "String properties and basic methods: length, charAt, charCodeAt",
-          "String search and extraction: indexOf, lastIndexOf, slice, substring",
-          "String transformation: case conversion, trimming, padding, repeating",
-          "String manipulation: replace, split, concat, includes"
+          "Proxies: Placing a 'Guard' in front of your object",
+          "Traps: Intercepting reads, writes, and deletions",
+          "Reflect: The modern way to perform object operations",
+          "Practical Uses: Validation, Logging, and Reactive Data"
         ],
         "practicals": [
-          "Capitalize first letter of a string",
-          "Capitalize last letter of string",
-          "Capitalize first and last letter of string",
-          "Capitalize every word in a sentence",
-          "Change 'hello world' to 'world hello'",
-          "Input: 'How are you' Output: 'owH era uoy'",
-          "Reverse a string without reverse method",
-          "Reverse string using for loop",
-          "Remove a character from string",
-          "Split string in middle",
-          "Count vowels in a string",
-          "Check if string is palindrome",
-          "Count occurrences of character in string",
-          "Remove all spaces from string",
-          "Check if two strings are anagrams",
-          "Find longest word in sentence"
-        ],
-        "games": [
-          {
-            "title": "Regex Crossword",
-            "url": "https://regexcrossword.com/",
-            "description": "Practice Regular Expressions by solving crossword puzzles."
-          }
+          "The Validation Guard: Create a Proxy that refuses to set an age younger than 0",
+          "The Logger: Build a Proxy that logs every time a property is accessed",
+          "Project: 'The Smart Data Binder' - A simple system where changing an object automatically updates a piece of UI text"
         ]
       },
       {
         "phase": 31,
-        "title": "Template Literals & Modern Strings",
+        "title": "The Pattern Hunter: Regular Expressions",
         "theory": [
-          "Template literal syntax and string interpolation",
-          "Multi-line strings and expression embedding",
-          "Tagged template literals and custom processing",
-          "Modern string manipulation patterns"
+          "Regex: The secret code for searching text",
+          "Patterns: Matching emails, phone numbers, and dates",
+          "Flags: Global, Case-insensitive, and Multi-line",
+          "Methods: `test()`, `match()`, and `replace()` with Regex"
         ],
         "practicals": [
-          "Create multi-line strings",
-          "Use template literals for string interpolation",
-          "Combine variables in template literals",
-          "Create dynamic strings with expressions",
-          "Build HTML templates using template literals",
-          "Implement tagged template for custom processing",
-          "Create reusable string formatters"
+          "The Email Checker: Write a Regex that validates if a string is a real email",
+          "The Censorship Tool: Use Regex to find and replace 'Bad Words' in a paragraph",
+          "Project: 'The Form Guardian' - A complete form validator using Regex for Username, Email, and Password"
         ]
       },
       {
         "phase": 32,
-        "title": "Set & Map Data Structures",
+        "title": "The Detective: Debugging Mastery",
         "theory": [
-          "Set: unique value collection, methods, iteration",
-          "Map: key-value pairs, methods, iteration",
-          "Structure comparisons: Set vs Array, Map vs Object",
-          "Weak collections: WeakSet and WeakMap"
+          "Beyond `console.log`: Professional debugging tools",
+          "Breakpoints: Pausing time to see exactly what's happening",
+          "Stepping: Running code one single line at a time",
+          "Watch Expressions: Monitoring a specific variable as it changes"
         ],
         "practicals": [
-          "Create and use Sets",
-          "Remove duplicates using Set",
-          "Create and use Maps",
-          "Iterate over Maps",
-          "Convert Set to Array",
-          "Find union of two sets",
-          "Find intersection of two sets",
-          "Find difference between two sets",
-          "Count character frequency using Map"
+          "The Bug Hunt: I give you a broken script, you use a breakpoint to find the exact line it fails",
+          "The Stack Trace: Use the debugger to see how 5 different functions called each other",
+          "Project: 'The Debugger Logbook' - A guide on using the 'Network', 'Source', and 'Console' tabs together"
         ]
       },
       {
         "phase": 33,
-        "title": "ES6+ Modern Features - Part 1",
-        "theory": [
-          "Block scoping: let and const declarations",
-          "Function enhancements: arrow functions, default parameters",
-          "Object/array enhancements: destructuring, spread/rest operators",
-          "Modern syntax: template literals, enhanced object literals"
-        ],
+        "title": "Master Challenges: The Logic Games",
         "practicals": [
-          "Refactor ES5 code to ES6",
-          "Use destructuring in real scenarios",
-          "Implement default parameters",
-          "Create enhanced object literals",
-          "Use spread and rest operators",
-          "Build modern JavaScript modules",
-          "Convert old callback code to modern patterns",
-          "Use computed property names dynamically"
+          "FizzBuzz 2.0: The classic challenge with a modern twist",
+          "Palindrome Checker: Logic without using built-in string methods",
+          "The Missing Number: Find the missing item in an unsorted list",
+          "Array Chunking: Split a big array into smaller pieces"
         ]
       },
       {
         "phase": 34,
-        "title": "ES6+ Modern Features - Part 2",
-        "theory": [
-          "Iteration: for...of loop for iterables",
-          "New types: Symbol for unique keys, BigInt for large numbers",
-          "Object utilities: fromEntries() for Map conversion",
-          "Modern operators: optional chaining (?.), nullish coalescing (??)"
-        ],
+        "title": "Master Challenges: Data Wizardry",
         "practicals": [
-          "Use optional chaining in nested objects",
-          "Use nullish coalescing for default values",
-          "Create Symbols for unique keys",
-          "Use Object.fromEntries()",
-          "Demonstrate short circuit evaluation",
-          "Compare ?? vs || behavior",
-          "Use BigInt for large calculations"
+          "The Deep Comparison: Check if two big nested objects are identical",
+          "The Flattening: Conver a massive nested array into one flat list",
+          "Anagram Finder: Check if two words use the exact same letters",
+          "Frequency Map: Count how many times every word appears in a book"
         ]
       },
       {
         "phase": 35,
-        "title": "Generator Functions & Iterators",
-        "theory": [
-          "Generator syntax: function*, yield keyword, next() method",
-          "Generator behavior: pausing, resuming, value passing",
-          "Iterator patterns and custom iteration",
-          "Generator use cases and patterns"
-        ],
+        "title": "Capstone Projects: Engineering to Win",
         "practicals": [
-          "Create basic generator function",
-          "Generator function to print even numbers in reverse order",
-          "Generator function to print odd numbers in reverse order",
-          "Generator function to yield multiples of a number endlessly",
-          "Yield random elements from array without duplicates",
-          "Find even numbers using generator function",
-          "Generator function with 1 second delay",
-          "Implement custom iterator using generator",
-          "Create infinite sequence generator",
-          "Build pagination using generators"
-        ]
-      },
-      {
-        "phase": 36,
-        "title": "Memory Management & Performance",
-        "theory": [
-          "Value passing: primitives (by value) vs objects (by reference)",
-          "Copying techniques: shallow vs deep copy, structuredClone()",
-          "Memory management: garbage collection, memory leaks",
-          "Performance considerations and optimization"
-        ],
-        "practicals": [
-          "Demonstrate pass by value vs reference",
-          "Create shallow copies of objects",
-          "Create deep copies of nested objects",
-          "Use structuredClone()",
-          "Deep clone without using built-in methods",
-          "Compare different cloning techniques",
-          "Fix memory leak scenarios",
-          "Implement custom deep clone function"
-        ]
-      },
-      {
-        "phase": 37,
-        "title": "Advanced Concepts - Memoization & Optimization",
-        "theory": [
-          "Memoization: caching technique for performance optimization",
-          "Event optimization: debouncing and throttling patterns",
-          "Performance patterns and optimization strategies",
-          "Practical optimization techniques"
-        ],
-        "practicals": [
-          "Implement memoization function",
-          "Create debounced search input",
-          "Implement throttling for scroll events",
-          "Build cached function for expensive operations",
-          "Compare performance with and without memoization",
-          "Create memoized Fibonacci function",
-          "Build generic memoize utility",
-          "Implement throttle with leading and trailing options"
-        ]
-      },
-      {
-        "phase": 38,
-        "title": "Polyfills & Browser Compatibility",
-        "theory": [
-          "Polyfill concept: backward compatibility for newer features",
-          "Feature detection and graceful degradation",
-          "Cross-browser compatibility strategies",
-          "Polyfill implementation patterns"
-        ],
-        "practicals": [
-          "Write polyfill for Array.map()",
-          "Write polyfill for Array.filter()",
-          "Write polyfill for Array.reduce()",
-          "Write polyfill for Promise",
-          "Create polyfill for bind()",
-          "Implement polyfill for flat()",
-          "Build polyfill for Promise.all()",
-          "Test polyfills in different browsers",
-          "Create polyfill for Object.assign()"
-        ]
-      },
-      {
-        "phase": 39,
-        "title": "Error Handling & Exceptions",
-        "theory": [
-          "Error handling: try/catch/finally blocks, throw statement",
-          "Error types: ReferenceError, TypeError, SyntaxError, etc.",
-          "Custom error creation and error handling strategies",
-          "Error-first callback patterns"
-        ],
-        "practicals": [
-          "Use try-catch for error handling",
-          "Create and throw custom errors",
-          "Handle different error types",
-          "Implement error-first callbacks",
-          "Throw error if arguments don't meet conditions",
-          "Use finally block appropriately",
-          "Build error boundary pattern",
-          "Create custom error classes",
-          "Implement global error handler"
-        ]
-      },
-      {
-        "phase": 40,
-        "title": "Proxy & Reflect API",
-        "theory": [
-          "Proxy object: meta-programming, traps, handler methods",
-          "Common proxy use cases: validation, logging, computed properties",
-          "Reflect API: built-in methods for meta-programming",
-          "Proxy patterns and practical applications"
-        ],
-        "practicals": [
-          "Create Proxy for object validation",
-          "Implement Proxy for logging",
-          "Use Proxy for computed properties",
-          "Create Proxy with custom behavior",
-          "Demonstrate Proxy traps",
-          "Build reactive data using Proxy",
-          "Implement property access tracking",
-          "Create negative array indices with Proxy"
-        ]
-      },
-      {
-        "phase": 41,
-        "title": "DOM Manipulation",
-        "theory": [
-          "DOM concepts: document object model, element selection methods",
-          "Element manipulation: creation, modification, removal",
-          "Attribute and class management",
-          "Content manipulation: innerHTML vs textContent"
-        ],
-        "practicals": [
-          "Select and manipulate DOM elements",
-          "Create elements dynamically",
-          "Change background color of button on click",
-          "Toggle checkbox by button click",
-          "Change h1 color when button clicked",
-          "Add and remove classes",
-          "Build simple interactive UI components",
-          "Create dynamic list with add/remove functionality",
-          "Build todo list with DOM manipulation",
-          "Implement drag and drop"
-        ]
-      },
-      {
-        "phase": 42,
-        "title": "Event Handling",
-        "theory": [
-          "Event system: listeners, handlers, event object",
-          "Event methods: addEventListener(), removeEventListener()",
-          "Event control: preventDefault(), stopPropagation()",
-          "Common event types and patterns"
-        ],
-        "practicals": [
-          "Add event listeners to elements",
-          "Prevent default form submission",
-          "Prevent right click of button",
-          "Stop event propagation",
-          "Handle keyboard events",
-          "Work with mouse events",
-          "Build keyboard-controlled game",
-          "Create custom context menu",
-          "Implement click outside to close"
-        ]
-      },
-      {
-        "phase": 43,
-        "title": "Event Propagation & Delegation",
-        "theory": [
-          "Event propagation: bubbling and capturing phases",
-          "Event delegation: efficient handling for dynamic content",
-          "Delegation benefits and implementation patterns",
-          "Practical event handling strategies"
-        ],
-        "practicals": [
-          "Demonstrate event bubbling",
-          "Demonstrate event capturing",
-          "Implement event delegation",
-          "Create delegated event handlers for lists",
-          "Build interactive UIs with event delegation",
-          "Handle dynamic elements with delegation",
-          "Create modal with event delegation",
-          "Build accordion using event delegation"
-        ]
-      },
-      {
-        "phase": 44,
-        "title": "JSON & Data Formats",
-        "theory": [
-          "JSON syntax: data format rules and structure",
-          "JSON methods: parse() for reading, stringify() for writing",
-          "JSON vs JavaScript object differences",
-          "JSON handling patterns and best practices"
-        ],
-        "practicals": [
-          "Convert objects to JSON",
-          "Parse JSON strings to objects",
-          "Work with nested JSON",
-          "Handle JSON in API responses",
-          "Store and retrieve JSON in localStorage",
-          "Validate JSON format",
-          "Handle JSON parsing errors",
-          "Transform JSON data structures"
-        ]
-      },
-      {
-        "phase": 45,
-        "title": "Storage APIs",
-        "theory": [
-          "Browser storage: localStorage (persistent), sessionStorage (session)",
-          "Cookies: traditional web storage with limitations",
-          "Storage comparison and appropriate use cases",
-          "Storage patterns and best practices"
-        ],
-        "practicals": [
-          "Store and retrieve data in localStorage",
-          "Use sessionStorage for temporary data",
-          "Set and read cookies",
-          "Handle storage events",
-          "Implement data persistence",
-          "Build shopping cart with localStorage",
-          "Implement user preferences storage",
-          "Create storage wrapper utility"
-        ]
-      },
-      {
-        "phase": 46,
-        "title": "Asynchronous APIs & Fetch",
-        "theory": [
-          "Fetch API: modern network request interface",
-          "HTTP methods and request configuration",
-          "Response handling and error management",
-          "CORS and cross-origin request considerations"
-        ],
-        "practicals": [
-          "Fetch data from REST API",
-          "Read data from REST API and print as JS object",
-          "Send POST requests with fetch",
-          "Handle API errors",
-          "Work with different HTTP methods",
-          "Handle CORS scenarios",
-          "Build API client wrapper",
-          "Implement retry logic for failed requests",
-          "Create request interceptor"
-        ]
-      },
-      {
-        "phase": 47,
-        "title": "Design Patterns in JavaScript",
-        "theory": [
-          "Common patterns: Module, Singleton, Observer, Factory",
-          "Pattern applications and implementation techniques",
-          "Pattern benefits and appropriate use cases",
-          "JavaScript-specific pattern implementations"
-        ],
-        "practicals": [
-          "Implement Module pattern",
-          "Create Singleton instance",
-          "Build Observer pattern",
-          "Use Factory pattern for object creation",
-          "Apply design patterns to real scenarios",
-          "Implement pub-sub pattern",
-          "Create decorator pattern for logging",
-          "Build simple MVC application"
-        ]
-      },
-      {
-        "phase": 48,
-        "title": "JavaScript Modules",
-        "theory": [
-          "Module systems: ES Modules (import/export) vs CommonJS",
-          "Module features: named/default exports, dynamic imports",
-          "Module organization and code structuring",
-          "Module patterns and best practices"
-        ],
-        "practicals": [
-          "Create ES6 modules",
-          "Use import and export",
-          "Organize code with modules",
-          "Use dynamic imports",
-          "Refactor code into modules",
-          "Build modular application structure",
-          "Implement lazy loading with dynamic imports",
-          "Create barrel exports"
-        ]
-      },
-      {
-        "phase": 49,
-        "title": "Date & Time",
-        "theory": [
-          "Date object: creation, manipulation, formatting",
-          "Date methods: component access and modification",
-          "Date calculations and time zone considerations",
-          "Practical date handling patterns"
-        ],
-        "practicals": [
-          "Get current time without date",
-          "Format dates in different ways",
-          "Calculate date 15 days before today",
-          "Calculate date 25 days ago",
-          "Count hours since new year",
-          "Find DOB of person whose birthday is in 10 days",
-          "Perform date arithmetic",
-          "Current date in different formats (D/M/YYYY)",
-          "Calculate age from birthdate",
-          "Find day of week for any date",
-          "Compare two dates",
-          "Calculate business days between dates"
-        ]
-      },
-      {
-        "phase": 50,
-        "title": "Math & Numbers",
-        "theory": [
-          "Math object: mathematical functions and constants",
-          "Number methods: formatting, parsing, validation",
-          "Random number generation and rounding techniques",
-          "Mathematical operations and number handling"
-        ],
-        "practicals": [
-          "Generate random numbers",
-          "Generate random number between 0 and 100",
-          "Generate 6-digit random OTP",
-          "Round numbers different ways",
-          "Check for fractions in numbers",
-          "Math.round(2.2) to make it 3",
-          "Perform mathematical calculations",
-          "Find square root without Math.sqrt()",
-          "Implement power function without Math.pow()",
-          "Generate random array of numbers",
-          "Calculate percentage"
-        ]
-      },
-      {
-        "phase": 51,
-        "title": "Regular Expressions",
-        "theory": [
-          "Regex syntax: patterns, flags, special characters",
-          "Regex methods: test(), exec(), match(), replace()",
-          "Common regex patterns and use cases",
-          "Regex best practices and patterns"
-        ],
-        "practicals": [
-          "Validate email addresses",
-          "Validate phone numbers",
-          "Extract patterns from text",
-          "Replace patterns in strings",
-          "Build form validators",
-          "Extract URLs from text",
-          "Validate password strength",
-          "Parse CSV using regex",
-          "Remove HTML tags from string"
-        ]
-      },
-      {
-        "phase": 52,
-        "title": "Encoding & Special Functions",
-        "theory": [
-          "Encoding functions: URL encoding, Base64 encoding",
-          "Special operators: !! for boolean conversion, void operator",
-          "Type conversion and special function patterns",
-          "Encoding/decoding use cases"
-        ],
-        "practicals": [
-          "Encode and decode URLs",
-          "Use !! for boolean conversion",
-          "Demonstrate boxing behavior",
-          "Encode credentials in Base64",
-          "Build query string encoder",
-          "Create URL-safe strings"
-        ]
-      },
-      {
-        "phase": 53,
-        "title": "Debugging & DevTools",
-        "theory": [
-          "Debugging techniques: breakpoints, step execution, console methods",
-          "Browser DevTools: debugging, profiling, network analysis",
-          "Error tracking and performance debugging",
-          "Debugging strategies and best practices"
-        ],
-        "practicals": [
-          "Use console effectively",
-          "Set and use breakpoints",
-          "Debug async code",
-          "Profile memory usage",
-          "Debug Node.js applications",
-          "Use source maps",
-          "Identify and fix memory leaks",
-          "Analyze network requests",
-          "Profile performance bottlenecks"
-        ]
-      },
-      {
-        "phase": 2,
-        "title": "Control Flow & Logic",
-        "theory": [
-          "Comparison Operators (== vs ===)",
-          "Logical Operators (&&, ||, !)",
-          "If, Else If, Else Statements",
-          "Switch Statements",
-          "Ternary Operator",
-          "Truthiness & Falsiness"
-        ],
-        "games": [],
-        "practicals": [
-          "Build a 'Grading System' to practice if-else logic",
-          "Create a 'Traffic Light' simulator using switch statements",
-          "Project: Rock Paper Scissors - Implementing game logic with conditionals"
-        ]
-      },
-      {
-        "phase": 3,
-        "title": "Loops & Iteration",
-        "theory": [
-          "For Loop basics",
-          "While & Do-While Loops",
-          "Break & Continue",
-          "Nested Loops",
-          "For...of vs For...in"
-        ],
-        "games": [
-          {
-            "title": "WarriorJS",
-            "url": "https://warriorjs.com/",
-            "description": "Code your warrior to climb the tower of legend."
-          }
-        ],
-        "practicals": [
-          "Write a loop to print the Fibonacci sequence",
-          "Build a 'Multiplication Table' generator using nested loops",
-          "Project: Number Guessing Game - Using loops for retry logic"
-        ]
-      },
-      {
-        "phase": 54,
-        "title": "Coding Challenges - Basics",
-        "practicals": [
-          "Sum of digits in a number without using string",
-          "Find largest number in array",
-          "Find second largest element",
-          "Find second smallest element",
-          "Reverse integer",
-          "Check palindrome",
-          "FizzBuzz problem",
-          "Find pair of numbers that sum to target",
-          "Count frequency of elements in array",
-          "Count frequency of alphabets in string",
-          "Find most frequent words in array",
-          "Sum of even numbers with conditions",
-          "Find non-repeating elements",
-          "Generate array of prime numbers",
-          "Create patterns with loops",
-          "Find missing number in array (1 to n)",
-          "Find duplicate in array",
-          "Check if array is sorted",
-          "Move negative numbers to one side"
-        ]
-      },
-      {
-        "phase": 55,
-        "title": "Coding Challenges - Advanced",
-        "practicals": [
-          "Two sum problem",
-          "Three sum problem",
-          "Longest substring without repeating characters",
-          "Valid parentheses checker",
-          "Merge sorted arrays",
-          "Implement queue using two stacks",
-          "Find first non-repeating character",
-          "Group anagrams together",
-          "Flatten nested array recursively",
-          "Deep compare two objects",
-          "Implement array chunk function",
-          "Find all permutations of string",
-          "Kadane's algorithm (max subarray sum)",
-          "Stock buy and sell problem",
-          "Rain water trapping",
-          "Longest increasing subsequence",
-          "2D spiral traversal"
+          "Project 1: 'The ATM 2.0' - A complete CLI app with accounts, transfers, and error handling",
+          "Project 2: 'The Smart Shopping Cart' - A persistent system with discounts, tax, and local storage",
+          "Project 3: 'The Weather Dashboard' - A clean, interactive UI that fetches live data and displays it beautifully",
+          "Project 4: 'The Personal Finance Tracker' - Track expenses and draw a simple 'Bar Chart' using standard JS"
         ],
         "games": [
           {
             "title": "Elevator Saga",
             "url": "https://play.elevatorsaga.com/",
-            "description": "Program elevators with JavaScript to transport people efficiently."
-          },
-          {
-            "title": "Codewars",
-            "url": "https://www.codewars.com/",
-            "description": "Achieve mastery through challenge. Improve your skills by training with others on real code challenges."
+            "description": "The ultimate test of your logic and efficiency."
           }
         ]
       }

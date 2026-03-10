@@ -7,90 +7,95 @@ export const HTML_CURRICULUM = {
         phases: [
             {
                 phase: 1,
-                title: "HTML Basics & Structure",
+                title: "The Grand Tour: How the Web Works",
                 theory: [
-                    "HTML Introduction & Editors",
-                    "Basic Document Structure (<!DOCTYPE>, html, head, body)",
-                    "HTML Elements & Attributes",
-                    "Headings (h1-h6), Paragraphs (p) & Line Breaks (br, hr)",
-                    "HTML Comments & Formatting Code",
-                    "The concept of 'The DOM Tree' basics"
+                    "The Big Picture: Frontend (Face), Backend (Brain), Database (Memory)",
+                    "Internet vs. World Wide Web (The Wires vs. The Content)",
+                    "What is HTML? (The Skeleton of a Website)",
+                    "Why HTML5? (The modern standard for everyone)",
+                    "Boilerplate Breakdown: The 'Secret' Code in every Page",
+                    "- <!DOCTYPE html>: Telling the browser 'I am a modern page'",
+                    "- <html>: The container for everything",
+                    "- <head>: The page's 'Brain' (Title, Settings, Meta Tags)",
+                    "- <body>: The page's 'Body' (Everything you actually see)",
+                    "Introduction to Meta Tags: How Google reads your mind",
+                    "Common Tag Anatomy: <opening> content </closing>"
                 ],
                 practicals: [
-                    "Setup a professional VS Code environment to verify 'Editor' theory",
-                    "Build a validated 'Hello World' file to clear 'Document Structure' concepts",
-                    "Project: Personal Bio Page - Implementing Headings, Paragraphs, and Comments into a structured document"
+                    "Mental Model: 'The Fullstack Sketch' - Map out your favorite app's Face, Brain, and Memory",
+                    "The Annotated Skeleton: Build your first .html file and comment every line in plain English",
+                    "Project: 'The Page's ID Card' - Creating a basic page with a Title and Meta Description"
                 ],
                 games: [
-                    { title: "Duck Hunt CSV", url: "https://duckhuntjs.com/", description: "A fun way to understand screen coordinates and basic logic within HTML5 canvas." },
-                    { title: "Nester", url: "https://codepip.com/games/nester/", description: "Master HTML hierarchy and nesting. From the creators of Flexbox Froggy." }
+                    { title: "Nester", url: "https://codepip.com/games/nester/", description: "Master HTML hierarchy and nesting. Perfect for visualizing the 'Skeleton' analogy." }
                 ]
             },
             {
                 phase: 2,
-                title: "Formatting & Presentation",
+                title: "Text & Structure: The Basics",
                 theory: [
-                    "Text Formatting (b, strong, i, em, u, s, mark, small, del, ins, sub, sup)",
-                    "Quotations (blockquote, q, abbr, address, cite, bdo)",
-                    "HTML Styles attribute (Introduction to inline CSS)",
-                    "HTML Colors (Names, RGB, HEX, HSL)",
-                    "CSS Integration: Inline, Internal, External styling",
+                    "Headings (h1-h6): The Page Hierarchy",
+                    "Paragraphs (p) & Line Breaks (br, hr)",
+                    "Text Formatting (strong, em, mark, small, del, ins)",
+                    "HTML Comments: Leaving notes for yourself",
+                    "The concept of 'The Family Tree' (DOM Basics)",
+                    "HTML Styles attribute: Quick visual wins with Colors"
                 ],
                 practicals: [
-                    "Format a news article using <b>, <i>, and <mark> to test Formatting tags",
-                    "Create a 'Color Palette' showcase to demonstrate RBG, HEX, and HSL values",
-                    "Project: Stylized Quote Card - Combining <blockquote> with Inline Styles and specific Colors"
+                    "Project: Personal Bio Page - Using Headings and Paragraphs to tell your story",
+                    "Experiment: Try every Heading level (h1-h6) to see the visual difference",
+                    "Formatting Challenge: Use <mark> and <strong> to highlight a news article snippet"
                 ]
             },
             {
                 phase: 3,
-                title: "Links, Images & Navigation",
+                title: "Links, Quotes & Navigation",
                 theory: [
-                    "HTML Links (Hyperlinks, Syntax, Targets, Absolute vs Relative)",
-                    "Link States & Bookmarks",
-                    "HTML Images (src, alt, width/height, floating)",
-                    "Image Maps & Background Images",
-                    "The <picture> Element & Favicons",
-                    "HTML File Paths & Page Titles"
+                    "HTML Links (Hyperlinks, Syntax, Absolute vs Relative)",
+                    "Quotations & Citations (blockquote, q, address, cite)",
+                    "Link States: Where do they go? (target='_blank')",
+                    "HTML File Paths: Navigating your project folder",
+                    "Page Titles & Favicons: Your site's identity",
+                    "The <abbr> Tag: Explaining technical terms"
                 ],
                 practicals: [
-                    "Build a multi-page website skeleton to master Relative vs Absolute File Paths",
-                    "Create a clickable Image Map to link specific coordinates of an Image",
-                    "Project: Digital Photo Gallery - Using Images with Alt text, Favicons, and Navigation Links"
+                    "Build a 2-page website and link them together using Relative Paths",
+                    "Create a 'Book Quote' section using <blockquoteContent>",
+                    "Project: Digital Business Card - A single page with social links and a personal motto"
                 ]
             },
             {
                 phase: 4,
-                title: "Tables, Lists & Blocks",
+                title: "Visuals: Images & Lists",
                 theory: [
-                    "HTML Tables (Rows, Cells, Headers, Borders, Sizes)",
-                    "Advanced Tables (Colspan, Rowspan, Grouping)",
-                    "HTML Lists (Unordered, Ordered, Description Lists)",
-                    "Block-level vs. Inline Elements",
-                    "The <div> and <span> container elements",
-                    "HTML Classes & IDs"
+                    "HTML Images (src, alt, width/height)",
+                    "Why 'Alt' text matters (Accessibility for everyone)",
+                    "Background Images vs Image Tags",
+                    "HTML Lists (Unordered vs Ordered)",
+                    "Nested Lists: Creating a 'Menu' structure",
+                    "Block vs Inline Elements: The 'Box' mental model"
                 ],
                 practicals: [
-                    "Design a 'Pricing Table' to practice Rowspan, Colspan, and Borders",
-                    "Create a nested 'Table of Contents' to master Unordered and Ordered Lists",
-                    "Project: Restaurant Menu - Structuring data with Tables, Divs, Classes, and IDs"
+                    "Project: Digital Photo Gallery - Using Images with meaningful Alt text",
+                    "Task: Create a 'Recipe' page with an Ingredient List (Ordered) and Steps (Unordered)",
+                    "Visual Check: Use <div> vs <span> to see how elements stack"
                 ]
             },
             {
                 phase: 5,
-                title: "Layout & Embeds",
+                title: "Meaningful Structure: Layout & Tables",
                 theory: [
-                    "HTML Iframes (Embedding external content)",
-                    "The <script> Tag & NoScript",
-                    "HTML Head Metadata (Meta tags, Base, Viewport)",
-                    "HTML Layout Elements (Header, Footer, Nav, Section, Article, Aside)",
-                    "Responsive Web Design Basics (Viewport, Media Queries concept)",
-                    "Semantic HTML vs. Non-Semantic"
+                    "Semantic HTML: Header, Footer, Nav, Main, Section, Article",
+                    "Why Semantics? (Helping browsers and screen readers understand 'Why')",
+                    "HTML Tables: Organizing data (Rows, Cells, Headers)",
+                    "The <iframe> Tag: Windows to other websites",
+                    "HTML Classes & IDs: Giving names to your elements",
+                    "Layout Basics: How to structure a full webpage"
                 ],
                 practicals: [
-                    "Embed third-party content (YouTube, Maps) to test Iframe attributes",
-                    "Refactor a Div-soup layout using <header>, <main>, and <article> Semantic tags",
-                    "Project: News Portal Layout - A complete skeleton demonstrating proper Meta tags and Semantic partitioning"
+                    "Refactor a 'Div-soup' layout into a Semantic masterpiece",
+                    "Build a 'Student Roster' table with appropriate headers",
+                    "Project: News Portal Skeleton - A complete page layout using Semantic tags and an embedded map"
                 ]
             },
             {

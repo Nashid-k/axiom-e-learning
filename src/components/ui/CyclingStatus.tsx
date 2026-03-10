@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const DEFAULT_MESSAGES = [
     "Consulting the archives...",
@@ -21,6 +21,7 @@ interface CyclingStatusProps {
 export function CyclingStatus({ loading, messages = DEFAULT_MESSAGES, className = "" }: CyclingStatusProps) {
     const [index, setIndex] = useState(0);
     const previousLoadingRef = useRef(loading);
+    const shouldReduceMotion = useReducedMotion();
 
     useEffect(() => {
         let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -35,14 +36,14 @@ export function CyclingStatus({ loading, messages = DEFAULT_MESSAGES, className 
     }, [loading]);
 
     useEffect(() => {
-        if (!loading) return;
+        if (!loading || shouldReduceMotion) return;
 
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % (messages?.length || 1));
         }, 2000);
 
         return () => clearInterval(interval);
-    }, [loading, messages?.length]);
+    }, [loading, messages?.length, shouldReduceMotion]);
 
     if (!loading) return null;
 

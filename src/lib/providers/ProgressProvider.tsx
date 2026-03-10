@@ -145,8 +145,20 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         return ((xp - currentLevelBase) / 1000) * 100;
     }, [xp, level]);
 
+    const contextValue = useMemo(() => ({
+        progress,
+        isLoading,
+        updateProgress,
+        refreshProgress,
+        xp,
+        level,
+        nextLevelXp,
+        progressToNextLevel,
+        streak
+    }), [progress, isLoading, updateProgress, refreshProgress, xp, level, nextLevelXp, progressToNextLevel, streak]);
+
     return (
-        <ProgressContext.Provider value={{ progress, isLoading, updateProgress, refreshProgress, xp, level, nextLevelXp, progressToNextLevel, streak }}>
+        <ProgressContext.Provider value={contextValue}>
             {children}
         </ProgressContext.Provider>
     );

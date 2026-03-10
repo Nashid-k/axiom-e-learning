@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useMemo, useCallback } from 'react';
 import { Topic } from '@/types';
 
 interface TopicContextType {
@@ -12,13 +12,18 @@ const TopicContext = createContext<TopicContextType | undefined>(undefined);
 
 export function TopicProvider({ children }: { children: ReactNode }) {
     const [activeTopic, setActiveTopic] = useState<Topic | null>(null);
-    const selectTopic = (topic: Topic) => {
+    const selectTopic = useCallback((topic: Topic) => {
         setActiveTopic(topic);
-    };
+    }, []);
+
+    const contextValue = useMemo(() => ({
+        activeTopic,
+        selectTopic
+    }), [activeTopic, selectTopic]);
 
 
     return (
-        <TopicContext.Provider value={{ activeTopic, selectTopic }}>
+        <TopicContext.Provider value={contextValue}>
             {children}
         </TopicContext.Provider>
     );

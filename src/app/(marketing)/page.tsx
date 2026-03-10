@@ -98,7 +98,7 @@ export default function LandingPage() {
                                 </div>
                                 <div className="order-1 md:order-2 w-full md:w-auto flex justify-center shrink-0">
                                     <div className="relative w-40 h-40 md:w-56 md:h-56">
-                                        <div className="absolute inset-0 bg-[var(--color-destruct)]/20 blur-[40px] rounded-full animate-pulse" />
+                                        <div className="absolute inset-0 bg-[var(--color-destruct)]/20 blur-[40px] rounded-full animate-pulse transform-gpu" />
                                         <div className="relative z-10 w-full h-full bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-[var(--radius-xl)] backdrop-blur-sm rotate-3 flex items-center justify-center">
                                             <span className="text-6xl">📚</span>
                                         </div>
@@ -252,24 +252,18 @@ export default function LandingPage() {
 
                         <div className="flex-1 w-full relative">
                             <div className="relative aspect-square w-full max-w-[280px] sm:max-w-lg mx-auto p-[var(--space-3)] glass-card rounded-[var(--radius-2xl)] border-white/10 shadow-[0_0_80px_var(--color-500)/0.08]">
-                                <div className="absolute inset-0 bg-[var(--color-500)]/5 blur-2xl rounded-full animate-pulse" />
+                                <div className="absolute inset-0 bg-[var(--color-500)]/5 blur-2xl rounded-full animate-pulse transform-gpu" />
                                 <div className="relative h-full w-full flex items-center justify-center">
-                                    <motion.div
-                                        animate={shouldReduceMotion ? { rotate: 0 } : { rotate: 360 }}
-                                        transition={shouldReduceMotion ? { duration: 0.01 } : { duration: 20, repeat: Infinity, ease: "linear" }}
-                                        className="absolute inset-0 border-2 border-dashed border-white/5 rounded-full"
+                                    <div
+                                        className={`absolute inset-0 border-2 border-dashed border-white/5 rounded-full ${shouldReduceMotion ? '' : 'animate-spin-slow-custom'}`}
                                     />
-                                    <motion.div
-                                        animate={shouldReduceMotion ? { rotate: 0 } : { rotate: -360 }}
-                                        transition={shouldReduceMotion ? { duration: 0.01 } : { duration: 30, repeat: Infinity, ease: "linear" }}
-                                        className="absolute inset-10 border border-[var(--border-default)] rounded-full"
+                                    <div
+                                        className={`absolute inset-10 border border-[var(--border-default)] rounded-full ${shouldReduceMotion ? '' : 'animate-spin-slow-reverse'}`}
                                     />
                                     <div className="relative z-10 w-32 h-32 rounded-full bg-gradient-to-br from-[var(--color-500)] to-[var(--color-ana-blue-500)] flex items-center justify-center shadow-[0_0_40px_var(--color-500)/0.35]">
                                         <span className="text-4xl">👑</span>
-                                        <motion.div
-                                            animate={shouldReduceMotion ? { scale: 1 } : { scale: [1, 1.15, 1] }}
-                                            transition={shouldReduceMotion ? { duration: 0.01 } : { duration: 4, repeat: Infinity }}
-                                            className="absolute inset-0 rounded-full bg-white/15 blur-lg"
+                                        <div
+                                            className={`absolute inset-0 rounded-full bg-white/15 blur-lg ${shouldReduceMotion ? '' : 'animate-float-subtle'}`}
                                         />
                                     </div>
                                     {[0, 72, 144, 216, 288].map((deg, i) => (

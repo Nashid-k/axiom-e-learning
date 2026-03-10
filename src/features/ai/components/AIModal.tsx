@@ -226,8 +226,8 @@ export default function AIModal() {
             onClose={closeModal}
             align="center"
             ariaLabel="AI assistant workspace"
-            containerClassName="relative w-[min(1100px,95vw)] flex flex-col bg-white dark:bg-[#151515] rounded-[24px] shadow-[0_50px_100px_rgba(0,0,0,0.3)] overflow-hidden border border-black/5 dark:border-white/5"
-            backdropClassName="bg-black/60 backdrop-blur-md"
+            containerClassName="relative w-[min(1100px,95vw)] flex flex-col bg-white dark:bg-[#151515] rounded-[24px] shadow-[0_50px_100px_rgba(0,0,0,0.3)] overflow-hidden border border-black/5 dark:border-white/5 transform-gpu translate-z-0"
+            backdropClassName="bg-black/60 backdrop-blur-sm transform-gpu"
         >
             <div className="flex flex-col md:flex-row h-[min(850px,90vh)]" onClick={(e) => e.stopPropagation()}>
                 { }
@@ -298,12 +298,12 @@ export default function AIModal() {
                     { }
                     <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center z-20 pointer-events-none transform-gpu translate-z-0">
                         <div className="pointer-events-auto">
-                            <div className="flex items-center gap-2 bg-gray-100/50 dark:bg-white/5 backdrop-blur-md border border-black/5 dark:border-white/10 px-4 py-1.5 rounded-full shadow-sm">
+                            <div className="flex items-center gap-2 bg-gray-100/50 dark:bg-white/5 backdrop-blur-sm transform-gpu border border-black/5 dark:border-white/10 px-4 py-1.5 rounded-full shadow-sm">
                                 <span className="text-[10px] text-gray-400 dark:text-gray-500 font-black uppercase tracking-widest">{topicData.category}</span>
                             </div>
                         </div>
                         <div className="flex items-center gap-3 pointer-events-auto">
-                            <ModalCloseButton onClose={closeModal} className="w-10 h-10 shadow-lg backdrop-blur-md bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10" />
+                            <ModalCloseButton onClose={closeModal} className="w-10 h-10 shadow-lg backdrop-blur-sm transform-gpu bg-white/50 dark:bg-white/5 border border-black/5 dark:border-white/10" />
                         </div>
                     </div>
 
@@ -429,7 +429,7 @@ export default function AIModal() {
 
                     { }
                     { }
-                    <div className="shrink-0 p-3 md:p-5 bg-white/80 dark:bg-black/40 border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-3 z-20 backdrop-blur-xl backdrop-saturate-150 transform-gpu translate-z-0">
+                    <div className="shrink-0 p-3 md:p-5 bg-white/95 dark:bg-[#151515]/95 backdrop-blur-md border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-3 z-20 transform-gpu translate-z-0">
                         <div className="flex items-center gap-2 md:gap-3">
                             <div className="flex items-center gap-2">
                                 { }

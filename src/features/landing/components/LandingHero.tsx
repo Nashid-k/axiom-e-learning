@@ -26,7 +26,7 @@ export function LandingHero() {
                     className={cn(
                         "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[560px] rounded-full blur-[70px] opacity-50",
                         "bg-[var(--color-500)]/12",
-                        !shouldReduceMotion && "animate-pulse"
+                        !shouldReduceMotion && "animate-pulse transform-gpu"
                     )}
                     style={{ willChange: 'opacity, transform' }}
                 />

@@ -117,7 +117,7 @@ export default function GlobalAssistant() {
     }, []);
 
     useEffect(() => {
-        if (!isThinking) {
+        if (!isThinking || !isOpen) {
             setThinkingStep(0);
             return;
         }
@@ -125,7 +125,7 @@ export default function GlobalAssistant() {
             setThinkingStep(prev => (prev + 1) % 3);
         }, shouldReduceMotion ? 2400 : 1400);
         return () => clearInterval(interval);
-    }, [isThinking, shouldReduceMotion]);
+    }, [isThinking, shouldReduceMotion, isOpen]);
 
     const startThinkingIndicator = useCallback(() => {
         if (thinkingShowTimerRef.current) clearTimeout(thinkingShowTimerRef.current);
@@ -522,9 +522,9 @@ export default function GlobalAssistant() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                                 }}
-                                className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl group-hover:bg-blue-500/40 transition-colors"
+                                className="absolute inset-0 rounded-full bg-blue-500/20 blur-xl group-hover:bg-blue-500/40 transition-colors transform-gpu"
                             />
-                            <div className="relative w-16 h-16 rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] flex items-center justify-center overflow-hidden group-hover:border-white/40 transition-colors">
+                            <div className="relative w-16 h-16 rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] flex items-center justify-center overflow-hidden group-hover:border-white/40 transition-colors transform-gpu">
                                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-50" />
                                 <div className="relative z-10 flex items-center justify-center">
                                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-500 dark:text-blue-400 drop-shadow-lg">
@@ -560,9 +560,9 @@ export default function GlobalAssistant() {
                             animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
                             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: 20, filter: 'blur(10px)' }}
                             transition={shouldReduceMotion ? { duration: 0.01 } : { type: "spring", stiffness: 350, damping: 30 }}
-                            className="fixed z-[60] flex flex-col bg-white dark:bg-[#1C1C1E] border border-gray-200 dark:border-white/10 shadow-2xl overflow-hidden w-full h-[85vh] bottom-0 left-0 rounded-t-2xl sm:w-[600px] sm:h-[700px] sm:max-h-[85vh] sm:bottom-6 sm:right-6 sm:left-auto sm:rounded-2xl"
+                            className="fixed z-[60] flex flex-col bg-white dark:bg-[#1C1C1E] border border-gray-200 dark:border-white/10 shadow-2xl w-full h-[85vh] bottom-0 left-0 rounded-t-2xl sm:w-[600px] sm:h-[700px] sm:max-h-[85vh] sm:bottom-6 sm:right-6 sm:left-auto sm:rounded-2xl transform-gpu translate-z-0"
                         >
-                            <div className="flex items-center justify-between p-4 border-b border-black/5 dark:border-white/5 bg-white/80 dark:bg-[#1C1C1E]/80 backdrop-blur-md sticky top-0 z-10">
+                            <div className="flex items-center justify-between p-4 border-b border-black/5 dark:border-white/5 bg-white/95 dark:bg-[#1C1C1E]/95 backdrop-blur-md sticky top-0 z-10 transform-gpu translate-z-0">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20 text-white text-sm font-bold border border-white/10">
                                         <span className="scale-110">✨</span>
@@ -873,7 +873,7 @@ export default function GlobalAssistant() {
                                             <div ref={messagesEndRef} />
                                         </div>
 
-                                        <div className="p-3 sm:p-4 bg-white/50 dark:bg-[#1C1C1E]/50 backdrop-blur-md border-t border-black/5 dark:border-white/5 shrink-0">
+                                        <div className="p-3 sm:p-4 bg-white/90 dark:bg-[#1C1C1E]/90 backdrop-blur-md border-t border-black/5 dark:border-white/5 shrink-0 transform-gpu translate-z-0">
                                             {lastFailedInput && !isLoading && (
                                                 <div className="mb-2 flex items-center justify-between rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200/70 dark:border-amber-500/20 px-3 py-2">
                                                     <span className="text-[11px] text-amber-700 dark:text-amber-300">Last send failed. Retry with one tap.</span>

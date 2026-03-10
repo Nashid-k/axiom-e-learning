@@ -245,6 +245,9 @@
   --animate-shimmer: shimmer 1.8s ease-in-out infinite;
   --animate-marquee: marquee 60s linear infinite;
   --animate-spin-slow: spin 2s linear infinite;
+  --animate-spin-slow-custom: spin-slow 20s linear infinite;
+  --animate-spin-slow-reverse: spin-slow-reverse 30s linear infinite;
+  --animate-float-subtle: float-subtle 6s ease-in-out infinite;
 
   @keyframes fade-in {
     from {

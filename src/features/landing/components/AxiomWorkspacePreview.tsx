@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, memo } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, useReducedMotion } from 'framer-motion';
+import { useState, memo, useEffect } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { cn } from '@/lib/utils';
@@ -16,44 +16,9 @@ const MOCK_CODE = `function optimizeDataProcess(items) {
 }
 `;
 
-const TYPING_TEXT = "I've analyzed your code structure. The `heavyComputation` call inside the filter loop is causing a bottleneck. Here's an optimized version using `useMemo`...";
-
 export function AxiomWorkspacePreview() {
     const [activeTab, setActiveTab] = useState<Tab>('ai');
-    const [typingIndex, setTypingIndex] = useState(0);
     const shouldReduceMotion = useReducedMotion();
-
-
-    useEffect(() => {
-        if (shouldReduceMotion) {
-            const timeoutId = setTimeout(() => setTypingIndex(TYPING_TEXT.length), 0);
-            return () => clearTimeout(timeoutId);
-        }
-
-        if (activeTab === 'ai') {
-            let intervalId: ReturnType<typeof setInterval> | null = null;
-            const timeoutId = setTimeout(() => {
-                intervalId = setInterval(() => {
-                    setTypingIndex(prev => {
-                        if (prev < TYPING_TEXT.length) {
-                            return prev + 1;
-                        }
-                        if (intervalId) clearInterval(intervalId);
-                        return prev;
-                    });
-                }, 40);
-            }, 500);
-            return () => {
-                clearTimeout(timeoutId);
-                if (intervalId) clearInterval(intervalId);
-            };
-        }
-    }, [activeTab, shouldReduceMotion]);
-
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const rotateX = useTransform(y, [-100, 100], [30, -30]);
-    const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
     return (
         <section className="py-20 md:py-32 px-4 relative z-10 overflow-hidden perspective-1000">
@@ -73,17 +38,15 @@ export function AxiomWorkspacePreview() {
             </div>
 
             <motion.div
-                style={shouldReduceMotion ? undefined : { x, y, rotateX, rotateY, z: 100 }}
-                drag={!shouldReduceMotion}
-                dragElastic={shouldReduceMotion ? 0 : 0.16}
-                dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
-                whileHover={shouldReduceMotion ? undefined : { cursor: "grab" }}
-                whileTap={shouldReduceMotion ? undefined : { cursor: "grabbing" }}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 30, scale: 0.98, rotateX: 12 }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 30, scale: 0.98 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={shouldReduceMotion ? { duration: 0.01 } : { duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="max-w-[1000px] mx-auto bg-[#0A0A0A] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-900/10 flex flex-col md:flex-row md:h-[700px] relative group will-change-transform transform-style-3d"
+                animate={shouldReduceMotion ? undefined : { y: [-10, 10, -10] }}
+                transition={shouldReduceMotion ? { duration: 0.01 } : {
+                    opacity: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                    y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                }}
+                className="max-w-[1000px] mx-auto bg-[#0A0A0A] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-900/10 flex flex-col md:flex-row md:h-[700px] relative group will-change-transform"
             >
                 { }
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-transparent opacity-50 pointer-events-none" />
@@ -91,8 +54,8 @@ export function AxiomWorkspacePreview() {
                 { }
                 <div className="w-full md:w-20 bg-[#050505] border-b md:border-b-0 md:border-r border-white/5 flex flex-row md:flex-col items-center py-4 gap-4 z-20 shrink-0 justify-center md:justify-start">
                     <NavIcon active={activeTab === 'ai'} onClick={() => setActiveTab('ai')} icon="✨" label="Maya AI" color="blue" />
-                    <NavIcon active={activeTab === 'dojo'} onClick={() => { setActiveTab('dojo'); setTypingIndex(0); }} icon="⚔️" label="Dojo Editor" color="red" />
-                    <NavIcon active={activeTab === 'resources'} onClick={() => { setActiveTab('resources'); setTypingIndex(0); }} icon="📚" label="Resources" color="amber" />
+                    <NavIcon active={activeTab === 'dojo'} onClick={() => setActiveTab('dojo')} icon="⚔️" label="Dojo Editor" color="red" />
+                    <NavIcon active={activeTab === 'resources'} onClick={() => setActiveTab('resources')} icon="📚" label="Resources" color="amber" />
                 </div>
 
                 { }
@@ -118,7 +81,7 @@ export function AxiomWorkspacePreview() {
                     { }
                     <div className="flex-1 p-4 md:p-6 overflow-hidden relative">
                         <AnimatePresence mode="wait">
-                            {activeTab === 'ai' && <AIView key="ai" typingIndex={typingIndex} />}
+                            {activeTab === 'ai' && <AIView key="ai" />}
                             {activeTab === 'dojo' && <DojoView key="dojo" />}
                             {activeTab === 'resources' && <ResourcesView key="resources" />}
                         </AnimatePresence>
@@ -165,33 +128,7 @@ function NavIcon({ active, onClick, icon, label, color }: { active: boolean, onC
     );
 }
 
-const MOCK_AI_RESPONSE = `
-## Optimization Analysis
-
-The \`filter\` operation inside your loop is creating an **O(N²)** complexity because \`heavyComputation\` runs on every iteration.
-
-### Recommended Fix
-
-Use \`useMemo\` to cache results:
-
-\`\`\`javascript
-const memoizedResult = useMemo(() => {
-  return items.map(processItem);
-}, [items]);
-\`\`\`
-
-**Why this works:**
-1. Reduces re-renders
-2. Caches expensive calculations
-3. Improves TTI (Time to Interactive)
-`;
-
-import { AIExplanationView } from '@/features/ai/components/AIExplanationView';
-
-
-
-function AIView({ typingIndex }: { typingIndex: number }) {
-    const displayedContent = MOCK_AI_RESPONSE.slice(0, typingIndex * 5);
+function AIView() {
     const shouldReduceMotion = useReducedMotion();
 
     return (
@@ -216,18 +153,12 @@ function AIView({ typingIndex }: { typingIndex: number }) {
                         </p>
                     </div>
 
-                    { }
-                    <AIExplanationView
-                        content={displayedContent}
-                        loading={false}
-                        error={null}
-                        onRegenerate={() => { }}
-                    />
+                    <MinimalTypewriter />
                 </div>
-            </div>
+            </div >
 
             { }
-            <div className="shrink-0 pt-4 mt-auto">
+            < div className="shrink-0 pt-4 mt-auto" >
                 <div className="p-3 md:p-4 bg-gray-50/5 dark:bg-black/40 border border-white/5 rounded-2xl flex flex-wrap md:flex-nowrap items-center justify-between gap-4 backdrop-blur-md">
                     <div className="flex items-center gap-3 w-full md:w-auto">
                         <div className="flex items-center gap-2">
@@ -261,8 +192,8 @@ function AIView({ typingIndex }: { typingIndex: number }) {
                         </button>
                     </div>
                 </div>
-            </div>
-        </motion.div>
+            </div >
+        </motion.div >
     );
 }
 
@@ -383,5 +314,73 @@ function ResourcesView() {
                 ))}
             </div>
         </motion.div>
+    );
+}
+
+const MOCK_AI_RESPONSE = `
+## Optimization Analysis
+
+The \`filter\` operation inside your loop is creating an **O(N²)** complexity because \`heavyComputation\` runs on every iteration.
+
+### Recommended Fix
+
+Use \`useMemo\` to cache results:
+
+\`\`\`javascript
+const memoizedResult = useMemo(() => {
+  return items.map(processItem);
+}, [items]);
+\`\`\`
+
+**Why this works:**
+1. Reduces re-renders
+2. Caches expensive calculations
+3. Improves TTI (Time to Interactive)
+`;
+
+const TYPING_TEXT = "I've analyzed your code structure. The `heavyComputation` call inside the filter loop is causing a bottleneck. Here's an optimized version using `useMemo`...";
+
+import { AIExplanationView } from '@/features/ai/components/AIExplanationView';
+
+const MemoizedAIExplanationView = memo(AIExplanationView);
+
+function MinimalTypewriter() {
+    const [typingIndex, setTypingIndex] = useState(0);
+    const shouldReduceMotion = useReducedMotion();
+
+    useEffect(() => {
+        if (shouldReduceMotion) {
+            const timeoutId = setTimeout(() => setTypingIndex(TYPING_TEXT.length), 0);
+            return () => clearTimeout(timeoutId);
+        }
+
+        let intervalId: ReturnType<typeof setInterval> | null = null;
+        const timeoutId = setTimeout(() => {
+            intervalId = setInterval(() => {
+                setTypingIndex(prev => {
+                    if (prev < TYPING_TEXT.length) {
+                        return prev + 1;
+                    }
+                    if (intervalId) clearInterval(intervalId);
+                    return prev;
+                });
+            }, 40);
+        }, 500);
+
+        return () => {
+            clearTimeout(timeoutId);
+            if (intervalId) clearInterval(intervalId);
+        };
+    }, [shouldReduceMotion]);
+
+    const displayedContent = MOCK_AI_RESPONSE.slice(0, typingIndex * 5);
+
+    return (
+        <MemoizedAIExplanationView
+            content={displayedContent}
+            loading={false}
+            error={null}
+            onRegenerate={() => { }}
+        />
     );
 }

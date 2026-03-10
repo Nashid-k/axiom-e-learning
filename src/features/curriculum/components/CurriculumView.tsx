@@ -287,7 +287,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     </div>
 
 
-                    <div className="p-5 w-full lg:w-[340px] shrink-0 bg-white/80 dark:bg-black/40 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl transition-colors relative">
+                    <div className="p-5 w-full lg:w-[340px] shrink-0 bg-white/90 dark:bg-black/60 backdrop-blur-md transform-gpu border border-gray-200 dark:border-white/10 rounded-2xl transition-colors relative">
                         {showPop && (
                             <div className="absolute -top-2 right-6 text-green-500 font-black text-xl animate-counter-pop pointer-events-none z-50 select-none shadow-green-500/50 drop-shadow-lg">+1</div>
                         )}
@@ -399,7 +399,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     {mirrorPhases.map((phase: NonNullable<CurriculumData['phases']>[number]) => (
                         <motion.div key={phase.phase} variants={fadeInUp} className="h-full">
                             <div
-                                className="h-auto min-h-[300px] sm:h-[380px] md:h-[420px] flex flex-col relative group hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300 bg-white/80 dark:bg-black/40 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden"
+                                className="h-auto min-h-[300px] sm:h-[380px] md:h-[420px] flex flex-col relative group hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300 bg-white/90 dark:bg-black/60 backdrop-blur-md transform-gpu border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden"
                             >
                                 { }
                                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" />

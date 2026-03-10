@@ -68,7 +68,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={springs.gentle}
-                    className="max-w-4xl mx-auto px-6 py-12"
+                    className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12 w-full overflow-hidden"
                 >
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
@@ -110,7 +110,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                                                 style={vscDarkPlus as { [key: string]: React.CSSProperties }}
                                                 language={match[1]}
                                                 PreTag="div"
-                                                customStyle={{ margin: 0, padding: '1.5rem', background: '#0d0d0d' } as React.CSSProperties}
+                                                customStyle={{ margin: 0, padding: '1.5rem', background: '#0d0d0d', overflowX: 'auto', maxWidth: '100%' } as React.CSSProperties}
                                             >{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
                                         </div>
                                     ) : (

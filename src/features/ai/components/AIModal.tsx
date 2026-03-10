@@ -230,10 +230,9 @@ export default function AIModal() {
             backdropClassName="bg-black/60 backdrop-blur-sm transform-gpu"
         >
             <div className="flex flex-col md:flex-row h-[min(850px,90vh)]" onClick={(e) => e.stopPropagation()}>
-                { }
-                <div className="w-full md:w-20 bg-gray-50/50 dark:bg-black/20 border-b md:border-b-0 md:border-r border-black/5 dark:border-white/5 flex flex-col shrink-0 transition-colors duration-500 overflow-y-auto overflow-x-hidden custom-scrollbar max-h-[25vh] md:max-h-none items-center relative z-50">
-                    { }
-                    <div className="p-4 md:py-8 flex flex-col items-center gap-4 shrink-0">
+                {/* Desktop Sidebar - Hidden on mobile */}
+                <div className="hidden md:flex w-20 bg-gray-50/50 dark:bg-black/20 border-r border-black/5 dark:border-white/5 flex-col shrink-0 transition-colors duration-500 items-center relative z-50">
+                    <div className="py-8 flex flex-col items-center gap-4 shrink-0">
                         <div className="flex gap-1.5">
                             <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
                             <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
@@ -241,7 +240,6 @@ export default function AIModal() {
                         </div>
                     </div>
 
-                    { }
                     <motion.div
                         initial="hidden"
                         animate="visible"
@@ -255,10 +253,9 @@ export default function AIModal() {
                                 }
                             }
                         }}
-                        className="flex-1 px-2 py-1 md:py-8 space-y-2 md:space-y-4 flex flex-col items-center"
+                        className="flex-1 py-8 space-y-4 flex flex-col items-center w-full"
                     >
                         <TabItem
-                            variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                             active={activeTab === 'ai'}
                             onClick={() => handleTabChange('ai')}
                             icon="✨"
@@ -266,7 +263,6 @@ export default function AIModal() {
                             hoverLabel="Concept Guide"
                         />
                         <TabItem
-                            variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                             active={activeTab === 'resources'}
                             onClick={() => handleTabChange('resources')}
                             icon="📚"
@@ -274,7 +270,6 @@ export default function AIModal() {
                             hoverLabel="Visual Library"
                         />
                         <TabItem
-                            variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                             active={activeTab === 'dojo'}
                             onClick={() => handleTabChange('dojo')}
                             icon="⚔️"
@@ -282,7 +277,6 @@ export default function AIModal() {
                             hoverLabel="Code Studio"
                         />
                         <TabItem
-                            variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                             active={activeTab === 'quiz'}
                             onClick={() => handleTabChange('quiz')}
                             icon="🧠"
@@ -290,7 +284,6 @@ export default function AIModal() {
                             hoverLabel="Quick Quiz"
                         />
                     </motion.div>
-
                 </div>
 
                 { }
@@ -315,7 +308,7 @@ export default function AIModal() {
                         )}>
                         <div className={cn(
                             "min-h-full flex flex-col",
-                            activeTab === 'dojo' ? "pt-12 md:pt-24 px-2 pb-2 md:px-6 md:pb-6 h-full" : "p-4 md:p-16 pt-24"
+                            activeTab === 'dojo' ? "pt-16 md:pt-24 px-2 pb-2 md:px-6 md:pb-6 h-full" : "p-4 md:p-16 pt-20 md:pt-24 pb-32 md:pb-16"
                         )}>
                             <AnimatePresence mode="popLayout" initial={false}>
                                 <motion.div
@@ -429,19 +422,26 @@ export default function AIModal() {
 
                     { }
                     { }
-                    <div className="shrink-0 p-3 md:p-5 bg-white/95 dark:bg-[#151515]/95 backdrop-blur-md border-t border-black/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-3 z-20 transform-gpu translate-z-0">
-                        <div className="flex items-center gap-2 md:gap-3">
+                    {/* Mobile Navigation Tabs - Integrated into Bottom Bar */}
+                    <div className="md:hidden flex items-center justify-around p-2 border-b border-black/[0.04] dark:border-white/[0.04] bg-gray-50/50 dark:bg-black/20 shrink-0">
+                        <MobileTabItem active={activeTab === 'ai'} onClick={() => handleTabChange('ai')} icon="✨" label="Guide" />
+                        <MobileTabItem active={activeTab === 'resources'} onClick={() => handleTabChange('resources')} icon="📚" label="Labs" />
+                        <MobileTabItem active={activeTab === 'dojo'} onClick={() => handleTabChange('dojo')} icon="⚔️" label="Dojo" />
+                        <MobileTabItem active={activeTab === 'quiz'} onClick={() => handleTabChange('quiz')} icon="🧠" label="Quiz" />
+                    </div>
+
+                    <div className="shrink-0 p-4 md:p-5 bg-white/95 dark:bg-[#151515]/95 backdrop-blur-xl border-t border-black/[0.06] dark:border-white/[0.06] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 z-20 shadow-[0_-10px_30px_rgba(0,0,0,0.05)] transform-gpu translate-z-0 transition-all duration-300">
+                        <div className="flex items-center justify-between md:justify-start gap-4">
                             <div className="flex items-center gap-2">
-                                { }
                                 <motion.button
                                     whileHover={{ scale: 1.05, rotate: 10 }}
                                     whileTap={{ scale: 0.9, rotate: -10 }}
                                     onClick={togglePersona}
                                     className={cn(
-                                        "w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-xl transition-all duration-300 border relative overflow-hidden",
+                                        "w-11 h-11 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-xl transition-all duration-300 border relative overflow-hidden",
                                         persona === 'general'
-                                            ? "bg-white dark:bg-white/5 border-black/5 dark:border-white/10 grayscale-0"
-                                            : "bg-emerald-400 border-emerald-400 text-white grayscale-0"
+                                            ? "bg-white dark:bg-white/5 border-black/5 dark:border-white/10"
+                                            : "bg-emerald-400 border-emerald-400 text-white"
                                     )}
                                     title="Switch Persona"
                                 >
@@ -458,12 +458,11 @@ export default function AIModal() {
                                     </AnimatePresence>
                                 </motion.button>
 
-                                { }
                                 <motion.button
                                     whileTap={{ scale: 0.9 }}
                                     onClick={handleVoiceToggle}
                                     className={cn(
-                                        "w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl border flex items-center justify-center text-xl md:text-2xl shadow-xl transition-all duration-300",
+                                        "w-11 h-11 md:w-12 md:h-12 rounded-xl md:rounded-2xl border flex items-center justify-center text-xl md:text-2xl shadow-xl transition-all duration-300",
                                         isSpeaking
                                             ? "bg-red-500 border-red-400 text-white animate-pulse"
                                             : "bg-white dark:bg-white/5 border-black/5 dark:border-white/10 opacity-50 hover:opacity-100"
@@ -474,7 +473,6 @@ export default function AIModal() {
                                 </motion.button>
                             </div>
 
-                            { }
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={() => navigateTopic('prev')}
@@ -493,16 +491,16 @@ export default function AIModal() {
                             </div>
                         </div>
 
-                        <div className="flex gap-2 md:gap-3">
+                        <div className="flex gap-2 md:gap-3 w-full md:w-auto">
                             <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
                                 onClick={() => {
                                     setActiveTab('ai');
                                     setIsChatActive(true);
                                 }}
                                 className={cn(
-                                    "flex-1 md:flex-none px-4 md:px-6 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm transition-all shadow-lg",
+                                    "flex-1 px-4 md:px-6 py-3 md:py-3.5 rounded-2xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2",
                                     persona === 'general'
                                         ? "bg-blue-600 text-white shadow-blue-500/30 hover:bg-blue-700"
                                         : "bg-emerald-600 text-white shadow-emerald-500/30 hover:bg-emerald-700"
@@ -511,23 +509,22 @@ export default function AIModal() {
                                 Ask Maya
                             </motion.button>
                             <motion.button
-                                whileHover={canComplete ? { scale: 1.05 } : {}}
-                                whileTap={canComplete ? { scale: 0.95 } : {}}
+                                whileHover={canComplete ? { scale: 1.02 } : {}}
+                                whileTap={canComplete ? { scale: 0.98 } : {}}
                                 onClick={canComplete ? handleToggleComplete : undefined}
                                 disabled={!canComplete}
                                 className={cn(
-                                    "flex-[2] md:flex-none flex items-center justify-center gap-2 md:gap-3 px-6 md:px-8 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm transition-all shadow-lg truncate relative overflow-hidden",
+                                    "flex-[1.5] flex items-center justify-center gap-2 md:gap-3 px-6 md:px-10 py-3 md:py-3.5 rounded-2xl font-bold text-sm transition-all shadow-lg truncate relative overflow-hidden",
                                     isComplete
                                         ? "bg-emerald-500 text-white shadow-emerald-500/20"
                                         : canComplete
-                                            ? "bg-black dark:bg-white text-white dark:text-black cursor-pointer"
-                                            : "bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed"
+                                            ? "bg-black dark:bg-white text-white dark:text-black shadow-xl"
+                                            : "bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-gray-600 cursor-not-allowed border border-black/5 dark:border-white/5"
                                 )}
                             >
-                                { }
                                 {!isComplete && !canComplete && (
                                     <div
-                                        className="absolute inset-0 bg-blue-500/30 transition-all duration-1000"
+                                        className="absolute inset-0 bg-blue-500/20 transition-all duration-1000"
                                         style={{ width: `${completionProgress}%` }}
                                     />
                                 )}
@@ -543,11 +540,10 @@ export default function AIModal() {
     );
 }
 
-function TabItem({ active, onClick, icon, label, hoverLabel, variants }: { active: boolean, onClick: () => void, icon: string, label: string, hoverLabel?: string, variants?: import('framer-motion').Variants }) {
+function TabItem({ active, onClick, icon, label, hoverLabel }: { active: boolean, onClick: () => void, icon: string, label: string, hoverLabel?: string }) {
     return (
         <motion.button
             layout
-            variants={variants}
             onClick={onClick}
             title={hoverLabel || label}
             whileHover={{ scale: 1.08 }}
@@ -571,5 +567,26 @@ function TabItem({ active, onClick, icon, label, hoverLabel, variants }: { activ
                 active ? "scale-110 drop-shadow-sm" : "grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-80"
             )}>{icon}</span>
         </motion.button>
+    );
+}
+
+function MobileTabItem({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: string, label: string }) {
+    return (
+        <button
+            onClick={onClick}
+            className={cn(
+                "flex-1 flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all duration-300",
+                active ? "bg-blue-500/10 text-blue-600 dark:text-blue-400" : "text-gray-400 dark:text-gray-600"
+            )}
+        >
+            <span className={cn("text-lg", active ? "scale-110" : "grayscale opacity-50")}>{icon}</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider">{label}</span>
+            {active && (
+                <motion.div
+                    layoutId="mobile-tab-dot"
+                    className="w-1 h-1 rounded-full bg-blue-500 mt-0.5"
+                />
+            )}
+        </button>
     );
 }

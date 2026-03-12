@@ -14,11 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Link Checker
-        uses: peter-evans/repository-comptroller@v1
+        uses: peter-evans/link-checker@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          check-links: true
-          link-checker-args: "--exclude-mailto"
+          args: --exclude-mailto
       - name: AI Suggestion (On Failure)
         if: failure()
         run: |

@@ -32,4 +32,5 @@ jobs:
           git config user.email github-actions@github.com
           git add README.md
           git commit -m "docs: sync foreman's daily log" || exit 0
+          git pull --rebase origin main --autostash
           git push

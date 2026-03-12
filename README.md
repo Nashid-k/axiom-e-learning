@@ -274,3 +274,10 @@ This project is licensed under the **MIT License**.
 <p align="center">
   Built with 💜 by <a href="https://github.com/Nashid-k">Nashid K</a>
 </p>
+
+<br/>
+
+---
+
+<!-- FOREMAN-LOG:START -->
+<!-- FOREMAN-LOG:END -->

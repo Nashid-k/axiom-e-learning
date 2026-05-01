@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useTopics, useTopic } from '@/features/learning/hooks/useTopics';
 import { getCategory } from '@/features/curriculum/curriculum-constants';
 import ReactMarkdown from 'react-markdown';
@@ -21,6 +22,7 @@ interface TopicViewProps {
 
 export default function TopicView({ id, curriculumData }: TopicViewProps) {
     const router = useRouter();
+    const [isCompleting, setIsCompleting] = useState(false);
     const { topics, updateTopic, loading: topicsLoading } = useTopics();
     const isCurriculumPage = !!curriculumData;
 
@@ -32,9 +34,14 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
     const loading = isCurriculumPage ? false : (topicsLoading || (!!topicListEntry && fullTopicLoading && !fullTopic));
 
     const handleComplete = async () => {
-        if (topic) {
+        if (!topic || isCompleting) return;
+
+        setIsCompleting(true);
+        try {
             await updateTopic(topic.id, { studied: true });
             router.push(`/paths/${getCategory(topic.title).toLowerCase()}`);
+        } finally {
+            setIsCompleting(false);
         }
     };
 
@@ -74,7 +81,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                     </div>
 
                     <div className="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800 flex justify-end">
-                        <Button onClick={handleComplete} size="lg">Mark as Complete</Button>
+                        <Button onClick={handleComplete} size="lg" isLoading={isCompleting}>Mark as Complete</Button>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { useProgress } from '@/features/learning/hooks/useProgress';
 import { getCategory } from '@/features/curriculum/curriculum-registry';
 import { useModal, TopicItem } from '@/features/ai/context/ModalContext';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { CurriculumHeader } from './CurriculumHeader';
 import { ProgressCard } from './ProgressCard';
@@ -48,9 +49,9 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
         let total = 0;
         let completed = 0;
         data.phases.forEach((phase) => {
-            const count = (items: any) => items?.forEach((raw: any, idx: number) => {
+            const count = (items?: Array<string | RichItem>) => items?.forEach((raw, idx) => {
                 total++;
-                const id = raw.id || `item-${phase.phase}-${idx}`;
+                const id = typeof raw === 'string' ? `item-${phase.phase}-${idx}` : raw.id || `item-${phase.phase}-${idx}`;
                 if (isChecked(id)) completed++;
             });
             count(phase.theory);
@@ -82,7 +83,16 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
     };
 
     if (isLoading) {
-        return <div className="p-12 max-w-7xl mx-auto"><Skeleton className="h-64 w-full" /></div>;
+        return (
+            <div className="p-12 max-w-7xl mx-auto">
+                <div className="relative">
+                    <Skeleton className="h-64 w-full" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <LoadingSpinner size="lg" label="Loading progress" />
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (

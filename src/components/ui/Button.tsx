@@ -77,10 +77,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
                 className
             )}
             disabled={disabled || isLoading}
+            aria-busy={isLoading || undefined}
             {...props}
         >
             {isLoading && (
-                <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                <>
+                    <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    <span className="sr-only">Loading</span>
+                </>
             )}
             {children}
         </button>

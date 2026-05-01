@@ -13,6 +13,7 @@ export default function LoginPage() {
     const { user, googleLogin: login, loading, error, setError } = useAuth();
     const router = useRouter();
     const [modalType, setModalType] = useState<'terms' | 'privacy' | null>(null);
+    const [isSigningIn, setIsSigningIn] = useState(false);
 
     useEffect(() => {
         if (!loading && user) {
@@ -34,8 +35,13 @@ export default function LoginPage() {
                         <AppError error={{ name: 'Login Error', message: error }} reset={() => setError(null)} />
                     ) : (
                         <Button 
-                            onClick={() => login()}
+                            onClick={async () => {
+                                setIsSigningIn(true);
+                                await login();
+                                setIsSigningIn(false);
+                            }}
                             variant="outline"
+                            isLoading={isSigningIn}
                             className="w-full flex items-center justify-center gap-3 py-6"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24">

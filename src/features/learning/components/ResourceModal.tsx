@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ModalShell, ModalCloseButton } from '@/components/ui/ModalShell';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 interface Video { url: string; title: string; channel: string; duration?: string; thumbnail?: string; }
 interface Article { url: string; title: string; source: string; }
@@ -42,7 +43,9 @@ export default function ResourceModal({ topicTitle, curriculum, phase, onClose }
 
             <div className="overflow-y-auto max-h-[calc(90vh-100px)] p-6">
                 {loading ? (
-                    <div className="py-20 text-center text-[10px] font-bold uppercase tracking-widest text-neutral-400">Loading resources...</div>
+                    <div className="py-20 flex items-center justify-center">
+                        <LoadingSpinner size="lg" label="Loading resources" />
+                    </div>
                 ) : fallbackUrls ? (
                     <div className="py-12 space-y-4 text-center">
                         <p className="text-sm text-neutral-500">API keys not configured. Use these search links:</p>

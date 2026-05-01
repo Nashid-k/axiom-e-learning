@@ -1,0 +1,43 @@
+import React from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+
+interface TechIconProps {
+    name: string;
+    className?: string; 
+    monochrome?: boolean;
+}
+
+export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-6 h-6", monochrome = true }) => {
+    const iconName = name.toLowerCase();
+    let fileName = iconName;
+
+    if (iconName === 'html-official') fileName = 'html';
+    else if (iconName === 'js' || iconName === 'javascript') fileName = 'javascript';
+    else if (iconName === 'ts' || iconName === 'typescript') fileName = 'typescript';
+    else if (iconName === 'next.js' || iconName === 'nextjs') fileName = 'nextjs';
+    else if (iconName === 'node.js' || iconName === 'nodejs') fileName = 'nodejs';
+    else if (iconName === 'nest.js' || iconName === 'nestjs') fileName = 'nestjs';
+    else if (iconName === 'os' || iconName === 'operating systems' || iconName === 'operating-systems') fileName = 'os';
+    else if (iconName === 'system design' || iconName === 'system-design') fileName = 'system-design';
+    else if (iconName === 'web fundamentals' || iconName === 'web-fundamentals') fileName = 'web-fundamentals';
+    else if (iconName === 'interview prep' || iconName === 'interview' || iconName === 'interview-prep') fileName = 'interview-prep';
+
+    const KNOWN_ICONS = ['css', 'devops', 'dsa', 'git', 'html', 'javascript', 'mongodb', 'nestjs', 'networking', 'nextjs', 'nodejs', 'os', 'python', 'react', 'sql', 'system-design', 'testing', 'typescript', 'web-fundamentals', 'interview-prep'];
+
+    if (!KNOWN_ICONS.includes(fileName)) {
+        fileName = 'web-fundamentals'; 
+    }
+
+    return (
+        <div className={cn("relative flex items-center justify-center shrink-0", className)}>
+            <Image
+                src={`/icons/${fileName}.svg`}
+                alt={`${name} icon`}
+                fill
+                className={cn("object-contain transition-none", monochrome && "grayscale opacity-50")}
+                sizes="64px"
+            />
+        </div>
+    );
+};

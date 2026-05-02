@@ -1,0 +1,161 @@
+{
+  "mongodb": {
+    "id": "mongodb",
+    "fileName": "mongodb",
+    "description": "The Flexible Storage (MongoDB Mastery)",
+    "category": "MongoDB",
+    "subDescription": "Master the modern storage unit. From flexible document storage and smart indexing to high-performance aggregation conveyor belts and global scaling.",
+    "phases": [
+      {
+        "phase": 1,
+        "title": "Touring the Facility: Databases & Collections",
+        "theory": [
+          "MongoDB vs SQL: Flexible Bins vs Fixed Cabinets",
+          "The Storage Building (Database) and Storage Units (Collections)",
+          "Flexible Folders (Documents): Why any shape works",
+          "Digital Tags (ObjectIds): The auto-generated tracking number",
+          "BSON: The language the storage robot speaks"
+        ],
+        "practicals": [
+          "Create your first 'Franchise' building (Database)",
+          "Add a folder (Document) with a few items (Fields) to a bin"
+        ]
+      },
+      {
+        "phase": 2,
+        "title": "Adding & Finding Folders: CRUD Basics",
+        "theory": [
+          "insertOne & insertMany: Dropping off new shipments",
+          "The Search Robot (find): Looking for specific items",
+          "Projection: Asking the robot to only show certain items inside the folder",
+          "Sorting & Pagination: Arranging folders by date or skipping to the next aisle"
+        ],
+        "practicals": [
+          "Store 5 unique product folders in the 'Inventory' unit",
+          "Find all folders where 'Price' is greater than 100"
+        ]
+      },
+      {
+        "phase": 3,
+        "title": "Search Power-ups: Advanced Operators",
+        "theory": [
+          "Comparison Operators ($gt, $lt): The 'Range Finder' tools",
+          "Logical Operators ($and, $or): Combining search rules",
+          "Array Operators ($in, $push): Handling folders that contain lists",
+          "Regex: Searching for folders using partial names or patterns"
+        ],
+        "practicals": [
+          "Update a folder to add a new 'Label' using $push",
+          "Find users who have 'Reading' OR 'Coding' in their hobby list"
+        ]
+      },
+      {
+        "phase": 4,
+        "title": "The Barcode System: Indexing",
+        "theory": [
+          "What is Indexing? The back-of-book index for your storage unit",
+          "Single vs Compound Indexes: Indexing by one label vs multiple",
+          "The Trade-off: Faster searching vs slower storage speed",
+          "Explain Mode: Checking if the robot is scanning every folder or using the index"
+        ],
+        "practicals": [
+          "Create a barcode (Index) for 'Email' to speed up staff login",
+          "Use 'Explain' to prove the robot is working faster with the barcode"
+        ]
+      },
+      {
+        "phase": 5,
+        "title": "Facility Layout: Data Modeling",
+        "theory": [
+          "Embedding: Keeping the receipt INSIDE the folder (Fast access)",
+          "Referencing: Keeping receipts in a separate bin (Saves space)",
+          "One-to-Many vs Many-to-Many: Deciding the best layout for your goods",
+          "Schema Validation: Setting rules for what can enter the facility"
+        ],
+        "practicals": [
+          "Design a 'Blog' layout: Should comments stay inside the post folder?",
+          "Set up a rule (Validator) that requires an 'Email' label for all new staff"
+        ]
+      },
+      {
+        "phase": 6,
+        "title": "The Conveyor Belt: Aggregation Framework",
+        "theory": [
+          "Aggregation Pipeline: A series of stations on a conveyor belt",
+          "$match & $sort: The first stations (Filter & Order)",
+          "$group & $sum: The calculation stations (Counting totals)",
+          "$lookup: Grabbing a matching folder from a different bin as it passes by"
+        ],
+        "practicals": [
+          "Build a pipeline to calculate total sales 'By Category'",
+          "Use $lookup to bring 'Customer Names' into the 'Orders' belt"
+        ]
+      },
+      {
+        "phase": 7,
+        "title": "The Inventory App: Mongoose ODM",
+        "theory": [
+          "What is Mongoose? The digital app for your facility",
+          "Schemas & Models: The app's rules and blueprints",
+          "Middleware (Hooks): Actions that happen 'Pre-storage' or 'Post-storage'",
+          "Virtuals: Labels that only exist in the app, not on the physical folder"
+        ],
+        "practicals": [
+          "Set up a Mongoose blueprint for a 'Product'",
+          "Automate a 'Password Hashing' task before saving a staff folder"
+        ]
+      },
+      {
+        "phase": 8,
+        "title": "Global Scaling: Replication & Sharding",
+        "theory": [
+          "Replication: Keeping copies of your storage facility for safety",
+          "Sharding: Breaking a massive facility into multiple smaller ones",
+          "Transactions: The 'All-or-Nothing' storage contract",
+          "Security: Role-based access for different facility staff"
+        ],
+        "practicals": [
+          "Mock a 'Money Transfer' using Transactions",
+          "List the steps to secure a facility with an Admin badge"
+        ]
+      }
+    ]
+  },
+  "mongodb-questions": {
+    "id": "mongodb-questions",
+    "fileName": "mongodb-questions",
+    "description": "The Facility Audit (Interview Prep)",
+    "category": "MongoDB",
+    "subDescription": "50+ common questions. Master the 'Flexible Storage' analogy to impress auditors (Interviewers).",
+    "phases": [
+      {
+        "phase": 1,
+        "title": "Ground Level: Core Concepts",
+        "theory": [
+          "MongoDB vs SQL (Flexible Bins vs Rigid Cabinets)",
+          "When to Embed vs Reference (The Receipt Analogy)",
+          "What is BSON? (The Robot's internal language)",
+          "Understanding ObjectIds (The Digital Tracking Tag)"
+        ],
+        "practicals": [
+          "Explain Aggregation using the 'Conveyor Belt' metaphor",
+          "Differentiate CRUD from SQL commands using the 'Folder' analogy"
+        ]
+      },
+      {
+        "phase": 2,
+        "title": "Top Floor: Advanced Performance",
+        "theory": [
+          "Index Prefix Rule (The 'Matching Label' rule)",
+          "Covered Queries (When the robot doesn't even open the folder)",
+          "Sharding Strategies (How to split a global facility)",
+          "Atomic Operations (When a single folder update is enough)"
+        ],
+        "practicals": [
+          "Simulate a 'Slow Pipeline' and fix it with a $match station at the start",
+          "Design an index strategy for a 'High Traffic' storage unit"
+        ]
+      }
+    ]
+  }
+}

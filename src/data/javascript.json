@@ -1,0 +1,548 @@
+{
+  "javascript": {
+    "fileName": "javascript",
+    "description": "JavaScript & Modern Programming",
+    "category": "JavaScript",
+    "subDescription": "Master JavaScript from fundamentals to advanced concepts. Build dynamic, interactive, and performant web applications.",
+    "phases": [
+      {
+        "phase": 1,
+        "title": "The Magic Behind the Screen: Logic & Action",
+        "theory": [
+          "The Big Three: Skeleton (HTML), Skin (CSS), and the Muscle (JS)",
+          "The 10-Day Miracle: Where JS came from and why it's the 'King of the Browser'",
+          "The Live Translator: How your browser reads code (Interpreter vs. Compiler)",
+          "The Turbocharger: What is an 'Engine' (V8) and how JIT 'Supercharges' your code",
+          "JS vs. The Rest: Why learning JS first is like learning the 'Universal Language' of the web"
+        ],
+        "practicals": [
+          "Console Hijacking: Open the 'Inspect' tool and change the color of a live website",
+          "Secret Messages: Write your first `console.log` and see the browser 'talk back'",
+          "Brainstorming Action: List 5 things on Amazon.com that use JS (e.g., 'Add to Cart' button)"
+        ],
+        "games": [
+          {
+            "title": "WarriorJS",
+            "url": "https://warriorjs.com/",
+            "description": "A fun way to understand how simple logic (Action) controls everything."
+          }
+        ]
+      },
+      {
+        "phase": 2,
+        "title": "The Rules of the Game: Data & Typing",
+        "theory": [
+          "Understanding Data: Information is more than just 'Text'",
+          "Liquid Containers: What 'Dynamic Typing' means (JS adapts to what you give it)",
+          "The Primitive Box (Single Items): Numbers, Text (Strings), Booleans (Yes/No)",
+          "The Empty Boxes: Understanding `null` (Intentional empty) and `undefined` (Missing)",
+          "The Lunchbox (Non-Primitives): Objects and Arrays—storing 'Groups' of things"
+        ],
+        "practicals": [
+          "The `typeof` Lab: Use the browser to reveal what 'Shape' a piece of data actually is",
+          "The Empty Box Test: Create a variable but don't give it a value to see `undefined` in action",
+          "Primitive vs. Object: Change a number vs changing a 'List' and notice the difference (Mutability)"
+        ]
+      },
+      {
+        "phase": 3,
+        "title": "The Shape Shifter: Type Casting & Coercion",
+        "theory": [
+          "Implicit Casting: When JS is 'Too Helpful' (e.g., Why `1 + '1'` is '11' instead of 2)",
+          "Taking the Reins (Explicit): Using `Number()` and `String()` to force the shape",
+          "The Equality Trap: Strict (`===`) vs. Loose (`==`) comparisons",
+          "Truthiness: Why nearly everything is 'True' until it's 'Empty' (Falsy values)",
+          "Input Cleaning: Why we must always 'Cast' data coming from a User's screen"
+        ],
+        "practicals": [
+          "The Calculator Bug: Fix a program that adds numbers incorrectly because of String concatenation",
+          "The Truthy Riddles: Predict if a variable (like an empty string or the number 0) is true or false",
+          "Strict Check: Refactor your old code to use `===` to avoid invisible bugs"
+        ]
+      },
+      {
+        "phase": 4,
+        "title": "Labeled Storage: Variables & Memory",
+        "theory": [
+          "What is a Variable? (Labeling a box on a shelf)",
+          "Storing vs. Recalling: How JS remembers what you told it",
+          "The 'Unchangeable' rule: Why `const` is your best friend",
+          "The 'Switch' rule: When to use `let` for things that change",
+          "Naming Conventions: Writing code that humans can read (CamelCase)",
+          "Memory Basics: Why variables 'live' and 'die' (Introduction to Scope boundaries)"
+        ],
+        "practicals": [
+          "The Locker Room: Create multiple variables for a user profile (Name, Age, IsLoggedIn) and update them",
+          "The Const Trap: Try to change a `const` and see the browser 'Protect' the data with an error",
+          "Project: 'The Personal Vault' - Build a script that stores and displays sensitive user info using correct labels"
+        ]
+      },
+      {
+        "phase": 5,
+        "title": "Decision Making: Operators & Control Flow",
+        "theory": [
+          "Conditional Logic: The 'If/Then' mindset of coding",
+          "Comparison Operators: Checking for equality and size (>, <, ===)",
+          "Logical Operators: Combining conditions (AND, OR, NOT)",
+          "The Switch Statement: A better way to handle multiple 'Cases'",
+          "The Ternary Operator: Code shorthand for 'Either / Or' choices"
+        ],
+        "practicals": [
+          "The Gatekeeper: Write a script that checks if a user is old enough to enter a site",
+          "The Grade Calculator: Take a number and output a Letter Grade based on ranges",
+          "Project: 'The ATM Simulation' - Create a logic flow for withdrawing money, checking balance, and handling 'Insufficient Funds'"
+        ],
+        "games": [
+          {
+            "title": "WarriorJS",
+            "url": "https://warriorjs.com/",
+            "description": "Navigate your hero through floor after floor using 'If' statements to survive."
+          }
+        ]
+      },
+      {
+        "phase": 6,
+        "title": "The Repeaters: Loops & Iteration",
+        "theory": [
+          "The Problem: Doing things over and over (Manual Labor)",
+          "The Solution: Loops (The Digital Assembly Line)",
+          "The 'While' Loop: 'Keep going while this is true'",
+          "The 'For' Loop: 'Do this exact number of times'",
+          "Iterating through Collections: Looking into every 'Lunchbox' item"
+        ],
+        "practicals": [
+          "The Countdown: Build a loop that counts down from 10 to launch",
+          "The List Reader: Create a script that prints out every item in your shopping list",
+          "Project: 'The Multiplication Table' - Using nested loops to create a math helper tool"
+        ]
+      },
+      {
+        "phase": 7,
+        "title": "The Action Mindset: Functions Basics",
+        "theory": [
+          "What is a Function? (A Saved Recipe for later)",
+          "Input vs. Output: Arguments (Ingredients) and Return (The Meal)",
+          "Declarations vs. Expressions: Two ways to write a recipe",
+          "Reusable Logic: Why we never 'Copy-Paste' code"
+        ],
+        "practicals": [
+          "The Greeting Machine: A function that takes a name and says 'Hello'",
+          "The Math Helper: Create functions for `add`, `subtract`, and `multiply`",
+          "Project: 'The Simple Budgeter' - A set of functions to calculate total expenses and remaining balance"
+        ]
+      },
+      {
+        "phase": 8,
+        "title": "Arrow Functions: The Fast Shortcut",
+        "theory": [
+          "Regular vs. Arrow: Writing less but doing more",
+          "The 'One-Liner': Implicit returns (Short and Sweet)",
+          "The 'This' Problem: Why arrows are easier for beginners",
+          "When NOT to use Arrows: Keeping some rules in mind"
+        ],
+        "practicals": [
+          "The Refactor: Take 5 old 'Recipe' functions and rewrite them as modern Arrows",
+          "The Math One-Liner: Create arrows for square, cube, and percentage calculation",
+          "Project: 'The Modern Converter' - A set of arrow functions for currency and weight"
+        ]
+      },
+      {
+        "phase": 9,
+        "title": "Data Structures - Part 1: Advanced Arrays & Strings",
+        "theory": [
+          "The Modern Array: `map()`, `filter()`, and `reduce()` (The 'Big Three')",
+          "Searching the Crowd: `find()`, `includes()`, and `findIndex()`",
+          "Advanced Strings: `slice()`, `replace()`, and `split()`",
+          "Template Literals: Dynamic text without the mess"
+        ],
+        "practicals": [
+          "The VIP List: Filter a list of users to find only those over 18",
+          "The Price Tag: Use `map` to add a '$' sign to every number in an array",
+          "The Name Cleaner: Take a messy user input and use string methods to fix capitalization and spacing",
+          "Project: 'The Smart Inventory' - A system to find, update, and remove items from a store list"
+        ]
+      },
+      {
+        "phase": 10,
+        "title": "The Digital Profile: Mastering Objects",
+        "theory": [
+          "Objects as Profiles: Storing related data together (Name: 'John', Role: 'User')",
+          "Property Access: Dot (`.`) vs. Bracket (`[]`) notation",
+          "Object Methods: Giving your profiles 'Skills' (Action inside Data)",
+          "Looping through Profiles: `Object.keys()` and `Object.values()`"
+        ],
+        "practicals": [
+          "The RPG Character: Build a character object with health, strength, and an 'Attack' skill",
+          "The Dynamic Key: Create a script that accesses a property based on what the user types",
+          "Project: 'The Social Media Bio' - A system that displays a user's name, followers, and interests"
+        ]
+      },
+      {
+        "phase": 11,
+        "title": "The Unpacker: Destructuring & Spread",
+        "theory": [
+          "Destructuring: Taking only what you need from a big box",
+          "The Spread Operator (`...`): Pouring one box into another",
+          "Default Values: What happens if the box is empty?",
+          "Merging Data: Combining two user profiles into one"
+        ],
+        "practicals": [
+          "The Specific Grab: Extract just the 'Email' and 'Username' from a massive object",
+          "The Array Merge: Combine a 'Home' list and 'Work' list using the `...` operator",
+          "Project: 'The Profile Updater' - A function that takes an old profile and merges new updates into it"
+        ]
+      },
+      {
+        "phase": 12,
+        "title": "Specialized Lists: Maps & Sets",
+        "theory": [
+          "Sets: The 'Unique' rule (No duplicates allowed)",
+          "Maps: The 'Super Object' (When keys aren't just text)",
+          "When to use what: Array vs. Object vs. Map vs. Set",
+          "Iteration: How to loop through these modern collections"
+        ],
+        "practicals": [
+          "The Duplicate Destroyer: Take a list of items with repeats and use a Set to get only uniques",
+          "The ID Map: Store user data where the User ID (a number) is the key",
+          "Project: 'The Unique Tag System' - A blog tag system that ensures no duplicate categories are added"
+        ]
+      },
+      {
+        "phase": 13,
+        "title": "Changing the Page: DOM Basics",
+        "theory": [
+          "The DOM: The browser's map of your HTML",
+          "Selectors: Finding elements by ID, Class, or Tag",
+          "Changing Content: `innerHTML` vs. `textContent`",
+          "The Appearance: Changing CSS styles via JavaScript"
+        ],
+        "practicals": [
+          "The Color Picker: Create a button that changes the background of the entire page",
+          "The Dynamic List: Add a new `<li>` to an existing list without refreshing",
+          "Project: 'The Personal Greeting' - An input field that updates an H1 tag live as you type"
+        ]
+      },
+      {
+        "phase": 14,
+        "title": "Making it Interactive: Clicks & Keys",
+        "theory": [
+          "Event Listeners: Telling the browser to 'Listen' for an action",
+          "Click Events: Handling button presses",
+          "Keyboard Events: What happens when you type (The `event.key`) ",
+          "Input Validation: Preventing bad data before it's sent"
+        ],
+        "practicals": [
+          "The Password Toggle: Build a 'Show Password' checkbox that changes the input type",
+          "The Click Counter: A button that tracks how many times it's been clicked",
+          "Project: 'The Simple Todo List' - Add items to a list and clear them with a button"
+        ]
+      },
+      {
+        "phase": 15,
+        "title": "The Ripple Effect: Event Propagation",
+        "theory": [
+          "The Stadium Wave: Understanding Event Bubbling",
+          "Stopping the Wave: `event.stopPropagation()`",
+          "Delegation: One parent handling 100 children (The 'Mall Security' analogy)",
+          "Default Actions: Why some clicks (like links) need to be stopped"
+        ],
+        "practicals": [
+          "The Bubbling Test: Create nested boxes and see how one click triggers three alerts",
+          "The Smart List: Use one listener on a `<ul>` to handle clicks on 50 different `<li>` items",
+          "Project: 'The Interactive Gallery' - A grid of images where clicking one shows it in a 'Master' view"
+        ]
+      },
+      {
+        "phase": 16,
+        "title": "The Memory Bank: Storage & JSON",
+        "theory": [
+          "LocalStorage: Storing data that stays even after you close the browser",
+          "JSON: The universal language for data (Stringify and Parse)",
+          "SessionStorage: Temporary memory for the current tab",
+          "Security: Why we never store passwords in the browser"
+        ],
+        "practicals": [
+          "The Theme Saver: Save the user's Dark/Light mode preference so it persists",
+          "The Object Saver: Convert a user object to JSON and save it in the browser",
+          "Project: 'The Persistent Todo App' - A list that reloads your items even if you refresh the page"
+        ]
+      },
+      {
+        "phase": 17,
+        "title": "The Alarm Clock: Timers & Intervals",
+        "theory": [
+          "setTimeout: 'Wait 3 seconds, then do this'",
+          "setInterval: 'Do this every 5 seconds forever'",
+          "Cleanup: Stopping timers with `clearTimeout` and `clearInterval`"
+        ],
+        "practicals": [
+          "The Delayed Alert: Show a 'Welcome' message 2 seconds after the page loads",
+          "The Countdown: Build a timer that counts down from 60 to 0",
+          "Project: 'The Digital Clock' - A live clock that updates every second"
+        ]
+      },
+      {
+        "phase": 18,
+        "title": "The Waiting Game: Callbacks & Order",
+        "theory": [
+          "Synchronous vs. Asynchronous: Waiting for the coffee to brew",
+          "Callbacks: The 'Don't call us, we'll call you' rule",
+          "Execution Order: Why some code runs while other code waits",
+          "The Callback Hell: Why too many nested recipes are a bad thing"
+        ],
+        "practicals": [
+          "The Order Test: Use logs to see which code finishes first in an async sequence",
+          "The Recipe chain: A function that calls another function after a delay",
+          "Project: 'The Image Loader' - Simulate loading an image and showing a message only when it's done"
+        ]
+      },
+      {
+        "phase": 19,
+        "title": "The Digital Agreement: Promises",
+        "theory": [
+          "What is a Promise? (A ticket for a future result)",
+          "The Three States: Pending, Kept (Resolved), and Broken (Rejected)",
+          "The Chain: Using `.then()` and `.catch()` to handle results",
+          "Combining Efforts: `Promise.all()` for multi-tasking"
+        ],
+        "practicals": [
+          "The Coin Flip: A promise that resolves if 'Heads' and rejects if 'Tails'",
+          "The Parallel Fetch: Wait for three simulated 'Data Packages' to arrive at once",
+          "Project: 'The Weather Simulator' - A chain of promises that 'checks' the sky and then 'predicts' rain"
+        ]
+      },
+      {
+        "phase": 20,
+        "title": "Modern Waiting: Async/Await",
+        "theory": [
+          "Async/Await: Making async code look like a simple list of instructions",
+          "The `await` keyword: Pausing the function without freezing the browser",
+          "Error Handling: The `try...catch` block (The safety net)",
+          "When to pause vs. when to run in parallel"
+        ],
+        "practicals": [
+          "Promise Refactor: Take a `.then()` chain and rewrite it with `await`",
+          "The Safety Net: Build a function that handles a 'failed' promise gracefully",
+          "Project: 'The Data Dashboard' - An async function that gathers stats from three places and displays them"
+        ]
+      },
+      {
+        "phase": 21,
+        "title": "The News Reporter: Fetch & APIs",
+        "theory": [
+          "What is an API? (The waiter at the restaurant)",
+          "Fetch: Asking the internet for information",
+          "HTTP Methods: GET (Reading) vs. POST (Submitting)",
+          "CORS: Why some websites won't talk to you (The gatekeeper)"
+        ],
+        "practicals": [
+          "The User Feed: Fetch a list of random users from a public API and display them",
+          "The Image Finder: Fetch a random dog/cat photo on every button click",
+          "Project: 'The Live Crypto Tracker' - A small app that shows the real-time price of Bitcoin using a public API"
+        ]
+      },
+      {
+        "phase": 22,
+        "title": "The Family Tree: Prototypes & Inheritance",
+        "theory": [
+          "Prototypes: The hidden link between objects",
+          "The Chain: How JS searches for a property",
+          "Built-in Prototypes: Why all Arrays have `push()` and `pop()`",
+          "Inheritance: Creating a 'Parent' and 'Child' relationship without complex syntax"
+        ],
+        "practicals": [
+          "The Prototype Peek: Use `__proto__` to see the 'Parent' of an array in the console",
+          "The Custom Method: Add a new 'Skill' to the global String prototype (e.g., `yell()`)",
+          "Project: 'The Animal Kingdom' - Create a parent 'Animal' object and multiple 'Child' animals that inherit its traits"
+        ]
+      },
+      {
+        "phase": 23,
+        "title": "The Digital Blueprint: Classes",
+        "theory": [
+          "Classes: The factory for creating objects",
+          "The Constructor: Setting up the initial state",
+          "Extends & Super: Building on top of existing blueprints",
+          "Getters & Setters: Protecting your data with smart access"
+        ],
+        "practicals": [
+          "The User Factory: Build a `User` class that takes a name and email",
+          "The Admin Upgrade: Create an `Admin` class that extends `User` with extra permissions",
+          "Project: 'The Car Showroom' - Build a class system for different types of cars (EV, Sports, Truck) with shared properties"
+        ]
+      },
+      {
+        "phase": 24,
+        "title": "Who Am I? - This & Bind",
+        "theory": [
+          "The `this` Keyword: Why it's the most confusing thing in JS",
+          "Context: Why `this` changes depending on who called the function",
+          "Bind, Call, and Apply: Taking manual control of the context",
+          "Arrow Functions vs Regular: The final showdown on scope"
+        ],
+        "practicals": [
+          "The Lost Context: Create an object method that 'breaks' when passed as a callback, then fix it with `.bind()`",
+          "Method Borrowing: Use `.call()` to make one object use another object's function",
+          "Project: 'The Smart Button' - A class-based button handler that keeps its context even when clicked"
+        ]
+      },
+      {
+        "phase": 25,
+        "title": "The Safety Net: Error Handling",
+        "theory": [
+          "Try/Catch: Catching bugs before they crash the page",
+          "The Finally Block: Code that runs no matter what",
+          "Throwing Errors: Creating your own custom warning signs",
+          "Async Errors: Catching bugs inside Promises and Fetch"
+        ],
+        "practicals": [
+          "The Crash Test: Intentionally write broken code and use `try/catch` to keep the app running",
+          "The Custom Validator: Throw an error if a user enters a password that's too short",
+          "Project: 'The Robust News Feed' - A fetch app that shows a friendly error message if the API is down"
+        ]
+      },
+      {
+        "phase": 26,
+        "title": "Professional Building: Design Patterns",
+        "theory": [
+          "Why Patterns? Writing code that other developers can understand",
+          "The Module Pattern: Keeping your variables private (The 'Safe Room')",
+          "The Factory Pattern: Creating complex objects without showing the mess",
+          "The Observer Pattern: How apps 'React' to changes (Intro to the React mindset)"
+        ],
+        "practicals": [
+          "The Private Vault: Use an IIFE to create a variable that cannot be accessed from the console",
+          "The Shape Factory: Create a function that returns different object types based on input",
+          "Project: 'The Notification System' - A simple pub-sub system where one action triggers multiple updates"
+        ]
+      },
+      {
+        "phase": 27,
+        "title": "The Traffic Cop: The Event Loop",
+        "theory": [
+          "The Single Thread: Why JS can only do one thing at a time",
+          "The Call Stack: Tracking where we are in the code",
+          "The Task Queue: Where async code waits its turn",
+          "Microtasks vs Macrotasks: Why Promises have priority over Timers"
+        ],
+        "practicals": [
+          "Stack Overflow: Intentionally crash the call stack with infinite recursion to see the limit",
+          "The Priority Race: Predict the order of logs between a `setTimeout` and a `Promise.resolve()`",
+          "Project: 'The Execution Visualizer' - Build a small log-based tool that proves the Event Loop order"
+        ]
+      },
+      {
+        "phase": 28,
+        "title": "The Locked Room: Closures",
+        "theory": [
+          "Lexical Scope: How functions remember their birthplace",
+          "Closures: Functions that carry their surrounding variables with them",
+          "Private State: Creating variables that only one function can touch",
+          "Memory Pitfalls: Avoiding leaks with closures"
+        ],
+        "practicals": [
+          "The Secret Counter: A function that returns a counter that no one else can reset",
+          "The Partial Recipe: A function that 'pre-fills' some arguments (Currying intro)",
+          "Project: 'The Secure Bank Account' - A closure-based object that stores a balance and only allows access through specific functions"
+        ]
+      },
+      {
+        "phase": 29,
+        "title": "The Janitor: Memory & GC",
+        "theory": [
+          "Memory Life Cycle: Allocate, Use, Release",
+          "Garbage Collection: How JS cleans up the mess for you",
+          "References: Why deleting one variable might not free up memory",
+          "Leaks: Common ways developers accidentally clog up the browser"
+        ],
+        "practicals": [
+          "The Reference Trap: Create two variables pointing to the same object and see what happens when you null one",
+          "The Leak Hunter: Identify a common leak (like a forgotten setInterval) and fix it",
+          "Project: 'The Memory Monitor' - Research and document how to use the Chrome 'Memory' tab to find leaks"
+        ]
+      },
+      {
+        "phase": 30,
+        "title": "The Shadow: Proxy & Reflect",
+        "theory": [
+          "Proxies: Placing a 'Guard' in front of your object",
+          "Traps: Intercepting reads, writes, and deletions",
+          "Reflect: The modern way to perform object operations",
+          "Practical Uses: Validation, Logging, and Reactive Data"
+        ],
+        "practicals": [
+          "The Validation Guard: Create a Proxy that refuses to set an age younger than 0",
+          "The Logger: Build a Proxy that logs every time a property is accessed",
+          "Project: 'The Smart Data Binder' - A simple system where changing an object automatically updates a piece of UI text"
+        ]
+      },
+      {
+        "phase": 31,
+        "title": "The Pattern Hunter: Regular Expressions",
+        "theory": [
+          "Regex: The secret code for searching text",
+          "Patterns: Matching emails, phone numbers, and dates",
+          "Flags: Global, Case-insensitive, and Multi-line",
+          "Methods: `test()`, `match()`, and `replace()` with Regex"
+        ],
+        "practicals": [
+          "The Email Checker: Write a Regex that validates if a string is a real email",
+          "The Censorship Tool: Use Regex to find and replace 'Bad Words' in a paragraph",
+          "Project: 'The Form Guardian' - A complete form validator using Regex for Username, Email, and Password"
+        ]
+      },
+      {
+        "phase": 32,
+        "title": "The Detective: Debugging Mastery",
+        "theory": [
+          "Beyond `console.log`: Professional debugging tools",
+          "Breakpoints: Pausing time to see exactly what's happening",
+          "Stepping: Running code one single line at a time",
+          "Watch Expressions: Monitoring a specific variable as it changes"
+        ],
+        "practicals": [
+          "The Bug Hunt: I give you a broken script, you use a breakpoint to find the exact line it fails",
+          "The Stack Trace: Use the debugger to see how 5 different functions called each other",
+          "Project: 'The Debugger Logbook' - A guide on using the 'Network', 'Source', and 'Console' tabs together"
+        ]
+      },
+      {
+        "phase": 33,
+        "title": "Master Challenges: The Logic Games",
+        "practicals": [
+          "FizzBuzz 2.0: The classic challenge with a modern twist",
+          "Palindrome Checker: Logic without using built-in string methods",
+          "The Missing Number: Find the missing item in an unsorted list",
+          "Array Chunking: Split a big array into smaller pieces"
+        ]
+      },
+      {
+        "phase": 34,
+        "title": "Master Challenges: Data Wizardry",
+        "practicals": [
+          "The Deep Comparison: Check if two big nested objects are identical",
+          "The Flattening: Conver a massive nested array into one flat list",
+          "Anagram Finder: Check if two words use the exact same letters",
+          "Frequency Map: Count how many times every word appears in a book"
+        ]
+      },
+      {
+        "phase": 35,
+        "title": "Capstone Projects: Engineering to Win",
+        "practicals": [
+          "Project 1: 'The ATM 2.0' - A complete CLI app with accounts, transfers, and error handling",
+          "Project 2: 'The Smart Shopping Cart' - A persistent system with discounts, tax, and local storage",
+          "Project 3: 'The Weather Dashboard' - A clean, interactive UI that fetches live data and displays it beautifully",
+          "Project 4: 'The Personal Finance Tracker' - Track expenses and draw a simple 'Bar Chart' using standard JS"
+        ],
+        "games": [
+          {
+            "title": "Elevator Saga",
+            "url": "https://play.elevatorsaga.com/",
+            "description": "The ultimate test of your logic and efficiency."
+          }
+        ]
+      }
+    ]
+  }
+}

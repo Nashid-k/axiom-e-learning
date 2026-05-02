@@ -112,10 +112,12 @@
   --shadow-lg: none;
   --shadow-xl: none;
 
-  /* --- Motion (Set to zero/minimal) --- */
-  --duration-fast: 0ms;
-  --duration-base: 0ms;
-  --duration-slow: 0ms;
+  /* --- Motion --- */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
@@ -126,7 +128,7 @@
     color: var(--fg-primary);
     background-color: var(--surface-base);
     -webkit-font-smoothing: antialiased;
-    transition: none !important;
+    transition: background-color var(--duration-base) var(--ease-in-out), color var(--duration-base) var(--ease-in-out);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -138,12 +140,6 @@
   p {
     color: var(--fg-secondary);
   }
-
-  /* Force no animations */
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
 }
 
 @layer utilities {
@@ -151,10 +147,17 @@
     background: var(--surface-base);
     border: 1px solid var(--border-default);
     padding: var(--spacing-6);
+    transition: transform var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+  
+  .minimal-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
   }
 
   .minimal-border {
     border: 1px solid var(--border-default);
+    transition: border-color var(--duration-fast) var(--ease-out);
   }
 
   .text-accent {

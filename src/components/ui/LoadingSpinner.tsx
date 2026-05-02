@@ -1,48 +1,79 @@
 "use client";
 
-import type { HTMLAttributes } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import type { HTMLAttributes } from "react";
 
 type LoadingSpinnerProps = {
   size?: "sm" | "md" | "lg";
   label?: string;
+  variant?: "classic" | "minimal" | "bars";
 } & HTMLAttributes<HTMLDivElement>;
 
-const sizeMap: Record<NonNullable<LoadingSpinnerProps["size"]>, string> = {
-  sm: "w-4 h-4 border-2",
-  md: "w-8 h-8 border-2",
-  lg: "w-12 h-12 border-2",
+const sizeMap = {
+  sm: 16,
+  md: 32,
+  lg: 48,
 };
 
 export function LoadingSpinner({
   size = "md",
   label,
+  variant = "bars",
   className = "",
   ...rest
 }: LoadingSpinnerProps) {
+  const pixelSize = sizeMap[size];
+
   return (
     <div
-      className={cn("flex flex-col items-center justify-center gap-3", className)}
+      className={cn("flex flex-col items-center justify-center gap-4", className)}
       role="status"
       aria-live="polite"
-      aria-label={label ? undefined : "Loading"}
+      aria-label={label || "Loading"}
       {...rest}
     >
-      <div
-        className={cn(
-          "rounded-full animate-spin",
-          "border-neutral-200 dark:border-neutral-800",
-          "border-t-black dark:border-t-white",
-          sizeMap[size]
+      <div className="relative flex items-center justify-center" style={{ width: pixelSize, height: pixelSize }}>
+        {variant === "bars" && (
+          <div className="flex gap-1 items-center justify-center">
+            {[0, 1, 2].map((i) => (
+              <motion.div
+                key={i}
+                className="w-1 bg-fg-primary rounded-full"
+                initial={{ height: pixelSize * 0.4 }}
+                animate={{ height: [pixelSize * 0.4, pixelSize * 0.8, pixelSize * 0.4] }}
+                transition={{
+                  duration: 0.6,
+                  repeat: Infinity,
+                  delay: i * 0.1,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
         )}
-      />
+
+        {variant === "classic" && (
+          <motion.div
+            className={cn(
+              "rounded-full border-2 border-border-default border-t-fg-primary"
+            )}
+            style={{ width: pixelSize, height: pixelSize }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+          />
+        )}
+      </div>
 
       {label && (
-        <p className="text-xs font-bold uppercase tracking-widest text-neutral-500">
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-xs font-bold uppercase tracking-widest text-fg-muted"
+        >
           {label}
-        </p>
+        </motion.p>
       )}
-      {!label && <span className="sr-only">Loading</span>}
     </div>
   );
 }

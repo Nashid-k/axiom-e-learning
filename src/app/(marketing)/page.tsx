@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import { AxiomLogo } from '@/components/ui/AxiomLogo';
+import SectionReveal from '@/components/ui/SectionReveal';
 
 export default function LandingPage() {
     const { user, loading } = useAuth();
@@ -34,37 +35,53 @@ export default function LandingPage() {
             </header>
 
             <main className="max-w-4xl mx-auto px-6 pt-24 pb-32 text-center">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
-                    Master software engineering with AI.
-                </h1>
-                <p className="text-xl text-neutral-500 dark:text-neutral-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Personalized curricula, real-world projects, and intelligent mentorship. 
-                    Everything you need to go from zero to mastery.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/login">
-                        <Button size="lg" className="px-8 py-4 text-lg">Get Started</Button>
-                    </Link>
-                    <Link href="#features">
-                        <Button variant="outline" size="lg" className="px-8 py-4 text-lg">Learn More</Button>
-                    </Link>
-                </div>
+                <SectionReveal>
+                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+                        Master software engineering with AI.
+                    </h1>
+                </SectionReveal>
+                
+                <SectionReveal delay={0.1}>
+                    <p className="text-xl text-neutral-500 dark:text-neutral-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                        Personalized curricula, real-world projects, and intelligent mentorship. 
+                        Everything you need to go from zero to mastery.
+                    </p>
+                </SectionReveal>
+
+                <SectionReveal delay={0.2}>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link href="/login">
+                            <Button size="lg" className="px-8 py-4 text-lg">Get Started</Button>
+                        </Link>
+                        <Link href="#features">
+                            <Button variant="outline" size="lg" className="px-8 py-4 text-lg">Learn More</Button>
+                        </Link>
+                    </div>
+                </SectionReveal>
             </main>
 
             <section id="features" className="max-w-7xl mx-auto px-6 py-24 border-t border-neutral-100 dark:border-neutral-900">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div>
-                        <h3 className="text-xl font-bold mb-4">Autonomous Curriculum</h3>
-                        <p className="text-neutral-500 dark:text-neutral-400">15+ deep paths covering the full modern stack, from DSA to DevOps.</p>
-                    </div>
-                    <div>
-                        <h3 className="text-xl font-bold mb-4">AI Mentorship</h3>
-                        <p className="text-neutral-500 dark:text-neutral-400">Context-aware assistant that understands your code and your struggle points.</p>
-                    </div>
-                    <div>
-                        <h3 className="text-xl font-bold mb-4">Deep Progress</h3>
-                        <p className="text-neutral-500 dark:text-neutral-400">Granular tracking of every concept you master, with a global leaderboard.</p>
-                    </div>
+                    <SectionReveal delay={0.1}>
+                        <div>
+                            <h3 className="text-xl font-bold mb-4">Autonomous Curriculum</h3>
+                            <p className="text-neutral-500 dark:text-neutral-400">15+ deep paths covering the full modern stack, from DSA to DevOps.</p>
+                        </div>
+                    </SectionReveal>
+                    
+                    <SectionReveal delay={0.2}>
+                        <div>
+                            <h3 className="text-xl font-bold mb-4">AI Mentorship</h3>
+                            <p className="text-neutral-500 dark:text-neutral-400">Context-aware assistant that understands your code and your struggle points.</p>
+                        </div>
+                    </SectionReveal>
+
+                    <SectionReveal delay={0.3}>
+                        <div>
+                            <h3 className="text-xl font-bold mb-4">Deep Progress</h3>
+                            <p className="text-neutral-500 dark:text-neutral-400">Granular tracking of every concept you master, with a global leaderboard.</p>
+                        </div>
+                    </SectionReveal>
                 </div>
             </section>
 

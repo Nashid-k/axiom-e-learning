@@ -1,96 +1,51 @@
-'use client';
+"use client";
 
-import { ButtonHTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/lib/utils';
+import React from "react";
+import { motion, HTMLMotionProps } from "framer-motion";
+import { cn } from "@/lib/utils";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destruct';
-    size?: 'sm' | 'md' | 'lg';
-    isLoading?: boolean;
-}
+type ButtonProps = {
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
+  loading?: boolean;
+} & HTMLMotionProps<"button">;
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
-    className = '',
-    variant = 'primary',
-    size = 'md',
-    isLoading = false,
-    children,
-    disabled,
-    ...props
-}, ref) => {
-    const baseStyles = [
-        "inline-flex items-center justify-center",
-        "font-semibold",
-        "rounded-md",
-        "transition-none",
-        "focus:outline-none",
-        "focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
-        "disabled:opacity-50",
-        "disabled:pointer-events-none",
-        "border",
-    ].join(' ');
-
-    const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
-        primary: [
-            "bg-black text-white border-black",
-            "hover:bg-neutral-800 hover:border-neutral-800",
-            "dark:bg-white dark:text-black dark:border-white dark:hover:bg-neutral-200",
-        ].join(' '),
-
-        secondary: [
-            "bg-neutral-100 text-black border-neutral-100",
-            "hover:bg-neutral-200 hover:border-neutral-200",
-            "dark:bg-neutral-800 dark:text-white dark:border-neutral-800 dark:hover:bg-neutral-700",
-        ].join(' '),
-
-        outline: [
-            "border-neutral-200 bg-transparent text-black",
-            "hover:bg-neutral-50",
-            "dark:border-neutral-800 dark:text-white dark:hover:bg-neutral-900",
-        ].join(' '),
-
-        ghost: [
-            "bg-transparent text-neutral-600 border-transparent",
-            "hover:bg-neutral-100 hover:text-black",
-            "dark:text-neutral-400 dark:hover:bg-neutral-900 dark:hover:text-white",
-        ].join(' '),
-
-        destruct: [
-            "bg-red-600 text-white border-red-600",
-            "hover:bg-red-700 hover:border-red-700",
-        ].join(' '),
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = "primary", size = "md", loading, children, ...props }, ref) => {
+    const variants = {
+      primary: "bg-brand text-white shadow-lg shadow-brand/20 hover:shadow-brand/40",
+      secondary: "bg-brand-soft text-brand hover:bg-brand/20",
+      outline: "border-2 border-brand/20 text-brand hover:border-brand/40 bg-transparent",
+      ghost: "text-fg-secondary hover:text-brand hover:bg-brand/10",
     };
 
-    const sizes: Record<NonNullable<ButtonProps['size']>, string> = {
-        sm: "h-8 px-3 text-sm gap-2",
-        md: "h-10 px-4 text-base gap-2",
-        lg: "h-12 px-6 text-lg gap-3",
+    const sizes = {
+      sm: "px-3 py-1.5 text-xs",
+      md: "px-5 py-2.5 text-sm",
+      lg: "px-8 py-4 text-base",
     };
 
     return (
-        <button
-            ref={ref}
-            className={cn(
-                baseStyles,
-                variants[variant],
-                sizes[size],
-                className
-            )}
-            disabled={disabled || isLoading}
-            aria-busy={isLoading || undefined}
-            {...props}
-        >
-            {isLoading && (
-                <>
-                    <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                    <span className="sr-only">Loading</span>
-                </>
-            )}
-            {children}
-        </button>
+      <motion.button
+        ref={ref}
+        whileHover={{ scale: 1.02, y: -1 }}
+        whileTap={{ scale: 0.98 }}
+        className={cn(
+          "relative inline-flex items-center justify-center font-bold rounded-xl transition-all duration-200",
+          variants[variant],
+          sizes[size],
+          loading && "opacity-80 pointer-events-none",
+          className
+        )}
+        {...props}
+      >
+        {loading && (
+          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+        )}
+        <span className="relative z-10">{children}</span>
+      </motion.button>
     );
-});
+  }
+);
 
 Button.displayName = "Button";
-
-export { Button };

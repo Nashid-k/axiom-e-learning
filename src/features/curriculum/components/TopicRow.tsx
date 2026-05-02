@@ -1,6 +1,9 @@
+"use client";
+
 import { memo } from 'react';
 import { RichItem } from '@/types';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 export const TopicRow = memo(function TopicRow({
     item,
@@ -14,12 +17,14 @@ export const TopicRow = memo(function TopicRow({
     onClick: (topic: string, desc: string, initialTab?: 'ai' | 'resources' | 'dojo' | 'quiz') => void;
 }) {
     return (
-        <div
+        <motion.div
+            whileHover={{ x: 4 }}
+            whileTap={{ scale: 0.98 }}
             className={cn(
-                "py-3 px-4 rounded-md border transition-none cursor-pointer flex items-center gap-3",
+                "group py-4 px-5 rounded-2xl transition-all duration-300 cursor-pointer flex items-center gap-4 relative overflow-hidden",
                 isChecked
-                    ? "bg-neutral-50 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 opacity-60"
-                    : "bg-white dark:bg-black border-neutral-100 dark:border-neutral-900 hover:border-neutral-300 dark:hover:border-neutral-700"
+                    ? "bg-surface-base/50 border-surface-border opacity-60"
+                    : "glass-card hover:border-brand/40 shadow-sm hover:shadow-xl hover:shadow-brand/5"
             )}
             onClick={() => {
                 onClick(
@@ -29,30 +34,38 @@ export const TopicRow = memo(function TopicRow({
             }}
         >
             <div className={cn(
-                "w-4 h-4 rounded-sm border flex items-center justify-center shrink-0",
+                "w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all duration-300",
                 isChecked
-                    ? "bg-black dark:bg-white border-black dark:border-white"
-                    : "bg-transparent border-neutral-300 dark:border-neutral-700"
+                    ? "bg-brand border-brand shadow-lg shadow-brand/20"
+                    : "bg-transparent border-surface-border group-hover:border-brand/40"
             )}>
                 {isChecked && (
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="text-white dark:text-black">
+                    <motion.svg 
+                        initial={{ scale: 0, rotate: -45 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" className="text-white"
+                    >
                         <path d="M20 6L9 17L4 12" />
-                    </svg>
+                    </motion.svg>
                 )}
             </div>
 
             <div className="flex-1 min-w-0">
                 <div className={cn(
-                    "text-sm font-bold truncate",
+                    "text-sm font-bold tracking-tight transition-all duration-300",
                     isChecked
-                        ? "text-neutral-500 dark:text-neutral-500 line-through"
-                        : "text-black dark:text-white"
+                        ? "text-fg-muted line-through"
+                        : "text-fg-primary group-hover:text-brand"
                 )}>
                     {item.title}
                 </div>
             </div>
-        </div>
+
+            {!isChecked && (
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand animate-ping" />
+                </div>
+            )}
+        </motion.div>
     );
 });
-
-export const VirtualizedTopic = ({ children }: { children: React.ReactNode }) => <>{children}</>;

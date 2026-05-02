@@ -7,10 +7,11 @@ import { getCategory } from '@/features/curriculum/curriculum-registry';
 import { useModal, TopicItem } from '@/features/ai/context/ModalContext';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { Skeleton } from '@/components/ui/Skeleton';
 import { CurriculumHeader } from './CurriculumHeader';
 import { ProgressCard } from './ProgressCard';
 import { PhaseCard } from './PhaseCard';
+import SectionReveal from '@/components/ui/SectionReveal';
+import { motion } from 'framer-motion';
 
 interface CurriculumViewProps {
     data: CurriculumData;
@@ -84,53 +85,57 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
 
     if (isLoading) {
         return (
-            <div className="p-12 max-w-7xl mx-auto">
-                <div className="relative">
-                    <Skeleton className="h-64 w-full" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <LoadingSpinner size="lg" label="Loading progress" />
-                    </div>
-                </div>
+            <div className="min-h-screen flex items-center justify-center">
+                <LoadingSpinner size="lg" label="Syncing Neural Progress" />
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-none">
-            <div className="max-w-7xl mx-auto px-6 py-12">
-                <div className="mb-12">
-                    <Breadcrumbs items={[
-                        { label: 'Home', href: '/paths' },
-                        { label: curriculumTitle, href: '#', isLast: true }
-                    ]} />
-                </div>
+        <div className="min-h-screen pt-32 pb-20 px-6">
+            <div className="max-w-7xl mx-auto">
+                <SectionReveal>
+                    <div className="mb-12">
+                        <Breadcrumbs items={[
+                            { label: 'Home', href: '/paths' },
+                            { label: curriculumTitle, href: '#', isLast: true }
+                        ]} />
+                    </div>
+                </SectionReveal>
 
-                <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-                    <CurriculumHeader
-                        categorySlug={categorySlug}
-                        curriculumTitle={curriculumTitle}
-                        description={data.description as string}
-                    />
-                    <ProgressCard
-                        progressPercentage={stats.percentage}
-                        validCompletedCount={stats.completed}
-                        totalItems={stats.total}
-                    />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    {data.phases.map((phase) => (
-                        <PhaseCard
-                            key={phase.phase}
-                            phase={phase}
-                            isChecked={isChecked}
-                            onTopicClick={handleTopicClick}
+                <div className="flex flex-col lg:flex-row justify-between items-end gap-12 mb-20 relative">
+                    <SectionReveal delay={0.1} className="flex-1">
+                        <CurriculumHeader
+                            categorySlug={categorySlug}
+                            curriculumTitle={curriculumTitle}
+                            description={data.description as string}
                         />
+                    </SectionReveal>
+                    <SectionReveal delay={0.2}>
+                        <ProgressCard
+                            progressPercentage={stats.percentage}
+                            validCompletedCount={stats.completed}
+                            totalItems={stats.total}
+                        />
+                    </SectionReveal>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {data.phases.map((phase, i) => (
+                        <SectionReveal key={phase.phase} delay={0.2 + i * 0.05} direction="up">
+                            <PhaseCard
+                                phase={phase}
+                                isChecked={isChecked}
+                                onTopicClick={handleTopicClick}
+                            />
+                        </SectionReveal>
                     ))}
                 </div>
 
-                <footer className="mt-24 pt-12 border-t border-neutral-100 dark:border-neutral-900 text-center">
-                    <p className="text-xs font-bold uppercase tracking-widest text-neutral-400">End of Curriculum</p>
+                <footer className="mt-32 pt-16 border-t border-surface-border text-center">
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-fg-muted">
+                        Mission Progress: {stats.percentage}% Synchronized
+                    </p>
                 </footer>
             </div>
         </div>

@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
 import { Message } from '../../types';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import dynamic from 'next/dynamic';
 import { memo } from 'react';
+import { motion } from 'framer-motion';
 
 const AIExplanationView = dynamic(() => import('../../../components/AIExplanationView').then(mod => ({ default: mod.AIExplanationView })), {
-    loading: () => <LoadingSpinner size="sm" />,
+    loading: () => <LoadingSpinner size="sm" variant="bars" />,
     ssr: false
 });
 
@@ -32,22 +33,26 @@ function MayaMessageComponent({
     const isUser = message.role === 'user';
 
     return (
-        <div className={`flex flex-col gap-2 ${isUser ? 'items-end' : 'items-start'}`}>
+        <motion.div 
+            initial={{ opacity: 0, x: isUser ? 20 : -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className={`flex flex-col gap-3 ${isUser ? 'items-end' : 'items-start'}`}
+        >
             <div className={`
-                max-w-[90%] p-4 rounded-md text-sm leading-relaxed
+                max-w-[90%] p-5 rounded-[24px] text-sm leading-relaxed font-medium shadow-sm
                 ${isUser
-                    ? 'bg-black dark:bg-white text-white dark:text-black font-bold'
-                    : 'bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-black dark:text-white'
+                    ? 'bg-brand text-white rounded-br-none shadow-xl shadow-brand/20'
+                    : 'glass-card border-surface-border rounded-bl-none'
                 }
             `}>
                 {isUser ? (
                     <p className="whitespace-pre-wrap">{message.content}</p>
                 ) : (
-                    <div className="max-w-none">
+                    <div className="max-w-none prose dark:prose-invert prose-p:leading-relaxed prose-pre:bg-surface-base/50">
                         {isLast && isLoading ? (
-                            <div className="flex items-center gap-2">
-                                <LoadingSpinner size="sm" />
-                                <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">Maya is writing...</span>
+                            <div className="flex items-center gap-4">
+                                <LoadingSpinner size="sm" variant="bars" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-fg-muted">GENERATING RESPONSE...</span>
                             </div>
                         ) : (
                             <AIExplanationView
@@ -63,21 +68,22 @@ function MayaMessageComponent({
                 )}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className={`flex items-center gap-4 px-2 ${isUser ? 'flex-row-reverse' : ''}`}>
                 <button
                     onClick={() => onCopy(message.content)}
-                    className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 hover:text-black dark:hover:text-white transition-none"
+                    className="text-[9px] font-black uppercase tracking-[0.2em] text-fg-muted hover:text-brand transition-colors"
                 >
-                    Copy
+                    DUPLICATE
                 </button>
+                <div className="w-1 h-1 rounded-full bg-surface-border" />
                 <button
                     onClick={() => onPin(message.content)}
-                    className={`text-[10px] font-bold uppercase tracking-widest transition-none ${isPinned ? 'text-brand-500' : 'text-neutral-400 hover:text-black dark:hover:text-white'}`}
+                    className={`text-[9px] font-black uppercase tracking-[0.2em] transition-all ${isPinned ? 'text-brand drop-shadow-[0_0_8px_var(--color-brand)]' : 'text-fg-muted hover:text-brand'}`}
                 >
-                    {isPinned ? 'Pinned' : 'Pin'}
+                    {isPinned ? 'SYNCHRONIZED' : 'PIN TO CORE'}
                 </button>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

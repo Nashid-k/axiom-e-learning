@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
 
-/* Force class-based dark mode for Tailwind v4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @source "../components";
@@ -12,173 +11,95 @@
 
 @layer base {
   :root {
-    /* --- Minimal Monochrome Palette --- */
-    --color-bg: #ffffff;
-    --color-fg: #000000;
-    --color-border: #e5e5e5;
-    --color-accent: #4f46e5;
-    --color-muted: #737373;
+    /* --- Modern Glassmorphic Palette --- */
+    --color-bg: #f8fafc;
+    --color-fg: #0f172a;
+    --color-primary: #6366f1;
+    --color-primary-soft: #e0e7ff;
+    --color-accent: #f43f5e;
+    --color-success: #10b981;
     
     /* Semantic Surface Tokens (Light) */
-    --surface-base: #ffffff;
-    --surface-raised: #fcfcfc;
-    --surface-subtle: #f5f5f5;
-    --surface-overlay: #ffffff;
+    --surface-base: #f8fafc;
+    --surface-raised: #ffffff;
+    --surface-glass: rgba(255, 255, 255, 0.7);
+    --surface-border: rgba(0, 0, 0, 0.05);
 
-    /* Foreground Tokens (Light) */
-    --fg-primary: #000000;
-    --fg-secondary: #404040;
-    --fg-muted: #737373;
+    /* Text */
+    --fg-primary: #0f172a;
+    --fg-secondary: #475569;
+    --fg-muted: #94a3b8;
 
-    /* Border Tokens (Light) */
-    --border-default: #e5e5e5;
-    --border-strong: #a3a3a3;
-
-    /* Z-Index */
-    --z-maya: 40;
-    --z-modal: 50;
-    --z-nav: 60;
-    --z-toast: 100;
+    /* Motion */
+    --duration-spring: 0.5s;
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .dark {
-    --color-bg: #0a0a0a;
-    --color-fg: #ffffff;
-    --color-border: #262626;
-    --color-accent: #6366f1;
-    --color-muted: #a3a3a3;
-
+    --color-bg: #020617;
+    --color-fg: #f8fafc;
+    --color-primary: #818cf8;
+    --color-primary-soft: rgba(99, 102, 241, 0.1);
+    
     /* Semantic Surface Tokens (Dark) */
-    --surface-base: #0a0a0a;
-    --surface-raised: #171717;
-    --surface-overlay: #171717;
+    --surface-base: #020617;
+    --surface-raised: #0f172a;
+    --surface-glass: rgba(15, 23, 42, 0.6);
+    --surface-border: rgba(255, 255, 255, 0.08);
 
-    /* Foreground Tokens (Dark) */
-    --fg-primary: #ffffff;
-    --fg-secondary: #d4d4d4;
-    --fg-muted: #a3a3a3;
-
-    /* Border Tokens (Dark) */
-    --border-default: #262626;
-    --border-strong: #404040;
+    --fg-primary: #f8fafc;
+    --fg-secondary: #94a3b8;
+    --fg-muted: #64748b;
   }
 }
 
 @theme {
-  /* --- Colors --- */
-  --color-brand-500: var(--color-accent);
+  --color-brand: var(--color-primary);
+  --color-brand-soft: var(--color-primary-soft);
   --color-surface-base: var(--surface-base);
   --color-surface-raised: var(--surface-raised);
-  --color-surface-subtle: var(--surface-subtle);
-  --color-surface-overlay: var(--surface-overlay);
-
-  --color-fg-primary: var(--fg-primary);
-  --color-fg-secondary: var(--fg-secondary);
-  --color-fg-muted: var(--fg-muted);
-
-  --color-border-default: var(--border-default);
-  --color-border-strong: var(--border-strong);
-
-  /* --- Typography --- */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --text-display: clamp(2rem, 5vw, 3.5rem);
-  --text-heading: clamp(1.25rem, 4vw, 2.25rem);
-  --text-body: 1rem;
-  --text-caption: 0.875rem;
-
-  --leading-tight: 1.2;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.6;
-
-  /* --- Spacing --- */
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-6: 24px;
-  --spacing-8: 32px;
-  --spacing-12: 48px;
-
-  /* --- Radius --- */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-full: 9999px;
-
-  /* --- Shadows (Removed for minimal look) --- */
-  --shadow-none: none;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-xl: none;
-
-  /* --- Motion --- */
-  --duration-fast: 150ms;
-  --duration-base: 300ms;
-  --duration-slow: 500ms;
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --color-surface-glass: var(--surface-glass);
+  
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
 }
 
 @layer base {
   body {
     font-family: var(--font-sans);
-    font-size: var(--text-body);
-    line-height: var(--leading-normal);
     color: var(--fg-primary);
     background-color: var(--surface-base);
-    -webkit-font-smoothing: antialiased;
-    transition: background-color var(--duration-base) var(--ease-in-out), color var(--duration-base) var(--ease-in-out);
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+      radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--fg-primary);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-  p {
-    color: var(--fg-secondary);
+  /* Smooth Dark Mode Transitions */
+  * {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 }
 
 @layer utilities {
-  .minimal-card {
-    background: var(--surface-base);
-    border: 1px solid var(--border-default);
-    padding: var(--spacing-6);
-    transition: transform var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
-  }
-  
-  .minimal-card:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-2px);
+  .glass-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
   }
 
-  .minimal-border {
-    border: 1px solid var(--border-default);
-    transition: border-color var(--duration-fast) var(--ease-out);
+  .text-gradient {
+    background: linear-gradient(to right, var(--color-primary), #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .text-accent {
-    color: var(--color-brand-500);
+  .glow-hover:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
   }
-
-  .bg-accent {
-    background-color: var(--color-brand-500);
-  }
-}
-
-/* Scrollbar — minimal */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-default);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--border-strong);
 }

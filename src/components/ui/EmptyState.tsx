@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface EmptyStateProps {
     title: string;
@@ -19,27 +20,37 @@ export function EmptyState({
 }: EmptyStateProps) {
     return (
         <div className={cn(
-            "flex flex-col items-center justify-center p-12 text-center border border-neutral-200 dark:border-neutral-800 rounded-md bg-white dark:bg-black",
+            "flex flex-col items-center justify-center p-16 text-center glass-card rounded-[40px] relative overflow-hidden",
             className
         )}>
-            <div className="w-16 h-16 rounded-full bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex items-center justify-center mb-6 text-2xl">
+            <div className="absolute inset-0 bg-brand/5 -z-10" />
+            
+            <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="w-24 h-24 rounded-3xl bg-brand-soft/30 border border-brand/20 flex items-center justify-center mb-10 text-4xl shadow-xl shadow-brand/10"
+            >
                 {icon || "🔍"}
-            </div>
+            </motion.div>
 
-            <h3 className="text-xl font-bold mb-2">
+            <h3 className="text-3xl font-black tracking-tighter mb-4 text-fg-primary">
                 {title}
             </h3>
 
             {description && (
-                <p className="text-sm text-neutral-500 dark:text-neutral-400 max-w-sm mb-8 leading-relaxed">
+                <p className="text-lg text-fg-secondary max-w-sm mb-12 font-medium leading-relaxed opacity-80">
                     {description}
                 </p>
             )}
 
             {action && (
-                <div className="mt-2">
+                <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
                     {action}
-                </div>
+                </motion.div>
             )}
         </div>
     );

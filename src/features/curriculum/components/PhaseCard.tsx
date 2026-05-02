@@ -1,5 +1,8 @@
+"use client";
+
 import { RichItem } from '@/types';
 import { TopicRow } from './TopicRow';
+import { motion } from 'framer-motion';
 
 interface PhaseCardProps {
     phase: {
@@ -16,23 +19,32 @@ interface PhaseCardProps {
 
 export function PhaseCard({ phase, isChecked, onTopicClick }: PhaseCardProps) {
     return (
-        <div className="h-[450px] flex flex-col border border-neutral-200 dark:border-neutral-800 rounded-md bg-white dark:bg-black overflow-hidden transition-none">
-            <header className="p-6 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900">
-                <div className="flex items-center gap-3 mb-2">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold">
+        <div className="h-[500px] flex flex-col glass-card rounded-3xl overflow-hidden group hover:shadow-2xl transition-all duration-500">
+            <header className="p-8 pb-6 bg-brand-soft/30 border-b border-surface-border relative overflow-hidden">
+                <motion.div 
+                    className="absolute -top-10 -right-10 w-24 h-24 bg-brand/10 blur-2xl rounded-full"
+                    animate={{ scale: [1, 1.5, 1] }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                />
+                <div className="flex items-center gap-4 mb-4">
+                    <span className="flex items-center justify-center w-10 h-10 rounded-2xl bg-brand text-white text-sm font-black shadow-lg shadow-brand/20">
                         {phase.phase}
                     </span>
-                    <h2 className="text-base font-bold truncate">{phase.title}</h2>
+                    <h2 className="text-lg font-extrabold tracking-tight group-hover:text-brand transition-colors truncate">
+                        {phase.title}
+                    </h2>
                 </div>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 leading-relaxed">{phase.description}</p>
+                <p className="text-sm text-fg-secondary font-medium line-clamp-2 leading-relaxed opacity-80">
+                    {phase.description}
+                </p>
             </header>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-8">
+            <div className="flex-1 overflow-y-auto p-6 space-y-10 custom-scrollbar">
                 {phase.theory && phase.theory.length > 0 && (
                     <section>
-                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-4 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 bg-brand-500 rounded-full" />
-                            Theory
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-fg-muted mb-6 flex items-center gap-3">
+                            <span className="w-1.5 h-1.5 bg-brand rounded-full shadow-[0_0_8px_var(--color-brand)]" />
+                            CORE CONCEPTS
                         </h3>
                         <div className="space-y-3">
                             {phase.theory.map((rawItem, idx) => {
@@ -56,9 +68,9 @@ export function PhaseCard({ phase, isChecked, onTopicClick }: PhaseCardProps) {
 
                 {phase.practicals && phase.practicals.length > 0 && (
                     <section>
-                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-4 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                            Practical
+                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-fg-muted mb-6 flex items-center gap-3">
+                            <span className="w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_8px_var(--color-accent)]" />
+                            FIELD WORK
                         </h3>
                         <div className="space-y-3">
                             {phase.practicals.map((rawItem, idx) => {

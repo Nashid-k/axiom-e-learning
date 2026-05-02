@@ -49,7 +49,6 @@ export default function MayaAssistant() {
                             }]);
                         }
                     }
-                    if (data.version) setModelVersion(data.version);
                 })
                 .catch(() => { });
         }

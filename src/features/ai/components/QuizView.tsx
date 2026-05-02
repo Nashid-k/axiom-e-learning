@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Quiz } from '@/features/ai/types';
+import { Quiz } from '@/features/ai/assistant/types';
 import { Button } from '@/components/ui/Button';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { cn } from '@/lib/utils';

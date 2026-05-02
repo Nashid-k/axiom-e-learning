@@ -12,7 +12,6 @@ const CodeBlock = dynamic(() => import('@/features/ai/components/CodeBlock').the
 // Define proper interfaces for Markdown props
 interface MarkdownProps {
     children?: React.ReactNode;
-    [key: string]: unknown;
 }
 
 interface CodeProps extends MarkdownProps {
@@ -21,28 +20,28 @@ interface CodeProps extends MarkdownProps {
 }
 
 export const getMarkdownComponents = (compact: boolean = false) => ({
-    h1: ({ children, ...props }: MarkdownProps) => (
+    h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h1 className="text-3xl font-black tracking-tighter mt-12 mb-6" {...props}>{children}</h1>
     ),
-    h2: ({ children, ...props }: MarkdownProps) => (
+    h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h2 className="text-2xl font-black tracking-tighter mt-10 mb-5" {...props}>{children}</h2>
     ),
-    h3: ({ children, ...props }: MarkdownProps) => (
+    h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h3 className="text-xl font-bold tracking-tight mt-8 mb-4" {...props}>{children}</h3>
     ),
-    p: ({ children, ...props }: MarkdownProps) => (
+    p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
         <p className="text-base leading-relaxed mb-6 opacity-90" {...props}>{children}</p>
     ),
-    ul: ({ children, ...props }: MarkdownProps) => (
+    ul: ({ children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
         <ul className="list-disc pl-6 mb-6 space-y-2" {...props}>{children}</ul>
     ),
-    ol: ({ children, ...props }: MarkdownProps) => (
+    ol: ({ children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
         <ol className="list-decimal pl-6 mb-6 space-y-2" {...props}>{children}</ol>
     ),
-    li: ({ children, ...props }: MarkdownProps) => (
+    li: ({ children, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
         <li className="leading-relaxed" {...props}>{children}</li>
     ),
-    blockquote: ({ children, ...props }: MarkdownProps) => (
+    blockquote: ({ children, ...props }: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
         <blockquote className="border-l-4 border-brand/30 pl-6 py-2 my-8 italic bg-brand/5 rounded-r-2xl" {...props}>
             {children}
         </blockquote>

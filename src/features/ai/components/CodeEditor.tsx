@@ -1,11 +1,15 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import type { OnMount } from "@monaco-editor/react";
 import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 import { runCode, SupportedLanguage } from '@/features/ai/code-runner';
 import { Button } from '@/components/ui/Button';
+
+// Monaco editor type
+interface MonacoEditor {
+    getValue: () => string;
+}
 
 const Editor = dynamic(() => import('@monaco-editor/react'), {
     ssr: false,
@@ -34,7 +38,7 @@ export default function CodeEditor({ initialCode = '', language = 'javascript' }
     const [isRunning, setIsRunning] = useState(false);
     const [showTerminal, setShowTerminal] = useState(false);
 
-    const editorRef = useRef<any>(null);
+    const editorRef = useRef<MonacoEditor | null>(null);
 
     useEffect(() => {
         setCode(initialCode || DEFAULT_CODE[activeLang]);
@@ -49,8 +53,8 @@ export default function CodeEditor({ initialCode = '', language = 'javascript' }
         try {
             const result = await runCode(activeLang as SupportedLanguage, currentCode);
             setOutput(result.success ? result.output : `Error: ${result.error}\n${result.output || ''}`);
-        } catch (err: any) {
-            setOutput(`Execution failed: ${err.message}`);
+        } catch (err: unknown) {
+            setOutput(`Execution failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
         } finally {
             setIsRunning(false);
         }
@@ -83,7 +87,7 @@ export default function CodeEditor({ initialCode = '', language = 'javascript' }
                     >
                         Terminal
                     </button>
-                    <Button onClick={handleRun} isLoading={isRunning} size="sm" className="h-8 text-[10px] uppercase tracking-widest">
+                    <Button onClick={handleRun} loading={isRunning} size="sm" className="h-8 text-[10px] uppercase tracking-widest">
                         Run
                     </Button>
                 </div>
@@ -96,7 +100,7 @@ export default function CodeEditor({ initialCode = '', language = 'javascript' }
                         language={activeLang === 'mongodb' ? 'javascript' : activeLang}
                         value={code}
                         theme="vs-dark"
-                        onMount={(editor) => { editorRef.current = editor; }}
+                        onMount={(editor) => { editorRef.current = editor as MonacoEditor; }}
                         onChange={(val) => setCode(val || "")}
                         options={{
                             minimap: { enabled: false },

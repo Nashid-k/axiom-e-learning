@@ -22,16 +22,16 @@ export function CyclingStatus({ loading, messages = DEFAULT_MESSAGES, className 
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
-        if (!loading) {
-            setIndex(0);
-            return;
-        }
+        if (!loading) return;
 
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % messages.length);
         }, 2000);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            setIndex(0);
+        };
     }, [loading, messages.length]);
 
     if (!loading) return null;

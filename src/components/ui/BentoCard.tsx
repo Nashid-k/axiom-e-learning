@@ -4,12 +4,10 @@ import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 export type BentoCardSize = 'small' | 'medium' | 'large' | 'wide' | 'tall';
-export type BentoCardVariant = 'default' | 'feature' | 'stat' | 'media';
 
 interface BentoCardProps {
     children: ReactNode;
     size?: BentoCardSize;
-    variant?: BentoCardVariant;
     className?: string;
     onClick?: () => void;
     href?: string;
@@ -27,7 +25,6 @@ const sizeMap: Record<BentoCardSize, string> = {
 export default function BentoCard({
     children,
     size = 'medium',
-    variant = 'default',
     className = '',
     onClick,
     href,

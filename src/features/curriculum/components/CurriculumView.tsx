@@ -11,7 +11,6 @@ import { CurriculumHeader } from './CurriculumHeader';
 import { ProgressCard } from './ProgressCard';
 import { PhaseCard } from './PhaseCard';
 import SectionReveal from '@/components/ui/SectionReveal';
-import { motion } from 'framer-motion';
 
 interface CurriculumViewProps {
     data: CurriculumData;

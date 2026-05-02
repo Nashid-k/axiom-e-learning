@@ -7,7 +7,6 @@ import { useAuth } from '@/features/auth/AuthContext';
 import { useTopics } from '@/features/learning/hooks/useTopics';
 import { trackEvent } from '@/lib/telemetry';
 import { collectWeaknessSignals, getWeakTopicNames } from '@/features/learning/weakness-engine';
-import { useReducedMotion } from 'framer-motion';
 
 import { MayaOrb } from './MayaOrb';
 import { MayaChatWindow } from './MayaChatWindow';
@@ -18,14 +17,12 @@ export default function MayaAssistant() {
     const { activeTopic } = useTopicContext();
     const { topics } = useTopics();
     const pathname = usePathname();
-    const shouldReduceMotion = useReducedMotion();
 
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isThinking, setIsThinking] = useState(false);
     const [thinkingStep, setThinkingStep] = useState(0);
-    const [modelVersion, setModelVersion] = useState('');
     const [pinnedMemories, setPinnedMemories] = useState<string[]>([]);
 
     const memoryKeyRef = useRef('maya_pinned_memory_global');

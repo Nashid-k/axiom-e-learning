@@ -7,14 +7,13 @@ import { CATEGORIES } from '@/features/curriculum/curriculum-constants';
 import { useGlobalProgress } from '@/lib/providers/ProgressProvider';
 import { useTopics } from '@/features/learning/hooks/useTopics';
 import { getTopicsDueForReview } from '@/features/learning/spaced-repetition';
-import { motion } from 'framer-motion';
 import SectionReveal from '@/components/ui/SectionReveal';
 import { Header } from '@/components/ui/Header';
 
 const categories = CATEGORIES;
 
 export default function ExplorePage() {
-    const { xp, level, streak, progress } = useGlobalProgress();
+    const { xp, level, streak } = useGlobalProgress();
     const { topics: userTopics } = useTopics();
 
     const reviewDueCount = useMemo(() =>

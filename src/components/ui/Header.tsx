@@ -5,7 +5,7 @@ import { useAuth } from "@/features/auth/AuthContext";
 import { AxiomLogo } from "./AxiomLogo";
 import { Button } from "./Button";
 import { motion } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const { user } = useAuth();

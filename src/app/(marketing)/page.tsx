@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Header } from '@/components/ui/Header';
+import { AxiomLogo } from '@/components/ui/AxiomLogo';
 import SectionReveal from '@/components/ui/SectionReveal';
 import { motion } from 'framer-motion';
 

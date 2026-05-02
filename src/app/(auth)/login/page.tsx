@@ -41,7 +41,7 @@ export default function LoginPage() {
                                 setIsSigningIn(false);
                             }}
                             variant="outline"
-                            isLoading={isSigningIn}
+                            loading={isSigningIn}
                             className="w-full flex items-center justify-center gap-3 py-6"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24">

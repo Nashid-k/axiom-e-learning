@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useModal } from "@/features/ai/context/ModalContext";
 import { useAIStream } from "@/features/ai/hooks/useAIStream";
@@ -9,7 +9,6 @@ import { useProgress } from "@/features/learning/hooks/useProgress";
 import { ChatThread } from './ChatThread';
 import { ModalShell } from '@/components/ui/ModalShell';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { cn } from '@/lib/utils';
 import { useTextToSpeech } from "@/features/ai/hooks/useTextToSpeech";
 import { ModalSidebar } from './ModalSidebar';
 import { ModalTopBar } from './ModalTopBar';
@@ -46,13 +45,14 @@ export default function AIModal() {
     const topicId = topicData?.id;
     const initialTab = topicData?.initialTab;
 
+    // Reset states when a new topic is opened
     useEffect(() => {
         if (isOpen && topicId) {
             setTimeSpent(0);
             setIsChatActive(false);
             setOptimisticComplete(null);
             setQuizPassed(false);
-            setActiveTab(initialTab || 'ai');
+            if (initialTab) setActiveTab(initialTab);
         }
     }, [isOpen, topicId, initialTab]);
 
@@ -85,13 +85,14 @@ export default function AIModal() {
             resetResources();
             fetchAIContent(topicData.topic, topicData.category, topicData.description, topicData.phase, persona, false, 'explanation');
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen, topicData?.id]);
 
     useEffect(() => {
         if (activeTab === 'resources' && !resources && !loadingResources && topicData) {
             fetchResources(topicData.topic, topicData.curriculum || topicData.category, topicData.phase || '');
         }
-    }, [activeTab, resources, loadingResources, topicData]);
+    }, [activeTab, resources, loadingResources, topicData, fetchResources]);
 
     const curriculumSlug = topicData?.fileName || topicData?.curriculum || '';
     const { isChecked, toggleItem } = useProgress(curriculumSlug, allTopics?.length || 0);

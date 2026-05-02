@@ -111,26 +111,26 @@ export const AIExplanationView: React.FC<AIExplanationViewProps> = React.memo(({
     const processedContent = useMemo(() => processMultiLanguageContent(content || '', category), [content, category]);
 
     const markdownComponents = useMemo(() => ({
-        h1: (props: any) => <h1 className="text-2xl font-bold mt-8 mb-4" {...props} />,
-        h2: (props: any) => <h2 className="text-xl font-bold mt-6 mb-3" {...props} />,
-        h3: (props: any) => <h3 className="text-lg font-bold mt-4 mb-2" {...props} />,
-        p: (props: any) => <p className="text-base leading-relaxed mb-4" {...props} />,
-        li: (props: any) => <li className="mb-2" {...props} />,
-        ul: (props: any) => <ul className="list-disc pl-6 mb-4" {...props} />,
-        ol: (props: any) => <ol className="list-decimal pl-6 mb-4" {...props} />,
-        strong: (props: any) => <strong className="font-bold text-black dark:text-white" {...props} />,
+        h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h1 className="text-2xl font-bold mt-8 mb-4" {...props} />,
+        h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className="text-xl font-bold mt-6 mb-3" {...props} />,
+        h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h3 className="text-lg font-bold mt-4 mb-2" {...props} />,
+        p: (props: React.HTMLAttributes<HTMLParagraphElement>) => <p className="text-base leading-relaxed mb-4" {...props} />,
+        li: (props: React.LiHTMLAttributes<HTMLLIElement>) => <li className="mb-2" {...props} />,
+        ul: (props: React.HTMLAttributes<HTMLUListElement>) => <ul className="list-disc pl-6 mb-4" {...props} />,
+        ol: (props: React.OlHTMLAttributes<HTMLOListElement>) => <ol className="list-decimal pl-6 mb-4" {...props} />,
+        strong: (props: React.HTMLAttributes<HTMLElement>) => <strong className="font-bold text-black dark:text-white" {...props} />,
         hr: () => <hr className="my-8 border-neutral-200 dark:border-neutral-800" />,
-        a: (props: any) => <a className="text-brand-500 underline hover:no-underline" target="_blank" rel="noopener noreferrer" {...props} />,
-        blockquote: (props: any) => (
+        a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a className="text-brand-500 underline hover:no-underline" target="_blank" rel="noopener noreferrer" {...props} />,
+        blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
             <blockquote className="border-l-4 border-neutral-200 dark:border-neutral-800 pl-4 py-1 my-4 italic text-neutral-500" {...props} />
         ),
-        table: (props: any) => (
+        table: (props: React.TableHTMLAttributes<HTMLTableElement>) => (
             <div className="overflow-x-auto my-6 border border-neutral-200 dark:border-neutral-800 rounded-md">
                 <table className="w-full text-sm" {...props} />
             </div>
         ),
-        th: (props: any) => <th className="bg-neutral-50 dark:bg-neutral-900 px-4 py-2 border-b border-neutral-200 dark:border-neutral-800 font-bold" {...props} />,
-        td: (props: any) => <td className="px-4 py-2 border-b border-neutral-100 dark:border-neutral-900" {...props} />,
+        th: (props: React.ThHTMLAttributes<HTMLTableCellElement>) => <th className="bg-neutral-50 dark:bg-neutral-900 px-4 py-2 border-b border-neutral-200 dark:border-neutral-800 font-bold" {...props} />,
+        td: (props: React.TdHTMLAttributes<HTMLTableCellElement>) => <td className="px-4 py-2 border-b border-neutral-100 dark:border-neutral-900" {...props} />,
         code: (props: CodeRendererProps) => {
             const { className, children } = props;
             const match = /language-([\w-]+)/.exec(className || '');
@@ -141,7 +141,7 @@ export const AIExplanationView: React.FC<AIExplanationViewProps> = React.memo(({
                     const payload = JSON.parse(String(children));
                     const tabs = Array.isArray(payload) ? payload : payload.tabs;
                     return <div className="my-6"><CodeBlockWithTabs tabs={tabs} /></div>;
-                } catch (e) {
+                } catch {
                     return <pre className="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-md overflow-x-auto">{children}</pre>;
                 }
             }

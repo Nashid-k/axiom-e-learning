@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { ThemeProvider } from '@/lib/providers/ThemeProvider';
 import { AuthProvider } from '@/features/auth/AuthContext';
 import ErrorBoundary from '@/lib/providers/ErrorBoundary';
-import Header from '@/components/ui/Header';
+import { Header } from '@/components/ui/Header';
 import QueryProvider from '@/lib/providers/QueryProvider';
 import { ProgressProvider } from '@/lib/providers/ProgressProvider';
 import { TopicProvider } from "@/lib/providers/topic-context";

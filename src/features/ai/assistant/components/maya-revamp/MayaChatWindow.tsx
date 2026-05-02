@@ -4,7 +4,6 @@ import { useRef, useEffect, useState } from 'react';
 import { Message } from '../../types';
 import { MayaMessage } from './MayaMessage';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/Button';
 
 interface MayaActiveTopic {
     title?: string;

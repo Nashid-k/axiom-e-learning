@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ApiSummaryRow {
     endpoint: string;
@@ -53,7 +53,6 @@ function formatTs(value: string): string {
 
 export default function VitalsPage() {
     const [snapshot, setSnapshot] = useState<VitalsSnapshot | null>(null);
-    const [loading, setLoading] = useState(true);
     const [refreshMs, setRefreshMs] = useState(2000);
     const [windowHours, setWindowHours] = useState(24);
 
@@ -62,7 +61,7 @@ export default function VitalsPage() {
             try {
                 const res = await fetch(`/api/vitals?source=auto&windowHours=${windowHours}&limit=10000`);
                 if (res.ok) setSnapshot(await res.json());
-            } catch (e) {} finally { setLoading(false); }
+            } catch { }
         };
         load();
         const timer = setInterval(load, refreshMs);

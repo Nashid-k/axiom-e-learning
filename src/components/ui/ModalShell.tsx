@@ -23,7 +23,6 @@ export function ModalShell({
   containerClassName,
   backdropClassName,
   ariaLabel,
-  ariaLabelledBy,
 }: ModalShellProps) {
   const alignmentClasses = align === "center"
     ? "items-center justify-center top-0 bottom-0"

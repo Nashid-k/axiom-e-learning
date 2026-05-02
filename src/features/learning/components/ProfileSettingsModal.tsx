@@ -118,7 +118,7 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                         <Button variant="outline" onClick={onClose} className="flex-1">
                             Cancel
                         </Button>
-                        <Button onClick={handleSave} disabled={isSaving} isLoading={isSaving} className="flex-1">
+                        <Button onClick={handleSave} disabled={isSaving} loading={isSaving} className="flex-1">
                             Save
                         </Button>
                     </div>

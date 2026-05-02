@@ -15,7 +15,6 @@ import RouteGuard from '@/features/auth/components/RouteGuard';
 import { CurriculumData } from '@/types';
 import { getMarkdownComponents } from './MarkdownComponents';
 import SectionReveal from '@/components/ui/SectionReveal';
-import { motion } from 'framer-motion';
 import { Header } from '@/components/ui/Header';
 
 interface TopicViewProps {
@@ -120,7 +119,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                                 onClick={handleComplete} 
                                 size="lg" 
                                 className="w-full md:w-auto px-12 py-5 text-lg rounded-2xl shadow-xl shadow-brand/20"
-                                isLoading={isCompleting}
+                                loading={isCompleting}
                             >
                                 Complete Simulation
                             </Button>

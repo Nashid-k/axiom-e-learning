@@ -1,186 +1,109 @@
-'use client';
-
-import { useState, useEffect, useRef } from 'react';
-import { cn } from '@/lib/utils';
+import React, { useState, useMemo } from 'react';
+import { Quiz } from '@/features/ai/types';
 import { Button } from '@/components/ui/Button';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-
-interface QuizQuestion {
-    q: string;
-    options: string[];
-    correct: number;
-    explanation: string;
-}
+import { cn } from '@/lib/utils';
 
 interface QuizViewProps {
     topic: string;
     category: string;
-    persona?: 'general' | 'buddy';
-    onComplete?: (score: number, total: number, isPassed: boolean) => void;
+    persona: 'general' | 'buddy';
+    onComplete: (score: number, total: number, passed: boolean) => void;
 }
 
-type QuizState = 'idle' | 'loading' | 'active' | 'results';
-
-export function QuizView({ topic, category, persona = 'general', onComplete }: QuizViewProps) {
-    const [state, setState] = useState<QuizState>('idle');
-    const [questions, setQuestions] = useState<QuizQuestion[]>([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-    const [showExplanation, setShowExplanation] = useState(false);
-    const [score, setScore] = useState(0);
-    const [error, setError] = useState<string | null>(null);
-    const abortControllerRef = useRef<AbortController | null>(null);
+export function QuizView({ topic, category, persona, onComplete }: QuizViewProps) {
+    const [quiz, setQuiz] = useState<Quiz | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [answers, setAnswers] = useState<Record<number, number>>({});
+    const [submitted, setSubmitted] = useState(false);
 
     const fetchQuiz = async () => {
-        setState('loading');
-        setError(null);
-        setCurrentIndex(0);
-        setSelectedAnswer(null);
-        setShowExplanation(false);
-        setScore(0);
-
-        const controller = new AbortController();
-        abortControllerRef.current = controller;
-
+        setLoading(true);
         try {
-            const response = await fetch('/api/ai/modal', {
+            const res = await fetch('/api/ai/quiz', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                signal: controller.signal,
-                body: JSON.stringify({ topic, category, mode: 'quiz', persona })
+                body: JSON.stringify({ topic, category, persona }),
             });
-
-            if (!response.ok) throw new Error('Failed to generate quiz');
-            
-            const reader = response.body?.getReader();
-            if (!reader) throw new Error('No response body');
-
-            let fullText = '';
-            const decoder = new TextDecoder();
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-                fullText += decoder.decode(value, { stream: true });
-            }
-
-            let jsonStr = fullText.trim();
-            const jsonMatch = jsonStr.match(/\[\s*\{[\s\S]*\}\s*\]/);
-            if (jsonMatch) jsonStr = jsonMatch[0];
-            else jsonStr = jsonStr.replace(/```json?\n?/g, '').replace(/```/g, '').trim();
-
-            const parsed = JSON.parse(jsonStr) as QuizQuestion[];
-            setQuestions(parsed);
-            setState('active');
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to load quiz');
-            setState('idle');
-        }
+            if (res.ok) setQuiz(await res.json());
+        } catch { } finally { setLoading(false); }
     };
 
-    const handleConfirm = () => {
-        if (selectedAnswer === null) return;
-        if (selectedAnswer === questions[currentIndex].correct) setScore(s => s + 1);
-        setShowExplanation(true);
+    const score = useMemo(() => {
+        if (!quiz) return 0;
+        return quiz.questions.reduce((acc, q, idx) => {
+            return acc + (answers[idx] === q.correctAnswer ? 1 : 0);
+        }, 0);
+    }, [quiz, answers]);
+
+    const passed = useMemo(() => {
+        if (!quiz) return false;
+        return score >= Math.ceil(quiz.questions.length * 0.7);
+    }, [quiz, score]);
+
+    const handleSubmit = () => {
+        setSubmitted(true);
+        if (quiz) onComplete(score, quiz.questions.length, passed);
     };
 
-    const handleNext = () => {
-        if (currentIndex < questions.length - 1) {
-            setCurrentIndex(i => i + 1);
-            setSelectedAnswer(null);
-            setShowExplanation(false);
-        } else {
-            setState('results');
-            const isPassed = score >= Math.ceil(questions.length * 0.67);
-            onComplete?.(score, questions.length, isPassed);
-        }
-    };
+    if (loading) return <div className="py-20 flex justify-center"><LoadingSpinner size="lg" label="Generating Neural Challenge" /></div>;
 
-    if (state === 'idle') {
-        return (
-            <div className="py-12 text-center">
-                <div className="text-5xl mb-6">🧠</div>
-                <h3 className="text-2xl font-bold mb-2">Quiz: {topic}</h3>
-                <p className="text-neutral-500 dark:text-neutral-400 mb-8 max-w-sm mx-auto">
-                    Three adaptive questions to verify your mastery of this concept.
-                </p>
-                {error && <p className="text-red-500 text-xs font-bold uppercase mb-4">{error}</p>}
-                <Button onClick={fetchQuiz} size="lg">Start Assessment</Button>
-            </div>
-        );
-    }
-
-    if (state === 'loading') {
-        return <div className="py-24 text-center"><LoadingSpinner size="lg" label="Generating Quiz..." /></div>;
-    }
-
-    if (state === 'results') {
-        const percentage = Math.round((score / questions.length) * 100);
-        return (
-            <div className="py-12 text-center">
-                <div className="text-5xl mb-6">{percentage >= 67 ? '✅' : '📚'}</div>
-                <h3 className="text-3xl font-bold mb-2">{percentage >= 67 ? 'Mastery Confirmed' : 'Keep Studying'}</h3>
-                <div className="text-6xl font-black text-brand-500 my-6">{score}/{questions.length}</div>
-                <p className="text-neutral-500 dark:text-neutral-400 mb-8">
-                    {percentage >= 67 ? 'You have successfully mastered this topic.' : 'Review the concepts and try again.'}
-                </p>
-                <Button variant="outline" onClick={() => setState('idle')}>Retake Quiz</Button>
-            </div>
-        );
-    }
-
-    const current = questions[currentIndex];
+    if (!quiz) return (
+        <div className="py-20 text-center">
+            <h3 className="text-xl font-bold mb-6">Ready to verify your knowledge?</h3>
+            <Button onClick={fetchQuiz}>Generate Quiz</Button>
+        </div>
+    );
 
     return (
-        <div className="max-w-2xl mx-auto py-4">
-            <div className="flex justify-between items-center mb-10">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Question {currentIndex + 1} of {questions.length}</div>
-                <div className="h-1 flex-1 mx-4 bg-neutral-100 dark:bg-neutral-900 rounded-full overflow-hidden">
-                    <div className="h-full bg-brand-500 transition-none" style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }} />
+        <div className="space-y-12">
+            {quiz.questions.map((q, idx) => (
+                <div key={idx} className="space-y-6">
+                    <p className="text-lg font-bold leading-tight">{idx + 1}. {q.question}</p>
+                    <div className="grid grid-cols-1 gap-3">
+                        {q.options.map((opt, oIdx) => {
+                            const isSelected = answers[idx] === oIdx;
+                            const isCorrect = submitted && oIdx === q.correctAnswer;
+                            const isWrong = submitted && isSelected && oIdx !== q.correctAnswer;
+
+                            return (
+                                <button
+                                    key={oIdx}
+                                    disabled={submitted}
+                                    onClick={() => setAnswers(prev => ({ ...prev, [idx]: oIdx }))}
+                                    className={cn(
+                                        "p-4 text-left rounded-xl border-2 transition-all font-medium",
+                                        isSelected ? "border-brand bg-brand/5" : "border-surface-border hover:border-brand/40",
+                                        isCorrect && "border-success bg-success/5 text-success",
+                                        isWrong && "border-accent bg-accent/5 text-accent"
+                                    )}
+                                >
+                                    {opt}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+            ))}
 
-            <h3 className="text-xl font-bold mb-8 leading-tight">{current.q}</h3>
-
-            <div className="space-y-3 mb-10">
-                {current.options.map((option, idx) => {
-                    const isSelected = selectedAnswer === idx;
-                    const isCorrect = idx === current.correct;
-                    return (
-                        <button
-                            key={idx}
-                            disabled={showExplanation}
-                            onClick={() => setSelectedAnswer(idx)}
-                            className={cn(
-                                "w-full p-4 text-left border rounded-md transition-none flex items-center justify-between group",
-                                !showExplanation && isSelected ? "border-black dark:border-white bg-neutral-50 dark:bg-neutral-900" : "border-neutral-200 dark:border-neutral-800 hover:border-neutral-400",
-                                showExplanation && isCorrect ? "border-green-500 bg-green-50 dark:bg-green-900/10" : "",
-                                showExplanation && isSelected && !isCorrect ? "border-red-500 bg-red-50 dark:bg-red-900/10" : ""
-                            )}
-                        >
-                            <span className={cn("font-medium", (showExplanation && isCorrect) ? "text-green-600 dark:text-green-400" : (showExplanation && isSelected && !isCorrect) ? "text-red-600 dark:text-red-400" : "")}>
-                                {option}
-                            </span>
-                            {showExplanation && isCorrect && <span className="text-green-500 font-bold">✓</span>}
-                            {showExplanation && isSelected && !isCorrect && <span className="text-red-500 font-bold">✗</span>}
-                        </button>
-                    );
-                })}
-            </div>
-
-            {showExplanation && (
-                <div className="mb-10 p-5 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-md">
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2">Explanation</div>
-                    <p className="text-sm leading-relaxed">{current.explanation}</p>
+            {!submitted ? (
+                <div className="pt-8 border-t border-surface-border flex justify-center">
+                    <Button onClick={handleSubmit} disabled={Object.keys(answers).length < quiz.questions.length}>
+                        Submit Neural Sync
+                    </Button>
+                </div>
+            ) : (
+                <div className={cn(
+                    "p-8 rounded-3xl text-center border-2",
+                    passed ? "border-success bg-success/5" : "border-accent bg-accent/5"
+                )}>
+                    <h3 className="text-2xl font-black mb-2">{passed ? 'Mastery Verified' : 'Synchronization Failed'}</h3>
+                    <p className="font-bold opacity-80 mb-6">You scored {score} out of {quiz.questions.length}</p>
+                    <Button onClick={() => { setQuiz(null); setAnswers({}); setSubmitted(false); }}>
+                        Try New Challenge
+                    </Button>
                 </div>
             )}
-
-            <Button
-                className="w-full h-12 text-sm font-bold uppercase tracking-widest"
-                disabled={selectedAnswer === null}
-                onClick={showExplanation ? handleNext : handleConfirm}
-            >
-                {showExplanation ? (currentIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz') : 'Confirm Answer'}
-            </Button>
         </div>
     );
 }

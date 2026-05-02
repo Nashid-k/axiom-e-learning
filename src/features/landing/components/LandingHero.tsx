@@ -43,7 +43,6 @@ export function LandingHero() {
                 <div className={cn("absolute inset-0 bg-[var(--color-500)]/10 blur-lg rounded-full opacity-0", !shouldReduceMotion && "animate-[fadeIn_0.8s_0.8s_ease_forwards]")} />
                 <AxiomLogo
                     className="w-24 h-24 md:w-28 md:h-28 mx-auto mb-[var(--space-3)] text-white relative z-10 drop-shadow-[0_0_12px_var(--color-500)/0.45]"
-                    variant="gradient"
                 />
             </motion.div>
 

@@ -46,74 +46,72 @@ export default function LeaderboardPage() {
     }, [page]);
 
     return (
-        <div className="min-h-screen bg-white dark:bg-black p-6 md:p-12">
-            <div className="max-w-4xl mx-auto">
-                <header className="mb-12">
-                    <h1 className="text-4xl font-bold tracking-tight mb-2">Leaderboard</h1>
-                    <p className="text-lg text-neutral-500 dark:text-neutral-400">
-                        Top learners in the Axiom community.
-                    </p>
-                </header>
+        <div className="pb-12">
+            <header className="mb-12">
+                <h1 className="text-4xl font-bold tracking-tight mb-2 text-[var(--fg-primary)]">Leaderboard</h1>
+                <p className="text-[var(--fg-secondary)]">
+                    Top learners in the Axiom community.
+                </p>
+            </header>
 
-                {loading ? (
-                    <div className="flex flex-col items-center justify-center py-24">
-                        <LoadingSpinner size="lg" label="Loading ranks..." />
-                    </div>
-                ) : users.length === 0 ? (
-                    <div className="p-12 text-center border border-dashed border-neutral-200 dark:border-neutral-800 rounded-md text-neutral-500">
-                        No rankings found yet.
-                    </div>
-                ) : (
-                    <div className="border border-neutral-200 dark:border-neutral-800 rounded-md overflow-hidden">
-                        <table className="w-full text-left border-collapse">
-                            <thead>
-                                <tr className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
-                                    <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-neutral-400 w-20">Rank</th>
-                                    <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-neutral-400">User</th>
-                                    <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-neutral-400 text-right">Points</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-neutral-100 dark:divide-neutral-900">
-                                {users.map((user) => (
-                                    <tr key={user._id} className="hover:bg-neutral-50 dark:hover:bg-neutral-950 transition-none">
-                                        <td className="px-6 py-4 font-bold text-neutral-400">#{user.rank}</td>
-                                        <td className="px-6 py-4">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-full border border-neutral-100 dark:border-neutral-900 overflow-hidden shrink-0">
-                                                    <Image src={safeAvatar(user.image)} alt={user.name} width={40} height={40} className="w-full h-full object-cover" />
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold text-black dark:text-white">{user.name}</div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{user.grade}</div>
-                                                </div>
+            {loading ? (
+                <div className="flex flex-col items-center justify-center py-24">
+                    <LoadingSpinner size="lg" label="Loading ranks..." />
+                </div>
+            ) : users.length === 0 ? (
+                <div className="p-12 text-center border border-dashed border-[var(--surface-border)] rounded-md text-[var(--fg-muted)]">
+                    No rankings found yet.
+                </div>
+            ) : (
+                <div className="border border-[var(--surface-border)] rounded-md overflow-hidden bg-[var(--surface-base)]">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-[var(--surface-raised)] border-b border-[var(--surface-border)]">
+                                <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)] w-20">Rank</th>
+                                <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">User</th>
+                                <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)] text-right">Points</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-[var(--surface-border)]">
+                            {users.map((user) => (
+                                <tr key={user._id} className="hover:bg-[var(--surface-raised)] transition-colors">
+                                    <td className="px-6 py-4 font-bold text-[var(--fg-muted)]">#{user.rank}</td>
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-full border border-[var(--surface-border)] overflow-hidden shrink-0">
+                                                <Image src={safeAvatar(user.image)} alt={user.name} width={40} height={40} className="w-full h-full object-cover" />
                                             </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-right font-bold text-brand-500">
-                                            {user.totalPoints.toLocaleString()}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+                                            <div>
+                                                <div className="font-bold text-[var(--fg-primary)]">{user.name}</div>
+                                                <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">{user.grade}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 text-right font-bold text-[var(--color-primary)]">
+                                        {user.totalPoints.toLocaleString()}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
 
-                {!loading && pagination.totalPages > 1 && (
-                    <div className="mt-8 flex items-center justify-between">
-                        <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest">
-                            Page {page} of {pagination.totalPages}
-                        </p>
-                        <div className="flex gap-2">
-                            <Button variant="outline" size="sm" disabled={page === 1} onClick={() => { setLoading(true); setPage(p => p - 1); }}>
-                                Previous
-                            </Button>
-                            <Button variant="outline" size="sm" disabled={page === pagination.totalPages} onClick={() => { setLoading(true); setPage(p => p + 1); }}>
-                                Next
-                            </Button>
-                        </div>
+            {!loading && pagination.totalPages > 1 && (
+                <div className="mt-8 flex items-center justify-between">
+                    <p className="text-xs font-bold text-[var(--fg-muted)] uppercase tracking-widest">
+                        Page {page} of {pagination.totalPages}
+                    </p>
+                    <div className="flex gap-2">
+                        <Button variant="outline" size="sm" disabled={page === 1} onClick={() => { setLoading(true); setPage(p => p - 1); }}>
+                            Previous
+                        </Button>
+                        <Button variant="outline" size="sm" disabled={page === pagination.totalPages} onClick={() => { setLoading(true); setPage(p => p + 1); }}>
+                            Next
+                        </Button>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -18,11 +18,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
     ...props
 }, ref) => {
     return (
-        <div className={cn("flex flex-col gap-1 w-full", containerClassName)}>
+        <div className={cn("flex flex-col gap-1.5 w-full", containerClassName)}>
             {label && (
                 <label
                     htmlFor={id}
-                    className="text-xs font-bold uppercase tracking-wider text-neutral-500"
+                    className="text-xs font-medium uppercase tracking-wide text-[var(--fg-secondary)]"
                 >
                     {label}
                 </label>
@@ -33,13 +33,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
                 id={id}
                 className={cn(
                     "w-full rounded-md",
-                    "px-3 py-2",
-                    "bg-white dark:bg-black",
-                    "border border-neutral-200 dark:border-neutral-800",
-                    "text-black dark:text-white text-base",
-                    "placeholder:text-neutral-400 dark:placeholder:text-neutral-600",
-                    "transition-none",
-                    "focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500",
+                    "px-3 py-2 text-sm",
+                    "bg-[var(--surface-base)]",
+                    "border border-[var(--surface-border)]",
+                    "text-[var(--fg-primary)]",
+                    "placeholder:text-[var(--fg-muted)]",
+                    "transition-all duration-150 ease-out",
+                    "focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]",
                     error && "border-red-500 focus:ring-red-500 focus:border-red-500",
                     className
                 )}

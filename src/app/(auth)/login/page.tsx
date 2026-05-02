@@ -22,12 +22,12 @@ export default function LoginPage() {
     }, [user, loading, router]);
 
     return (
-        <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center p-6">
-            <div className="w-full max-w-sm border border-neutral-200 dark:border-neutral-800 rounded-md p-10">
+        <div className="min-h-screen bg-[var(--surface-base)] text-[var(--fg-primary)] flex items-center justify-center p-6">
+            <div className="w-full max-w-sm border border-[var(--surface-border)] rounded-md p-10 bg-[var(--surface-raised)]">
                 <div className="text-center mb-10">
-                    <AxiomLogo className="w-12 h-12 mx-auto mb-6" />
-                    <h1 className="text-2xl font-bold mb-2">Welcome Back</h1>
-                    <p className="text-neutral-500 dark:text-neutral-400">Sign in to continue your journey.</p>
+                    <AxiomLogo className="w-10 h-10 mx-auto mb-6" />
+                    <h1 className="text-xl font-bold mb-2">Welcome Back</h1>
+                    <p className="text-sm text-[var(--fg-secondary)]">Sign in to continue your journey.</p>
                 </div>
 
                 <div className="space-y-6">
@@ -54,16 +54,16 @@ export default function LoginPage() {
                         </Button>
                     )}
 
-                    <p className="text-xs text-center text-neutral-400 dark:text-neutral-500 leading-relaxed">
+                    <p className="text-xs text-center text-[var(--fg-muted)] leading-relaxed">
                         By continuing, you agree to our{" "}
-                        <button className="text-neutral-600 dark:text-neutral-300 hover:underline" onClick={() => setModalType('terms')}>Terms</button>
+                        <button className="text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] underline underline-offset-4" onClick={() => setModalType('terms')}>Terms</button>
                         {" "}and{" "}
-                        <button className="text-neutral-600 dark:text-neutral-300 hover:underline" onClick={() => setModalType('privacy')}>Privacy Policy</button>.
+                        <button className="text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] underline underline-offset-4" onClick={() => setModalType('privacy')}>Privacy Policy</button>.
                     </p>
                 </div>
 
                 <div className="mt-10 text-center">
-                    <Link href="/" className="text-xs font-bold uppercase tracking-widest text-neutral-400 hover:text-black dark:hover:text-white">
+                    <Link href="/" className="text-xs font-bold uppercase tracking-widest text-[var(--fg-muted)] hover:text-[var(--fg-primary)] transition-colors">
                         ← Back to Home
                     </Link>
                 </div>

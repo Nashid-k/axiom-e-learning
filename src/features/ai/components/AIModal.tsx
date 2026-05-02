@@ -20,15 +20,15 @@ const AIExplanationView = dynamic(() => import('./AIExplanationView').then(mod =
 });
 
 const ResourcesView = dynamic(() => import('./ResourcesView').then(m => ({ default: m.ResourcesView })), {
-    loading: () => <div className="animate-pulse h-40 bg-neutral-100 dark:bg-neutral-900 rounded-md" />,
+    loading: () => <div className="animate-pulse h-40 bg-[var(--surface-raised)] rounded-md" />,
     ssr: false,
 });
 const QuizView = dynamic(() => import('./QuizView').then(m => ({ default: m.QuizView })), {
-    loading: () => <div className="animate-pulse h-40 bg-neutral-100 dark:bg-neutral-900 rounded-md" />,
+    loading: () => <div className="animate-pulse h-40 bg-[var(--surface-raised)] rounded-md" />,
     ssr: false,
 });
 const CodeEditor = dynamic(() => import('./CodeEditor'), {
-    loading: () => <div className="animate-pulse h-64 bg-neutral-100 dark:bg-neutral-900 rounded-md" />,
+    loading: () => <div className="animate-pulse h-64 bg-[var(--surface-raised)] rounded-md" />,
     ssr: false,
 });
 
@@ -114,19 +114,19 @@ export default function AIModal() {
         <ModalShell
             isOpen={isOpen}
             onClose={closeModal}
-            containerClassName="w-[min(1200px,95vw)] h-[90vh] bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-md overflow-hidden"
+            containerClassName="w-[min(1200px,95vw)] h-[90vh] bg-[var(--surface-base)] border border-[var(--surface-border)] rounded-md overflow-hidden"
         >
             <div className="flex h-full" onClick={(e) => e.stopPropagation()}>
                 <ModalSidebar activeTab={activeTab} onTabChange={setActiveTab} />
 
-                <div className="flex-1 flex flex-col bg-white dark:bg-black relative overflow-hidden">
+                <div className="flex-1 flex flex-col bg-[var(--surface-base)] relative overflow-hidden">
                     <ModalTopBar category={topicData.category} onClose={closeModal} />
 
                     <div className="flex-1 overflow-y-auto p-6 md:p-12 pt-20 md:pt-24 pb-32">
                         <div className="max-w-4xl mx-auto w-full">
                             {activeTab === 'ai' ? (
                                 <>
-                                    <h2 className="text-3xl md:text-5xl font-black text-black dark:text-white mb-6 tracking-tight">
+                                    <h2 className="text-3xl md:text-5xl font-black text-[var(--fg-primary)] mb-6 tracking-tight">
                                         {topicData.topic}
                                     </h2>
                                     <AIExplanationView
@@ -138,7 +138,7 @@ export default function AIModal() {
                                         category={topicData.category}
                                     />
                                     {loadingAI && explanation && (
-                                        <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-neutral-400 animate-pulse">
+                                        <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--fg-muted)] animate-pulse">
                                             <LoadingSpinner size="sm" />
                                             <span>Maya is writing...</span>
                                         </div>

@@ -17,7 +17,7 @@ function TabItem({ active, onClick, icon, label }: TabItemProps) {
             className={cn(
                 "w-12 h-12 flex items-center justify-center text-xl transition-none cursor-pointer group relative",
                 active
-                    ? "text-brand-500 bg-neutral-50 dark:bg-neutral-900 border-r-2 border-brand-500"
+                    ? "text-[var(--color-primary)] bg-neutral-50 dark:bg-neutral-900 border-r-2 border-[var(--color-primary)]"
                     : "text-neutral-400 hover:text-black dark:hover:text-white"
             )}
         >

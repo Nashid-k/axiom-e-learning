@@ -91,9 +91,9 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
         <div className="fixed inset-0 z-[200] flex items-start justify-center pt-10 sm:pt-[15vh] px-4">
             <div className="absolute inset-0 bg-black/40 dark:bg-black/60" onClick={onClose} />
             
-            <div className="relative w-full max-w-2xl bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-md shadow-2xl flex flex-col overflow-hidden">
-                <div className="flex items-center px-6 py-4 border-b border-neutral-100 dark:border-neutral-900 gap-4">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-neutral-400">
+            <div className="relative w-full max-w-2xl bg-[var(--surface-base)] border border-[var(--surface-border)] rounded-md shadow-2xl flex flex-col overflow-hidden">
+                <div className="flex items-center px-6 py-4 border-b border-[var(--surface-border)] gap-4">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-[var(--fg-muted)]">
                         <circle cx="11" cy="11" r="8" />
                         <path d="M21 21L16.65 16.65" />
                     </svg>
@@ -102,15 +102,15 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                         value={query}
                         onChange={(e) => { setQuery(e.target.value); setSelectedIndex(0); }}
                         placeholder="Search for tracks or topics..."
-                        className="border-none p-0 focus:ring-0 text-lg placeholder:text-neutral-300 dark:placeholder:text-neutral-700"
+                        className="border-none p-0 focus:ring-0 text-lg placeholder-[var(--fg-muted)]"
                         containerClassName="flex-1"
                     />
-                    <kbd className="hidden sm:block px-2 py-1 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded text-[10px] font-bold text-neutral-400">ESC</kbd>
+                    <kbd className="hidden sm:block px-2 py-1 bg-[var(--surface-raised)] border border-[var(--surface-border)] rounded-md text-[10px] font-bold text-[var(--fg-muted)]">ESC</kbd>
                 </div>
 
                 <div className="max-h-[50vh] overflow-y-auto p-2">
                     {results.length === 0 ? (
-                        <div className="py-12 text-center text-sm font-bold uppercase tracking-widest text-neutral-400">
+                        <div className="py-12 text-center text-sm font-bold uppercase tracking-widest text-[var(--fg-muted)]">
                             No results found
                         </div>
                     ) : (
@@ -122,25 +122,25 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                                         key={`${result.slug}-${idx}`}
                                         onClick={() => handleSelect(result)}
                                         className={cn(
-                                            "w-full px-4 py-3 flex items-center gap-4 text-left rounded-sm transition-none group",
-                                            isSelected ? 'bg-neutral-100 dark:bg-neutral-900' : 'hover:bg-neutral-50 dark:hover:bg-neutral-950'
+                                            "w-full px-4 py-3 flex items-center gap-4 text-left rounded-md transition-none group",
+                                            isSelected ? 'bg-[var(--surface-raised)]' : 'hover:bg-[var(--surface-raised)]'
                                         )}
                                     >
-                                        <div className="w-10 h-10 border border-neutral-100 dark:border-neutral-900 rounded flex items-center justify-center shrink-0">
+                                        <div className="w-10 h-10 border border-[var(--surface-border)] rounded-md flex items-center justify-center shrink-0">
                                             <CategoryIcon category={result.category} className="w-5 h-5 grayscale opacity-50 group-hover:opacity-100" />
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center gap-2">
-                                                <span className={cn("font-bold truncate", isSelected ? 'text-brand-500' : 'text-black dark:text-white')}>
+                                                <span className={cn("font-bold truncate", isSelected ? 'text-[var(--color-primary)]' : 'text-[var(--fg-primary)]')}>
                                                     {result.title}
                                                 </span>
                                                 {result.itemType && (
-                                                    <span className="px-1.5 py-0.5 rounded-sm bg-neutral-100 dark:bg-neutral-800 text-[9px] font-bold uppercase tracking-widest text-neutral-400">
+                                                    <span className="px-1.5 py-0.5 rounded-md bg-[var(--surface-raised)] text-[9px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">
                                                         {result.itemType}
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                                            <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">
                                                 {result.category} {result.phase && `· Phase ${result.phase}`}
                                             </div>
                                         </div>
@@ -153,12 +153,12 @@ export default function SearchCommand({ isOpen, onClose }: SearchCommandProps) {
                 </div>
 
                 {results.length > 0 && (
-                    <div className="px-6 py-3 bg-neutral-50 dark:bg-neutral-900 border-t border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
-                        <div className="flex gap-4 text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-                            <span className="flex items-center gap-1"><kbd className="px-1 bg-white dark:bg-black border rounded">↑↓</kbd> Navigate</span>
-                            <span className="flex items-center gap-1"><kbd className="px-1 bg-white dark:bg-black border rounded">↵</kbd> Select</span>
+                    <div className="px-6 py-3 bg-[var(--surface-raised)] border-t border-[var(--surface-border)] flex justify-between items-center">
+                        <div className="flex gap-4 text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">
+                            <span className="flex items-center gap-1"><kbd className="px-1 bg-[var(--surface-base)] border border-[var(--surface-border)] rounded-md">↑↓</kbd> Navigate</span>
+                            <span className="flex items-center gap-1"><kbd className="px-1 bg-[var(--surface-base)] border border-[var(--surface-border)] rounded-md">↵</kbd> Select</span>
                         </div>
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">
                             Axiom Search
                         </div>
                     </div>

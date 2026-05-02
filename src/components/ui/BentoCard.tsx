@@ -15,11 +15,11 @@ interface BentoCardProps {
 }
 
 const sizeMap: Record<BentoCardSize, string> = {
-    small: "min-h-[160px]",
-    medium: "min-h-[300px]",
-    large: "min-h-[400px]",
-    wide: "md:col-span-2 min-h-[300px]",
-    tall: "md:row-span-2 min-h-[600px]",
+    small: "col-span-12 md:col-span-4 min-h-[160px]",
+    medium: "col-span-12 md:col-span-6 min-h-[300px]",
+    large: "col-span-12 md:col-span-8 min-h-[400px]",
+    wide: "col-span-12 md:col-span-8 min-h-[300px]",
+    tall: "col-span-12 md:col-span-4 md:row-span-2 min-h-[600px]",
 };
 
 export default function BentoCard({
@@ -37,14 +37,10 @@ export default function BentoCard({
             href={href}
             onClick={onClick}
             className={cn(
-                "block h-full w-full",
-                "bg-white dark:bg-black",
-                "border border-neutral-200 dark:border-neutral-800",
-                "rounded-md",
-                "transition-none",
-                !noPadding && "p-6",
+                "bento-card block w-full h-full cursor-default",
                 sizeMap[size],
-                (onClick || href) && "cursor-pointer hover:border-neutral-400 dark:hover:border-neutral-600",
+                !noPadding ? "p-6" : "p-0",
+                (onClick || href) && "cursor-pointer",
                 className
             )}
         >

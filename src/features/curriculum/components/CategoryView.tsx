@@ -18,7 +18,7 @@ function StructuredPaths({ curricula }: { curricula: StructuredPathData[] }) {
     return (
         <div className="mb-14">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <span className="w-1 h-6 bg-brand-500 rounded-full" />
+                <span className="w-1 h-6 bg-[var(--color-primary)] rounded-md" />
                 Structured Paths
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -30,7 +30,7 @@ function StructuredPaths({ curricula }: { curricula: StructuredPathData[] }) {
                                     <div className="flex justify-between items-start gap-4">
                                         <div className="flex-1">
                                             <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-1">Path</div>
-                                            <h3 className="text-lg font-bold group-hover:text-brand-500 transition-none mb-2">
+                                            <h3 className="text-lg font-bold group-hover:text-[var(--color-primary)] transition-none mb-2">
                                                 {curr.slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
                                             </h3>
                                             <p className="text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2">

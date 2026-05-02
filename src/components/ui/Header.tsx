@@ -4,51 +4,53 @@ import Link from "next/link";
 import { useAuth } from "@/features/auth/AuthContext";
 import { AxiomLogo } from "./AxiomLogo";
 import { Button } from "./Button";
-import { motion } from "framer-motion";
 import { ThemeToggle } from "./ThemeToggle";
+import { cn } from "@/lib/utils";
 
 export function Header() {
   const { user } = useAuth();
 
   return (
-    <motion.header 
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-nav w-[95%] max-w-7xl"
-    >
-      <nav className="glass-card px-6 py-3 rounded-2xl flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <AxiomLogo className="w-8 h-8 group-hover:rotate-12 transition-transform duration-300" />
-          <span className="font-extrabold text-xl tracking-tighter text-gradient">
-            AXIOM
-          </span>
-        </Link>
+    <header className={cn(
+      "sticky top-0 z-50 w-full",
+      "bg-[var(--surface-base)] border-b border-[var(--surface-border)]"
+    )}>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center gap-2 group">
+            <AxiomLogo className="w-6 h-6" />
+            <span className="font-bold text-lg tracking-tight text-[var(--fg-primary)]">
+              AXIOM
+            </span>
+          </Link>
 
-        <div className="hidden md:flex items-center gap-8">
-          {["Paths", "Leaderboard", "Flashcards"].map((item) => (
-            <Link 
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              className="text-sm font-semibold text-fg-secondary hover:text-brand transition-colors"
-            >
-              {item}
-            </Link>
-          ))}
+          <div className="hidden md:flex items-center gap-6">
+            {["Paths", "Leaderboard", "Flashcards"].map((item) => (
+              <Link 
+                key={item}
+                href={`/${item.toLowerCase()}`}
+                className="text-sm font-medium text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <ThemeToggle />
+          <div className="h-4 w-[1px] bg-[var(--surface-border)] mx-1" />
           {user ? (
             <Link href="/paths">
-              <Button size="sm">Dashboard</Button>
+              <Button size="sm" variant="secondary">Dashboard</Button>
             </Link>
           ) : (
             <Link href="/login">
-              <Button size="sm" variant="outline">Sign In</Button>
+              <Button size="sm">Sign In</Button>
             </Link>
           )}
         </div>
       </nav>
-    </motion.header>
+    </header>
   );
 }

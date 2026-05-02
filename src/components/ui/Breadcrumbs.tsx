@@ -38,17 +38,17 @@ export default function Breadcrumbs({ className, items }: { className?: string; 
     return (
         <nav
             aria-label="Breadcrumb"
-            className={`flex items-center text-xs font-bold uppercase tracking-widest text-neutral-400 ${className}`}
+            className={`flex items-center text-xs font-bold uppercase tracking-widest text-[var(--fg-muted)] ${className}`}
         >
             {breadcrumbItems.map((item, index) => (
                 <Fragment key={item.href}>
                     {index > 0 && <span className="mx-2">/</span>}
                     {item.isLast ? (
-                        <span className="text-black dark:text-white truncate max-w-[200px]">
+                        <span className="text-[var(--fg-primary)] truncate max-w-[200px]">
                             {item.label}
                         </span>
                     ) : (
-                        <Link href={item.href} className="hover:text-black dark:hover:text-white transition-none">
+                        <Link href={item.href} className="hover:text-[var(--fg-primary)] transition-none">
                             {item.label}
                         </Link>
                     )}

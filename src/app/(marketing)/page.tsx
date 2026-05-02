@@ -5,10 +5,9 @@ import { useAuth } from '@/features/auth/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
-import { Header } from '@/components/ui/Header';
 import { AxiomLogo } from '@/components/ui/AxiomLogo';
-import SectionReveal from '@/components/ui/SectionReveal';
-import { motion } from 'framer-motion';
+import BentoCard from '@/components/ui/BentoCard';
+import BentoGrid from '@/components/ui/BentoGrid';
 
 export default function LandingPage() {
     const { user, loading } = useAuth();
@@ -23,64 +22,46 @@ export default function LandingPage() {
     if (user) return null;
 
     return (
-        <div className="min-h-screen relative overflow-hidden selection:bg-brand/30">
-            <Header />
-
-            {/* Background Orbs */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand/20 blur-[120px] rounded-full -z-10 animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-500/10 blur-[100px] rounded-full -z-10" />
-
-            <main className="max-w-6xl mx-auto px-6 pt-44 pb-32 text-center relative z-10">
-                <SectionReveal>
-                    <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="inline-block px-4 py-1.5 mb-6 glass-card rounded-full text-xs font-bold tracking-widest text-brand uppercase"
-                    >
-                        The Future of Engineering Education
-                    </motion.div>
-                </SectionReveal>
-
-                <SectionReveal delay={0.1}>
-                    <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
-                        Master your craft <br />
-                        <span className="text-gradient">with intelligence.</span>
-                    </h1>
-                </SectionReveal>
+        <div className="bg-[var(--surface-base)] text-[var(--fg-primary)] min-h-screen">
+            <main className="max-w-4xl mx-auto px-6 pt-32 pb-24 text-center">
+                <div className="inline-block px-3 py-1 mb-8 border border-[var(--surface-border)] rounded-full text-[10px] font-bold tracking-widest text-[var(--color-primary)] uppercase bg-[var(--surface-raised)]">
+                    Education Refined
+                </div>
                 
-                <SectionReveal delay={0.2}>
-                    <p className="text-xl text-fg-secondary mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
-                        Personalized curricula, real-world projects, and AI mentorship 
-                        built for the next generation of software engineers.
-                    </p>
-                </SectionReveal>
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+                    Master engineering <br />
+                    <span className="text-[var(--color-primary)]">with precision.</span>
+                </h1>
+                
+                <p className="text-lg md:text-xl text-[var(--fg-secondary)] mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Personalized curricula, real-world projects, and AI mentorship 
+                    built for the next generation of software engineers.
+                </p>
 
-                <SectionReveal delay={0.3}>
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                        <Link href="/login">
-                            <Button size="lg" className="px-10 py-5 text-lg rounded-2xl">
-                                Start Learning
-                            </Button>
-                        </Link>
-                        <Link href="#features">
-                            <Button variant="outline" size="lg" className="px-10 py-5 text-lg rounded-2xl">
-                                Explore Paths
-                            </Button>
-                        </Link>
-                    </div>
-                </SectionReveal>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link href="/login">
+                        <Button size="lg" className="px-8">
+                            Start Learning
+                        </Button>
+                    </Link>
+                    <Link href="#features">
+                        <Button variant="outline" size="lg" className="px-8">
+                            Explore Features
+                        </Button>
+                    </Link>
+                </div>
             </main>
 
-            <section id="features" className="max-w-7xl mx-auto px-6 py-32">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <section id="features" className="max-w-7xl mx-auto px-6 py-24 border-t border-[var(--surface-border)]">
+                <BentoGrid className="grid-cols-1 md:grid-cols-3">
                     {[
                         {
-                            title: "Autonomous Path",
+                            title: "Autonomous Paths",
                             desc: "Adaptive learning algorithms that evolve with your progress and weaknesses.",
                             icon: "⚡"
                         },
                         {
-                            title: "AI Neural Mentor",
+                            title: "AI Mentor",
                             desc: "Context-aware AI that doesn't just give answers, but teaches you how to think.",
                             icon: "🧠"
                         },
@@ -90,34 +71,32 @@ export default function LandingPage() {
                             icon: "🏆"
                         }
                     ].map((feature, i) => (
-                        <SectionReveal key={i} delay={0.2 + i * 0.1}>
-                            <div className="glass-card p-10 rounded-3xl glow-hover transition-all duration-500 group">
-                                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300 inline-block">
-                                    {feature.icon}
-                                </div>
-                                <h3 className="text-2xl font-extrabold mb-4 tracking-tight group-hover:text-brand transition-colors">
-                                    {feature.title}
-                                </h3>
-                                <p className="text-fg-secondary leading-relaxed font-medium">
-                                    {feature.desc}
-                                </p>
+                        <BentoCard key={i} size="medium" className="flex flex-col justify-center">
+                            <div className="text-3xl mb-4">
+                                {feature.icon}
                             </div>
-                        </SectionReveal>
+                            <h3 className="text-xl font-bold mb-3 tracking-tight">
+                                {feature.title}
+                            </h3>
+                            <p className="text-[var(--fg-secondary)] leading-relaxed text-sm">
+                                {feature.desc}
+                            </p>
+                        </BentoCard>
                     ))}
-                </div>
+                </BentoGrid>
             </section>
 
-            <footer className="py-20 px-6 border-t border-surface-border">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div className="flex items-center gap-3">
-                        <AxiomLogo className="w-6 h-6" />
-                        <span className="font-black text-xl tracking-tighter">AXIOM</span>
+            <footer className="py-12 px-6 border-t border-[var(--surface-border)] bg-[var(--surface-raised)]">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div className="flex items-center gap-2">
+                        <AxiomLogo className="w-5 h-5" />
+                        <span className="font-bold text-lg tracking-tight">AXIOM</span>
                     </div>
-                    <div className="text-sm font-bold text-fg-muted uppercase tracking-widest">
-                        © 2026 Designed for Excellence
+                    <div className="text-xs font-medium text-[var(--fg-muted)] uppercase tracking-wider">
+                        © 2026 Axiom Learning
                     </div>
-                    <div className="flex gap-8 text-sm font-bold uppercase tracking-widest text-fg-secondary">
-                        <Link href="https://github.com/Nashid-k" className="hover:text-brand transition-colors">GitHub</Link>
+                    <div className="flex gap-6 text-xs font-bold uppercase tracking-wider text-[var(--fg-secondary)]">
+                        <Link href="https://github.com/Nashid-k" className="hover:text-[var(--color-primary)] transition-colors">GitHub</Link>
                     </div>
                 </div>
             </footer>

@@ -72,8 +72,8 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
                                     disabled={submitted}
                                     onClick={() => setAnswers(prev => ({ ...prev, [idx]: oIdx }))}
                                     className={cn(
-                                        "p-4 text-left rounded-xl border-2 transition-all font-medium",
-                                        isSelected ? "border-brand bg-brand/5" : "border-surface-border hover:border-brand/40",
+                                        "p-4 text-left rounded-md border-2 transition-all font-medium",
+                                        isSelected ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5" : "border-surface-border hover:border-[var(--color-primary)]/40",
                                         isCorrect && "border-success bg-success/5 text-success",
                                         isWrong && "border-accent bg-accent/5 text-accent"
                                     )}
@@ -94,7 +94,7 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
                 </div>
             ) : (
                 <div className={cn(
-                    "p-8 rounded-3xl text-center border-2",
+                    "p-8 rounded-md text-center border-2",
                     passed ? "border-success bg-success/5" : "border-accent bg-accent/5"
                 )}>
                     <h3 className="text-2xl font-black mb-2">{passed ? 'Mastery Verified' : 'Synchronization Failed'}</h3>

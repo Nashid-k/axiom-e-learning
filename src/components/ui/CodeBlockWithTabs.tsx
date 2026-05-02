@@ -35,7 +35,7 @@ export const CodeBlockWithTabs: React.FC<CodeBlockWithTabsProps> = ({ tabs, clas
                             key={idx}
                             onClick={() => { setActiveIndex(idx); setShowPreview(false); }}
                             className={cn(
-                                "px-3 py-1.5 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-none",
+                                "px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-widest transition-none",
                                 idx === activeIndex && !showPreview
                                     ? "bg-black dark:bg-white text-white dark:text-black"
                                     : "text-neutral-400 hover:text-black dark:hover:text-white"
@@ -50,10 +50,10 @@ export const CodeBlockWithTabs: React.FC<CodeBlockWithTabsProps> = ({ tabs, clas
                     <button
                         onClick={() => setShowPreview(!showPreview)}
                         className={cn(
-                            "px-3 py-1.5 rounded-sm text-[10px] font-bold uppercase tracking-widest border transition-none",
+                            "px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-widest border transition-none",
                             showPreview 
-                                ? "bg-brand-500 border-brand-500 text-white" 
-                                : "border-neutral-200 dark:border-neutral-800 text-neutral-400 hover:text-black dark:hover:text-white"
+                                ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-white" 
+                                : "border-[var(--surface-border)] text-[var(--fg-muted)] hover:text-[var(--fg-primary)]"
                         )}
                     >
                         {showPreview ? 'Code' : 'Preview'}

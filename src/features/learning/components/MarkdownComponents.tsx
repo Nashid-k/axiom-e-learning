@@ -42,21 +42,21 @@ export const getMarkdownComponents = (compact: boolean = false) => ({
         <li className="leading-relaxed" {...props}>{children}</li>
     ),
     blockquote: ({ children, ...props }: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
-        <blockquote className="border-l-4 border-brand/30 pl-6 py-2 my-8 italic bg-brand/5 rounded-r-2xl" {...props}>
+        <blockquote className="border-l-4 border-[var(--surface-border)] pl-6 py-2 my-8 italic bg-[var(--surface-raised)] rounded-md" {...props}>
             {children}
         </blockquote>
     ),
     code: ({ inline, className, children, ...props }: CodeProps) => {
         if (inline) {
             return (
-                <code className="px-1.5 py-0.5 rounded-md bg-brand-soft/30 text-brand font-bold text-[0.9em]" {...props}>
+                <code className="px-1.5 py-0.5 rounded-md bg-[var(--surface-raised)] text-[var(--color-primary)] font-bold text-[0.9em]" {...props}>
                     {children}
                 </code>
             );
         }
 
         return (
-            <div className="my-8 rounded-3xl overflow-hidden border border-surface-border shadow-2xl">
+            <div className="my-8 rounded-md overflow-hidden border border-[var(--surface-border)] shadow-2xl">
                 <CodeBlock
                     className={className}
                     isMaster={false}

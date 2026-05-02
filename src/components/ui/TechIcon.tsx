@@ -35,7 +35,7 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-6 h-6",
                 src={`/icons/${fileName}.svg`}
                 alt={`${name} icon`}
                 fill
-                className={cn("object-contain transition-none", monochrome && "grayscale opacity-50")}
+                className={cn("object-contain", monochrome && "grayscale dark:invert opacity-80")}
                 sizes="64px"
             />
         </div>

@@ -61,13 +61,13 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
         <ModalShell isOpen={isOpen} onClose={onClose} containerClassName="max-w-md">
             <div className="p-8">
                 <header className="mb-8">
-                    <h2 className="text-2xl font-bold mb-2">Profile Settings</h2>
-                    <p className="text-sm text-neutral-500 dark:text-neutral-400">Customize how you appear in the community.</p>
+                    <h2 className="text-2xl font-bold mb-2 text-[var(--fg-primary)]">Profile Settings</h2>
+                    <p className="text-sm text-[var(--fg-muted)]">Customize how you appear in the community.</p>
                 </header>
 
                 <div className="space-y-8">
                     <div>
-                        <label className="block text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-4">
+                        <label className="block text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)] mb-4">
                             Choose Avatar
                         </label>
                         <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
@@ -79,14 +79,14 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                                         onClick={() => setSelectedAvatar(avatar)}
                                         className={`
                                             relative aspect-square rounded-md overflow-hidden border-2 transition-none
-                                            ${selected ? 'border-brand-500 scale-105' : 'border-neutral-100 dark:border-neutral-900 hover:border-neutral-300'}
+                                            ${selected ? 'border-[var(--color-primary)] scale-105' : 'border-[var(--surface-border)] hover:border-[var(--fg-muted)]'}
                                         `}
                                         type="button"
                                     >
                                         <Image src={avatar} alt="Avatar" fill className="object-cover" />
                                         {selected && (
-                                            <div className="absolute inset-0 bg-brand-500/10 flex items-center justify-center">
-                                                <div className="bg-brand-500 text-white rounded-full p-1 shadow-sm">
+                                            <div className="absolute inset-0 bg-[var(--color-primary)]/10 flex items-center justify-center">
+                                                <div className="bg-[var(--color-primary)] text-white rounded-full p-1 shadow-sm">
                                                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
                                                         <path d="M5 13l4 4L19 7" />
                                                     </svg>
@@ -109,7 +109,7 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                             error={error || undefined}
                             placeholder="Your Name"
                         />
-                        <p className="text-[10px] text-neutral-400 font-bold uppercase text-right">
+                        <p className="text-[10px] text-[var(--fg-muted)] font-bold uppercase text-right">
                             {name.length}/25 characters
                         </p>
                     </div>

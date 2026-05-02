@@ -19,26 +19,26 @@ export default function VideoCard({ video, onClick }: VideoCardProps) {
     return (
         <button
             onClick={onClick}
-            className="group block w-full text-left bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-md overflow-hidden hover:border-neutral-400 transition-none"
+            className="group block w-full text-left bg-[var(--surface-base)] border border-[var(--surface-border)] rounded-md overflow-hidden hover:border-[var(--fg-muted)] transition-none"
         >
-            <div className="relative aspect-video bg-neutral-100 dark:bg-neutral-900">
+            <div className="relative aspect-video bg-[var(--surface-raised)]">
                 <Image
                     src={thumbnailUrl}
                     alt={video.title}
                     fill
                     className="object-cover grayscale group-hover:grayscale-0 transition-none"
                 />
-                <div className="absolute bottom-2 right-2 px-2 py-1 bg-black text-[10px] font-bold text-white rounded-sm">
+                <div className="absolute bottom-2 right-2 px-2 py-1 bg-black text-[10px] font-bold text-white rounded-md">
                     {formatDuration(video.duration)}
                 </div>
             </div>
             <div className="p-4">
-                <h3 className="font-bold text-sm line-clamp-2 mb-2 group-hover:text-brand-500 transition-none">
+                <h3 className="font-bold text-sm line-clamp-2 mb-2 group-hover:text-[var(--color-primary)] transition-none">
                     {video.title}
                 </h3>
-                <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">
                     <span className="truncate">{video.channel}</span>
-                    {video.description && <span className="shrink-0 text-brand-500">Play →</span>}
+                    {video.description && <span className="shrink-0 text-[var(--color-primary)]">Play →</span>}
                 </div>
             </div>
         </button>

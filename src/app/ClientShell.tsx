@@ -32,7 +32,7 @@ export default function ClientShell({ children }: { children: React.ReactNode })
                                 <ModalProvider>
                                     <Header />
                                     <GlobalSearch />
-                                    <main id="main-content" className="min-h-screen pt-0 bg-white dark:bg-black transition-none">
+                                    <main id="main-content" className="min-h-screen pt-0 bg-[var(--surface-base)] transition-none">
                                         {children}
                                     </main>
                                     <GlobalAssistant />

@@ -5,7 +5,7 @@ export function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivEl
         <div
             className={cn(
                 "animate-pulse rounded-md",
-                "bg-neutral-100 dark:bg-neutral-900",
+                "bg-[var(--surface-raised)]",
                 className
             )}
             {...props}
@@ -17,9 +17,9 @@ export function ProjectCardSkeleton() {
     return (
         <div
             className={cn(
-                "border border-neutral-200 dark:border-neutral-800",
+                "border border-[var(--surface-border)]",
                 "rounded-md",
-                "bg-white dark:bg-black",
+                "bg-[var(--surface-base)]",
                 "p-4",
             )}
         >
@@ -56,7 +56,7 @@ export function TopicViewSkeleton() {
                 <Skeleton className="h-4 w-4/5" />
             </div>
 
-            <div className="border border-neutral-200 dark:border-neutral-800 rounded-md">
+            <div className="border border-[var(--surface-border)] rounded-md">
                 <Skeleton className="h-48 w-full rounded-none" />
             </div>
 

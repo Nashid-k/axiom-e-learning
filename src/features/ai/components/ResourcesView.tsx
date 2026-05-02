@@ -80,7 +80,7 @@ export function ResourcesView({ resources, loading }: ResourcesViewProps) {
                                     )}
                                 </div>
                                 <div className="p-4">
-                                    <h4 className="font-bold text-sm line-clamp-2 mb-2 group-hover:text-brand-500 transition-none">{v.title}</h4>
+                                    <h4 className="font-bold text-sm line-clamp-2 mb-2 group-hover:text-[var(--color-primary)] transition-none">{v.title}</h4>
                                     <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{v.channel}</div>
                                 </div>
                             </a>
@@ -114,7 +114,7 @@ export function ResourcesView({ resources, loading }: ResourcesViewProps) {
                                 className="p-4 border border-neutral-200 dark:border-neutral-800 rounded-md hover:border-neutral-400 dark:hover:border-neutral-600 transition-none group"
                             >
                                 <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2">{a.source}</div>
-                                <h4 className="font-bold text-sm group-hover:text-brand-500 transition-none">{a.title}</h4>
+                                <h4 className="font-bold text-sm group-hover:text-[var(--color-primary)] transition-none">{a.title}</h4>
                             </a>
                         ))}
                     </div>
@@ -162,7 +162,7 @@ export function ResourcesView({ resources, loading }: ResourcesViewProps) {
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="font-bold text-sm group-hover:text-brand-500 transition-none">{p.title}</div>
+                                        <div className="font-bold text-sm group-hover:text-[var(--color-primary)] transition-none">{p.title}</div>
                                     </div>
                                 </div>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-neutral-300 group-hover:text-black dark:group-hover:text-white">

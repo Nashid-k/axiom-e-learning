@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
@@ -11,31 +11,31 @@
 
 @layer base {
   :root, .dark {
-    /* --- Axiom Quantum: Obsidian Dark --- */
-    --color-bg: #030406; /* Deep Obsidian Black */
-    --color-fg: #f3f4f6;
+    /* --- Axiom Apple-Inspired Design System --- */
+    --color-bg: #000000; /* Pure Jet Black */
+    --color-fg: #f5f5f7; /* Apple Off-White */
     
-    /* Cyber Colors */
-    --color-primary: #6366f1; /* Neon Indigo */
-    --color-primary-glow: rgba(99, 102, 241, 0.15);
-    --color-accent: #ec4899;   /* Hot Pink */
-    --color-accent-glow: rgba(236, 72, 153, 0.15);
-    --color-success: #10b981;  /* Emerald */
-    --color-success-glow: rgba(16, 185, 129, 0.15);
-    --color-cyan: #06b6d4;     /* Neon Cyan */
-    --color-cyan-glow: rgba(6, 182, 212, 0.15);
-    --color-destruct: #ef4444;  /* Red */
+    /* Apple Premium Colors */
+    --color-primary: #0a84ff; /* Apple Sapphire Blue */
+    --color-primary-glow: rgba(10, 132, 255, 0.15);
+    --color-accent: #ff375f;   /* Apple Rose Red */
+    --color-accent-glow: rgba(255, 55, 95, 0.15);
+    --color-success: #30d158;  /* Apple Emerald */
+    --color-success-glow: rgba(48, 209, 88, 0.15);
+    --color-cyan: #64d2ff;     /* Apple Sky Blue */
+    --color-cyan-glow: rgba(100, 210, 255, 0.15);
+    --color-destruct: #ff453a;  /* Apple Fire Red */
     
-    /* Premium Surface & Glass Borders */
-    --surface-base: rgba(8, 10, 15, 0.8);
-    --surface-raised: rgba(16, 20, 28, 0.5);
-    --surface-border: rgba(255, 255, 255, 0.05);
-    --surface-border-active: rgba(99, 102, 241, 0.25);
+    /* Premium Hardware Glass & Thin Silvers */
+    --surface-base: rgba(22, 22, 23, 0.7); /* Apple Graphite Translucent */
+    --surface-raised: rgba(28, 28, 30, 0.45);
+    --surface-border: rgba(255, 255, 255, 0.08); /* Silver Glass Border */
+    --surface-border-active: rgba(255, 255, 255, 0.2);
 
-    /* Typography Color Primitives */
-    --fg-primary: #f9fafb;     /* Slate 50 */
-    --fg-secondary: #9ca3af;   /* Slate 400 */
-    --fg-muted: #6b7280;       /* Slate 500 */
+    /* Clean Apple Typography Colors */
+    --fg-primary: #f5f5f7;     /* Slate 50 equivalent */
+    --fg-secondary: #86868b;   /* Apple Slate 400 */
+    --fg-muted: #48484a;       /* Apple Slate 600 */
   }
 }
 
@@ -45,10 +45,10 @@
   --color-surface-raised: var(--surface-raised);
   --color-border-main: var(--surface-border);
   
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Outfit", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
   
-  --radius-bento: 12px;
+  --radius-bento: 20px; /* Rounded Apple Corners */
 }
 
 @layer base {
@@ -57,132 +57,121 @@
     color: var(--fg-primary);
     background-color: var(--color-bg);
     background-image: 
-      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%);
+      radial-gradient(at 50% 0%, rgba(10, 132, 255, 0.05) 0px, transparent 60%),
+      radial-gradient(at 100% 100%, rgba(255, 55, 95, 0.02) 0px, transparent 50%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
     overflow-x: hidden;
+    letter-spacing: -0.011em;
   }
 
-  /* Transition timings for elegant interactive feel */
+  /* Ultra-smooth Apple ease-out transitions */
   a, button, input, select, textarea, [role="button"] {
-    transition: all 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    letter-spacing: -0.022em;
   }
 }
 
 @layer utilities {
-  /* Cyber Grid Background */
-  .cyber-grid-bg {
-    background-size: 30px 30px;
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  }
-
-  /* Glass Panel Utility */
+  /* Apple Glass Panel (High Blur, Low Saturation) */
   .glass-panel {
     background: var(--surface-base);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(210%);
+    -webkit-backdrop-filter: blur(30px) saturate(210%);
     border: 1px solid var(--surface-border);
   }
 
-  /* Exquisite Text Gradients */
+  /* Clean Silver & White Typography Gradients */
   .text-gradient-primary {
-    background: linear-gradient(135deg, #c7d2fe 0%, #6366f1 50%, #06b6d4 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-accent {
-    background: linear-gradient(135deg, #fbcfe8 0%, #ec4899 50%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #ff375f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* Glow shadows */
+  /* Premium Low-Opacity Ambient Shadow Glows */
   .glow-primary {
-    box-shadow: 0 0 25px var(--color-primary-glow);
+    box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.1) inset;
     border-color: var(--surface-border-active);
   }
 
   .glow-accent {
-    box-shadow: 0 0 25px var(--color-accent-glow);
-    border-color: rgba(236, 72, 153, 0.25);
+    box-shadow: 0 12px 40px -10px rgba(255, 55, 95, 0.1);
+    border-color: rgba(255, 55, 95, 0.3);
   }
 
   .glow-success {
-    box-shadow: 0 0 25px var(--color-success-glow);
-    border-color: rgba(16, 185, 129, 0.25);
+    box-shadow: 0 12px 40px -10px rgba(48, 209, 88, 0.15);
+    border-color: rgba(48, 209, 88, 0.3);
   }
 
-  /* Bento Grid Foundation */
+  /* Apple-inspired Bento Card foundation */
   .bento-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
+    gap: 24px;
   }
 
   .bento-card {
     background: var(--surface-raised);
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-bento);
-    padding: 24px;
+    padding: 28px;
     position: relative;
     overflow: hidden;
-    transition: all 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.3);
+    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .bento-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity 300ms ease;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+    opacity: 1;
     pointer-events: none;
   }
 
   .bento-card:hover {
-    border-color: var(--surface-border-active);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px var(--color-primary-glow);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.015) translateY(-2px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
   }
 
-  .bento-card:hover::before {
-    opacity: 1;
-  }
-
-  /* Custom high-fidelity scrolls */
+  /* Elegant Glass Scrollbars */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(99, 102, 241, 0.3);
+    background: rgba(255, 255, 255, 0.25);
   }
 
-  /* Typography Utilities */
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Minimalist Divider */
   .divider {
     height: 1px;
     background-color: var(--surface-border);
     width: 100%;
   }
 }
+

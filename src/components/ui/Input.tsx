@@ -22,36 +22,33 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
             {label && (
                 <label
                     htmlFor={id}
-                    className="text-xs font-semibold uppercase tracking-wider text-[var(--fg-secondary)] transition-colors group-focus-within:text-[var(--color-cyan)]"
+                    className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 group-focus-within:text-white transition-colors duration-400"
                 >
                     {label}
                 </label>
             )}
 
-            <div className="relative w-full rounded-lg overflow-hidden p-[1px] bg-gradient-to-b from-transparent to-transparent group-focus-within:from-[var(--color-primary)] group-focus-within:to-[var(--color-cyan)] transition-all duration-300">
-                <input
-                    ref={ref}
-                    id={id}
-                    className={cn(
-                        "w-full rounded-[7px]",
-                        "px-4 py-2.5 text-sm",
-                        "bg-[var(--surface-raised)]",
-                        "border border-[var(--surface-border)]",
-                        "text-[var(--fg-primary)] font-medium",
-                        "placeholder:text-[var(--fg-muted)]",
-                        "transition-all duration-300 ease-out",
-                        "focus:outline-none focus:bg-[var(--surface-base)]",
-                        "group-focus-within:border-transparent",
-                        "hover:border-white/10",
-                        error && "border-red-500/50 focus:border-red-500/50",
-                        className
-                    )}
-                    {...props}
-                />
-            </div>
+            <input
+                ref={ref}
+                id={id}
+                className={cn(
+                    "w-full rounded-2xl",
+                    "px-5 py-3.5 text-sm",
+                    "bg-white/[0.03]",
+                    "border border-white/10",
+                    "text-white font-medium",
+                    "placeholder:text-neutral-500",
+                    "transition-all duration-400 ease-out",
+                    "focus:outline-none focus:border-white focus:bg-white/[0.06] focus:ring-1 focus:ring-white",
+                    "hover:border-white/15",
+                    error && "border-red-500/50 focus:border-red-500/50 focus:ring-red-500/30",
+                    className
+                )}
+                {...props}
+            />
 
             {error && (
-                <p className="text-xs text-red-400 font-medium tracking-wide animate-pulse">
+                <p className="text-xs text-red-400 font-semibold tracking-wide animate-pulse">
                     {error}
                 </p>
             )}
@@ -60,6 +57,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
 });
 
 Input.displayName = "Input";
+
 
 export { Input };
 

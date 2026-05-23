@@ -15,13 +15,21 @@ function TabItem({ active, onClick, icon, label }: TabItemProps) {
             onClick={onClick}
             title={label}
             className={cn(
-                "w-12 h-12 flex items-center justify-center text-xl transition-colors duration-150 cursor-pointer group relative",
+                "w-12 h-12 rounded-xl flex items-center justify-center text-xl transition-all duration-300 cursor-pointer group relative overflow-hidden",
                 active
-                    ? "text-[var(--color-primary)] bg-[var(--surface-raised)] border-r-2 border-[var(--color-primary)]"
-                    : "text-[var(--fg-muted)] hover:text-[var(--fg-primary)]"
+                    ? "text-[var(--color-primary)] bg-gradient-to-br from-[var(--surface-raised)] to-black/20 border border-[var(--color-primary)]/30 shadow-[0_0_15px_rgba(99,102,241,0.15)]"
+                    : "text-[var(--fg-secondary)] hover:text-white hover:bg-white/5 border border-transparent"
             )}
         >
-            <span className={active ? "scale-110" : "grayscale opacity-50"}>{icon}</span>
+            {active && (
+                <span className="absolute left-0 top-3 bottom-3 w-[3px] bg-gradient-to-b from-[var(--color-primary)] to-[var(--color-cyan)] rounded-r-full" />
+            )}
+            <span className={cn(
+                "transition-all duration-300 ease-out z-10",
+                active ? "scale-110 rotate-3 filter drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]" : "opacity-60 group-hover:opacity-100 group-hover:scale-110"
+            )}>
+                {icon}
+            </span>
         </button>
     );
 }
@@ -33,7 +41,7 @@ interface ModalSidebarProps {
 
 export function ModalSidebar({ activeTab, onTabChange }: ModalSidebarProps) {
     return (
-        <div className="hidden md:flex w-14 bg-[var(--surface-base)] border-r border-[var(--surface-border)] flex-col shrink-0 items-center py-6 gap-2">
+        <div className="hidden md:flex w-16 bg-gradient-to-b from-[var(--surface-base)] to-black/50 border-r border-white/5 flex-col shrink-0 items-center py-6 gap-3">
             <TabItem
                 active={activeTab === 'ai'}
                 onClick={() => onTabChange('ai')}
@@ -76,22 +84,29 @@ export function MobileTabBar({
         { id: 'quiz', icon: '🧠', label: 'Quiz' },
     ];
     return (
-        <div className="md:hidden flex border-b border-[var(--surface-border)] bg-[var(--surface-base)] shrink-0 z-20">
-            {tabs.map((tab) => (
-                <button
-                    key={tab.id}
-                    onClick={() => onTabChange(tab.id)}
-                    className={cn(
-                        'flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-[9px] font-bold uppercase tracking-widest transition-colors duration-150 border-b-2',
-                        activeTab === tab.id
-                            ? 'text-[var(--color-primary)] border-[var(--color-primary)]'
-                            : 'text-[var(--fg-muted)] border-transparent hover:text-[var(--fg-primary)]'
-                    )}
-                >
-                    <span className="text-base leading-none">{tab.icon}</span>
-                    <span>{tab.label}</span>
-                </button>
-            ))}
+        <div className="md:hidden flex border-b border-white/5 bg-[var(--surface-base)] shrink-0 z-20 p-1.5 gap-1">
+            {tabs.map((tab) => {
+                const isActive = activeTab === tab.id;
+                return (
+                    <button
+                        key={tab.id}
+                        onClick={() => onTabChange(tab.id)}
+                        className={cn(
+                            'flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl text-[9px] font-bold uppercase tracking-wider transition-all duration-300 border',
+                            isActive
+                                ? 'text-white bg-gradient-to-br from-[var(--surface-raised)] to-black/25 border-[var(--color-primary)]/20 shadow-[0_0_15px_rgba(99,102,241,0.08)]'
+                                : 'text-[var(--fg-secondary)] border-transparent hover:text-white hover:bg-white/5'
+                        )}
+                    >
+                        <span className={cn(
+                            "text-base leading-none transition-transform",
+                            isActive && "scale-110 filter drop-shadow-[0_0_5px_rgba(99,102,241,0.5)]"
+                        )}>{tab.icon}</span>
+                        <span>{tab.label}</span>
+                    </button>
+                );
+            })}
         </div>
     );
 }
+

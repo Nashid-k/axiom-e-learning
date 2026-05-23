@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAuth } from "@/features/auth/AuthContext";
 import { AxiomLogo } from "./AxiomLogo";
 import { Button } from "./Button";
@@ -11,40 +12,63 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const { user } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navigationItems = [
+    { name: "Paths", href: "/paths" },
+    { name: "Leaderboard", href: "/leaderboard" },
+    { name: "Flashcards", href: "/flashcards" },
+  ];
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full",
-      "bg-[var(--surface-base)] border-b border-[var(--surface-border)]"
+      "sticky top-0 z-50 w-full transition-all duration-300",
+      "bg-[var(--surface-base)] backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
     )}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2 group">
-            <AxiomLogo className="w-6 h-6" />
-            <span className="font-bold text-lg tracking-tight text-[var(--fg-primary)]">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="relative p-1.5 rounded-lg bg-white/5 border border-white/10 group-hover:border-[var(--color-primary)]/50 transition-colors">
+              <AxiomLogo className="w-6 h-6 transition-transform duration-500 group-hover:rotate-12" />
+              <div className="absolute inset-0 rounded-lg bg-[var(--color-primary)] opacity-0 group-hover:opacity-10 blur-md transition-opacity" />
+            </div>
+            <span className="font-black text-xl tracking-tight text-[var(--fg-primary)] bg-gradient-to-r from-white to-[var(--fg-secondary)] bg-clip-text text-transparent group-hover:from-white group-hover:to-[var(--color-cyan)] transition-all">
               AXIOM
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
-            {["Paths", "Leaderboard", "Flashcards"].map((item) => (
-              <Link 
-                key={item}
-                href={`/${item.toLowerCase()}`}
-                className="text-sm font-medium text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors"
-              >
-                {item}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-1">
+            {navigationItems.map((item) => {
+              const isActive = pathname?.startsWith(item.href);
+              return (
+                <Link 
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "relative px-4 py-2 text-sm font-semibold tracking-wide transition-all duration-300 rounded-lg",
+                    isActive 
+                      ? "text-white" 
+                      : "text-[var(--fg-secondary)] hover:text-white hover:bg-white/5"
+                  )}
+                >
+                  {item.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <ThemeToggle />
-          <div className="h-4 w-[1px] bg-[var(--surface-border)] mx-1" />
+          <div className="h-5 w-[1px] bg-[var(--surface-border)]" />
           {user ? (
             <Link href="/paths" className="hidden sm:block">
-              <Button size="sm" variant="secondary">Dashboard</Button>
+              <Button size="sm" variant="secondary" className="border-white/10 hover:border-[var(--color-primary)]/30">
+                Dashboard
+              </Button>
             </Link>
           ) : (
             <Link href="/login" className="hidden sm:block">
@@ -53,18 +77,18 @@ export function Header() {
           )}
 
           <button
-            className="md:hidden p-2 rounded-md border border-[var(--surface-border)] hover:bg-[var(--surface-raised)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors cursor-pointer"
+            className="md:hidden p-2 rounded-lg border border-[var(--surface-border)] hover:bg-[var(--surface-raised)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-all cursor-pointer"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Open menu"
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="4" y1="12" x2="20" y2="12"></line>
                 <line x1="4" y1="6" x2="20" y2="6"></line>
                 <line x1="4" y1="18" x2="20" y2="18"></line>
@@ -76,25 +100,37 @@ export function Header() {
 
       {/* Mobile nav drawer */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-[var(--surface-border)] bg-[var(--surface-base)] px-4 py-4 space-y-2 animate-in slide-in-from-top-2 duration-150">
-          {["Paths", "Leaderboard", "Flashcards"].map((item) => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2.5 text-sm font-medium text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] hover:bg-[var(--surface-raised)] rounded-md transition-colors"
-            >
-              {item}
-            </Link>
-          ))}
-          <div className="pt-2 border-t border-[var(--surface-border)] flex flex-col gap-2">
+        <div className="md:hidden border-t border-white/5 bg-[var(--surface-base)] backdrop-blur-xl px-6 py-6 space-y-3 animate-in slide-in-from-top-4 duration-300 shadow-2xl">
+          {navigationItems.map((item) => {
+            const isActive = pathname?.startsWith(item.href);
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={cn(
+                  "block px-4 py-3 text-sm font-semibold tracking-wide rounded-xl transition-all",
+                  isActive
+                    ? "bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-cyan)]/10 text-white border border-[var(--color-primary)]/20 shadow-[0_0_15px_rgba(99,102,241,0.05)]"
+                    : "text-[var(--fg-secondary)] hover:text-white hover:bg-white/5 border border-transparent"
+                )}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+          <div className="pt-4 border-t border-white/5 flex flex-col gap-3">
             {user ? (
               <Link href="/paths" onClick={() => setMobileOpen(false)} className="w-full">
-                <Button size="sm" variant="secondary" className="w-full">Dashboard</Button>
+                <Button size="sm" variant="secondary" className="w-full justify-center">
+                  Dashboard
+                </Button>
               </Link>
             ) : (
               <Link href="/login" onClick={() => setMobileOpen(false)} className="w-full">
-                <Button size="sm" className="w-full">Sign In</Button>
+                <Button size="sm" className="w-full justify-center">
+                  Sign In
+                </Button>
               </Link>
             )}
           </div>
@@ -103,3 +139,4 @@ export function Header() {
     </header>
   );
 }
+

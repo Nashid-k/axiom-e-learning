@@ -13,6 +13,7 @@ import { useTextToSpeech } from "@/features/ai/hooks/useTextToSpeech";
 import { ModalSidebar, MobileTabBar } from './ModalSidebar';
 import { ModalTopBar } from './ModalTopBar';
 import { ModalFooter } from './ModalFooter';
+import { cn } from '@/lib/utils';
 
 function detectLanguage(category: string): 'javascript' | 'typescript' | 'python' | 'mongodb' | 'sql' {
     const cat = category.toLowerCase();
@@ -45,6 +46,7 @@ export default function AIModal() {
     const { isOpen, topicData, closeModal, navigateTopic, allTopics, currentIndex } = useModal();
     const [activeTab, setActiveTab] = useState<'ai' | 'resources' | 'dojo' | 'quiz'>('ai');
     const [isChatActive, setIsChatActive] = useState(false);
+    const [showDojoSplit, setShowDojoSplit] = useState(true);
 
     const [persona, setPersona] = useState<'general' | 'buddy'>('general');
     const [optimisticComplete, setOptimisticComplete] = useState<boolean | null>(null);
@@ -61,7 +63,14 @@ export default function AIModal() {
             setIsChatActive(false);
             setOptimisticComplete(null);
             setQuizPassed(false);
-            if (initialTab) setActiveTab(initialTab);
+            if (initialTab) {
+                if (initialTab === 'dojo') {
+                    setActiveTab('ai');
+                    setShowDojoSplit(true);
+                } else {
+                    setActiveTab(initialTab);
+                }
+            }
         }
     }, [isOpen, topicId, initialTab]);
 
@@ -119,68 +128,105 @@ export default function AIModal() {
 
     if (!isOpen && !topicData) return null;
 
+    // Detect if dojo tab is selected on mobile vs split on desktop
+    const renderDojoOnly = activeTab === 'dojo';
+
     return (
         <ModalShell
             isOpen={isOpen && !!topicData}
             onClose={closeModal}
-            containerClassName="w-full md:w-[min(1200px,95vw)] h-[100dvh] md:h-[90vh] bg-[var(--surface-base)] border-0 md:border border-[var(--surface-border)] rounded-none md:rounded-md overflow-hidden"
+            containerClassName="w-full md:w-[min(1400px,95vw)] h-[100dvh] md:h-[90vh] bg-[var(--surface-base)] border-0 md:border border-white/10 rounded-none md:rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
         >
             {topicData && (
                 <div className="flex flex-col md:flex-row h-full" onClick={(e) => e.stopPropagation()}>
-                    <ModalSidebar activeTab={activeTab} onTabChange={setActiveTab} />
+                    <ModalSidebar activeTab={renderDojoOnly ? 'ai' : activeTab} onTabChange={(tab) => {
+                        if (tab === 'dojo') {
+                            setActiveTab('ai');
+                            setShowDojoSplit(true);
+                        } else {
+                            setActiveTab(tab);
+                        }
+                    }} />
                     <MobileTabBar activeTab={activeTab} onTabChange={setActiveTab} />
 
                     <div className="flex-1 flex flex-col bg-[var(--surface-base)] relative overflow-hidden">
                         <ModalTopBar category={topicData.category} onClose={closeModal} />
 
-                        <div className="flex-1 overflow-y-auto p-4 md:p-12 pt-16 md:pt-24 pb-28 md:pb-32">
-                            <div className="max-w-4xl mx-auto w-full">
-                                {activeTab === 'ai' ? (
-                                    <>
-                                        <h2 className="text-3xl md:text-5xl font-black text-[var(--fg-primary)] mb-6 tracking-tight">
-                                            {topicData.topic}
-                                        </h2>
-                                        <AIExplanationView
-                                            content={explanation}
-                                            loading={loadingAI && !explanation}
-                                            error={error}
-                                            onRegenerate={() => fetchAIContent(topicData.topic, topicData.category, topicData.description, topicData.phase, persona, true)}
-                                            persona={persona}
+                        {/* Split Operations Console Area */}
+                        <div className="flex-1 flex flex-col md:flex-row min-h-0 relative">
+                            {/* Left Pane (AI/Resources/Quiz) */}
+                            <div className={cn(
+                                "flex-1 overflow-y-auto p-6 md:p-12 pt-20 md:pt-24 pb-28 md:pb-32 transition-all duration-300 custom-scrollbar",
+                                renderDojoOnly && "hidden md:block" // hide on mobile if dojo fullscreen selected
+                            )}>
+                                <div className="max-w-3xl mx-auto w-full">
+                                    {(activeTab === 'ai' || renderDojoOnly) ? (
+                                        <>
+                                            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
+                                                {topicData.topic}
+                                            </h2>
+                                            <AIExplanationView
+                                                content={explanation}
+                                                loading={loadingAI && !explanation}
+                                                error={error}
+                                                onRegenerate={() => fetchAIContent(topicData.topic, topicData.category, topicData.description, topicData.phase, persona, true)}
+                                                persona={persona}
+                                                category={topicData.category}
+                                            />
+                                            {loadingAI && explanation && (
+                                                <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--color-cyan)] animate-pulse">
+                                                    <LoadingSpinner size="sm" />
+                                                    <span>Maya is writing...</span>
+                                                </div>
+                                            )}
+                                            <ChatThread
+                                                messages={messages}
+                                                persona={persona}
+                                                category={topicData.category}
+                                                isChatActive={isChatActive}
+                                                setIsChatActive={setIsChatActive}
+                                                followUpInput={followUpInput}
+                                                setFollowUpInput={setFollowUpInput}
+                                                onSendFollowUp={handleSendFollowUp}
+                                                loadingAI={loadingAI}
+                                            />
+                                        </>
+                                    ) : activeTab === 'resources' ? (
+                                        <ResourcesView resources={resources} loading={loadingResources} />
+                                    ) : activeTab === 'quiz' ? (
+                                        <QuizView
+                                            topic={topicData.topic}
                                             category={topicData.category}
-                                        />
-                                        {loadingAI && explanation && (
-                                            <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--fg-muted)] animate-pulse">
-                                                <LoadingSpinner size="sm" />
-                                                <span>Maya is writing...</span>
-                                            </div>
-                                        )}
-                                        <ChatThread
-                                            messages={messages}
                                             persona={persona}
-                                            category={topicData.category}
-                                            isChatActive={isChatActive}
-                                            setIsChatActive={setIsChatActive}
-                                            followUpInput={followUpInput}
-                                            setFollowUpInput={setFollowUpInput}
-                                            onSendFollowUp={handleSendFollowUp}
-                                            loadingAI={loadingAI}
+                                            onComplete={(s, t, p) => p && setQuizPassed(true)}
                                         />
-                                    </>
-                                ) : activeTab === 'resources' ? (
-                                    <ResourcesView resources={resources} loading={loadingResources} />
-                                ) : activeTab === 'quiz' ? (
-                                    <QuizView
-                                        topic={topicData.topic}
-                                        category={topicData.category}
-                                        persona={persona}
-                                        onComplete={(s, t, p) => p && setQuizPassed(true)}
-                                    />
-                                ) : (
+                                    ) : null}
+                                </div>
+                            </div>
+
+                            {/* Center Split Border / Interactive Toggle */}
+                            <div className="hidden md:flex flex-col items-center justify-center shrink-0 w-[1px] relative bg-white/5">
+                                <button
+                                    onClick={() => setShowDojoSplit(!showDojoSplit)}
+                                    className="absolute p-1 bg-[var(--surface-raised)] border border-white/10 rounded-md hover:border-[var(--color-primary)] text-[10px] font-black text-[var(--fg-secondary)] hover:text-white uppercase tracking-widest cursor-pointer shadow-lg active:scale-95"
+                                    title={showDojoSplit ? "Collapse Code Dojo" : "Expand Code Dojo"}
+                                >
+                                    {showDojoSplit ? '→' : '←'}
+                                </button>
+                            </div>
+
+                            {/* Right Pane (Code Editor Dojo) */}
+                            <div className={cn(
+                                "transition-all duration-300 overflow-hidden shrink-0 relative bg-black/40",
+                                showDojoSplit ? "w-full md:w-1/2" : "w-0 md:w-0",
+                                renderDojoOnly ? "flex w-full md:w-full" : "hidden md:block" // fullscreen on mobile if selected
+                            )}>
+                                <div className="absolute inset-0 p-4 pt-16 md:pt-20">
                                     <CodeEditor 
                                         key={topicId} 
                                         language={detectLanguage(topicData.category)} 
                                     />
-                                )}
+                                </div>
                             </div>
                         </div>
 
@@ -206,3 +252,4 @@ export default function AIModal() {
         </ModalShell>
     );
 }
+

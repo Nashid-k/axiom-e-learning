@@ -8,7 +8,7 @@ interface TechIconProps {
     monochrome?: boolean;
 }
 
-export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-6 h-6", monochrome = true }) => {
+export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-6 h-6", monochrome = false }) => {
     const iconName = name.toLowerCase();
     let fileName = iconName;
 
@@ -35,7 +35,7 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = "w-6 h-6",
                 src={`/icons/${fileName}.svg`}
                 alt={`${name} icon`}
                 fill
-                className={cn("object-contain", monochrome && "grayscale dark:invert opacity-80")}
+                className={cn("object-contain", monochrome && "grayscale opacity-50")}
                 sizes="64px"
             />
         </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
@@ -10,44 +10,32 @@
 @source "../features";
 
 @layer base {
-  :root {
-    /* --- Axiom Minimal: Light --- */
-    --color-bg: #ffffff;
-    --color-fg: #000000;
-    --color-primary: #4f46e5; /* Indigo Accent */
-    --color-success: #22c55e;   /* green-500 */
-    --color-accent:  #ef4444;   /* red-500   */
-    --color-destruct: #ef4444;  /* alias     */
+  :root, .dark {
+    /* --- Axiom Quantum: Obsidian Dark --- */
+    --color-bg: #030406; /* Deep Obsidian Black */
+    --color-fg: #f3f4f6;
     
-    /* Surface & Borders */
-    --surface-base: #ffffff;
-    --surface-raised: #f9fafb;
-    --surface-border: #e5e7eb; /* border-neutral-200 */
-
-    /* Text */
-    --fg-primary: #000000;
-    --fg-secondary: #4b5563; /* text-neutral-600 */
-    --fg-muted: #9ca3af; /* text-neutral-400 */
-  }
-
-  .dark {
-    /* --- Axiom Minimal: Inky Dark --- */
-    --color-bg: #08090a; /* Linear Inky Black */
-    --color-fg: #ffffff;
-    --color-primary: #4f46e5;
-    --color-success: #22c55e;
-    --color-accent:  #ef4444;
-    --color-destruct: #ef4444;
+    /* Cyber Colors */
+    --color-primary: #6366f1; /* Neon Indigo */
+    --color-primary-glow: rgba(99, 102, 241, 0.15);
+    --color-accent: #ec4899;   /* Hot Pink */
+    --color-accent-glow: rgba(236, 72, 153, 0.15);
+    --color-success: #10b981;  /* Emerald */
+    --color-success-glow: rgba(16, 185, 129, 0.15);
+    --color-cyan: #06b6d4;     /* Neon Cyan */
+    --color-cyan-glow: rgba(6, 182, 212, 0.15);
+    --color-destruct: #ef4444;  /* Red */
     
-    /* Surface & Borders */
-    --surface-base: #08090a;
-    --surface-raised: #0c0d10; /* Slightly lighter */
-    --surface-border: #1f2937; /* border-neutral-800 */
+    /* Premium Surface & Glass Borders */
+    --surface-base: rgba(8, 10, 15, 0.8);
+    --surface-raised: rgba(16, 20, 28, 0.5);
+    --surface-border: rgba(255, 255, 255, 0.05);
+    --surface-border-active: rgba(99, 102, 241, 0.25);
 
-    /* Text */
-    --fg-primary: #ffffff;
-    --fg-secondary: #9ca3af;
-    --fg-muted: #4b5563;
+    /* Typography Color Primitives */
+    --fg-primary: #f9fafb;     /* Slate 50 */
+    --fg-secondary: #9ca3af;   /* Slate 400 */
+    --fg-muted: #6b7280;       /* Slate 500 */
   }
 }
 
@@ -58,32 +46,86 @@
   --color-border-main: var(--surface-border);
   
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
   
-  --radius-bento: 8px;
+  --radius-bento: 12px;
 }
 
 @layer base {
   body {
     font-family: var(--font-sans);
     color: var(--fg-primary);
-    background-color: var(--surface-base);
+    background-color: var(--color-bg);
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
-  /* Targeted transitions only for interactive elements */
-  a, button, input, [role="button"] {
-    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* Transition timings for elegant interactive feel */
+  a, button, input, select, textarea, [role="button"] {
+    transition: all 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 
 @layer utilities {
+  /* Cyber Grid Background */
+  .cyber-grid-bg {
+    background-size: 30px 30px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  }
+
+  /* Glass Panel Utility */
+  .glass-panel {
+    background: var(--surface-base);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--surface-border);
+  }
+
+  /* Exquisite Text Gradients */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #c7d2fe 0%, #6366f1 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #fbcfe8 0%, #ec4899 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glow shadows */
+  .glow-primary {
+    box-shadow: 0 0 25px var(--color-primary-glow);
+    border-color: var(--surface-border-active);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 25px var(--color-accent-glow);
+    border-color: rgba(236, 72, 153, 0.25);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 25px var(--color-success-glow);
+    border-color: rgba(16, 185, 129, 0.25);
+  }
+
   /* Bento Grid Foundation */
   .bento-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
+    gap: 20px;
   }
 
   .bento-card {
@@ -91,12 +133,45 @@
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-bento);
     padding: 24px;
+    position: relative;
     overflow: hidden;
+    transition: all 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
   }
 
   .bento-card:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
+    border-color: var(--surface-border-active);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px var(--color-primary-glow);
+  }
+
+  .bento-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Custom high-fidelity scrolls */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.3);
   }
 
   /* Typography Utilities */
@@ -111,4 +186,3 @@
     width: 100%;
   }
 }
-

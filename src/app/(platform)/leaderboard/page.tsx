@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/Button';
 import { useSession } from 'next-auth/react';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import Image from 'next/image';
+import { safeAvatar } from '@/lib/constants/avatars';
+import { cn } from '@/lib/utils';
 
 interface RankedUser {
     _id: string;
@@ -16,33 +18,32 @@ interface RankedUser {
     rank: number;
 }
 
-const VALID_AVATARS = [
-    '/avatars/boy-1.png', '/avatars/boy-2.png', '/avatars/boy-3.png', '/avatars/boy-4.png', '/avatars/boy-5.png',
-    '/avatars/girl-1.png', '/avatars/girl-2.png', '/avatars/girl-3.png', '/avatars/girl-4.png', '/avatars/girl-5.png',
-    '/avatars/default.png'
-];
-
-function safeAvatar(img?: string) {
-    return img && VALID_AVATARS.includes(img) ? img : "/avatars/default.png";
-}
-
 export default function LeaderboardPage() {
-    useSession();
+    const { data: session } = useSession();
     const [users, setUsers] = useState<RankedUser[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isFetching, setIsFetching] = useState(false);
     const [page, setPage] = useState(1);
     const [pagination, setPagination] = useState({ totalUsers: 0, totalPages: 1, currentPage: 1 });
 
     useEffect(() => {
+        if (page === 1) setLoading(true);
+        else setIsFetching(true);
+
         fetch(`/api/social/leaderboard?page=${page}&limit=20`)
             .then(res => res.json())
             .then(data => {
                 if (data.users) setUsers(data.users);
                 if (data.pagination) setPagination(data.pagination);
                 setLoading(false);
+                setIsFetching(false);
                 window.scrollTo({ top: 0, behavior: 'auto' });
             })
-            .catch(err => { console.error(err); setLoading(false); });
+            .catch(err => { 
+                console.error(err); 
+                setLoading(false); 
+                setIsFetching(false); 
+            });
     }, [page]);
 
     return (
@@ -63,8 +64,16 @@ export default function LeaderboardPage() {
                     No rankings found yet.
                 </div>
             ) : (
-                <div className="border border-[var(--surface-border)] rounded-md overflow-hidden bg-[var(--surface-base)]">
-                    <table className="w-full text-left border-collapse">
+                <div className={cn(
+                    "border border-[var(--surface-border)] rounded-md overflow-x-auto bg-[var(--surface-base)] relative",
+                    isFetching && "opacity-70 pointer-events-none"
+                )}>
+                    {isFetching && (
+                        <div className="absolute inset-0 flex items-center justify-center z-10 bg-white/20 dark:bg-black/20">
+                            <LoadingSpinner size="md" />
+                        </div>
+                    )}
+                    <table className="w-full text-left border-collapse min-w-[480px]">
                         <thead>
                             <tr className="bg-[var(--surface-raised)] border-b border-[var(--surface-border)]">
                                 <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)] w-20">Rank</th>
@@ -73,25 +82,34 @@ export default function LeaderboardPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-[var(--surface-border)]">
-                            {users.map((user) => (
-                                <tr key={user._id} className="hover:bg-[var(--surface-raised)] transition-colors">
-                                    <td className="px-6 py-4 font-bold text-[var(--fg-muted)]">#{user.rank}</td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-full border border-[var(--surface-border)] overflow-hidden shrink-0">
-                                                <Image src={safeAvatar(user.image)} alt={user.name} width={40} height={40} className="w-full h-full object-cover" />
+                            {users.map((user) => {
+                                const isCurrentUser = session?.user?.name && user.name === session.user.name;
+                                return (
+                                    <tr 
+                                        key={user._id} 
+                                        className={cn(
+                                            "hover:bg-[var(--surface-raised)] transition-colors",
+                                            isCurrentUser && "bg-[var(--color-primary)]/5 border-l-2 border-[var(--color-primary)]"
+                                        )}
+                                    >
+                                        <td className="px-6 py-4 font-bold text-[var(--fg-muted)]">#{user.rank}</td>
+                                        <td className="px-6 py-4">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full border border-[var(--surface-border)] overflow-hidden shrink-0">
+                                                    <Image src={safeAvatar(user.image)} alt={user.name} width={40} height={40} className="w-full h-full object-cover" />
+                                                </div>
+                                                <div>
+                                                    <div className={cn("font-bold text-[var(--fg-primary)]", isCurrentUser && "text-[var(--color-primary)]")}>{user.name} {isCurrentUser && " (You)"}</div>
+                                                    <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">{user.grade}</div>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <div className="font-bold text-[var(--fg-primary)]">{user.name}</div>
-                                                <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">{user.grade}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4 text-right font-bold text-[var(--color-primary)]">
-                                        {user.totalPoints.toLocaleString()}
-                                    </td>
-                                </tr>
-                            ))}
+                                        </td>
+                                        <td className="px-6 py-4 text-right font-bold text-[var(--color-primary)]">
+                                            {user.totalPoints.toLocaleString()}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
@@ -103,10 +121,10 @@ export default function LeaderboardPage() {
                         Page {page} of {pagination.totalPages}
                     </p>
                     <div className="flex gap-2">
-                        <Button variant="outline" size="sm" disabled={page === 1} onClick={() => { setLoading(true); setPage(p => p - 1); }}>
+                        <Button variant="outline" size="sm" disabled={page === 1 || isFetching} onClick={() => setPage(p => p - 1)}>
                             Previous
                         </Button>
-                        <Button variant="outline" size="sm" disabled={page === pagination.totalPages} onClick={() => { setLoading(true); setPage(p => p + 1); }}>
+                        <Button variant="outline" size="sm" disabled={page === pagination.totalPages || isFetching} onClick={() => setPage(p => p + 1)}>
                             Next
                         </Button>
                     </div>

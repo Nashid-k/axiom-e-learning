@@ -18,9 +18,10 @@ import { getMarkdownComponents } from './MarkdownComponents';
 interface TopicViewProps {
     id: string;
     curriculumData?: CurriculumData | null;
+    returnPath?: string;
 }
 
-export default function TopicView({ id, curriculumData }: TopicViewProps) {
+export default function TopicView({ id, curriculumData, returnPath }: TopicViewProps) {
     const router = useRouter();
     const [isCompleting, setIsCompleting] = useState(false);
     const { topics, updateTopic, loading: topicsLoading } = useTopics();
@@ -39,7 +40,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
         setIsCompleting(true);
         try {
             await updateTopic(topic.id, { studied: true });
-            router.push(`/paths/${getCategory(topic.title).toLowerCase()}`);
+            router.push(returnPath ?? `/paths/${getCategory(topic.title).toLowerCase()}`);
         } finally {
             setIsCompleting(false);
         }
@@ -80,7 +81,7 @@ export default function TopicView({ id, curriculumData }: TopicViewProps) {
                     <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-primary)] mb-4">
                         LEARNING MODULE
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--fg-primary)] leading-tight mb-4">
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[var(--fg-primary)] leading-tight mb-4">
                         {topic.title}
                     </h1>
                     {topic.description && (

@@ -21,7 +21,8 @@ export default function FlashcardsPage() {
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState<'due' | 'all'>('due');
 
-    useEffect(() => {
+    const loadFlashcards = useCallback(() => {
+        setLoading(true);
         fetch('/api/flashcards')
             .then(res => res.json())
             .then(data => {
@@ -30,6 +31,10 @@ export default function FlashcardsPage() {
             })
             .catch(() => setLoading(false));
     }, []);
+
+    useEffect(() => {
+        loadFlashcards();
+    }, [loadFlashcards]);
 
     const handleReview = useCallback(async (topicId: string, result: 'again' | 'good' | 'easy') => {
         await fetch('/api/flashcards', {
@@ -81,7 +86,7 @@ export default function FlashcardsPage() {
                         <LoadingSpinner size="lg" label="Loading deck..." />
                     </div>
                 ) : (
-                    <FlashcardView flashcards={filtered} onReview={handleReview} />
+                    <FlashcardView flashcards={filtered} onReview={handleReview} onRestart={loadFlashcards} />
                 )}
             </div>
         </RouteGuard>

@@ -33,12 +33,12 @@ export default function ExplorePage() {
             {/* Stats Overview */}
             <BentoGrid className="mb-12">
                 {[
-                    { label: "Level", value: level, icon: "💎" },
-                    { label: "Neural XP", value: xp.toLocaleString(), icon: "🧠" },
-                    { label: "Sync Streak", value: `${streak} Days`, icon: "🔥" },
-                    { label: "Due Review", value: reviewDueCount, icon: "⚡" }
+                    { label: "Level", value: level, icon: "💎", href: undefined },
+                    { label: "Neural XP", value: xp.toLocaleString(), icon: "🧠", href: "/leaderboard" },
+                    { label: "Sync Streak", value: `${streak} Days`, icon: "🔥", href: "/flashcards" },
+                    { label: "Due Review", value: reviewDueCount, icon: "⚡", href: "/flashcards" }
                 ].map((stat) => (
-                    <BentoCard key={stat.label} size="small" className="flex flex-col justify-center">
+                    <BentoCard key={stat.label} size="small" href={stat.href} className="flex flex-col justify-center">
                         <div className="flex justify-between items-start mb-2">
                             <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--fg-muted)]">
                                 {stat.label}

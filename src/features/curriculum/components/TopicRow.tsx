@@ -16,12 +16,13 @@ export const TopicRow = memo(function TopicRow({
     onClick: (topic: string, desc: string, initialTab?: 'ai' | 'resources' | 'dojo' | 'quiz') => void;
 }) {
     return (
-        <div
+        <button
+            type="button"
             className={cn(
-                "group py-4 px-5 rounded-md transition-all duration-300 cursor-pointer flex items-center gap-4 relative overflow-hidden",
+                "w-full text-left group py-4 px-5 rounded-md transition-all duration-300 cursor-pointer flex items-center gap-4 relative overflow-hidden",
                 isChecked
-                    ? "bg-surface-base/50 border-surface-border opacity-60"
-                    : "bg-[var(--surface-raised)] border border-[var(--surface-border)] rounded-md hover:border-[var(--color-primary)]"
+                    ? "bg-[var(--surface-base)]/50 border border-[var(--surface-border)] opacity-60"
+                    : "bg-[var(--surface-raised)] border border-[var(--surface-border)] rounded-md hover:border-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
             )}
             onClick={() => {
                 onClick(
@@ -29,12 +30,14 @@ export const TopicRow = memo(function TopicRow({
                     item.description || `Learn about ${item.title} in ${phaseTitle}`
                 );
             }}
+            aria-label={item.title}
+            aria-pressed={isChecked}
         >
             <div className={cn(
                 "w-6 h-6 rounded-md border-2 flex items-center justify-center shrink-0 transition-all duration-300",
                 isChecked
                     ? "bg-[var(--color-primary)] border-[var(--color-primary)]"
-                    : "bg-transparent border-surface-border group-hover:border-[var(--color-primary)]"
+                    : "bg-transparent border-[var(--surface-border)] group-hover:border-[var(--color-primary)]"
             )}>
                 {isChecked && (
                     <svg 
@@ -61,6 +64,6 @@ export const TopicRow = memo(function TopicRow({
                     <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] animate-ping" />
                 </div>
             )}
-        </div>
+        </button>
     );
 });

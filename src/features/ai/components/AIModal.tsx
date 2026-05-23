@@ -10,9 +10,18 @@ import { ChatThread } from './ChatThread';
 import { ModalShell } from '@/components/ui/ModalShell';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { useTextToSpeech } from "@/features/ai/hooks/useTextToSpeech";
-import { ModalSidebar } from './ModalSidebar';
+import { ModalSidebar, MobileTabBar } from './ModalSidebar';
 import { ModalTopBar } from './ModalTopBar';
 import { ModalFooter } from './ModalFooter';
+
+function detectLanguage(category: string): 'javascript' | 'typescript' | 'python' | 'mongodb' | 'sql' {
+    const cat = category.toLowerCase();
+    if (cat.includes('python') || cat.includes('django')) return 'python';
+    if (cat.includes('sql')) return 'sql';
+    if (cat.includes('typescript')) return 'typescript';
+    if (cat.includes('mongodb')) return 'mongodb';
+    return 'javascript';
+}
 
 const AIExplanationView = dynamic(() => import('./AIExplanationView').then(mod => ({ default: mod.AIExplanationView })), {
     loading: () => <LoadingSpinner size="lg" />,
@@ -108,89 +117,92 @@ export default function AIModal() {
         try { await toggleItem(topicId); } catch { setOptimisticComplete(!newState); }
     };
 
-    if (!isOpen || !topicData) return null;
+    if (!isOpen && !topicData) return null;
 
     return (
         <ModalShell
-            isOpen={isOpen}
+            isOpen={isOpen && !!topicData}
             onClose={closeModal}
-            containerClassName="w-[min(1200px,95vw)] h-[90vh] bg-[var(--surface-base)] border border-[var(--surface-border)] rounded-md overflow-hidden"
+            containerClassName="w-full md:w-[min(1200px,95vw)] h-[100dvh] md:h-[90vh] bg-[var(--surface-base)] border-0 md:border border-[var(--surface-border)] rounded-none md:rounded-md overflow-hidden"
         >
-            <div className="flex h-full" onClick={(e) => e.stopPropagation()}>
-                <ModalSidebar activeTab={activeTab} onTabChange={setActiveTab} />
+            {topicData && (
+                <div className="flex flex-col md:flex-row h-full" onClick={(e) => e.stopPropagation()}>
+                    <ModalSidebar activeTab={activeTab} onTabChange={setActiveTab} />
+                    <MobileTabBar activeTab={activeTab} onTabChange={setActiveTab} />
 
-                <div className="flex-1 flex flex-col bg-[var(--surface-base)] relative overflow-hidden">
-                    <ModalTopBar category={topicData.category} onClose={closeModal} />
+                    <div className="flex-1 flex flex-col bg-[var(--surface-base)] relative overflow-hidden">
+                        <ModalTopBar category={topicData.category} onClose={closeModal} />
 
-                    <div className="flex-1 overflow-y-auto p-6 md:p-12 pt-20 md:pt-24 pb-32">
-                        <div className="max-w-4xl mx-auto w-full">
-                            {activeTab === 'ai' ? (
-                                <>
-                                    <h2 className="text-3xl md:text-5xl font-black text-[var(--fg-primary)] mb-6 tracking-tight">
-                                        {topicData.topic}
-                                    </h2>
-                                    <AIExplanationView
-                                        content={explanation}
-                                        loading={loadingAI && !explanation}
-                                        error={error}
-                                        onRegenerate={() => fetchAIContent(topicData.topic, topicData.category, topicData.description, topicData.phase, persona, true)}
-                                        persona={persona}
+                        <div className="flex-1 overflow-y-auto p-4 md:p-12 pt-16 md:pt-24 pb-28 md:pb-32">
+                            <div className="max-w-4xl mx-auto w-full">
+                                {activeTab === 'ai' ? (
+                                    <>
+                                        <h2 className="text-3xl md:text-5xl font-black text-[var(--fg-primary)] mb-6 tracking-tight">
+                                            {topicData.topic}
+                                        </h2>
+                                        <AIExplanationView
+                                            content={explanation}
+                                            loading={loadingAI && !explanation}
+                                            error={error}
+                                            onRegenerate={() => fetchAIContent(topicData.topic, topicData.category, topicData.description, topicData.phase, persona, true)}
+                                            persona={persona}
+                                            category={topicData.category}
+                                        />
+                                        {loadingAI && explanation && (
+                                            <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--fg-muted)] animate-pulse">
+                                                <LoadingSpinner size="sm" />
+                                                <span>Maya is writing...</span>
+                                            </div>
+                                        )}
+                                        <ChatThread
+                                            messages={messages}
+                                            persona={persona}
+                                            category={topicData.category}
+                                            isChatActive={isChatActive}
+                                            setIsChatActive={setIsChatActive}
+                                            followUpInput={followUpInput}
+                                            setFollowUpInput={setFollowUpInput}
+                                            onSendFollowUp={handleSendFollowUp}
+                                            loadingAI={loadingAI}
+                                        />
+                                    </>
+                                ) : activeTab === 'resources' ? (
+                                    <ResourcesView resources={resources} loading={loadingResources} />
+                                ) : activeTab === 'quiz' ? (
+                                    <QuizView
+                                        topic={topicData.topic}
                                         category={topicData.category}
-                                    />
-                                    {loadingAI && explanation && (
-                                        <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--fg-muted)] animate-pulse">
-                                            <LoadingSpinner size="sm" />
-                                            <span>Maya is writing...</span>
-                                        </div>
-                                    )}
-                                    <ChatThread
-                                        messages={messages}
                                         persona={persona}
-                                        category={topicData.category}
-                                        isChatActive={isChatActive}
-                                        setIsChatActive={setIsChatActive}
-                                        followUpInput={followUpInput}
-                                        setFollowUpInput={setFollowUpInput}
-                                        onSendFollowUp={handleSendFollowUp}
-                                        loadingAI={loadingAI}
+                                        onComplete={(s, t, p) => p && setQuizPassed(true)}
                                     />
-                                </>
-                            ) : activeTab === 'resources' ? (
-                                <ResourcesView resources={resources} loading={loadingResources} />
-                            ) : activeTab === 'quiz' ? (
-                                <QuizView
-                                    topic={topicData.topic}
-                                    category={topicData.category}
-                                    persona={persona}
-                                    onComplete={(s, t, p) => p && setQuizPassed(true)}
-                                />
-                            ) : (
-                                <CodeEditor 
-                                    key={topicId} 
-                                    language={topicData.category.toLowerCase().includes('sql') ? 'sql' : 'javascript'} 
-                                />
-                            )}
+                                ) : (
+                                    <CodeEditor 
+                                        key={topicId} 
+                                        language={detectLanguage(topicData.category)} 
+                                    />
+                                )}
+                            </div>
                         </div>
-                    </div>
 
-                    <ModalFooter
-                        persona={persona}
-                        togglePersona={() => setPersona(p => p === 'general' ? 'buddy' : 'general')}
-                        isSpeaking={isSpeaking}
-                        handleVoiceToggle={() => isSpeaking ? cancel() : (explanation && speak(explanation, persona))}
-                        navigateTopic={navigateTopic}
-                        currentIndex={currentIndex}
-                        totalTopics={allTopics?.length || 0}
-                        canComplete={canComplete}
-                        isComplete={isComplete}
-                        completionProgress={completionProgress}
-                        timeSpent={timeSpent}
-                        minTime={MIN_TIME_SECONDS}
-                        onToggleComplete={handleToggleComplete}
-                        onAskMaya={() => { setActiveTab('ai'); setIsChatActive(true); }}
-                    />
+                        <ModalFooter
+                            persona={persona}
+                            togglePersona={() => setPersona(p => p === 'general' ? 'buddy' : 'general')}
+                            isSpeaking={isSpeaking}
+                            handleVoiceToggle={() => isSpeaking ? cancel() : (explanation && speak(explanation, persona))}
+                            navigateTopic={navigateTopic}
+                            currentIndex={currentIndex}
+                            totalTopics={allTopics?.length || 0}
+                            canComplete={canComplete}
+                            isComplete={isComplete}
+                            completionProgress={completionProgress}
+                            timeSpent={timeSpent}
+                            minTime={MIN_TIME_SECONDS}
+                            onToggleComplete={handleToggleComplete}
+                            onAskMaya={() => { setActiveTab('ai'); setIsChatActive(true); }}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
         </ModalShell>
     );
 }

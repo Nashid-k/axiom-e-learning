@@ -36,12 +36,12 @@ export function ModalFooter({
     onAskMaya
 }: ModalFooterProps) {
     return (
-        <div className="shrink-0 p-4 border-t border-[var(--surface-border)] bg-[var(--surface-base)] flex flex-col sm:flex-row items-center justify-between gap-4 z-20">
-            <div className="flex items-center gap-2">
+        <div className="shrink-0 p-3 border-t border-[var(--surface-border)] bg-[var(--surface-base)] flex flex-row items-center justify-between gap-2 z-20 overflow-hidden">
+            <div className="flex items-center gap-1.5 shrink-0">
                 <button
                     onClick={togglePersona}
                     className={cn(
-                        "w-10 h-10 rounded-md border flex items-center justify-center transition-none",
+                        "w-10 h-10 rounded-md border flex items-center justify-center transition-colors duration-150",
                         persona === 'general' 
                             ? "bg-[var(--surface-base)] border-[var(--surface-border)]" 
                             : "bg-[var(--color-primary)] border-[var(--color-primary)] text-white"
@@ -52,9 +52,9 @@ export function ModalFooter({
                 <button
                     onClick={handleVoiceToggle}
                     className={cn(
-                        "w-10 h-10 rounded-md border flex items-center justify-center transition-none",
+                        "w-10 h-10 rounded-md border flex items-center justify-center transition-colors duration-150",
                         isSpeaking 
-                            ? "bg-[var(--color-destruct)] border-[var(--color-destruct)] text-white animate-pulse" 
+                            ? "bg-[var(--color-accent)] border-[var(--color-accent)] text-white animate-pulse" 
                             : "bg-[var(--surface-base)] border-[var(--surface-border)]"
                     )}
                 >
@@ -64,24 +64,24 @@ export function ModalFooter({
                     <button
                         onClick={() => navigateTopic('prev')}
                         disabled={currentIndex === 0}
-                        className="w-10 h-10 rounded-md border border-[var(--surface-border)] flex items-center justify-center disabled:opacity-20"
+                        className="w-10 h-10 rounded-md border border-[var(--surface-border)] flex items-center justify-center disabled:opacity-20 transition-colors duration-150"
                     >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M15 19l-7-7 7-7" /></svg>
                     </button>
                     <button
                         onClick={() => navigateTopic('next')}
                         disabled={currentIndex === totalTopics - 1}
-                        className="w-10 h-10 rounded-md border border-[var(--surface-border)] flex items-center justify-center disabled:opacity-20"
+                        className="w-10 h-10 rounded-md border border-[var(--surface-border)] flex items-center justify-center disabled:opacity-20 transition-colors duration-150"
                     >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path d="M9 5l7 7-7 7" /></svg>
                     </button>
                 </div>
             </div>
 
-            <div className="flex gap-2 w-full sm:w-auto">
+            <div className="flex gap-2 min-w-0 shrink-0">
                 <button
                     onClick={onAskMaya}
-                    className="flex-1 sm:px-6 py-2.5 rounded-md border border-[var(--surface-border)] font-bold text-xs uppercase tracking-widest hover:bg-[var(--surface-raised)] transition-none text-[var(--fg-primary)]"
+                    className="flex-1 px-4 sm:px-6 py-2.5 rounded-md border border-[var(--surface-border)] font-bold text-xs uppercase tracking-widest hover:bg-[var(--surface-raised)] transition-colors duration-150 text-[var(--fg-primary)]"
                 >
                     Chat
                 </button>
@@ -89,7 +89,7 @@ export function ModalFooter({
                     onClick={onToggleComplete}
                     disabled={!canComplete}
                     className={cn(
-                        "flex-[1.5] sm:px-10 py-2.5 rounded-md font-bold text-xs uppercase tracking-widest border transition-none relative overflow-hidden",
+                        "flex-[1.5] px-6 sm:px-10 py-2.5 rounded-md font-bold text-xs uppercase tracking-widest border transition-all duration-200 relative overflow-hidden",
                         isComplete
                             ? "bg-[var(--color-success)] border-[var(--color-success)] text-white"
                             : canComplete
@@ -99,7 +99,7 @@ export function ModalFooter({
                 >
                     {!isComplete && !canComplete && (
                         <div
-                            className="absolute left-0 bottom-0 h-1 bg-[var(--color-primary)] transition-none"
+                            className="absolute left-0 bottom-0 h-1 bg-[var(--color-primary)] transition-[width] duration-300 ease-out"
                             style={{ width: `${completionProgress}%` }}
                         />
                     )}

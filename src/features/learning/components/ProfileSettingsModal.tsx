@@ -8,29 +8,25 @@ import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/Input';
 import { ModalShell } from '@/components/ui/ModalShell';
 
+import { VALID_AVATARS } from '@/lib/constants/avatars';
+
 interface ProfileSettingsModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
-const AVATARS = [
-    '/avatars/boy-1.png', '/avatars/boy-2.png', '/avatars/boy-3.png', '/avatars/boy-4.png', '/avatars/boy-5.png',
-    '/avatars/girl-1.png', '/avatars/girl-2.png', '/avatars/girl-3.png', '/avatars/girl-4.png', '/avatars/girl-5.png',
-    '/avatars/default.png',
-];
-
 export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSettingsModalProps) {
     const router = useRouter();
     const { data: session, update } = useSession();
     const [name, setName] = useState(session?.user?.name || '');
-    const [selectedAvatar, setSelectedAvatar] = useState(session?.user?.image || AVATARS[0]);
+    const [selectedAvatar, setSelectedAvatar] = useState(session?.user?.image || VALID_AVATARS[0]);
     const [isSaving, setIsSaving] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (session?.user) {
             setName(session.user.name || '');
-            setSelectedAvatar(session.user.image || AVATARS[0]);
+            setSelectedAvatar(session.user.image || VALID_AVATARS[0]);
         }
     }, [session, isOpen]);
 
@@ -71,14 +67,14 @@ export default function ProfileSettingsModal({ isOpen, onClose }: ProfileSetting
                             Choose Avatar
                         </label>
                         <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
-                            {AVATARS.map((avatar) => {
+                            {VALID_AVATARS.map((avatar) => {
                                 const selected = selectedAvatar === avatar;
                                 return (
                                     <button
                                         key={avatar}
                                         onClick={() => setSelectedAvatar(avatar)}
                                         className={`
-                                            relative aspect-square rounded-md overflow-hidden border-2 transition-none
+                                            relative aspect-square rounded-md overflow-hidden border-2 transition-all duration-150
                                             ${selected ? 'border-[var(--color-primary)] scale-105' : 'border-[var(--surface-border)] hover:border-[var(--fg-muted)]'}
                                         `}
                                         type="button"

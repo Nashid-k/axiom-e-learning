@@ -9,12 +9,14 @@ export function ThemeToggle() {
 
     React.useEffect(() => { setMounted(true) }, [])
 
-    if (!mounted) return <div className="w-10 h-10" />
+    if (!mounted) return (
+        <div className="w-10 h-10 rounded-md border border-[var(--surface-border)] bg-[var(--surface-raised)] animate-pulse" />
+    )
 
     return (
         <button
             onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
-            className="flex items-center justify-center w-10 h-10 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-none"
+            className="flex items-center justify-center w-10 h-10 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] hover:bg-[var(--surface-raised)] transition-colors duration-150"
             title={`Switch to ${resolvedTheme === "light" ? "dark" : "light"} mode`}
             type="button"
         >

@@ -18,8 +18,8 @@ interface PhaseCardProps {
 
 export function PhaseCard({ phase, isChecked, onTopicClick }: PhaseCardProps) {
     return (
-        <div className="h-[500px] flex flex-col bg-[var(--surface-raised)] border border-[var(--surface-border)] rounded-md overflow-hidden group hover:shadow-2xl transition-all duration-500">
-            <header className="p-8 pb-6 bg-[var(--surface-raised)]/30 border-b border-surface-border relative overflow-hidden">
+        <div className="flex flex-col bg-[var(--surface-raised)] border border-[var(--surface-border)] rounded-md overflow-hidden group hover:shadow-2xl transition-all duration-500 min-h-[300px] max-h-[520px]">
+            <header className="p-8 pb-6 bg-[var(--surface-raised)]/30 border-b border-[var(--surface-border)] relative overflow-hidden">
                 <div className="absolute -top-10 -right-10 w-24 h-24 bg-[var(--color-primary)]/10 blur-2xl rounded-md" />
                 <div className="flex items-center gap-4 mb-4">
                     <span className="flex items-center justify-center w-10 h-10 rounded-md bg-[var(--color-primary)] text-white text-sm font-black">
@@ -64,7 +64,7 @@ export function PhaseCard({ phase, isChecked, onTopicClick }: PhaseCardProps) {
                 {phase.practicals && phase.practicals.length > 0 && (
                     <section>
                         <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--fg-muted)] mb-6 flex items-center gap-3">
-                            <span className="w-1.5 h-1.5 bg-accent rounded-full shadow-[0_0_8px_var(--color-accent)]" />
+                            <span className="w-1.5 h-1.5 bg-[var(--color-accent)] rounded-full shadow-[0_0_8px_var(--color-accent)]" />
                             FIELD WORK
                         </h3>
                         <div className="space-y-3">

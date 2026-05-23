@@ -28,7 +28,7 @@ export default function LandingPage() {
                     Education Refined
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+                <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
                     Master engineering <br />
                     <span className="text-[var(--color-primary)]">with precision.</span>
                 </h1>
@@ -50,9 +50,58 @@ export default function LandingPage() {
                         </Button>
                     </Link>
                 </div>
+
+                {/* Product preview */}
+                <div className="mt-16 border border-[var(--surface-border)] rounded-lg overflow-hidden shadow-2xl bg-[var(--surface-raised)] text-left transition-all duration-300 hover:border-[var(--color-primary)]/40">
+                    <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--surface-border)] bg-[var(--surface-base)]/50">
+                        <div className="w-3 h-3 rounded-full bg-red-400/60" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
+                        <div className="w-3 h-3 rounded-full bg-green-400/60" />
+                        <div className="flex-1 text-center text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)]">
+                            axiom-learn.com/paths
+                        </div>
+                    </div>
+                    <div className="p-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        {[
+                            { name: 'React', progress: '72%', xp: '3,400 XP' },
+                            { name: 'TypeScript', progress: '41%', xp: '1,850 XP' },
+                            { name: 'System Design', progress: '18%', xp: '800 XP' }
+                        ].map((path) => (
+                            <div key={path.name} className="p-4 border border-[var(--surface-border)] rounded-md bg-[var(--surface-base)] transition-all duration-300 hover:translate-y-[-2px] hover:border-[var(--color-primary)]/30">
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-[var(--color-primary)]">PATH</span>
+                                    <span className="text-[9px] font-bold text-[var(--fg-muted)]">{path.xp}</span>
+                                </div>
+                                <div className="font-extrabold text-[var(--fg-primary)] text-base mb-3">{path.name}</div>
+                                <div className="h-1.5 bg-[var(--surface-raised)] rounded-full overflow-hidden">
+                                    <div 
+                                        className="h-full bg-[var(--color-primary)] rounded-full transition-all duration-1000 ease-out" 
+                                        style={{ width: path.progress }} 
+                                    />
+                                </div>
+                                <div className="flex justify-between items-center mt-2 text-[9px] font-bold text-[var(--fg-muted)]">
+                                    <span>Sync Progress</span>
+                                    <span className="text-[var(--fg-primary)]">{path.progress}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </main>
 
-            <section id="features" className="max-w-7xl mx-auto px-6 py-24 border-t border-[var(--surface-border)]">
+            {/* Social proof strip */}
+            <div className="py-12 border-t border-b border-[var(--surface-border)] my-12 text-center max-w-4xl mx-auto px-6">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)] mb-4">
+                    Trusted by developers worldwide
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-8 text-[var(--fg-secondary)] text-sm font-medium">
+                    <span className="flex items-center gap-1.5">🚀 1,000+ Learners</span>
+                    <span className="flex items-center gap-1.5">📚 15+ Learning Paths</span>
+                    <span className="flex items-center gap-1.5">🤖 AI-powered Mentorship</span>
+                </div>
+            </div>
+
+            <section id="features" className="max-w-7xl mx-auto px-6 py-24">
                 <BentoGrid className="grid-cols-1 md:grid-cols-3">
                     {[
                         {
@@ -72,7 +121,7 @@ export default function LandingPage() {
                         }
                     ].map((feature, i) => (
                         <BentoCard key={i} size="medium" className="flex flex-col justify-center">
-                            <div className="text-3xl mb-4">
+                            <div className="w-10 h-10 rounded-md bg-[var(--color-primary)]/10 flex items-center justify-center text-xl mb-4 text-[var(--color-primary)]">
                                 {feature.icon}
                             </div>
                             <h3 className="text-xl font-bold mb-3 tracking-tight">
@@ -97,6 +146,8 @@ export default function LandingPage() {
                     </div>
                     <div className="flex gap-6 text-xs font-bold uppercase tracking-wider text-[var(--fg-secondary)]">
                         <Link href="https://github.com/Nashid-k" className="hover:text-[var(--color-primary)] transition-colors">GitHub</Link>
+                        <Link href="#" className="hover:text-[var(--color-primary)] transition-colors">Privacy</Link>
+                        <Link href="#" className="hover:text-[var(--color-primary)] transition-colors">Terms</Link>
                     </div>
                 </div>
             </footer>

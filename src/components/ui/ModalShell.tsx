@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useRef } from "react";
 import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from "framer-motion";
 
 interface ModalShellProps {
   isOpen: boolean;
@@ -38,33 +39,43 @@ export function ModalShell({
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
   return (
-    <div className={cn("fixed inset-0 z-50 flex px-4", alignmentClasses)}>
-      <div
-        className={cn(
-          "absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity",
-          backdropClassName
-        )}
-        onClick={onClose}
-      />
-      <div
-        ref={dialogRef}
-        className={cn(
-          "relative z-10 w-full flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200",
-          "bg-[var(--surface-base)] rounded-lg border border-[var(--surface-border)] shadow-xl",
-          containerClassName
-        )}
-        role="dialog"
-        aria-modal="true"
-        aria-label={ariaLabel}
-        tabIndex={-1}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {children}
-      </div>
-    </div>
+    <AnimatePresence>
+      {isOpen && (
+        <div className={cn("fixed inset-0 z-50 flex", alignmentClasses)}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className={cn(
+              "absolute inset-0 bg-black/40 backdrop-blur-sm",
+              backdropClassName
+            )}
+            onClick={onClose}
+          />
+          <motion.div
+            ref={dialogRef}
+            initial={{ opacity: 0, scale: 0.96, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98, y: 4 }}
+            transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            className={cn(
+              "relative z-10 w-full flex flex-col overflow-hidden",
+              "bg-[var(--surface-base)] rounded-lg border border-[var(--surface-border)] shadow-xl",
+              containerClassName
+            )}
+            role="dialog"
+            aria-modal="true"
+            aria-label={ariaLabel}
+            tabIndex={-1}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {children}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 }
 

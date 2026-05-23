@@ -19,14 +19,14 @@ declare global {
 
 const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
 
-if (!uri) {
+if (isBuildPhase) {
+    clientPromise = new Promise(() => { });
+} else if (!uri) {
     if (process.env.NODE_ENV === 'production') {
         throw new Error('Please add your Mongo URI to .env.local');
     } else {
         clientPromise = Promise.reject(new Error('MONGODB_URI not configured'));
     }
-} else if (isBuildPhase) {
-    clientPromise = new Promise(() => { });
 } else {
     if (process.env.NODE_ENV === 'development') {
         if (!global._mongoClientPromise) {

@@ -4,6 +4,7 @@ import { CURRICULUM_REGISTRY } from '@/features/curriculum/curriculum-registry';
 
 interface PageProps {
     params: Promise<{ id: string }>;
+    searchParams: Promise<{ from?: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -30,8 +31,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
-export default async function TopicPage({ params }: PageProps) {
+export default async function TopicPage({ params, searchParams }: PageProps) {
     const { id } = await params;
+    const { from } = await searchParams;
 
     let title = `Topic: ${id}`;
     let description = 'Deep dive into this technical topic on Axiom.';
@@ -62,7 +64,7 @@ export default async function TopicPage({ params }: PageProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <TopicView id={id} curriculumData={curriculumData} />
+            <TopicView id={id} curriculumData={curriculumData} returnPath={from} />
         </>
     );
 }

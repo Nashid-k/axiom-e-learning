@@ -14,19 +14,29 @@ interface QuizViewProps {
 export function QuizView({ topic, category, persona, onComplete }: QuizViewProps) {
     const [quiz, setQuiz] = useState<Quiz | null>(null);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [answers, setAnswers] = useState<Record<number, number>>({});
     const [submitted, setSubmitted] = useState(false);
 
     const fetchQuiz = async () => {
         setLoading(true);
+        setError(null);
         try {
             const res = await fetch('/api/ai/quiz', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ topic, category, persona }),
             });
-            if (res.ok) setQuiz(await res.json());
-        } catch { } finally { setLoading(false); }
+            if (!res.ok) {
+                throw new Error(`Server error ${res.status}`);
+            }
+            const data = await res.json();
+            setQuiz(data);
+        } catch (err) {
+            setError('Failed to generate quiz. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const score = useMemo(() => {
@@ -48,6 +58,13 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
 
     if (loading) return <div className="py-20 flex justify-center"><LoadingSpinner size="lg" label="Generating Neural Challenge" /></div>;
 
+    if (error) return (
+        <div className="py-20 text-center space-y-4">
+            <p className="text-[var(--color-accent)] text-sm font-bold">{error}</p>
+            <Button variant="outline" onClick={fetchQuiz}>Retry</Button>
+        </div>
+    );
+
     if (!quiz) return (
         <div className="py-20 text-center">
             <h3 className="text-xl font-bold mb-6">Ready to verify your knowledge?</h3>
@@ -57,6 +74,12 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
 
     return (
         <div className="space-y-12">
+            <div aria-live="polite" className="sr-only">
+                {submitted && quiz
+                    ? `Quiz complete. You scored ${score} out of ${quiz.questions.length}. ${passed ? 'Passed.' : 'Not passed.'}`
+                    : ''}
+            </div>
+
             {quiz.questions.map((q, idx) => (
                 <div key={idx} className="space-y-6">
                     <p className="text-lg font-bold leading-tight">{idx + 1}. {q.question}</p>
@@ -72,13 +95,15 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
                                     disabled={submitted}
                                     onClick={() => setAnswers(prev => ({ ...prev, [idx]: oIdx }))}
                                     className={cn(
-                                        "p-4 text-left rounded-md border-2 transition-all font-medium",
-                                        isSelected ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5" : "border-surface-border hover:border-[var(--color-primary)]/40",
-                                        isCorrect && "border-success bg-success/5 text-success",
-                                        isWrong && "border-accent bg-accent/5 text-accent"
+                                        "p-4 text-left rounded-md border-2 transition-all font-medium flex items-center justify-between",
+                                        isSelected ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5" : "border-[var(--surface-border)] hover:border-[var(--color-primary)]/40",
+                                        isCorrect && "border-[var(--color-success)] bg-[var(--color-success)]/5 text-[var(--color-success)]",
+                                        isWrong && "border-[var(--color-accent)] bg-[var(--color-accent)]/5 text-[var(--color-accent)]"
                                     )}
                                 >
-                                    {opt}
+                                    <span>{opt}</span>
+                                    {submitted && isCorrect && <span className="text-[var(--color-success)] font-bold text-lg">✓</span>}
+                                    {submitted && isWrong && <span className="text-[var(--color-accent)] font-bold text-lg">✗</span>}
                                 </button>
                             );
                         })}
@@ -87,7 +112,7 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
             ))}
 
             {!submitted ? (
-                <div className="pt-8 border-t border-surface-border flex justify-center">
+                <div className="pt-8 border-t border-[var(--surface-border)] flex justify-center">
                     <Button onClick={handleSubmit} disabled={Object.keys(answers).length < quiz.questions.length}>
                         Submit Neural Sync
                     </Button>
@@ -95,11 +120,11 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
             ) : (
                 <div className={cn(
                     "p-8 rounded-md text-center border-2",
-                    passed ? "border-success bg-success/5" : "border-accent bg-accent/5"
+                    passed ? "border-[var(--color-success)] bg-[var(--color-success)]/5" : "border-[var(--color-accent)] bg-[var(--color-accent)]/5"
                 )}>
                     <h3 className="text-2xl font-black mb-2">{passed ? 'Mastery Verified' : 'Synchronization Failed'}</h3>
                     <p className="font-bold opacity-80 mb-6">You scored {score} out of {quiz.questions.length}</p>
-                    <Button onClick={() => { setQuiz(null); setAnswers({}); setSubmitted(false); }}>
+                    <Button onClick={() => { setQuiz(null); setAnswers({}); setSubmitted(false); setError(null); }}>
                         Try New Challenge
                     </Button>
                 </div>

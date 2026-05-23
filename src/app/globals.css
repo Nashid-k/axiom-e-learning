@@ -15,6 +15,9 @@
     --color-bg: #ffffff;
     --color-fg: #000000;
     --color-primary: #4f46e5; /* Indigo Accent */
+    --color-success: #22c55e;   /* green-500 */
+    --color-accent:  #ef4444;   /* red-500   */
+    --color-destruct: #ef4444;  /* alias     */
     
     /* Surface & Borders */
     --surface-base: #ffffff;
@@ -32,6 +35,9 @@
     --color-bg: #08090a; /* Linear Inky Black */
     --color-fg: #ffffff;
     --color-primary: #4f46e5;
+    --color-success: #22c55e;
+    --color-accent:  #ef4444;
+    --color-destruct: #ef4444;
     
     /* Surface & Borders */
     --surface-base: #08090a;

@@ -1,6 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 export type BentoCardSize = 'small' | 'medium' | 'large' | 'wide' | 'tall';
@@ -30,23 +31,39 @@ export default function BentoCard({
     href,
     noPadding = false,
 }: BentoCardProps) {
-    const Component = href ? 'a' : 'div';
+    if (href) {
+        return (
+            <Link
+                href={href}
+                onClick={onClick}
+                className={cn(
+                    "bento-card block w-full h-full cursor-pointer",
+                    sizeMap[size],
+                    !noPadding ? "p-6" : "p-0",
+                    className
+                )}
+            >
+                <div className="h-full">
+                    {children}
+                </div>
+            </Link>
+        );
+    }
     
     return (
-        <Component 
-            href={href}
+        <div 
             onClick={onClick}
             className={cn(
                 "bento-card block w-full h-full cursor-default",
                 sizeMap[size],
                 !noPadding ? "p-6" : "p-0",
-                (onClick || href) && "cursor-pointer",
+                onClick && "cursor-pointer",
                 className
             )}
         >
             <div className="h-full">
                 {children}
             </div>
-        </Component>
+        </div>
     );
 }

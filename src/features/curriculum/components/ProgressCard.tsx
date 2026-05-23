@@ -33,7 +33,7 @@ export function ProgressCard({ progressPercentage, validCompletedCount, totalIte
             <div className="h-3 bg-[var(--surface-raised)]/30 rounded-md overflow-hidden mb-4 relative">
                 <div
                     style={{ width: `${progressPercentage}%` }}
-                    className="h-full bg-[var(--color-primary)] rounded-md"
+                    className="h-full bg-[var(--color-primary)] rounded-md transition-[width] duration-500 ease-out"
                 />
             </div>
             

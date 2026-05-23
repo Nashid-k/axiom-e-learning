@@ -15,9 +15,10 @@ interface Flashcard {
 interface FlashcardViewProps {
     flashcards: Flashcard[];
     onReview: (topicId: string, result: 'again' | 'good' | 'easy') => Promise<void>;
+    onRestart?: () => void;
 }
 
-export function FlashcardView({ flashcards, onReview }: FlashcardViewProps) {
+export function FlashcardView({ flashcards, onReview, onRestart }: FlashcardViewProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [isReviewing, setIsReviewing] = useState(false);
@@ -50,7 +51,7 @@ export function FlashcardView({ flashcards, onReview }: FlashcardViewProps) {
                 <div className="text-4xl mb-6">✅</div>
                 <h2 className="text-xl font-bold mb-2 text-[var(--fg-primary)]">Session Complete</h2>
                 <p className="text-[var(--fg-secondary)] text-sm mb-8">You reviewed {flashcards.length} cards.</p>
-                <Button variant="outline" onClick={() => setCurrentIndex(0)}>Start Over</Button>
+                <Button variant="outline" onClick={() => { setCurrentIndex(0); onRestart?.(); }}>Start Over</Button>
             </div>
         );
     }

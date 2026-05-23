@@ -119,7 +119,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     </SectionReveal>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {data.phases.map((phase, i) => (
                         <SectionReveal key={phase.phase} delay={0.2 + i * 0.05} direction="up">
                             <PhaseCard
@@ -131,8 +131,8 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                     ))}
                 </div>
 
-                <footer className="mt-32 pt-16 border-t border-surface-border text-center">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-fg-muted">
+                <footer className="mt-32 pt-16 border-t border-[var(--surface-border)] text-center">
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--fg-muted)]">
                         Mission Progress: {stats.percentage}% Synchronized
                     </p>
                 </footer>

@@ -32,7 +32,7 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
             }
             const data = await res.json();
             setQuiz(data);
-        } catch (err) {
+        } catch {
             setError('Failed to generate quiz. Please try again.');
         } finally {
             setLoading(false);
@@ -70,7 +70,7 @@ export function QuizView({ topic, category, persona, onComplete }: QuizViewProps
             <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-24 h-24 bg-[var(--color-primary)]/10 blur-2xl rounded-full" />
             <span className="text-4xl mb-4 block">🧠</span>
             <h3 className="text-xl font-bold mb-3 text-white tracking-wide">Ready for Neural Verification?</h3>
-            <p className="text-sm text-[var(--fg-secondary)] mb-6 font-medium">Verify your understanding of this topic and complete the module by passing Maya's customized quiz.</p>
+            <p className="text-sm text-[var(--fg-secondary)] mb-6 font-medium">Verify your understanding of this topic and complete the module by passing Maya&apos;s customized quiz.</p>
             <Button onClick={fetchQuiz} className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-cyan)] shadow-[0_0_15px_rgba(99,102,241,0.3)]">
                 Generate Challenge
             </Button>

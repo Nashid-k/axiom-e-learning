@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useMemo } from 'react';
 import { TechIcon } from '@/components/ui/TechIcon';
 import { CATEGORIES } from '@/features/curriculum/curriculum-constants';

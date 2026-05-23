@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useTopics } from '@/features/learning/hooks/useTopics';
 import { getTopicsDueForReview } from '@/features/learning/spaced-repetition';
-import { cn } from '@/lib/utils';
 
 export default function ReviewBell() {
     const [isOpen, setIsOpen] = useState(false);

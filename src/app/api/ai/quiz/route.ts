@@ -45,7 +45,7 @@ Return ONLY the JSON object. Do not wrap in markdown or add extra text.
         const quizData = JSON.parse(responseText);
 
         return NextResponse.json(quizData);
-    } catch (error: any) {
+    } catch (error) {
         console.error('Quiz generation error:', error);
         return NextResponse.json({ error: 'Failed to generate quiz' }, { status: 500 });
     }

@@ -27,8 +27,10 @@ export default function LeaderboardPage() {
     const [pagination, setPagination] = useState({ totalUsers: 0, totalPages: 1, currentPage: 1 });
 
     useEffect(() => {
-        if (page === 1) setLoading(true);
-        else setIsFetching(true);
+        const timer = setTimeout(() => {
+            if (page === 1) setLoading(true);
+            else setIsFetching(true);
+        }, 0);
 
         fetch(`/api/social/leaderboard?page=${page}&limit=20`)
             .then(res => res.json())
@@ -44,6 +46,8 @@ export default function LeaderboardPage() {
                 setLoading(false); 
                 setIsFetching(false); 
             });
+
+        return () => clearTimeout(timer);
     }, [page]);
 
     // Extract top 3 for the podium

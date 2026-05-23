@@ -16,9 +16,11 @@ export default function ResourceModal({ topicTitle, curriculum, phase, onClose }
     const [articles, setArticles] = useState<Article[]>([]);
     const [fallbackUrls, setFallbackUrls] = useState<{ youtubeSearchUrl?: string; articleSearchUrls?: Record<string, string> } | null>(null);
 
-    const loadResources = useCallback(() => {
-        setLoading(true);
-        setError(false);
+    const loadResources = useCallback((showLoading = true) => {
+        if (showLoading) {
+            setLoading(true);
+            setError(false);
+        }
         let mounted = true;
         
         fetch('/api/resources/search', {
@@ -51,8 +53,14 @@ export default function ResourceModal({ topicTitle, curriculum, phase, onClose }
     }, [topicTitle, curriculum, phase]);
 
     useEffect(() => {
-        const cleanup = loadResources();
-        return cleanup;
+        let cancel: (() => void) | undefined;
+        const timer = setTimeout(() => {
+            cancel = loadResources(false);
+        }, 0);
+        return () => {
+            clearTimeout(timer);
+            if (cancel) cancel();
+        };
     }, [loadResources]);
 
     return (
@@ -74,7 +82,7 @@ export default function ResourceModal({ topicTitle, curriculum, phase, onClose }
                     <div className="py-20 text-center space-y-4">
                         <p className="text-sm text-[var(--fg-muted)]">Failed to load resources.</p>
                         <button
-                            onClick={loadResources}
+                            onClick={() => loadResources()}
                             className="px-4 py-2 border border-[var(--surface-border)] rounded-md text-sm font-bold hover:bg-[var(--surface-raised)] transition-colors text-[var(--fg-primary)] cursor-pointer"
                         >
                             Try Again

@@ -6,17 +6,30 @@ type JsonCurriculumMap = Record<string, CurriculumData>;
 
 export const getCategory = (cat: string): Category => {
     const mapping: Record<string, Category> = {
+        'foundation': 'Foundation',
+        'html': 'HTML',
+        'css': 'CSS',
+        'javascript': 'JavaScript',
+        'git': 'Git',
+        'web-fundamentals': 'Web Fundamentals',
         'react': 'React',
         'typescript': 'TypeScript',
-        'javascript': 'JavaScript',
+        'nextjs': 'Next.js',
         'nodejs': 'NodeJS',
+        'nestjs': 'NestJS',
+        'python': 'Python',
         'mongodb': 'MongoDB',
         'sql': 'SQL',
         'dsa': 'DSA',
-        'python': 'Python',
-        'nextjs': 'Next.js',
+        'networking': 'Networking',
+        'os': 'Operating Systems',
+        'testing': 'Testing',
+        'devops': 'DevOps',
+        'system-design': 'System Design',
+        'interview-prep': 'Interview Prep',
     };
-    return mapping[cat.toLowerCase()] || 'Other' as Category;
+    const normalized = cat.toLowerCase().replace(/\s+/g, '-');
+    return mapping[normalized] || 'Other' as Category;
 };
 
 export const CURRICULUM_REGISTRY: Record<string, CurriculumEntry> = {

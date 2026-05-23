@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/Button';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { cn } from '@/lib/utils';
@@ -23,6 +23,7 @@ export function FlashcardView({ flashcards, onReview, onRestart }: FlashcardView
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [isReviewing, setIsReviewing] = useState(false);
+    const cardContainerRef = useRef<HTMLDivElement>(null);
 
     const currentCard = flashcards[currentIndex];
     const remaining = flashcards.length - currentIndex;
@@ -36,9 +37,35 @@ export function FlashcardView({ flashcards, onReview, onRestart }: FlashcardView
         setIsReviewing(false);
     }, [currentCard, isReviewing, onReview]);
 
+    const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!cardContainerRef.current) return;
+        const rect = cardContainerRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const x = e.clientX - centerX;
+        const y = e.clientY - centerY;
+        
+        // Normalize coordinates to -1 to 1 range
+        const normalizedX = x / (rect.width / 2);
+        const normalizedY = y / (rect.height / 2);
+        
+        // Compute tilt angles (max 10 degrees)
+        const tiltX = -normalizedY * 10;
+        const tiltY = normalizedX * 10;
+        
+        cardContainerRef.current.style.setProperty('--tilt-x', `${tiltX}deg`);
+        cardContainerRef.current.style.setProperty('--tilt-y', `${tiltY}deg`);
+    };
+
+    const handleCardMouseLeave = () => {
+        if (!cardContainerRef.current) return;
+        cardContainerRef.current.style.setProperty('--tilt-x', '0deg');
+        cardContainerRef.current.style.setProperty('--tilt-y', '0deg');
+    };
+
     if (flashcards.length === 0) {
         return (
-            <div className="py-24 text-center glass-panel max-w-md mx-auto rounded-2xl border-white/10 shadow-2xl relative overflow-hidden">
+            <div className="py-24 text-center glass-panel max-w-md mx-auto rounded-2xl border-white/10 shadow-2xl relative overflow-hidden animate-spring-up">
                 <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-24 h-24 bg-[var(--color-success)]/10 blur-2xl rounded-full" />
                 <div className="text-5xl mb-6 animate-bounce">🎉</div>
                 <h2 className="text-2xl font-black mb-3 text-white tracking-wide">Deck Cleared</h2>
@@ -49,14 +76,14 @@ export function FlashcardView({ flashcards, onReview, onRestart }: FlashcardView
 
     if (currentIndex >= flashcards.length) {
         return (
-            <div className="py-24 text-center glass-panel max-w-md mx-auto rounded-2xl border-white/10 shadow-2xl relative overflow-hidden">
+            <div className="py-24 text-center glass-panel max-w-md mx-auto rounded-2xl border-white/10 shadow-2xl relative overflow-hidden animate-spring-up">
                 <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-24 h-24 bg-[var(--color-primary)]/10 blur-2xl rounded-full" />
                 <div className="text-5xl mb-6">✅</div>
                 <h2 className="text-2xl font-black mb-3 text-white tracking-wide font-display">Session Complete</h2>
                 <p className="text-[var(--fg-secondary)] text-sm mb-8 font-medium">You completed reviewing {flashcards.length} cards.</p>
                 <Button 
                     onClick={() => { setCurrentIndex(0); onRestart?.(); }}
-                    className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-cyan)] shadow-[0_0_15px_rgba(99,102,241,0.35)]"
+                    className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-cyan)] shadow-[0_0_15px_rgba(99,102,241,0.35)] animate-pulse"
                 >
                     Initiate New Cycle
                 </Button>
@@ -67,7 +94,7 @@ export function FlashcardView({ flashcards, onReview, onRestart }: FlashcardView
     return (
         <div className="max-w-md mx-auto">
             {/* Progress HUD */}
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex items-center justify-between animate-spring-up" style={{ animationDelay: '120ms' }}>
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--fg-secondary)]">MATRIX PROGRESS</div>
                 <div className="flex-1 mx-4 h-1.5 bg-black/40 rounded-full overflow-hidden p-[1px]">
                     <div className="h-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full transition-all duration-300 shadow-[0_0_8px_rgba(99,102,241,0.5)]" style={{ width: `${(currentIndex / flashcards.length) * 100}%` }} />
@@ -77,14 +104,20 @@ export function FlashcardView({ flashcards, onReview, onRestart }: FlashcardView
 
             {/* 3D Flip Card Container */}
             <div 
-                className="w-full aspect-[4/5] [perspective:1000px] cursor-pointer"
+                ref={cardContainerRef}
+                className="w-full aspect-[4/5] [perspective:1000px] cursor-pointer animate-spring-up"
+                style={{ animationDelay: '180ms' }}
+                onMouseMove={handleCardMouseMove}
+                onMouseLeave={handleCardMouseLeave}
                 onClick={() => setIsFlipped(!isFlipped)}
             >
                 <div 
                     className={cn(
-                        "relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d]",
-                        isFlipped && "[transform:rotateY(180deg)]"
+                        "relative w-full h-full transition-transform duration-500 ease-out [transform-style:preserve-3d]"
                     )}
+                    style={{
+                        transform: `rotateX(var(--tilt-x, 0deg)) rotateY(calc(var(--tilt-y, 0deg) + ${isFlipped ? 180 : 0}deg))`
+                    }}
                 >
                     {/* Front of Card */}
                     <div 

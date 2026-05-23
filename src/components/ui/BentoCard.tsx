@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useRef, MouseEvent } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -13,6 +13,7 @@ interface BentoCardProps {
     onClick?: () => void;
     href?: string;
     noPadding?: boolean;
+    style?: React.CSSProperties;
 }
 
 const sizeMap: Record<BentoCardSize, string> = {
@@ -30,20 +31,37 @@ export default function BentoCard({
     onClick,
     href,
     noPadding = false,
+    style,
 }: BentoCardProps) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const linkRef = useRef<HTMLAnchorElement>(null);
+
+    const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+        const element = e.currentTarget;
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        element.style.setProperty('--mouse-x', `${x}px`);
+        element.style.setProperty('--mouse-y', `${y}px`);
+    };
+
     if (href) {
         return (
             <Link
+                ref={linkRef}
                 href={href}
                 onClick={onClick}
+                onMouseMove={handleMouseMove}
                 className={cn(
-                    "bento-card block w-full h-full cursor-pointer",
+                    "bento-card spotlight-card block w-full h-full cursor-pointer transition-all duration-500 ease-out active:scale-[0.98] active:translate-y-[1px]",
                     sizeMap[size],
                     !noPadding ? "p-6" : "p-0",
                     className
                 )}
+                style={style}
             >
-                <div className="h-full">
+                <div className="h-full relative z-10">
                     {children}
                 </div>
             </Link>
@@ -52,16 +70,19 @@ export default function BentoCard({
     
     return (
         <div 
+            ref={cardRef}
             onClick={onClick}
+            onMouseMove={handleMouseMove}
             className={cn(
-                "bento-card block w-full h-full cursor-default",
+                "bento-card spotlight-card block w-full h-full cursor-default transition-all duration-500 ease-out",
                 sizeMap[size],
                 !noPadding ? "p-6" : "p-0",
-                onClick && "cursor-pointer",
+                onClick && "cursor-pointer active:scale-[0.98] active:translate-y-[1px]",
                 className
             )}
+            style={style}
         >
-            <div className="h-full">
+            <div className="h-full relative z-10">
                 {children}
             </div>
         </div>

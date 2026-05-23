@@ -10,7 +10,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export function Header() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
@@ -65,11 +65,16 @@ export function Header() {
           <ThemeToggle />
           <div className="h-5 w-[1px] bg-[var(--surface-border)]" />
           {user ? (
-            <Link href="/paths" className="hidden sm:block">
-              <Button size="sm" variant="secondary" className="border-white/10 hover:border-[var(--color-primary)]/30">
-                Dashboard
+            <div className="hidden sm:flex items-center gap-2">
+              <Link href="/paths">
+                <Button size="sm" variant="secondary" className="border-white/10 hover:border-[var(--color-primary)]/30">
+                  Dashboard
+                </Button>
+              </Link>
+              <Button size="sm" variant="outline" className="border-red-500/20 text-red-400 hover:bg-red-500/10 hover:border-red-500/30" onClick={() => logout()}>
+                Sign Out
               </Button>
-            </Link>
+            </div>
           ) : (
             <Link href="/login" className="hidden sm:block">
               <Button size="sm">Sign In</Button>
@@ -121,11 +126,16 @@ export function Header() {
           })}
           <div className="pt-4 border-t border-white/5 flex flex-col gap-3">
             {user ? (
-              <Link href="/paths" onClick={() => setMobileOpen(false)} className="w-full">
-                <Button size="sm" variant="secondary" className="w-full justify-center">
-                  Dashboard
+              <>
+                <Link href="/paths" onClick={() => setMobileOpen(false)} className="w-full">
+                  <Button size="sm" variant="secondary" className="w-full justify-center">
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button size="sm" variant="outline" className="w-full justify-center border-red-500/20 text-red-400 hover:bg-red-500/10 hover:border-red-500/30" onClick={() => { setMobileOpen(false); logout(); }}>
+                  Sign Out
                 </Button>
-              </Link>
+              </>
             ) : (
               <Link href="/login" onClick={() => setMobileOpen(false)} className="w-full">
                 <Button size="sm" className="w-full justify-center">

@@ -50,35 +50,38 @@ export default function FlashcardsPage() {
 
     return (
         <RouteGuard>
-            <div className="pb-12">
-                <header className="text-center mb-12">
-                    <h1 className="text-4xl font-bold tracking-tight mb-2 text-[var(--fg-primary)]">
+            <div className="pb-12 text-white">
+                <header className="text-center mb-12 animate-spring-up" style={{ animationDelay: '0ms' }}>
+                    <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[var(--color-cyan)] mb-3">SYNAPTIC REPETITION</div>
+                    <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-3 text-gradient-primary">
                         Flashcards
                     </h1>
-                    <p className="text-[var(--fg-secondary)]">
-                        Spaced repetition for long-term mastery
+                    <p className="text-sm font-semibold text-[var(--fg-secondary)] max-w-md mx-auto">
+                        High-fidelity spaced repetition cycles engineered for long-term cognitive engineering mastery.
                     </p>
                 </header>
 
-                <div className="flex justify-center gap-2 mb-8">
-                    <button
-                        onClick={() => setFilter('due')}
-                        className={`px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-colors min-h-[36px] ${filter === 'due'
-                                ? 'bg-[var(--color-primary)] text-white'
-                                : 'bg-[var(--surface-raised)] text-[var(--fg-secondary)] border border-[var(--surface-border)] hover:bg-[var(--surface-border)]'
-                            }`}
-                    >
-                        Due ({flashcards.filter(c => c.isDue).length})
-                    </button>
-                    <button
-                        onClick={() => setFilter('all')}
-                        className={`px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-colors min-h-[36px] ${filter === 'all'
-                                ? 'bg-[var(--color-primary)] text-white'
-                                : 'bg-[var(--surface-raised)] text-[var(--fg-secondary)] border border-[var(--surface-border)] hover:bg-[var(--surface-border)]'
-                            }`}
-                    >
-                        All ({flashcards.length})
-                    </button>
+                <div className="flex justify-center mb-10 animate-spring-up" style={{ animationDelay: '80ms' }}>
+                    <div className="inline-flex items-center p-1 bg-white/[0.02] border border-white/5 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+                        <button
+                            onClick={() => setFilter('due')}
+                            className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-400 ease-out active:scale-95 cursor-pointer min-h-[38px] ${filter === 'due'
+                                    ? 'bg-white text-black font-extrabold shadow-[0_2px_8px_rgba(255,255,255,0.2)]'
+                                    : 'text-[var(--fg-secondary)] hover:text-white'
+                                }`}
+                        >
+                            Due Nodes ({flashcards.filter(c => c.isDue).length})
+                        </button>
+                        <button
+                            onClick={() => setFilter('all')}
+                            className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-400 ease-out active:scale-95 cursor-pointer min-h-[38px] ${filter === 'all'
+                                    ? 'bg-white text-black font-extrabold shadow-[0_2px_8px_rgba(255,255,255,0.2)]'
+                                    : 'text-[var(--fg-secondary)] hover:text-white'
+                                }`}
+                        >
+                            All Nodes ({flashcards.length})
+                        </button>
+                    </div>
                 </div>
 
                 {loading ? (

@@ -41,12 +41,16 @@
         "theory": [
           "Comparison Operators ($gt, $lt): The 'Range Finder' tools",
           "Logical Operators ($and, $or): Combining search rules",
-          "Array Operators ($in, $push): Handling folders that contain lists",
-          "Regex: Searching for folders using partial names or patterns"
+          "Array Operators ($in, $push, $all, $elemMatch): Handling folders that contain lists and nested arrays",
+          "Regex: Searching for folders using partial names or patterns",
+          "Geospatial Operators ($near, $geoWithin): Locating nearest items in a 2D coordinate space",
+          "Text Search & Atlas Search: Setting up Lucene-powered full-text search indexing"
         ],
         "practicals": [
           "Update a folder to add a new 'Label' using $push",
-          "Find users who have 'Reading' OR 'Coding' in their hobby list"
+          "Find users who have 'Reading' OR 'Coding' in their hobby list",
+          "Write a geo-query to find warehouses within 10 miles of a coordinate",
+          "Perform a full-text search on product descriptions with text indexes"
         ]
       },
       {
@@ -107,16 +111,21 @@
       },
       {
         "phase": 8,
-        "title": "Global Scaling: Replication & Sharding",
+        "title": "Global Scaling & Advanced Operations",
         "theory": [
-          "Replication: Keeping copies of your storage facility for safety",
-          "Sharding: Breaking a massive facility into multiple smaller ones",
-          "Transactions: The 'All-or-Nothing' storage contract",
-          "Security: Role-based access for different facility staff"
+          "Replication: Keeping copies of your storage facility for safety (Replica Sets, Primary & Secondary nodes)",
+          "Sharding: Breaking a massive facility into multiple smaller ones (Shard keys, Config servers, mongos Router)",
+          "Transactions: The 'All-or-Nothing' storage contract (ACID multi-document transactions)",
+          "Security: Role-based access control (RBAC), authentication and network security in MongoDB",
+          "Change Streams: Listening to real-time warehouse inventory updates as they happen",
+          "GridFS: Handling giant files exceeding the 16MB BSON limit by dividing them into chunks",
+          "Capped Collections: Fixed-size circular storage for high-speed logging buffers"
         ],
         "practicals": [
-          "Mock a 'Money Transfer' using Transactions",
-          "List the steps to secure a facility with an Admin badge"
+          "Mock a 'Money Transfer' using Multi-document Transactions",
+          "List the steps to secure a facility with an Admin badge",
+          "Create a Capped Collection for auto-expiring system logs",
+          "Set up a Change Stream listener to log database writes in real-time"
         ]
       }
     ]

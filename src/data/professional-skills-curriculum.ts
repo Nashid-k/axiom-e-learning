@@ -793,7 +793,7 @@ export const OS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 2,
+                phase: 8,
                 title: "The Security Guard: Protection & Permissions",
                 theory: [
                     "Authentication: Checking ID cards at the front gate",

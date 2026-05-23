@@ -192,5 +192,42 @@ export const DSA_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             }
         ]
+    },
+    "dsa-questions": {
+        id: "dsa-questions",
+        fileName: "dsa-questions",
+        description: "DSA Code Challenge Prep",
+        category: "DSA",
+        subDescription: "50+ interview questions. Master explaining time complexity, sorting, trees, and dynamic programming.",
+        phases: [
+            {
+                phase: 1,
+                title: "Complexity & Basic Structures",
+                theory: [
+                    "Big O Notation: Analyzing Worst-Case Performance",
+                    "Arrays vs Linked Lists: Contiguous Memory vs Dynamic Links",
+                    "Stacks vs Queues: LIFO vs FIFO execution",
+                    "Hash Collisions: Chaining vs Open Addressing"
+                ],
+                practicals: [
+                    "Explain why Hash Table operations are O(1) average time",
+                    "Demonstrate two-pointer partition logic verbally"
+                ]
+            },
+            {
+                phase: 2,
+                title: "Advanced Structures & Optimization",
+                theory: [
+                    "Trees & BST: Balanced search hierarchies",
+                    "Heaps: Managing Priority Queue order",
+                    "Dijkstra's shortest path search",
+                    "Dynamic Programming: Memoization vs Tabulation"
+                ],
+                practicals: [
+                    "Perform tree traversal sequences (Inorder, Preorder, Postorder)",
+                    "Solve a knapsack dynamic grid simulation"
+                ]
+            }
+        ]
     }
 };

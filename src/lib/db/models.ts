@@ -175,6 +175,9 @@ export interface IUser extends Document {
     totalPoints?: number;
     termsAccepted?: boolean;
     termsAcceptedAt?: Date;
+    githubToken?: string;
+    githubUsername?: string;
+    githubAvatar?: string;
 }
 
 const UserSchema = new Schema({
@@ -203,6 +206,9 @@ const UserSchema = new Schema({
     totalPoints: { type: Number, default: 0, index: true },
     termsAccepted: { type: Boolean, default: false },
     termsAcceptedAt: { type: Date },
+    githubToken: { type: String },
+    githubUsername: { type: String },
+    githubAvatar: { type: String },
 }, { timestamps: true });
 
 export const User = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
@@ -478,3 +484,33 @@ WebVitalEventSchema.index({ ts: 1 }, { expireAfterSeconds: VITALS_RETENTION_SECO
 
 export const WebVitalEvent: Model<IWebVitalEvent> =
     mongoose.models.WebVitalEvent || mongoose.model<IWebVitalEvent>('WebVitalEvent', WebVitalEventSchema);
+
+export interface ICodingRoom extends Document {
+    roomId: string;
+    files: Record<string, any>;
+    activeFilePath: string;
+    participants: { email: string; name: string; avatar: string; lastActive: Date }[];
+    version: number;
+    updatedAt: Date;
+}
+
+const CodingRoomSchema = new Schema<ICodingRoom>({
+    roomId: { type: String, required: true, unique: true, index: true },
+    files: { type: Schema.Types.Mixed, required: true },
+    activeFilePath: { type: String, required: true },
+    participants: [{
+        email: { type: String, required: true },
+        name: { type: String, required: true },
+        avatar: { type: String, required: true },
+        lastActive: { type: Date, default: Date.now }
+    }],
+    version: { type: Number, default: 1 }
+}, {
+    timestamps: true
+});
+
+// TTL Index: expire rooms if inactive for 4 hours (14400 seconds)
+CodingRoomSchema.index({ updatedAt: 1 }, { expireAfterSeconds: 14400 });
+
+export const CodingRoom: Model<ICodingRoom> =
+    mongoose.models.CodingRoom || mongoose.model<ICodingRoom>('CodingRoom', CodingRoomSchema);

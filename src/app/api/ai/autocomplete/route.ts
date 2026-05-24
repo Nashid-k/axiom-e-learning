@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { auth } from '@/lib/auth';
 
 const AutocompleteSchema = z.object({
     prefix: z.string().max(2000),
@@ -27,8 +28,12 @@ function hasValidAccessToken(req: NextRequest): boolean {
 
 export async function POST(req: NextRequest) {
     try {
-        if (!hasValidAccessToken(req)) {
-            return NextResponse.json({ error: 'Unauthorized Access. Invalid Agent Token.' }, { status: 401 });
+        const session = await auth();
+        const hasSession = !!session?.user?.email;
+        const hasToken = hasValidAccessToken(req);
+
+        if (!hasSession && !hasToken) {
+            return NextResponse.json({ error: 'Unauthorized Access. Session or agent token required.' }, { status: 401 });
         }
 
         const body = await req.json();
@@ -40,11 +45,7 @@ export async function POST(req: NextRequest) {
 
         const { prefix, suffix, language } = parsed.data;
 
-        // Use a fast model for autocomplete
-        const GROQ_API_KEY = process.env.GROQ_API_KEY_1;
-        if (!GROQ_API_KEY) {
-            return NextResponse.json({ error: 'Groq API Key missing' }, { status: 500 });
-        }
+        const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
         const systemPrompt = `You are a strict code autocomplete engine for ${language || 'code'}. 
 You will be given the code BEFORE the cursor, and the code AFTER the cursor.
@@ -63,7 +64,7 @@ ONLY output the missing middle chunk.`;
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                model: 'llama3-70b-8192', // Or 'llama-3.1-8b-instant' if available, using 70b-8192 as it's the default in the other route
+                model: 'openai/gpt-oss-120b',
                 messages: [
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: userPrompt }

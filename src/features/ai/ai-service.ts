@@ -31,31 +31,32 @@ class LRUCache<K, V> {
 class AIService {
     private clientCache = new LRUCache<string, Groq>(5);
     private groqKeys: string[] = [];
-    private keyIndex = -1;
+    private keyIndex = 0;
 
     private readonly MODELS: Record<string, string> = {
-        fast: 'llama-3.1-8b-instant',
-        reasoning: 'llama-3.3-70b-versatile',
-        creative: 'llama-3.3-70b-versatile',
-        coding: 'llama-3.3-70b-versatile',
-        fallback: 'llama-3.1-8b-instant',
+        fast: 'openai/gpt-oss-120b',
+        reasoning: 'openai/gpt-oss-120b',
+        creative: 'openai/gpt-oss-120b',
+        coding: 'openai/gpt-oss-120b',
+        fallback: 'openai/gpt-oss-120b',
     };
 
     constructor() {
-        this.groqKeys = Array.from({ length: 10 }, (_, i) => process.env[`GROQ_API_KEY_${i + 1}`])
-            .filter((k): k is string => !!k);
-        if (this.groqKeys.length > 0) {
-            this.keyIndex = Date.now() % this.groqKeys.length;
+        const key = process.env.GROQ_API_KEY;
+        if (key) {
+            this.groqKeys = [key];
         }
     }
 
     private nextClient(): Groq | null {
         if (this.groqKeys.length === 0) return null;
-        this.keyIndex = (this.keyIndex + 1) % this.groqKeys.length;
-        const key = this.groqKeys[this.keyIndex];
+        const key = this.groqKeys[0];
         let client = this.clientCache.get(key);
         if (!client) {
-            client = new Groq({ apiKey: key });
+            client = new Groq({ 
+                apiKey: key,
+                baseURL: "https://api.groq.com/openai/v1"
+            });
             this.clientCache.put(key, client);
         }
         return client;

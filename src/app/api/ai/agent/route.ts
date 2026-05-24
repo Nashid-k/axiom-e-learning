@@ -4,11 +4,12 @@ import { rateLimit } from '@/lib/utils/security';
 import { auth } from '@/lib/auth';
 import { withApiVitals } from '@/lib/monitoring/api-vitals';
 
-const GROQ_API_KEY = process.env.GROQ_API_KEY_1;
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const DEFAULT_MODEL = 'llama3-70b-8192';
+const DEFAULT_MODEL = 'openai/gpt-oss-120b';
 
 const MODEL_PROVIDER_MAP = {
+    'openai/gpt-oss-120b': 'groq',
     'llama3-70b-8192': 'groq',
     'llama-3.3-70b-versatile': 'groq',
     'openai/gpt-4o-mini': 'openrouter',

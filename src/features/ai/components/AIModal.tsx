@@ -225,6 +225,11 @@ export default function AIModal() {
                                     <CodeEditor 
                                         key={topicId} 
                                         language={detectLanguage(topicData.category)} 
+                                        onAIReview={async (filesText) => {
+                                            setActiveTab('ai');
+                                            setIsChatActive(true);
+                                            await sendMessage(`Please act as an Elite Senior Architect and review my workspace code: \n\n${filesText}\n\nPoint out syntax errors, suggest clean structure upgrades, and check if it follows best practices.`);
+                                        }}
                                     />
                                 </div>
                             </div>

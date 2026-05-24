@@ -10,6 +10,7 @@ import QueryProvider from '@/lib/providers/QueryProvider';
 import { ProgressProvider } from '@/lib/providers/ProgressProvider';
 import { TopicProvider } from "@/lib/providers/topic-context";
 import { ModalProvider } from "@/features/ai/context/ModalContext";
+import { ExperienceProvider } from "@/lib/providers/ExperienceProvider";
 
 const GlobalAssistant = dynamic(() => import('@/features/ai/assistant/components/GlobalAssistant'), { ssr: false });
 const AIModal = dynamic(() => import('@/features/ai/components/AIModal'), { ssr: false });
@@ -27,20 +28,22 @@ export default function ClientShell({ children }: { children: React.ReactNode })
             <AuthProvider>
                 <QueryProvider>
                     <ErrorBoundary>
-                        <ProgressProvider>
-                            <TopicProvider>
-                                <ModalProvider>
-                                    <Header />
-                                    <GlobalSearch />
-                                    <main id="main-content" className="min-h-screen pt-0 bg-[var(--surface-base)] transition-none">
-                                        {children}
-                                    </main>
-                                    <GlobalAssistant />
-                                    <AIModal />
-                                    <WebVitalsReporter />
-                                </ModalProvider>
-                            </TopicProvider>
-                        </ProgressProvider>
+                        <ExperienceProvider>
+                            <ProgressProvider>
+                                <TopicProvider>
+                                    <ModalProvider>
+                                        <Header />
+                                        <GlobalSearch />
+                                        <main id="main-content" className="min-h-screen pt-0 bg-[var(--surface-base)] transition-none">
+                                            {children}
+                                        </main>
+                                        <GlobalAssistant />
+                                        <AIModal />
+                                        <WebVitalsReporter />
+                                    </ModalProvider>
+                                </TopicProvider>
+                            </ProgressProvider>
+                        </ExperienceProvider>
                     </ErrorBoundary>
                 </QueryProvider>
             </AuthProvider>

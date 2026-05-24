@@ -32,7 +32,8 @@ export default async function CategoryPage({ params }: PageProps) {
             return {
                 slug: c.slug,
                 category: c.category,
-                description: String(data.description || '')
+                description: String(data.description || ''),
+                experienceLevels: data.experienceLevels || []
             };
         })
     );

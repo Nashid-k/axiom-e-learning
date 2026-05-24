@@ -11,6 +11,23 @@ import { CurriculumHeader } from './CurriculumHeader';
 import { ProgressCard } from './ProgressCard';
 import { PhaseCard } from './PhaseCard';
 import SectionReveal from '@/components/ui/SectionReveal';
+import { useExperience } from '@/lib/providers/ExperienceProvider';
+
+const LEVEL_WEIGHTS: Record<string, number> = {
+    "1yoe": 1,
+    "2yoe": 2,
+    "3yoe": 3,
+    "4yoe": 4,
+    "4+yoe": 5,
+};
+
+function isLevelIncluded(targetExperience: string[], selectedLevel: string): boolean {
+    const selectedWeight = LEVEL_WEIGHTS[selectedLevel] || 1;
+    return targetExperience.some(exp => {
+        const weight = LEVEL_WEIGHTS[exp] || 1;
+        return weight <= selectedWeight;
+    });
+}
 
 interface CurriculumViewProps {
     data: CurriculumData;
@@ -22,10 +39,18 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
     const categorySlug = categoryName.toLowerCase().replace(/\s+/g, '-');
     
     const { isChecked, isLoading } = useProgress(categorySlug);
+    const { experienceLevel } = useExperience();
+
+    const filteredPhases = useMemo(() => {
+        return data.phases.filter(phase => {
+            if (!phase.targetExperience || phase.targetExperience.length === 0) return true;
+            return isLevelIncluded(phase.targetExperience, experienceLevel);
+        });
+    }, [data.phases, experienceLevel]);
 
     const allTopics = useMemo(() => {
         const topics: TopicItem[] = [];
-        data.phases.forEach((phase) => {
+        filteredPhases.forEach((phase) => {
             const processItems = (items: Array<string | RichItem> | undefined, type: 'theory' | 'practical') => {
                 items?.forEach((rawItem, idx) => {
                     const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem;
@@ -48,7 +73,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
     const stats = useMemo(() => {
         let total = 0;
         let completed = 0;
-        data.phases.forEach((phase) => {
+        filteredPhases.forEach((phase) => {
             const count = (items?: Array<string | RichItem>) => items?.forEach((raw, idx) => {
                 total++;
                 const id = typeof raw === 'string' ? `item-${phase.phase}-${idx}` : raw.id || `item-${phase.phase}-${idx}`;
@@ -62,7 +87,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
             completed,
             percentage: total > 0 ? Math.round((completed / total) * 100) : 0
         };
-    }, [data.phases, isChecked]);
+    }, [filteredPhases, isChecked]);
 
     const { openAIModal } = useModal();
 
@@ -120,7 +145,7 @@ export default function CurriculumView({ data }: CurriculumViewProps) {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {data.phases.map((phase, i) => (
+                    {filteredPhases.map((phase, i) => (
                         <SectionReveal key={phase.phase} delay={0.2 + i * 0.05} direction="up">
                             <PhaseCard
                                 phase={phase}

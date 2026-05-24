@@ -10,10 +10,36 @@ export interface StructuredPathData {
     slug: string;
     category: string;
     description: string;
+    experienceLevels?: string[];
 }
 
+const LEVEL_WEIGHTS: Record<string, number> = {
+    "1yoe": 1,
+    "2yoe": 2,
+    "3yoe": 3,
+    "4yoe": 4,
+    "4+yoe": 5,
+};
+
+function isLevelIncluded(targetExperience: string[], selectedLevel: string): boolean {
+    const selectedWeight = LEVEL_WEIGHTS[selectedLevel] || 1;
+    return targetExperience.some(exp => {
+        const weight = LEVEL_WEIGHTS[exp] || 1;
+        return weight <= selectedWeight;
+    });
+}
+
+import { useExperience } from '@/lib/providers/ExperienceProvider';
+
 function StructuredPaths({ curricula }: { curricula: StructuredPathData[] }) {
-    if (curricula.length === 0) return null;
+    const { experienceLevel } = useExperience();
+
+    const filteredCurricula = curricula.filter(curr => {
+        if (!curr.experienceLevels || curr.experienceLevels.length === 0) return true;
+        return isLevelIncluded(curr.experienceLevels, experienceLevel);
+    });
+
+    if (filteredCurricula.length === 0) return null;
 
     return (
         <div className="mb-14">
@@ -22,7 +48,7 @@ function StructuredPaths({ curricula }: { curricula: StructuredPathData[] }) {
                 <span className="tracking-tight text-white">Structured Mastery Paths</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {curricula.map((curr, i) => {
+                {filteredCurricula.map((curr, i) => {
                     const displayName = curr.slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
                     return (
                         <Link key={curr.slug} href={`/learn/${curr.slug}`} className="group h-full block">

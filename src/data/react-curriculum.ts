@@ -4,6 +4,7 @@ export const REACT_CURRICULUM = {
         description: "React Fundamentals",
         category: "React",
         subDescription: "Start your journey with JSX, components, and state management essentials.",
+        experienceLevels: ["1yoe"],
         phases: [
             {
                 phase: 1,
@@ -177,6 +178,7 @@ export const REACT_CURRICULUM = {
         description: "React Hooks & Patterns",
         category: "React",
         subDescription: "Master hooks, specialized kitchen tools, and advanced cooking patterns.",
+        experienceLevels: ["2yoe", "3yoe"],
         phases: [
             {
                 phase: 11,
@@ -281,6 +283,7 @@ export const REACT_CURRICULUM = {
         description: "Advanced React Ecosystem",
         category: "React",
         subDescription: "Master performance optimization, Redux state management, and enterprise architecture.",
+        experienceLevels: ["4yoe", "4+yoe"],
         phases: [
             {
                 phase: 17,
@@ -433,6 +436,7 @@ export const REACT_CURRICULUM = {
         description: "React Question Bank",
         category: "React",
         subDescription: "Master 50+ real-world React interview questions with analogy-driven explanations.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,

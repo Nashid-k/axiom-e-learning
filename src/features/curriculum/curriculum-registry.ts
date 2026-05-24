@@ -4,6 +4,28 @@ export * from './curriculum-constants';
 
 type JsonCurriculumMap = Record<string, CurriculumData>;
 
+function injectFallbackExperienceLevels(data: CurriculumData): CurriculumData {
+    if (!data || !data.phases) return data;
+    
+    let hasAnyExplicitPhases = data.phases.some(p => p.targetExperience && p.targetExperience.length > 0);
+    if (hasAnyExplicitPhases) return data;
+
+    const totalPhases = data.phases.length;
+    const newPhases = data.phases.map((phase, i) => {
+        const progress = (i + 1) / totalPhases;
+        let targetExperience: string[] = [];
+        if (progress <= 0.25) targetExperience = ["1yoe"];
+        else if (progress <= 0.5) targetExperience = ["2yoe"];
+        else if (progress <= 0.75) targetExperience = ["3yoe"];
+        else if (progress <= 0.9) targetExperience = ["4yoe"];
+        else targetExperience = ["4+yoe"];
+        return { ...phase, targetExperience };
+    });
+
+    const uniqueExp = Array.from(new Set(newPhases.flatMap(p => p.targetExperience || [])));
+    return { ...data, phases: newPhases, experienceLevels: data.experienceLevels || uniqueExp };
+}
+
 export const getCategory = (cat: string): Category => {
     const mapping: Record<string, Category> = {
         'foundation': 'Foundation',
@@ -305,11 +327,21 @@ export const getCurriculumSlug = (title: string): string => {
 };
 
 export const getCurriculumEntry = (slug: string): CurriculumEntry | undefined => {
-    return CURRICULUM_REGISTRY[slug];
+    const entry = CURRICULUM_REGISTRY[slug];
+    if (!entry) return undefined;
+    return {
+        ...entry,
+        getData: () => entry.getData().then(injectFallbackExperienceLevels)
+    };
 };
 
 export const getCurriculaByCategory = (category: Category): CurriculumEntry[] => {
-    return Object.values(CURRICULUM_REGISTRY).filter(entry => entry.category === category);
+    return Object.values(CURRICULUM_REGISTRY)
+        .filter(entry => entry.category === category)
+        .map(entry => ({
+            ...entry,
+            getData: () => entry.getData().then(injectFallbackExperienceLevels)
+        }));
 };
 
 

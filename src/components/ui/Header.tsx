@@ -7,6 +7,7 @@ import { useAuth } from "@/features/auth/AuthContext";
 import { AxiomLogo } from "./AxiomLogo";
 import { Button } from "./Button";
 import { ThemeToggle } from "./ThemeToggle";
+import { ExperienceSelector } from "./ExperienceSelector";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -62,8 +63,9 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-4">
+          <ExperienceSelector />
           <ThemeToggle />
-          <div className="h-5 w-[1px] bg-[var(--surface-border)]" />
+          <div className="hidden sm:block h-5 w-[1px] bg-[var(--surface-border)]" />
           {user ? (
             <div className="hidden sm:flex items-center gap-2">
               <Link href="/paths">

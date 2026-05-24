@@ -2,13 +2,15 @@ export const SQL_CURRICULUM = {
     "sql": {
         id: "sql",
         fileName: "sql",
-        description: "The Warehouse Floor (SQL Mastery)",
+        description: "The AI Warehouse Floor (SQL & Vector DBs)",
         category: "SQL",
-        subDescription: "Master the warehouse logistics. From basic storage and retrieval to advanced joins, normalization, and ACID transactions.",
+        subDescription: "Master modern SQL logistics. From advanced joins and normalization to pgvector embeddings and LLM similarity search.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
                 title: "Opening the Warehouse: Databases & Tables",
+                targetExperience: ["1yoe"],
                 theory: [
                     "What is a Database? (The Warehouse Building)",
                     "Tables & Rows: Filing Cabinets and individual folders",
@@ -24,6 +26,7 @@ export const SQL_CURRICULUM = {
             {
                 phase: 2,
                 title: "Finding Items: Basic Searching",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
                     "SELECT: Telling the robot which folders to grab",
                     "WHERE: Filtering by color, price, or size",
@@ -38,28 +41,13 @@ export const SQL_CURRICULUM = {
             },
             {
                 phase: 3,
-                title: "Updating the Inventory: DDL & DML",
-                theory: [
-                    "CREATE & DROP: Adding a new cabinet vs demolishing one",
-                    "INSERT: Adding new items to the bins",
-                    "UPDATE: Changing a price tag on an existing item",
-                    "DELETE: Removing damaged goods from the warehouse",
-                    "TRUNCATE: Emptying a whole cabinet instantly"
-                ],
-                practicals: [
-                    "Add 5 new products to the warehouse",
-                    "Change the address of a customer who moved"
-                ]
-            },
-            {
-                phase: 4,
                 title: "Safety Rules: Keys & Constraints",
+                targetExperience: ["2yoe"],
                 theory: [
                     "Primary Key: The unique barcode on every item",
                     "Foreign Key: A sticker pointing to a folder in another cabinet",
                     "Unique & Not Null: Rules to stop messy storage",
-                    "Referential Integrity: Ensuring no 'ghost' orders exist",
-                    "Cascading Actions: If a customer is removed, remove their orders too"
+                    "Referential Integrity: Ensuring no 'ghost' orders exist"
                 ],
                 practicals: [
                     "Apply barcodes (Primary Keys) to a new table",
@@ -67,8 +55,9 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
-                phase: 5,
+                phase: 4,
                 title: "The Great Link: Joins",
+                targetExperience: ["2yoe", "3yoe"],
                 theory: [
                     "What are Joins? Reading folders from two cabinets at once",
                     "INNER JOIN: Items that exist in both cabinets",
@@ -82,8 +71,9 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
-                phase: 6,
+                phase: 5,
                 title: "Inventory Counting: Aggregates",
+                targetExperience: ["2yoe", "3yoe"],
                 theory: [
                     "SUM, AVG, COUNT: Calculating total stock and averages",
                     "MIN & MAX: Finding the cheapest and most expensive items",
@@ -96,8 +86,9 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
-                phase: 7,
+                phase: 6,
                 title: "Clean Storage: Normalization",
+                targetExperience: ["3yoe"],
                 theory: [
                     "The Problem of Redundancy: Why storing info twice is bad",
                     "1NF, 2NF, 3NF: Step-by-step warehouse cleanup",
@@ -110,8 +101,26 @@ export const SQL_CURRICULUM = {
                 ]
             },
             {
+                phase: 7,
+                title: "AI Memory: pgvector & Embeddings",
+                targetExperience: ["3yoe", "4yoe"],
+                theory: [
+                    "What are Vector Embeddings? High-dimensional arrays of numbers",
+                    "The `vector` data type in PostgreSQL (pgvector extension)",
+                    "Cosine Similarity (<=>) and Euclidean Distance (<->) operators",
+                    "Using SQL to perform Semantic Similarity Search for LLMs",
+                    "HNSW and IVFFlat indexes: Speeding up vector search"
+                ],
+                practicals: [
+                    "Enable the pgvector extension and create a table with a `vector(1536)` column",
+                    "Write a query to find the top 5 most similar documents to an AI's query vector",
+                    "Build an HNSW index on the vector column to optimize RAG lookups"
+                ]
+            },
+            {
                 phase: 8,
                 title: "Fast Tracking: Indexes & Performance",
+                targetExperience: ["4yoe"],
                 theory: [
                     "Indexes: The 'Back-of-book' index for finding pages instantly",
                     "Clustered vs Non-Clustered: How the robots physically move the folders",
@@ -119,22 +128,24 @@ export const SQL_CURRICULUM = {
                     "CTEs & Views: Saving common search results for later"
                 ],
                 practicals: [
-                    "Create an index for 'Customer Email' to speed up logins",
-                    "Use 'Explain' to see the speed difference with and without an index"
+                    "Create a composite index to speed up complex queries",
+                    "Use 'Explain Analyze' to optimize a slow Vector Search query"
                 ]
             },
             {
                 phase: 9,
                 title: "Safe Shipping: Transactions & Security",
+                targetExperience: ["4yoe", "4+yoe"],
                 theory: [
                     "ACID Properties: The 'All-or-Nothing' rule for shipments",
                     "Transactions (COMMIT/ROLLBACK): Finalizing or canceling an action",
-                    "SQL Injection: Stopping thieves from tricking the robots",
-                    "Privileges (GRANT/REVOKE): Deciding who can enter which zone"
+                    "SQL Injection & LLM Data Leakage: Stopping thieves from tricking the DB",
+                    "Privileges (GRANT/REVOKE): Deciding who can enter which zone",
+                    "Row-Level Security (RLS): Ensuring an AI agent only reads its user's data"
                 ],
                 practicals: [
                     "Simulate a bank transfer: if part B fails, the whole thing rolls back",
-                    "Grant 'Read Only' access to a new warehouse assistant"
+                    "Implement RLS to prevent an LLM from reading unauthorized tenant data"
                 ]
             }
         ]
@@ -142,18 +153,20 @@ export const SQL_CURRICULUM = {
     "sql-questions": {
         id: "sql-questions",
         fileName: "sql-questions",
-        description: "SQL Inventory Audit",
+        description: "SQL & Vector DB Audit",
         category: "SQL",
-        subDescription: "60+ common interview questions. Master the 'Warehouse' explanations for common SQL queries.",
+        subDescription: "Master SQL explanations and pgvector concepts for modern AI backend interviews.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
                 title: "The Junior Inspector",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
                     "SQL vs NoSQL (Fixed Cabinets vs Flexible Bins)",
                     "DELETE vs TRUNCATE (Removing items vs Emptying the cabinet)",
-                    "Primary vs Unique Key (The Barcode vs the ID Label)",
-                    "HAVING vs WHERE (Filtering Groups vs Filtering Items)"
+                    "Primary vs Unique Key",
+                    "HAVING vs WHERE"
                 ],
                 practicals: [
                     "Explain the 'Second Highest Salary' logic using a 'Sorting Folders' analogy",
@@ -162,16 +175,17 @@ export const SQL_CURRICULUM = {
             },
             {
                 phase: 2,
-                title: "The Senior Auditor",
+                title: "The Senior AI Database Auditor",
+                targetExperience: ["3yoe", "4yoe", "4+yoe"],
                 theory: [
+                    "Explain how `pgvector` calculates similarity using Cosine Distance.",
+                    "Why would you use an HNSW index over IVFFlat for vector embeddings?",
                     "ACID Properties (Atomicity, Consistency, Isolation, Durability)",
-                    "Stored Procedures vs Functions (Pre-set robot routines)",
-                    "Execution Order: How the computer actually reads your instructions",
-                    "Normalization Levels (When to stop cleaning)"
+                    "Explain the security risks of SQL Injection when connecting a database directly to an LLM tool."
                 ],
                 practicals: [
                     "Debug a 'Deadlock' simulation where two robots are stuck",
-                    "Write a query to find 'Duplicate Shipping Labels' in a table"
+                    "Design a normalized schema that also stores unstructured vector embeddings for RAG"
                 ]
             }
         ]

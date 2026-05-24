@@ -22,11 +22,7 @@ const LEVEL_WEIGHTS: Record<string, number> = {
 };
 
 function isLevelIncluded(targetExperience: string[], selectedLevel: string): boolean {
-    const selectedWeight = LEVEL_WEIGHTS[selectedLevel] || 1;
-    return targetExperience.some(exp => {
-        const weight = LEVEL_WEIGHTS[exp] || 1;
-        return weight <= selectedWeight;
-    });
+    return targetExperience.includes(selectedLevel);
 }
 
 import { useExperience } from '@/lib/providers/ExperienceProvider';

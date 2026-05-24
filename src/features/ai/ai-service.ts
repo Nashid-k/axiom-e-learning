@@ -34,11 +34,11 @@ class AIService {
     private keyIndex = 0;
 
     private readonly MODELS: Record<string, string> = {
-        fast: 'openai/gpt-oss-120b',
-        reasoning: 'openai/gpt-oss-120b',
-        creative: 'openai/gpt-oss-120b',
-        coding: 'openai/gpt-oss-120b',
-        fallback: 'openai/gpt-oss-120b',
+        fast: 'llama-3.3-70b-versatile',
+        reasoning: 'llama-3.3-70b-versatile',
+        creative: 'llama-3.3-70b-versatile',
+        coding: 'llama-3.3-70b-versatile',
+        fallback: 'llama-3.3-70b-versatile',
     };
 
     constructor() {

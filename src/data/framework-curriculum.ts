@@ -4,13 +4,15 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
     "nextjs": {
         id: "nextjs",
         fileName: "nextjs",
-        description: "The Delivery Hub (Next.js Mastery)",
+        description: "The AI Delivery Hub (Next.js Mastery)",
         category: "Next.js",
-        subDescription: "Master the GPS of your delivery network. From routing and layouts to server-side cooking and global deployment.",
+        subDescription: "Master Next.js for the AI Era. From the App Router and Server Actions to Vercel AI SDK, Generative UI, and Edge compute.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
                 title: "Setting up the Hub: Intro & Setup",
+                targetExperience: ["1yoe"],
                 theory: [
                     "Next.js vs React: The Delivery Network vs the Kitchen",
                     "Installation: Building the warehouse headquarters",
@@ -19,12 +21,13 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ],
                 practicals: [
                     "Install a new Next.js 'Franchise'",
-                    "Run the warehouse dev server"
+                    "Run the warehouse dev server and explore the App Router"
                 ]
             },
             {
                 phase: 2,
                 title: "Mapping the Routes: Navigation",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
                     "Folder-based Routing: Each folder is a delivery destination",
                     "Nested Routes: Branching out your delivery network",
@@ -38,26 +41,13 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
             },
             {
                 phase: 3,
-                title: "Shared Equipment: Layouts & Templates",
-                theory: [
-                    "Layouts: The permanent branding on every delivery truck",
-                    "Root Layout: The master blueprint for the entire network",
-                    "Nested Layouts: Specialized equipment for specific branches",
-                    "Loading & Error UI: Displaying 'Cooking...' and 'Out of Stock' messages"
-                ],
-                practicals: [
-                    "Create a shared Sidebar for the '/dashboard' branch",
-                    "Implement a custom loading spinner for slow deliveries"
-                ]
-            },
-            {
-                phase: 4,
                 title: "Where to Cook? Server vs Client",
+                targetExperience: ["2yoe"],
                 theory: [
                     "Server Components: Pre-cooked at the warehouse (Secure & Fast)",
                     "Client Components: Cooking at the customer's table (Interactive)",
                     "The 'use client' Directive: Marking the table-side cooking zone",
-                    "Composition Patterns: When to use the warehouse vs the table"
+                    "Composition Patterns: Passing server components as props to client components"
                 ],
                 practicals: [
                     "Build a fast 'Display Menu' (Server Component)",
@@ -65,41 +55,14 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 5,
-                title: "Sourcing Ingredients: Data Fetching",
-                theory: [
-                    "Async Server Components: Fetching ingredients directly in the warehouse",
-                    "Streaming & Suspense: Delivering the drinks while the main course is cooking",
-                    "Caching: Keeping common ingredients ready on the counter",
-                    "Data Validation: Checking ingredient quality (Zod)"
-                ],
-                practicals: [
-                    "Fetch a list of 'Top Dishes' from an API in a Server Component",
-                    "Use 'Suspense' to show a skeleton while the food is prepared"
-                ]
-            },
-            {
-                phase: 6,
-                title: "Freshness Control: Rendering Strategies",
-                theory: [
-                    "Static Rendering (SSG): Pre-packaged snacks (Instantly available)",
-                    "Dynamic Rendering (SSR): Made-to-order meals (Fresh, but needs time)",
-                    "ISR: Re-stocking the pre-packaged snacks every hour",
-                    "Revalidation: Forcing a fresh batch of food when the menu changes"
-                ],
-                practicals: [
-                    "Build a 'Daily Special' page that updates every 60 seconds (ISR)",
-                    "Observe the speed difference between Static and Dynamic orders"
-                ]
-            },
-            {
-                phase: 7,
+                phase: 4,
                 title: "The Direct Line: Server Actions",
+                targetExperience: ["2yoe", "3yoe"],
                 theory: [
                     "What are Server Actions? Sending orders directly to the chef",
-                    "Form Handling: Securely capturing guest orders",
+                    "Form Handling: Securely capturing guest orders without API routes",
                     "Revalidating Paths: Updating the menu immediately after an order",
-                    "Optimistic Updates: Displaying 'Order Received' before the chef even sees it"
+                    "Optimistic Updates: Displaying 'Order Received' before the server responds"
                 ],
                 practicals: [
                     "Build a 'Contact the Franchise' form using Server Actions",
@@ -107,31 +70,48 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
                 ]
             },
             {
-                phase: 8,
-                title: "The Security Guard: Middleware & Auth",
+                phase: 5,
+                title: "Sourcing Ingredients & AI Streams",
+                targetExperience: ["3yoe"],
                 theory: [
-                    "Middleware: The bouncer checking ID cards at the gate",
-                    "Route Protection: Locking the 'Staff Only' kitchen doors",
-                    "Authentication (NextAuth): Issuing ID badges to staff and guests",
-                    "SEO & Metadata: Advertising your delivery network to Google"
+                    "Async Server Components: Fetching ingredients directly in the warehouse",
+                    "Streaming & Suspense: Delivering the UI shell while data/AI text streams in",
+                    "Vercel AI SDK: The easiest way to stream text from LLMs",
+                    "Data Validation: Checking ingredient quality (Zod)"
                 ],
                 practicals: [
-                    "Redirect unannounced guests away from the '/admin' route",
-                    "Add custom logos and descriptions for social media sharing"
+                    "Use 'Suspense' to show a skeleton while a database query resolves",
+                    "Implement `streamText` from the Vercel AI SDK to stream OpenAI responses"
                 ]
             },
             {
-                phase: 9,
-                title: "Grand Opening: Optimization & Deployment",
+                phase: 6,
+                title: "Generative UI: AI beyond Text",
+                targetExperience: ["3yoe", "4yoe"],
                 theory: [
-                    "Image Optimization: Compressing food photos for fast loading",
-                    "Font & Script Optimization: Choosing the best delivery routes",
-                    "Deploying to Vercel: Opening your franchise to the public",
-                    "Environment Variables: Keeping the warehouse safe codes secret"
+                    "Generative UI: Allowing LLMs to stream React components (Cards, Charts)",
+                    "AI State vs UI State: Managing the brain vs what the user sees",
+                    "Tool Calling in the Browser: Let the LLM trigger client-side actions",
+                    "Interactive AI: Creating multi-turn conversational interfaces"
                 ],
                 practicals: [
-                    "Optimize a heavy high-res food image using <Image />",
-                    "Deploy your first Next.js project to the cloud"
+                    "Use the Vercel AI SDK (`streamUI`) to render a Weather Component generated by an LLM",
+                    "Build a chatbot that can render interactive charts based on user queries"
+                ]
+            },
+            {
+                phase: 7,
+                title: "Grand Opening: Edge Compute & RAG",
+                targetExperience: ["4yoe", "4+yoe"],
+                theory: [
+                    "The Edge Runtime: Running AI streams globally with zero cold starts",
+                    "Vector Search in Next.js: Integrating with Vercel Postgres/pgvector",
+                    "RAG at the Edge: Fetching embeddings before streaming the LLM response",
+                    "Image Optimization & Caching: Keeping the warehouse efficient"
+                ],
+                practicals: [
+                    "Deploy an Edge function that performs a fast Vector Similarity Search",
+                    "Build a complete RAG-powered documentation chatbot in Next.js"
                 ]
             }
         ]
@@ -139,18 +119,19 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
     "nextjs-questions": {
         id: "nextjs-questions",
         fileName: "nextjs-questions",
-        description: "Next.js Interview Warehouse",
+        description: "Next.js & AI Interview Warehouse",
         category: "Next.js",
-        subDescription: "40+ common questions about the modern delivery network. Master the 'Global Food Delivery' analogy for interviews.",
+        subDescription: "Master the 'Global Food Delivery' analogy and modern AI UI patterns for interviews.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
                 title: "Ground Floor: Fundamentals",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
                     "Next.js vs Vanilla React (The Delivery Metaphor)",
-                    "Server Components vs Client Components (Warehouse vs Table)",
-                    "Why use the App Router? (The GPS argument)",
-                    "SEO in Next.js (The Billboard Metaphor)"
+                    "Server Components vs Client Components",
+                    "What are Server Actions and why do they replace API routes?"
                 ],
                 practicals: [
                     "Explain ISR using a 'Freshness Timer' analogy",
@@ -159,16 +140,17 @@ export const NEXTJS_CURRICULUM: Record<string, CurriculumData> = {
             },
             {
                 phase: 2,
-                title: "Second Floor: Advanced Logistics",
+                title: "Second Floor: AI & Advanced Logistics",
+                targetExperience: ["3yoe", "4yoe", "4+yoe"],
                 theory: [
-                    "Server Actions vs API Routes (Direct vs Middleman)",
-                    "Hydration: Bringing the 'Dry' pre-cooked food to life at the table",
-                    "Middleware use cases (The Bouncer Metaphor)",
-                    "Caching levels in Next.js"
+                    "How does streaming work in the Vercel AI SDK?",
+                    "What is Generative UI and how does it differ from text streaming?",
+                    "How do you implement a RAG pipeline entirely within Next.js API routes/Server Actions?",
+                    "Edge vs Node.js runtime for AI tasks"
                 ],
                 practicals: [
-                    "Solve a simulation where a 'Hydration Error' occurs",
-                    "Write a 1-minute pitch on why Next.js is better for SEO"
+                    "Explain AI State vs UI State to a junior developer",
+                    "Design a scalable architecture for an AI Chatbot using Next.js"
                 ]
             }
         ]
@@ -179,134 +161,84 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
     "nestjs": {
         id: "nestjs",
         fileName: "nestjs",
-        description: "The Office Headquarters (NestJS Mastery)",
+        description: "The AI Orchestrator (NestJS Mastery)",
         category: "NestJS",
-        subDescription: "Welcome to the city government office. Master controllers, services, guards, pipes, and advanced city infrastructure.",
+        subDescription: "Welcome to the city government office. Master controllers, services, microservices, and AI Agent orchestration.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
-                title: "Building the Headquarters: Architecture & CLI",
+                title: "Building the Headquarters: Architecture",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
                     "NestJS vs Express: The Master Blueprint vs the Carpenter's Tool-belt",
-                    "Installation & CLI: Setting up the office headquarters instantly",
                     "Module Structure: Dividing the building into departments",
-                    "The Decorator Pattern: Adding 'Department Labels' to your code"
+                    "The Decorator Pattern: Adding 'Department Labels' to your code",
+                    "Controllers: The front-desk receptionists"
                 ],
                 practicals: [
                     "Install the NestJS CLI and create a new 'City Hall' building",
-                    "Tour the default 'Root Department' (AppModule)"
+                    "Create a 'StaffController' with basic GET/POST endpoints"
                 ]
             },
             {
                 phase: 2,
-                title: "The Receptionists: Controllers & Routing",
+                title: "The Specialists: Providers & Services",
+                targetExperience: ["2yoe"],
                 theory: [
-                    "What is a Controller? The front-desk receptionist",
-                    "Routing: Directing citizens to the right window (/users, /orders)",
-                    "Handling Documents (Request Body/Params): Reading citizens' forms",
-                    "Sending Replies (Response): Handing back the processed paperwork"
+                    "What is a Service? The back-office specialist who does the work",
+                    "Dependency Injection (DI): Hiring a specialist automatically",
+                    "Custom Providers: Injecting external AI Services (OpenAI API)",
+                    "Guards & Pipes: Security bouncers and data inspectors"
                 ],
                 practicals: [
-                    "Create a 'StaffController' with windows for hiring and firing",
-                    "Read a 'Staff ID' from the URL to find a specific employee"
+                    "Create an `OpenAiService` and inject it into your controllers",
+                    "Build a pipe that validates if a user prompt is clean using class-validator"
                 ]
             },
             {
                 phase: 3,
-                title: "The Specialists: Providers & Services",
+                title: "The Record Room: DBs & Vector Search",
+                targetExperience: ["3yoe"],
                 theory: [
-                    "What is a Service? The back-office specialist who does the work",
-                    "Dependency Injection (DI): Hiring a specialist for the receptionist automatically",
-                    "Injection Scopes: Is the specialist dedicated to one person or the whole building?",
-                    "Custom Providers: Bringing in outside consultants"
+                    "TypeORM & Prisma: The digital filing cabinets",
+                    "Entities & Repositories: Designing the folder structure",
+                    "Vector Databases: Storing embeddings using pgvector in TypeORM",
+                    "RAG Implementation: Querying the database for semantic similarity"
                 ],
                 practicals: [
-                    "Create a 'TaxService' that calculates math for the 'TaxController'",
-                    "Register the service in the 'FinanceModule'"
+                    "Connect your 'City Hall' to a PostgreSQL database with pgvector",
+                    "Create an endpoint that accepts a query, searches vectors, and returns context"
                 ]
             },
             {
                 phase: 4,
-                title: "The Security Guard: Guards & Auth",
+                title: "Agentic Workflows: Queues & Events",
+                targetExperience: ["4yoe"],
                 theory: [
-                    "What is a Guard? The bouncer checking ID cards at the gate",
-                    "Execution Context: Knowing which office the citizen is trying to enter",
-                    "Role-based Access: Checking if the citizen is a 'VIP' or 'Admin'",
-                    "Passport.js Integration: The global identification system"
+                    "BullMQ & Redis: Setting up a task queue for heavy AI workloads",
+                    "Event Emitters: Decoupling long-running AI generation from the HTTP request",
+                    "Agent Orchestration: Creating services that coordinate multiple LLM calls",
+                    "Rate Limiting & Retries: Handling API failures gracefully"
                 ],
                 practicals: [
-                    "Lock the 'MayorOfficeController' so only 'Admins' can enter",
-                    "Implement a simple guard that checks for a 'Security Badge'"
+                    "Offload a 'Document Summarization' LLM task to a BullMQ queue",
+                    "Emit a 'SummaryCompleted' event to notify the client via WebSockets"
                 ]
             },
             {
                 phase: 5,
-                title: "The Stamp Inspector: Pipes & Validation",
+                title: "Microservices & Distributed AI",
+                targetExperience: ["4+yoe"],
                 theory: [
-                    "What is a Pipe? The inspector checking if forms are filled correctly",
-                    "Transformation: Translating a string into a number automatically",
-                    "Validation (class-validator): Ensuring an email actually looks like an email",
-                    "Built-in Pipes: The standard inspection tools"
+                    "NestJS Microservices: Separating the AI brain from the API Gateway",
+                    "Transports: gRPC and TCP for fast internal communication",
+                    "Multi-Agent Systems: Deploying different specialized AI agents as microservices",
+                    "Observability: Tracing requests across distributed AI systems"
                 ],
                 practicals: [
-                    "Install the 'Validation Inspector' (class-validator/class-transformer)",
-                    "Create a 'ProjectForm' that errors if the 'Title' is too short"
-                ]
-            },
-            {
-                phase: 6,
-                title: "The Interpreters: Interceptors & Filters",
-                theory: [
-                    "Interceptors: Modifying the paperwork before and after it hits the desk",
-                    "Exception Filters: Handling 'Emergency Calls' (Errors) gracefully",
-                    "Standardizing Responses: Ensuring all departments use the same letterhead",
-                    "Logging: Keeping a record of every citizen who visited"
-                ],
-                practicals: [
-                    "Create a 'UniformInterceptor' that wraps all replies in a standard box",
-                    "Build a 'PanicFilter' to handle 404/500 errors with a friendly message"
-                ]
-            },
-            {
-                phase: 7,
-                title: "The Record Room: Database Integration",
-                theory: [
-                    "TypeORM & Prisma: The digital filing cabinets",
-                    "Entities & Repositories: Designing the folder structure",
-                    "Migrations: Updating the filing cabinet drawers without losing data",
-                    "Synchronize vs Migrations: Manual vs Automatic updates"
-                ],
-                practicals: [
-                    "Connect your 'City Hall' to a PostgreSQL Record Room",
-                    "Persist 'Citizen Records' using TypeORM decorators"
-                ]
-            },
-            {
-                phase: 8,
-                title: "Global Security: JWT & Session Management",
-                theory: [
-                    "JWT Strategy: Issuing digital keys that never expire",
-                    "Login Flow: Authenticating citizens and giving them a key",
-                    "Secret Keys: The master codes for the city vault",
-                    "Strategy & Local Auth: Traditional ID/Password checks"
-                ],
-                practicals: [
-                    "Build a 'Login Window' that returns a signed JWT key",
-                    "Use the JWT key to access a 'Private Library' route"
-                ]
-            },
-            {
-                phase: 9,
-                title: "Regional Branches: Microservices",
-                theory: [
-                    "What are Microservices? Opening small satellite offices (Redis/TCP)",
-                    "Message Patterns: Sending letters between offices",
-                    "Event Patterns: Announcing news to all offices simultaneously",
-                    "Testing & Deployment: Verifying the whole city works before going live"
-                ],
-                practicals: [
-                    "Create a second 'MailOffice' service that talks to 'City Hall'",
-                    "Simulate a power outage (Failure) and see how the offices recover"
+                    "Extract your `OpenAiService` into a standalone gRPC microservice",
+                    "Implement distributed tracing to monitor how long the LLM takes to reply"
                 ]
             }
         ]
@@ -314,36 +246,35 @@ export const NESTJS_CURRICULUM: Record<string, CurriculumData> = {
     "nestjs-questions": {
         id: "nestjs-questions",
         fileName: "nestjs-questions",
-        description: "The Civil Service Exam (Interview Prep)",
+        description: "The Civil Service Exam (NestJS & AI)",
         category: "NestJS",
-        subDescription: "50+ common questions. Master the 'City Administration' vocabulary to prove you can manage complex systems.",
+        subDescription: "Master the 'City Administration' vocabulary to prove you can manage complex AI systems.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
                 title: "Junior Administrator",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
-                    "NestJS vs Express (The Blueprint vs Tool-belt)",
                     "Dependency Injection (The Phone System analogy)",
                     "Providers vs Controllers (Specialists vs Receptionists)",
-                    "Modules (Departmental isolation)"
+                    "How do you inject a third-party SDK (like OpenAI) into a NestJS Module?"
                 ],
                 practicals: [
-                    "Explain the lifecycle of a request using the 'Walking through the building' path",
-                    "Differentiate 'Guard' vs 'Middleware' using the 'Gate' metaphor"
+                    "Explain the lifecycle of a request using the 'Walking through the building' path"
                 ]
             },
             {
                 phase: 2,
                 title: "Senior Mayor",
+                targetExperience: ["3yoe", "4yoe", "4+yoe"],
                 theory: [
-                    "Circular Dependencies: When two departments get stuck waiting for each other",
-                    "Dynamic Modules: Setting up a department that configures itself",
-                    "Microservices Transports (Redis, RabbitMQ, Kafka)",
-                    "Advanced Testing (Unit vs E2E in NestJS)"
+                    "How do you handle long-running LLM tasks in NestJS without timing out the HTTP request?",
+                    "Explain how you would orchestrate a multi-agent workflow using BullMQ and NestJS.",
+                    "Microservices Transports: When to use Redis vs gRPC for AI services"
                 ],
                 practicals: [
-                    "Solve a simulation where two services are stuck in a loop",
-                    "Optimize a database query that is slowing down the whole building"
+                    "Design a scalable NestJS architecture for an AI Document Processing platform"
                 ]
             }
         ]
@@ -354,18 +285,20 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
     "python": {
         id: "python",
         fileName: "python",
-        description: "The Writer's Foundations (Python Mastery)",
+        description: "The AI Pioneer (Python Mastery)",
         category: "Python",
-        subDescription: "Welcome to the studio. From basic logic and OOP to Hollywood-scale Django productions and lightning FastAPI speed.",
+        subDescription: "Welcome to the studio. From basic logic and FastAPI speed to RAG pipelines, LangChain, and Local LLMs.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
-                title: "Drafting the Script: Syntax & Characters",
+                title: "Drafting the Script: Syntax & Logic",
+                targetExperience: ["1yoe"],
                 theory: [
                     "Python Syntax: The Writer's shorthand",
-                    "Variables & Types: Casting your characters (Strings, Integers, Lists)",
+                    "Variables & Types: Casting your characters (Strings, Integers, Lists, Dicts)",
                     "Control Flow: Plot twists (if/else) and repetitive scenes (Loops)",
-                    "Virtual Environments: The Private Rehearsal Room (venv)"
+                    "Virtual Environments (venv/Conda): The Private Rehearsal Room"
                 ],
                 practicals: [
                     "Write a 'Hello Studio' script",
@@ -374,114 +307,93 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
             },
             {
                 phase: 2,
-                title: "Scene Rehearsals: Functions & Modules",
+                title: "Scene Rehearsals: Functions & OOP",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
-                    "Functions: Reusable scene rehearsals",
-                    "Arguments (*args, **kwargs): Giving actors flexible instructions",
-                    "Decorators: Changing an actor's performance without rewriting the script",
-                    "Modules & Pip: Borrowing scripts and costumes from the Global Props Shop"
+                    "Functions & Arguments (*args, **kwargs): Flexible scene rehearsals",
+                    "Classes & Objects: Blueprints for complex character types",
+                    "Error Handling: Dealing with 'Forgotten Lines' (Exceptions)",
+                    "File I/O: Reading text data for basic AI processing"
                 ],
                 practicals: [
                     "Build a 'Scene Repeater' function with flexible arguments",
-                    "Create a custom decorator that logs when a 'Scene' starts"
+                    "Build an 'AIClient' class that securely loads an API key"
                 ]
             },
             {
                 phase: 3,
-                title: "Character Prototypes: OOP & Errors",
+                title: "The Speed-Dubbing Booth: FastAPI & LLM APIs",
+                targetExperience: ["2yoe", "3yoe"],
                 theory: [
-                    "Classes & Objects: Blueprints for complex character types",
-                    "Inheritance: Giving a 'Lead Actor' traits from a 'Supporting Actor'",
-                    "Error Handling: Dealing with 'Forgotten Lines' (Exceptions)",
-                    "File I/O: Reading and writing the final script files"
+                    "FastAPI Fundamentals: The specialized, high-speed API booth",
+                    "Pydantic: Ensuring strict character scripts (Data Validation & JSON schemas for LLMs)",
+                    "Async/Await: Handling multiple LLM API calls at once",
+                    "Calling OpenAI/Anthropic APIs from Python"
                 ],
                 practicals: [
-                    "Build a 'CastMember' class with inheritance",
-                    "Write a script that safely reads 'dialogue.txt' using a Context Manager"
+                    "Build a lightning-fast 'Chat API' with FastAPI",
+                    "Force an LLM to output valid JSON by validating it with a Pydantic model"
                 ]
             },
             {
                 phase: 4,
-                title: "The Production Office: Django MVC/MVT",
+                title: "The Production Office: Django & SQL",
+                targetExperience: ["3yoe"],
                 theory: [
-                    "Django vs Others: The All-in-One Hollywood Studio",
-                    "Project Structure: Navigating the production office folders",
-                    "URLs & Views: Directing the audience to the right scene",
-                    "Templates: The stage sets where the action happens"
+                    "Django vs FastAPI: The All-in-One Studio vs the specialized booth",
+                    "Django ORM: Talking to the record room in plain English",
+                    "Vector Extensions: Using pgvector with Python ORMs (SQLAlchemy / Django)",
+                    "Storing embeddings in a relational database"
                 ],
                 practicals: [
-                    "Start a new 'Studio' project and 'Movies' app",
-                    "Connect a URL to a 'Welcome to Hollywood' view"
+                    "Start a new Django 'Studio' project",
+                    "Create a model that stores a text document and its vector embedding"
                 ]
             },
             {
                 phase: 5,
-                title: "The Film Archives: Models & ORM",
+                title: "AI Pipelines: LangChain & LlamaIndex",
+                targetExperience: ["3yoe", "4yoe"],
                 theory: [
-                    "Models: Designing the database filing cabinets",
-                    "Migrations: Updating the record room without losing data",
-                    "Django ORM: Talking to the record room in plain English",
-                    "Admin Panel: The director's dashboard for managing records"
+                    "LangChain: The standardized toolkit for building AI apps",
+                    "LlamaIndex: Connecting LLMs to your private data sources",
+                    "Document Loaders & Text Splitters: Preparing data for the AI",
+                    "Building a Retrieval-Augmented Generation (RAG) pipeline"
                 ],
                 practicals: [
-                    "Create a 'Movie' model and sync it with the Record Room",
-                    "Use the Admin dashboard to add three new 'Film' records"
+                    "Use LangChain to build a simple Q&A chain over a text file",
+                    "Use LlamaIndex to query a local PDF document"
                 ]
             },
             {
                 phase: 6,
-                title: "Cast Interviews: Forms & DRF",
+                title: "Agentic Workflows & Multi-Agent Orchestration",
+                targetExperience: ["4yoe"],
                 theory: [
-                    "Django Forms: Capturing citizen input on set",
-                    "Django REST Framework (DRF): Opening an 'API Window' for other studios",
-                    "Serializers: Translating film records into a universal language (JSON)",
-                    "Authentication: Checking ID badges on the studio lot"
+                    "Tool Calling: Giving the LLM the ability to run Python functions",
+                    "LangGraph: Building cyclical, stateful agent workflows",
+                    "Multi-Agent Orchestration (e.g., AutoGen, CrewAI): Agents talking to agents",
+                    "Celery & Task Queues: Offloading heavy agent processing"
                 ],
                 practicals: [
-                    "Build a 'Casting Call' form for new actors",
-                    "Expose your Movie list through a DRF 'API Window'"
+                    "Build an agent that has a 'Calculator' tool and a 'Web Search' tool",
+                    "Use LangGraph to build a persistent conversational agent",
+                    "Offload a massive document processing task to a Celery worker"
                 ]
             },
             {
                 phase: 7,
-                title: "The Speed-Dubbing Booth: FastAPI",
+                title: "The Film Archives: Local LLMs & Tensors",
+                targetExperience: ["4+yoe"],
                 theory: [
-                    "FastAPI Fundamentals: The specialized, high-speed API booth",
-                    "Pydantic: Ensuring strict character scripts (Data Validation)",
-                    "Async/Await: Handling multiple recordings at once",
-                    "Path & Query Operations: Specialized recording controls"
+                    "Running Local Models: Using Ollama, llama.cpp, or vLLM",
+                    "PyTorch Basics: Understanding the math behind the models (Tensors)",
+                    "Fine-tuning (LoRA/QLoRA): Teaching the model a specific script",
+                    "AI Security: Prompt Injection defense and evaluation"
                 ],
                 practicals: [
-                    "Build a lightning-fast 'Subtitle API' with FastAPI",
-                    "Validate a 'User Script' using Pydantic models"
-                ]
-            },
-            {
-                phase: 8,
-                title: "The Back-Stage Crew: Celery & Task Queues",
-                theory: [
-                    "Asyncio vs Celery: Manual vs Automated background tasks",
-                    "Task Queues: Sending heavy editing work to the back-stage crew",
-                    "Redis: The messenger boy between the booth and the crew",
-                    "WebSockets: Live updates from the production floor"
-                ],
-                practicals: [
-                    "Offload a 'Heavy Script Export' task to a Celery worker",
-                    "Implement a live 'Recording Status' update using WebSockets"
-                ]
-            },
-            {
-                phase: 9,
-                title: "The Film Festival: Deployment & QA",
-                theory: [
-                    "GraphQL with Python: A smarter way to request film data",
-                    "Pytest: Testing the script before the grand opening",
-                    "Docker: Packaging the entire studio in a portable container",
-                    "CI/CD: Automating the premiere process"
-                ],
-                practicals: [
-                    "Write 'Script Review' tests using Pytest",
-                    "Dockerize your 'Studio' for global distribution"
+                    "Serve a local model (e.g., Llama 3) using vLLM and connect it to FastAPI",
+                    "Write an evaluation script (LLM-as-a-judge) to score pipeline accuracy"
                 ]
             }
         ]
@@ -489,36 +401,39 @@ export const PYTHON_CURRICULUM: Record<string, CurriculumData> = {
     "python-questions": {
         id: "python-questions",
         fileName: "python-questions",
-        description: "The Script Review (Interview Prep)",
+        description: "The AI Script Review (Interview Prep)",
         category: "Python",
-        subDescription: "50+ common questions. Master the 'Scriptwriter' vocabulary to impress production houses (Interviews).",
+        subDescription: "Master Python questions for the modern AI engineering era.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
                 title: "Entry-Level Writer",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
-                    "Python Memory Management (The Studio's trash collector)",
-                    "List vs Tuple vs Set (Different types of prop boxes)",
-                    "Python's GIL (The 'One-Scene-at-a-Time' rule)",
-                    "Virtual Environments (The Rehearsal Room metaphor)"
+                    "Python Memory Management and the GIL",
+                    "List vs Tuple vs Set vs Dictionary",
+                    "How do you safely manage API keys using environment variables?",
+                    "What is Pydantic and why is it useful for LLM structured outputs?"
                 ],
                 practicals: [
                     "Explain 'Decorators' using the 'Actor's Outfit' analogy",
-                    "Differentiate 'if' from 'switch/match' using script plot-twists"
+                    "Compare FastAPI and Django for building an AI wrapper app"
                 ]
             },
             {
                 phase: 2,
                 title: "Executive Producer",
+                targetExperience: ["3yoe", "4yoe", "4+yoe"],
                 theory: [
-                    "Django ORM Optimization (Faster Record Room retrieval)",
-                    "Asyncio vs Multiprocessing (Parallel shoots)",
-                    "Microservices with gRPC (Talking between satellite studios)",
-                    "Testing strategies for large-scale productions"
+                    "Explain the architecture of a RAG system and the role of the Vector DB.",
+                    "Asyncio vs Celery for handling long-running AI API calls",
+                    "How does LangGraph differ from standard LangChain chains?",
+                    "What are the challenges of serving open-weights models in production?"
                 ],
                 practicals: [
-                    "Optimize a database query that is stalling the production",
-                    "Design a scalable API for a 'Global Film Festival' traffic spike"
+                    "Design a scalable API that processes PDFs and answers questions about them",
+                    "Optimize a vector search query that is stalling the production"
                 ]
             }
         ]

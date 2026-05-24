@@ -1,182 +1,127 @@
 export const HTML_CURRICULUM = {
     "html": {
         fileName: "html",
-        description: "Ultimate HTML Extreme Mastery",
+        description: "Modern HTML & Semantic Web",
         category: "HTML",
-        subDescription: "The absolute definitive HTML encyclopedia. Structurally aligned with W3Schools for a linear learning path, reinforced with professional project-based mastery.",
+        subDescription: "The definitive HTML path. Master semantic web, accessibility, and structuring data for both human users and AI web scrapers.",
+        experienceLevels: ["1yoe", "2yoe", "3yoe", "4yoe", "4+yoe"],
         phases: [
             {
                 phase: 1,
                 title: "The Grand Tour: How the Web Works",
+                targetExperience: ["1yoe"],
                 theory: [
                     "The Big Picture: Frontend (Face), Backend (Brain), Database (Memory)",
-                    "Internet vs. World Wide Web (The Wires vs. The Content)",
                     "What is HTML? (The Skeleton of a Website)",
-                    "Why HTML5? (The modern standard for everyone)",
                     "Boilerplate Breakdown: The 'Secret' Code in every Page",
-                    "- <!DOCTYPE html>: Telling the browser 'I am a modern page'",
-                    "- <html>: The container for everything",
-                    "- <head>: The page's 'Brain' (Title, Settings, Meta Tags)",
-                    "- <body>: The page's 'Body' (Everything you actually see)",
-                    "Introduction to Meta Tags: How Google reads your mind",
-                    "Common Tag Anatomy: <opening> content </closing>"
+                    "How LLMs (like GPT) parse and understand your HTML structure"
                 ],
                 practicals: [
-                    "Mental Model: 'The Fullstack Sketch' - Map out your favorite app's Face, Brain, and Memory",
-                    "The Annotated Skeleton: Build your first .html file and comment every line in plain English",
-                    "Project: 'The Page's ID Card' - Creating a basic page with a Title and Meta Description"
-                ],
-                games: [
-                    { title: "Nester", url: "https://codepip.com/games/nester/", description: "Master HTML hierarchy and nesting. Perfect for visualizing the 'Skeleton' analogy." }
+                    "Mental Model: Map out an AI chat app's Face, Brain, and Memory",
+                    "The Annotated Skeleton: Build your first .html file"
                 ]
             },
             {
                 phase: 2,
                 title: "Text & Structure: The Basics",
+                targetExperience: ["1yoe"],
                 theory: [
                     "Headings (h1-h6): The Page Hierarchy",
-                    "Paragraphs (p) & Line Breaks (br, hr)",
-                    "Text Formatting (strong, em, mark, small, del, ins)",
-                    "HTML Comments: Leaving notes for yourself",
-                    "The concept of 'The Family Tree' (DOM Basics)",
-                    "HTML Styles attribute: Quick visual wins with Colors"
+                    "Paragraphs (p) & Line Breaks (br)",
+                    "Text Formatting (strong, em, mark)",
+                    "Why Heading Hierarchy is crucial for SEO and AI understanding"
                 ],
                 practicals: [
-                    "Project: Personal Bio Page - Using Headings and Paragraphs to tell your story",
-                    "Experiment: Try every Heading level (h1-h6) to see the visual difference",
-                    "Formatting Challenge: Use <mark> and <strong> to highlight a news article snippet"
+                    "Project: Personal Bio Page - Using Headings and Paragraphs",
+                    "Formatting Challenge: Use <mark> to highlight the AI's response in a chat UI"
                 ]
             },
             {
                 phase: 3,
-                title: "Links, Quotes & Navigation",
+                title: "Links, Navigation & Meta Data",
+                targetExperience: ["1yoe"],
                 theory: [
                     "HTML Links (Hyperlinks, Syntax, Absolute vs Relative)",
-                    "Quotations & Citations (blockquote, q, address, cite)",
-                    "Link States: Where do they go? (target='_blank')",
-                    "HTML File Paths: Navigating your project folder",
                     "Page Titles & Favicons: Your site's identity",
-                    "The <abbr> Tag: Explaining technical terms"
+                    "Introduction to Meta Tags: How Google and AI crawlers read your mind"
                 ],
                 practicals: [
-                    "Build a 2-page website and link them together using Relative Paths",
-                    "Create a 'Book Quote' section using <blockquoteContent>",
-                    "Project: Digital Business Card - A single page with social links and a personal motto"
+                    "Build a 2-page website and link them together",
+                    "Add Meta descriptions optimized for Search Generative Experience (SGE)"
                 ]
             },
             {
                 phase: 4,
                 title: "Visuals: Images & Lists",
+                targetExperience: ["1yoe", "2yoe"],
                 theory: [
                     "HTML Images (src, alt, width/height)",
-                    "Why 'Alt' text matters (Accessibility for everyone)",
-                    "Background Images vs Image Tags",
-                    "HTML Lists (Unordered vs Ordered)",
-                    "Nested Lists: Creating a 'Menu' structure",
-                    "Block vs Inline Elements: The 'Box' mental model"
+                    "Why 'Alt' text matters (Accessibility for everyone & Vision AI models)",
+                    "HTML Lists (Unordered vs Ordered) for rendering AI bullet points",
+                    "Block vs Inline Elements"
                 ],
                 practicals: [
-                    "Project: Digital Photo Gallery - Using Images with meaningful Alt text",
-                    "Task: Create a 'Recipe' page with an Ingredient List (Ordered) and Steps (Unordered)",
-                    "Visual Check: Use <div> vs <span> to see how elements stack"
+                    "Project: Digital Photo Gallery - Using Images with descriptive Alt text for AI",
+                    "Task: Create a 'Recipe' page with an Ingredient List"
                 ]
             },
             {
                 phase: 5,
-                title: "Meaningful Structure: Layout & Tables",
+                title: "Meaningful Structure: Semantic HTML",
+                targetExperience: ["2yoe"],
                 theory: [
                     "Semantic HTML: Header, Footer, Nav, Main, Section, Article",
-                    "Why Semantics? (Helping browsers and screen readers understand 'Why')",
-                    "HTML Tables: Organizing data (Rows, Cells, Headers)",
-                    "The <iframe> Tag: Windows to other websites",
-                    "HTML Classes & IDs: Giving names to your elements",
-                    "Layout Basics: How to structure a full webpage"
+                    "Why Semantics? (Helping browsers, screen readers, and LLMs understand 'Why')",
+                    "HTML Tables: Organizing structured data outputs from an AI"
                 ],
                 practicals: [
-                    "Refactor a 'Div-soup' layout into a Semantic masterpiece",
-                    "Build a 'Student Roster' table with appropriate headers",
-                    "Project: News Portal Skeleton - A complete page layout using Semantic tags and an embedded map"
+                    "Refactor an AI-generated 'Div-soup' layout into a Semantic masterpiece",
+                    "Build a 'Student Roster' table with appropriate headers"
                 ]
             },
             {
                 phase: 6,
-                title: "HTML Forms & Input",
+                title: "Forms & Prompt Inputs",
+                targetExperience: ["2yoe", "3yoe"],
                 theory: [
-                    "The <form> Element (Action, Method, Target)",
-                    "Form Elements (Input, Label, Select, Textarea, Button, Fieldset, Legend)",
-                    "Input Types (Text, Password, Email, Number, Date, Color, Range, etc.)",
-                    "Input Attributes (Value, Readonly, Disabled, Size, Maxlength, Min/Max)",
+                    "The <form> Element",
+                    "Form Elements (Input, Textarea, Button)",
+                    "Building the perfect Chat Prompt `<textarea>` (autoresize, submitting on Enter)",
                     "Form Attributes (Autocomplete, Novalidate)"
                 ],
                 practicals: [
-                    "Build a strict 'User Registration' form to implement varied Input Types and Labels",
-                    "Create a 'Search Filter' interface to practice Form Attributes like autocomplete",
-                    "Project: Job Application Wizard - using Fieldsets, Selects, and Input Constraints (Min/Max)"
+                    "Build a strict 'Prompt Injection' test form",
+                    "Create a 'Search Filter' interface"
                 ]
             },
             {
                 phase: 7,
-                title: "Graphics & Media",
+                title: "APIs, Media & Storage",
+                targetExperience: ["3yoe", "4yoe"],
                 theory: [
-                    "HTML5 Canvas Graphics (Drawing basics)",
-                    "HTML5 SVG (Scalable Vector Graphics)",
-                    "HTML Media: Video & Audio Elements",
-                    "Media Attributes (Controls, Autoplay, Loop, Muted)",
-                    "YouTube & Plugin Embed techniques"
+                    "HTML Web Storage (LocalStorage) to save chat histories",
+                    "HTML Web Workers for background AI processing",
+                    "HTML Server-Sent Events (SSE) for streaming text",
+                    "Media: Video & Audio Elements for AI Voice responses"
                 ],
                 practicals: [
-                    "Draw basic shapes and text to verify HTML5 Canvas API understanding",
-                    "Implement a Custom Video Player using <video> and Media Attributes",
-                    "Project: Interactive Media Showcase - Integrating SVG icons, Audio tracks, and YouTube embeds"
+                    "Create a 'Todo List' that persists data using LocalStorage",
+                    "Implement a Custom Audio Player for an AI Text-to-Speech output"
                 ]
             },
             {
                 phase: 8,
-                title: "APIs & Dynamic HTML",
+                title: "Advanced Standards & Accessibility",
+                targetExperience: ["4yoe", "4+yoe"],
                 theory: [
-                    "HTML Geolocation API",
-                    "HTML Drag and Drop API",
-                    "HTML Web Storage (LocalStorage vs SessionStorage)",
-                    "HTML Web Workers (Background processing)",
-                    "HTML Server-Sent Events (SSE)"
-                ],
-                practicals: [
-                    "Build a 'Find Me' button to implement the Geolocation API",
-                    "Create a 'Todo List' that persists data using LocalStorage/SessionStorage",
-                    "Project: Drag-and-Drop Task Board - A functional UI built purely on HTML5 API standards"
-                ]
-            },
-            {
-                phase: 9,
-                title: "Standards & Accessibility",
-                theory: [
-                    "HTML Entities, Symbols, and Emojis",
-                    "HTML Charsets & URL Encoding",
-                    "HTML vs. XHTML differences",
-                    "Accessibility (A11Y) Principles",
-                    "ARIA Roles (Landmarks, Alerts)",
-                    "Coding Conventions & Style Guide"
-                ],
-                practicals: [
-                    "Perform an Accessibility Audit to identify missing ARIA Roles and Labels",
-                    "Implement URL Encoding and HTML Entities in a text-content demo",
-                    "Project: The 'Universal' Page - Building a 100% W3C-validated, A11Y-compliant document"
-                ]
-            },
-            {
-                phase: 10,
-                title: "Ultimate Mastery (Professional Extras)",
-                theory: [
+                    "Accessibility (A11Y) Principles for modern web apps",
+                    "ARIA Roles (Live Regions for announcing AI responses)",
                     "Advanced Meta Tags (OpenGraph, Twitter Cards)",
-                    "Structured Data & Microdata (Schema.org)",
-                    "Web Components Basics (Custom Elements, Shadow DOM)",
-                    "Critical Rendering Path optimization",
-                    "Preload, Prefetch, and Resource Hints"
+                    "Structured Data & Microdata (Schema.org) for AI search engines"
                 ],
                 practicals: [
-                    "Add OpenGraph and Twitter Cards to a page to verify Social Metadata",
-                    "Implement 'Product' Schema markup to test Structured Data knowledge",
-                    "Final Project: The Ultimate Portfolio - A capstone combining Semantics, A11Y, and SEO Mastery"
+                    "Perform an Accessibility Audit on a streaming chat interface",
+                    "Implement 'Product' Schema markup to test Structured Data knowledge"
                 ]
             }
         ]

@@ -52,7 +52,7 @@ export default function CodeEditor({
     onAIReview
 }: CodeEditorProps) {
     const { data: session } = useSession();
-    const [editorMode, setEditorMode] = useState<'snippet' | 'project'>('snippet');
+    const [editorMode, setEditorMode] = useState<'snippet' | 'project'>('project');
     const [activeLang, setActiveLang] = useState<Language>(language);
     const [code, setCode] = useState(initialCode || DEFAULT_CODE[language]);
     const [output, setOutput] = useState<string | null>(null);

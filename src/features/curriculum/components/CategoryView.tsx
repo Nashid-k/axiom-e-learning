@@ -97,7 +97,7 @@ export default function CategoryView({ category, curricula }: CategoryViewProps)
     return (
         <RouteGuard>
             <div className="min-h-screen bg-transparent p-6 md:p-12 text-white">
-                <main className="max-w-7xl mx-auto">
+                <main className="w-full">
                     <div className="mb-12 animate-spring-up" style={{ animationDelay: '0ms' }}>
                         <Breadcrumbs />
                     </div>

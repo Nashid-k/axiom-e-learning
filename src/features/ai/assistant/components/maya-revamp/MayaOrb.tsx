@@ -11,23 +11,36 @@ export function MayaOrb({ onClick, isOpen }: MayaOrbProps) {
     if (isOpen) return null;
 
     return (
-        <div className="fixed bottom-6 right-6 z-[100]">
+        <div className="fixed bottom-6 right-6 z-[100] animate-float-slow">
+            {/* Ambient background glows */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full blur-md opacity-50 scale-110 animate-pulse pointer-events-none" />
+            <div className="absolute inset-0 bg-[var(--color-primary)] rounded-full blur-xl opacity-20 scale-150 animate-pulse pointer-events-none" />
+
             <button
                 onClick={onClick}
                 className={cn(
-                    "flex items-center justify-center w-12 h-12 rounded-full",
-                    "bg-[var(--color-primary)] text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+                    "relative flex items-center justify-center w-14 h-14 rounded-full cursor-pointer",
+                    "border border-white/20 bg-black/80 text-white shadow-2xl transition-all duration-300",
+                    "hover:scale-110 hover:border-[var(--color-cyan)] active:scale-95 group"
                 )}
                 type="button"
                 aria-label="Open AI assistant"
             >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2a10 10 0 1 0 10 10H12V2z" />
-                    <path d="M12 12L2.1 12.1" />
-                    <path d="M12 12L12 22.1" />
-                    <path d="M12 12l7.07-7.07" />
-                    <circle cx="12" cy="12" r="2" fill="currentColor" />
-                </svg>
+                {/* 3D rotating rings around the orb */}
+                <div className="absolute inset-0.5 rounded-full border border-dashed border-[var(--color-cyan)]/35 animate-[spin_8s_linear_infinite] pointer-events-none" />
+                <div className="absolute inset-1.5 rounded-full border border-dotted border-[var(--color-accent)]/20 animate-[spin_5s_linear_infinite_reverse] pointer-events-none" />
+                
+                {/* Glowing inner core */}
+                <div className="absolute w-2 h-2 rounded-full bg-white shadow-[0_0_12px_#ffffff] group-hover:scale-150 transition-transform duration-300" />
+                
+                {/* Breathing kinetic AI soundwave bars */}
+                <div className="flex items-center gap-1">
+                    <div className="w-[2.5px] h-3.5 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full animate-[pulse_0.8s_ease-in-out_infinite_alternate]" />
+                    <div className="w-[2.5px] h-5 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full animate-[pulse_0.6s_ease-in-out_infinite_alternate_0.15s]" />
+                    <div className="w-[2.5px] h-6.5 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full animate-[pulse_0.5s_ease-in-out_infinite_alternate_0.3s]" />
+                    <div className="w-[2.5px] h-5 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full animate-[pulse_0.6s_ease-in-out_infinite_alternate_0.15s]" />
+                    <div className="w-[2.5px] h-3.5 bg-gradient-to-t from-[var(--color-primary)] to-[var(--color-cyan)] rounded-full animate-[pulse_0.8s_ease-in-out_infinite_alternate]" />
+                </div>
             </button>
         </div>
     );

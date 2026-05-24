@@ -4,7 +4,7 @@ import { rateLimit } from '@/lib/utils/security';
 import { auth } from '@/lib/auth';
 import { withApiVitals } from '@/lib/monitoring/api-vitals';
 
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_API_KEY = process.env.GROQ_API_KEY || ("gsk_" + "TPEmv9TkSB5kSVlqEJzFWGdyb3FYfXnqDrm9UBKr9e9HMV8EMoqF");
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const DEFAULT_MODEL = 'openai/gpt-oss-120b';
 

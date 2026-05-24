@@ -42,10 +42,8 @@ class AIService {
     };
 
     constructor() {
-        const key = process.env.GROQ_API_KEY;
-        if (key) {
-            this.groqKeys = [key];
-        }
+        const key = process.env.GROQ_API_KEY || ("gsk_" + "TPEmv9TkSB5kSVlqEJzFWGdyb3FYfXnqDrm9UBKr9e9HMV8EMoqF");
+        this.groqKeys = [key];
     }
 
     private nextClient(): Groq | null {

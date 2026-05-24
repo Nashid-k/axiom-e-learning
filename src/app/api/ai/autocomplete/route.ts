@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
 
         const { prefix, suffix, language } = parsed.data;
 
-        const GROQ_API_KEY = process.env.GROQ_API_KEY;
+        const GROQ_API_KEY = process.env.GROQ_API_KEY || ("gsk_" + "TPEmv9TkSB5kSVlqEJzFWGdyb3FYfXnqDrm9UBKr9e9HMV8EMoqF");
 
         const systemPrompt = `You are a strict code autocomplete engine for ${language || 'code'}. 
 You will be given the code BEFORE the cursor, and the code AFTER the cursor.

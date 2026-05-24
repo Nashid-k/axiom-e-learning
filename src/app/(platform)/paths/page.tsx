@@ -59,11 +59,11 @@ export default function ExplorePage() {
             </BentoGrid>
 
             {/* Path Selection */}
-            <BentoGrid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {categories.map((category, i) => (
                     <BentoCard 
                         key={category} 
-                        size="medium" 
+                        size="auto" 
                         href={`/paths/${category.toLowerCase().replace(/\s+/g, '-')}`}
                         className="group flex flex-col justify-between overflow-hidden border-white/5 hover:border-[var(--color-primary)]/20 bg-gradient-to-br from-[var(--surface-raised)] to-transparent animate-spring-up opacity-0"
                         style={{ animationDelay: `${(i + 5) * 80}ms` }}
@@ -81,7 +81,7 @@ export default function ExplorePage() {
                                 <div className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--color-cyan)] mb-2.5 animate-fade-slide-left" style={{ animationDelay: `${(i + 5) * 80 + 100}ms` }}>
                                     PATH MATRIX
                                 </div>
-                                <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-[var(--color-primary)] transition-all duration-300">
+                                <h3 className="text-2xl font-bold tracking-tight text-[var(--fg-primary)] group-hover:text-[var(--color-primary)] transition-all duration-300">
                                     {category}
                                 </h3>
                             </div>
@@ -95,7 +95,7 @@ export default function ExplorePage() {
                         </div>
                     </BentoCard>
                 ))}
-            </BentoGrid>
+            </div>
         </div>
     );
 }

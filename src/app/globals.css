@@ -10,21 +10,25 @@
 @source "../features";
 
 @layer base {
-  :root, .dark {
+  :root {
+    /* Axiom Clean Light Theme */
+    --color-bg: #f5f5f7; /* Apple Light Gray */
+    --color-fg: #1d1d1f; /* Apple Dark Gray */
+    
+    --surface-base: rgba(255, 255, 255, 0.7); 
+    --surface-raised: rgba(255, 255, 255, 1);
+    --surface-border: rgba(0, 0, 0, 0.08); 
+    --surface-border-active: rgba(0, 0, 0, 0.2);
+
+    --fg-primary: #1d1d1f;     
+    --fg-secondary: #86868b;   
+    --fg-muted: #a1a1a6;       
+  }
+  
+  .dark {
     /* --- Axiom Apple-Inspired Design System --- */
     --color-bg: #000000; /* Pure Jet Black */
     --color-fg: #f5f5f7; /* Apple Off-White */
-    
-    /* Apple Premium Colors */
-    --color-primary: #0a84ff; /* Apple Sapphire Blue */
-    --color-primary-glow: rgba(10, 132, 255, 0.15);
-    --color-accent: #ff375f;   /* Apple Rose Red */
-    --color-accent-glow: rgba(255, 55, 95, 0.15);
-    --color-success: #30d158;  /* Apple Emerald */
-    --color-success-glow: rgba(48, 209, 88, 0.15);
-    --color-cyan: #64d2ff;     /* Apple Sky Blue */
-    --color-cyan-glow: rgba(100, 210, 255, 0.15);
-    --color-destruct: #ff453a;  /* Apple Fire Red */
     
     /* Premium Hardware Glass & Thin Silvers */
     --surface-base: rgba(22, 22, 23, 0.7); /* Apple Graphite Translucent */
@@ -36,6 +40,20 @@
     --fg-primary: #f5f5f7;     /* Slate 50 equivalent */
     --fg-secondary: #86868b;   /* Apple Slate 400 */
     --fg-muted: #48484a;       /* Apple Slate 600 */
+  }
+
+  /* Colors stay the same across both themes */
+  :root, .dark {
+    /* Apple Premium Colors */
+    --color-primary: #0a84ff; /* Apple Sapphire Blue */
+    --color-primary-glow: rgba(10, 132, 255, 0.15);
+    --color-accent: #ff375f;   /* Apple Rose Red */
+    --color-accent-glow: rgba(255, 55, 95, 0.15);
+    --color-success: #30d158;  /* Apple Emerald */
+    --color-success-glow: rgba(48, 209, 88, 0.15);
+    --color-cyan: #64d2ff;     /* Apple Sky Blue */
+    --color-cyan-glow: rgba(100, 210, 255, 0.15);
+    --color-destruct: #ff453a;  /* Apple Fire Red */
   }
 }
 
@@ -88,13 +106,13 @@
 
   /* Clean Silver & White Typography Gradients */
   .text-gradient-primary {
-    background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
+    background: linear-gradient(135deg, var(--fg-primary) 0%, var(--fg-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-accent {
-    background: linear-gradient(135deg, #ffffff 0%, #ff375f 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

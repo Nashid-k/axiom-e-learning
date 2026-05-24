@@ -4,7 +4,7 @@ import { ReactNode, useRef, MouseEvent } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
-export type BentoCardSize = 'small' | 'medium' | 'large' | 'wide' | 'tall';
+export type BentoCardSize = 'small' | 'medium' | 'large' | 'wide' | 'tall' | 'auto';
 
 interface BentoCardProps {
     children: ReactNode;
@@ -22,6 +22,7 @@ const sizeMap: Record<BentoCardSize, string> = {
     large: "col-span-12 md:col-span-8 min-h-[400px]",
     wide: "col-span-12 md:col-span-8 min-h-[300px]",
     tall: "col-span-12 md:col-span-4 md:row-span-2 min-h-[600px]",
+    auto: "min-h-[300px]",
 };
 
 export default function BentoCard({

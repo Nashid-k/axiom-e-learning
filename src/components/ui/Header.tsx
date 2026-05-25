@@ -68,7 +68,7 @@ export function Header() {
           {user ? (
             <div className="hidden sm:flex items-center gap-2">
               <Link href="/paths">
-                <Button size="sm" variant="secondary" className="border-white/10 hover:border-[var(--color-primary)]/30">
+                <Button size="sm" variant="secondary" className="hover:border-[var(--color-primary)]/30">
                   Dashboard
                 </Button>
               </Link>

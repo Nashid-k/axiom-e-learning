@@ -37,18 +37,18 @@ export function ExperienceSelector() {
           "relative flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all duration-300 group",
           isOpen 
             ? "bg-[var(--color-primary)]/10 border-[var(--color-primary)]/50 shadow-[0_0_15px_rgba(99,102,241,0.2)]" 
-            : "bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10"
+            : "bg-[var(--surface-raised)] border-[var(--surface-border)] hover:border-[var(--surface-border-active)] hover:bg-[var(--surface-border-active)]"
         )}
       >
         {/* Glow effect */}
         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-cyan)]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
         
         <span className="relative z-10 text-base">{currentLevel.icon}</span>
-        <span className="relative z-10 text-sm font-semibold tracking-wide text-white">
+        <span className="relative z-10 text-sm font-semibold tracking-wide text-[var(--fg-primary)]">
           {currentLevel.label}
         </span>
         <svg 
-          className={cn("w-4 h-4 text-white/50 transition-transform duration-300 relative z-10", isOpen && "rotate-180")} 
+          className={cn("w-4 h-4 text-[var(--fg-secondary)] transition-transform duration-300 relative z-10", isOpen && "rotate-180")} 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -58,7 +58,7 @@ export function ExperienceSelector() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-64 p-2 rounded-2xl bg-[var(--surface-raised)] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl animate-in fade-in slide-in-from-top-2">
+        <div className="absolute top-full right-0 mt-2 w-64 p-2 rounded-2xl bg-[var(--surface-raised)] border border-[var(--surface-border)] shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl animate-in fade-in slide-in-from-top-2">
           <div className="text-xs font-bold text-[var(--fg-secondary)] uppercase tracking-wider mb-2 px-2 pt-1">
             Target Experience
           </div>
@@ -75,8 +75,8 @@ export function ExperienceSelector() {
                   className={cn(
                     "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 text-left relative overflow-hidden group",
                     isSelected 
-                      ? "bg-[var(--color-primary)]/20 text-white" 
-                      : "hover:bg-white/5 text-[var(--fg-secondary)] hover:text-white"
+                      ? "bg-[var(--color-primary)]/20 text-[var(--fg-primary)]" 
+                      : "hover:bg-[var(--surface-border)] text-[var(--fg-secondary)] hover:text-[var(--fg-primary)]"
                   )}
                 >
                   {isSelected && (

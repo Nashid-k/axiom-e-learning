@@ -16,7 +16,6 @@ export function Header() {
   const pathname = usePathname();
 
   const navigationItems = [
-    { name: "Paths", href: "/paths" },
     { name: "Leaderboard", href: "/leaderboard" },
     { name: "Flashcards", href: "/flashcards" },
   ];
@@ -24,16 +23,16 @@ export function Header() {
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
-      "bg-[var(--surface-base)] backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+      "bg-[var(--surface-base)] backdrop-blur-xl border-b border-[var(--surface-border)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
     )}>
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="relative p-1.5 rounded-lg bg-white/5 border border-white/10 group-hover:border-[var(--color-primary)]/50 transition-colors">
+          <Link href={user ? "/paths" : "/"} className="flex items-center gap-2.5 group">
+            <div className="relative p-1.5 rounded-lg bg-[var(--surface-raised)] border border-[var(--surface-border)] group-hover:border-[var(--color-primary)]/50 transition-colors">
               <AxiomLogo className="w-6 h-6 transition-transform duration-500 group-hover:rotate-12" />
               <div className="absolute inset-0 rounded-lg bg-[var(--color-primary)] opacity-0 group-hover:opacity-10 blur-md transition-opacity" />
             </div>
-            <span className="font-black text-xl tracking-tight text-[var(--fg-primary)] bg-gradient-to-r from-white to-[var(--fg-secondary)] bg-clip-text text-transparent group-hover:from-white group-hover:to-[var(--color-cyan)] transition-all">
+            <span className="font-black text-xl tracking-tight text-[var(--fg-primary)] bg-gradient-to-r from-[var(--fg-primary)] to-[var(--fg-secondary)] bg-clip-text text-transparent group-hover:from-[var(--fg-primary)] group-hover:to-[var(--color-cyan)] transition-all">
               AXIOM
             </span>
           </Link>
@@ -48,8 +47,8 @@ export function Header() {
                   className={cn(
                     "relative px-4 py-2 text-sm font-semibold tracking-wide transition-all duration-300 rounded-lg",
                     isActive 
-                      ? "text-white" 
-                      : "text-[var(--fg-secondary)] hover:text-white hover:bg-white/5"
+                      ? "text-[var(--fg-primary)]" 
+                      : "text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] hover:bg-[var(--surface-border)]"
                   )}
                 >
                   {item.name}
@@ -105,9 +104,8 @@ export function Header() {
         </div>
       </nav>
 
-      {/* Mobile nav drawer */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/5 bg-[var(--surface-base)] backdrop-blur-xl px-6 py-6 space-y-3 animate-in slide-in-from-top-4 duration-300 shadow-2xl">
+        <div className="md:hidden border-t border-[var(--surface-border)] bg-[var(--surface-base)] backdrop-blur-xl px-6 py-6 space-y-3 animate-in slide-in-from-top-4 duration-300 shadow-2xl">
           {navigationItems.map((item) => {
             const isActive = pathname?.startsWith(item.href);
             return (
@@ -118,15 +116,15 @@ export function Header() {
                 className={cn(
                   "block px-4 py-3 text-sm font-semibold tracking-wide rounded-xl transition-all",
                   isActive
-                    ? "bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-cyan)]/10 text-white border border-[var(--color-primary)]/20 shadow-[0_0_15px_rgba(99,102,241,0.05)]"
-                    : "text-[var(--fg-secondary)] hover:text-white hover:bg-white/5 border border-transparent"
+                    ? "bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-cyan)]/10 text-[var(--fg-primary)] border border-[var(--color-primary)]/20 shadow-[0_0_15px_rgba(99,102,241,0.05)]"
+                    : "text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] hover:bg-[var(--surface-border)] border border-transparent"
                 )}
               >
                 {item.name}
               </Link>
             );
           })}
-          <div className="pt-4 border-t border-white/5 flex flex-col gap-3">
+          <div className="pt-4 border-t border-[var(--surface-border)] flex flex-col gap-3">
             {user ? (
               <>
                 <Link href="/paths" onClick={() => setMobileOpen(false)} className="w-full">

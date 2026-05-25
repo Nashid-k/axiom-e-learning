@@ -124,6 +124,7 @@ export type Category =
   | 'DevOps'
   | 'System Design'
   | 'Interview Prep'
+  | 'AI Engineering'
   | 'Other';
 
 export interface ProjectDetails {

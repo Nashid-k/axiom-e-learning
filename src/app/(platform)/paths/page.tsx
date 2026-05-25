@@ -51,7 +51,7 @@ export default function ExplorePage() {
                             </span>
                             <span className="text-lg filter drop-shadow-[0_2px_8px_rgba(255,255,255,0.1)]">{stat.icon}</span>
                         </div>
-                        <div className="text-3xl font-extrabold tracking-tight text-[var(--fg-primary)] bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                        <div className="text-3xl font-extrabold tracking-tight text-gradient-primary">
                             {stat.value}
                         </div>
                     </BentoCard>
@@ -65,7 +65,7 @@ export default function ExplorePage() {
                         key={category} 
                         size="auto" 
                         href={`/paths/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="group flex flex-col justify-between overflow-hidden border-white/5 hover:border-[var(--color-primary)]/20 bg-gradient-to-br from-[var(--surface-raised)] to-transparent animate-spring-up opacity-0"
+                        className="group flex flex-col justify-between overflow-hidden border-[var(--surface-border)] hover:border-[var(--color-primary)]/20 bg-gradient-to-br from-[var(--surface-raised)] to-transparent animate-spring-up opacity-0"
                         style={{ animationDelay: `${(i + 5) * 80}ms` }}
                     >
                         {/* Interactive Accent Glow Behind Icon */}
@@ -88,7 +88,7 @@ export default function ExplorePage() {
                         </div>
 
                         <div className="mt-16 flex items-center gap-3 z-10 relative">
-                            <div className="h-[1px] flex-1 bg-white/5 group-hover:bg-gradient-to-r group-hover:from-[var(--color-primary)] group-hover:to-[var(--color-cyan)] transition-all duration-500" />
+                            <div className="h-[1px] flex-1 bg-[var(--surface-border)] group-hover:bg-gradient-to-r group-hover:from-[var(--color-primary)] group-hover:to-[var(--color-cyan)] transition-all duration-500" />
                             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--fg-muted)] group-hover:text-[var(--color-cyan)] transition-colors duration-300 flex items-center gap-1.5">
                                 ENGAGE MATRIX <span className="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
                             </span>

@@ -51,6 +51,7 @@ export const getCategory = (cat: string): Category => {
         'devops': 'DevOps',
         'system-design': 'System Design',
         'interview-prep': 'Interview Prep',
+        'ai-engineering': 'AI Engineering',
     };
     const normalized = cat.toLowerCase().replace(/\s+/g, '-');
     return mapping[normalized] || 'Other' as Category;
@@ -314,6 +315,13 @@ export const CURRICULUM_REGISTRY: Record<string, CurriculumEntry> = {
         dataKey: 'web-fundamentals', 
         foundations: ['http-protocol-foundation'], 
         getData: () => import('@/data/web-fundamentals-curriculum').then(m => m.WEB_FUNDAMENTALS_CURRICULUM['web-fundamentals']) 
+    },
+    'ai-engineering': { 
+        slug: 'ai-engineering', 
+        category: 'AI Engineering', 
+        dataKey: 'ai-engineering', 
+        foundations: ['http-protocol-foundation'], 
+        getData: () => import('@/data/ai-engineering-curriculum').then(m => m.AI_ENGINEERING_CURRICULUM['ai-engineering']) 
     },
 };
 

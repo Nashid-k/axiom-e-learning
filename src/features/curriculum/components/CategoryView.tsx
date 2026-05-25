@@ -41,7 +41,7 @@ function StructuredPaths({ curricula }: { curricula: StructuredPathData[] }) {
         <div className="mb-14">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2.5 animate-spring-up" style={{ animationDelay: '150ms' }}>
                 <span className="w-1.5 h-6 bg-[var(--color-primary)] rounded-full shadow-[0_0_10px_rgba(10,132,255,0.4)]" />
-                <span className="tracking-tight text-white">Structured Mastery Paths</span>
+                <span className="tracking-tight text-[var(--fg-primary)]">Structured Mastery Paths</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredCurricula.map((curr, i) => {
@@ -50,22 +50,22 @@ function StructuredPaths({ curricula }: { curricula: StructuredPathData[] }) {
                         <Link key={curr.slug} href={`/learn/${curr.slug}`} className="group h-full block">
                             <BentoCard 
                                 noPadding 
-                                className="h-full p-7 bg-gradient-to-br from-[var(--surface-raised)] to-transparent border-white/5 hover:border-[var(--color-primary)]/20 animate-spring-up opacity-0"
+                                className="h-full p-7 bg-gradient-to-br from-[#050505] to-[#0a0a0a] border-[var(--surface-border)] hover:border-[var(--color-cyan)]/40 hover:shadow-[0_0_30px_rgba(10,132,255,0.15)] transition-all duration-500 animate-spring-up opacity-0 relative overflow-hidden"
                                 style={{ animationDelay: `${(i + 3) * 85}ms` }}
                             >
                                 {/* Interactive Accent Glow Behind Icon */}
-                                <div className="absolute top-1/2 right-0 w-32 h-32 bg-[var(--color-primary)] opacity-[0.03] group-hover:opacity-[0.12] rounded-full blur-3xl transition-all duration-700 animate-pulse-glow" />
+                                <div className="absolute top-0 right-0 w-48 h-48 bg-[var(--color-cyan)] opacity-[0.02] group-hover:opacity-[0.15] rounded-full blur-3xl transition-all duration-700 pointer-events-none transform translate-x-1/4 -translate-y-1/4" />
 
                                 {/* Large Animated Background Graphic */}
-                                <div className="absolute -right-6 -bottom-6 opacity-[0.08] group-hover:opacity-[0.25] group-hover:-translate-y-3 group-hover:-translate-x-3 group-hover:scale-110 transition-all duration-700 ease-out pointer-events-none mix-blend-screen filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                                    <TechIcon name={curr.category} className="w-40 h-40 animate-float-slow" />
+                                <div className="absolute -right-6 -bottom-6 opacity-[0.05] group-hover:opacity-[0.20] group-hover:-translate-y-4 group-hover:-translate-x-4 group-hover:scale-110 transition-all duration-700 ease-out pointer-events-none mix-blend-screen filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                                    <TechIcon name={curr.category} className="w-40 h-40 animate-float-slow text-[var(--color-cyan)]" />
                                 </div>
 
                                 <div className="flex flex-col h-full justify-between gap-8 z-10 relative">
                                     <div className="flex justify-between items-start gap-4">
                                         <div className="flex-1">
                                             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-cyan)] mb-2.5 animate-fade-slide-left" style={{ animationDelay: `${(i + 3) * 85 + 100}ms` }}>ACTIVE PATH</div>
-                                            <h3 className="text-xl font-bold text-white group-hover:text-[var(--color-primary)] transition-all duration-300 mb-2 leading-tight">
+                                            <h3 className="text-xl font-bold text-[var(--fg-primary)] group-hover:text-[var(--color-primary)] transition-all duration-300 mb-2 leading-tight">
                                                 {displayName}
                                             </h3>
                                             <p className="text-[var(--fg-secondary)] text-sm leading-relaxed font-medium line-clamp-3">
@@ -96,7 +96,7 @@ export default function CategoryView({ category, curricula }: CategoryViewProps)
 
     return (
         <RouteGuard>
-            <div className="min-h-screen bg-transparent p-6 md:p-12 text-white">
+            <div className="min-h-screen bg-transparent p-6 md:p-12 text-[var(--fg-primary)]">
                 <main className="w-full">
                     <div className="mb-12 animate-spring-up" style={{ animationDelay: '0ms' }}>
                         <Breadcrumbs />

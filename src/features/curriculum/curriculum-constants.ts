@@ -22,6 +22,7 @@ export const CATEGORIES = [
     'Networking',
     'System Design',
     'Interview Prep',
+    'AI Engineering',
     'Other',
 ] as const;
 
@@ -57,6 +58,7 @@ export const CATEGORY_META: Record<Category, {
     'System Design': { color: '#EC4899', icon: 'system-design', directRoute: '/learn/system-design' },
 
     'Interview Prep': { color: '#888888', icon: 'interview', directRoute: '/learn/interview-prep' },
+    'AI Engineering': { color: '#FF00FF', icon: 'ai', directRoute: '/learn/ai-engineering' },
     'Other': { color: '#64748B', icon: 'other' },
 };
 
@@ -90,6 +92,7 @@ export const getCategory = (title: string): Category | 'Other' => {
     if (t.includes('javascript') || t.includes('js')) return 'JavaScript';
 
     if (t.includes('interview')) return 'Interview Prep';
+    if (t.includes('ai') || t.includes('llm') || t.includes('agent')) return 'AI Engineering';
 
     return 'Other';
 };

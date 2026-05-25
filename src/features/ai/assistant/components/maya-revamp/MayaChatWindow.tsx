@@ -105,7 +105,7 @@ export function MayaChatWindow({
                         <div>
                             <div className="flex items-center gap-1.5">
                                 <h3 className="text-sm font-black tracking-widest uppercase text-white font-display">MAYA SENSEI</h3>
-                                <span className="font-mono text-[7px] bg-white/[0.04] text-[var(--fg-secondary)] px-1 py-0.5 rounded border border-white/[0.08]">[ GPT-OSS-120B ]</span>
+                                <span className="font-mono text-[7px] bg-white/[0.04] text-[var(--fg-secondary)] px-1 py-0.5 rounded border border-white/[0.08]">[ LLAMA-3.3-70B ]</span>
                             </div>
                             <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[var(--color-primary)] filter drop-shadow-[0_0_4px_rgba(10,132,255,0.3)] mt-0.5">
                                 {activeTopic?.title || 'System Core'}

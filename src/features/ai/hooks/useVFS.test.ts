@@ -57,6 +57,9 @@ describe('useVFS Hook', () => {
         const { result } = renderHook(() => useVFS('test_topic', 'html'));
 
         act(() => {
+            result.current.openTab('/app.js');
+        });
+        act(() => {
             result.current.renameFile('/app.js', '/main.js');
         });
 
